@@ -1,0 +1,20 @@
+#!/bin/bash
+failfact=$(for user in $(grep ':$6' /etc/shadow | awk -F: '$5>365 {print $1}'); do echo $user; chage -l $user | grep "Maximum.*number.*of.*days.*between.*password.*change"; done | paste -d " "  - - | sed 's/Maximum.*number.*of.*days.*between.*password.*change//g' | awk '{print $3 ,$1}' | paste -sd "," | sed 's/never/-1/g' )
+failfact1=$(cat /etc/login.defs | grep "^PASS_MAX_DAYS.*" | expand -t 1)
+count=0
+if [ $(grep "^PASS_MAX_DAYS" /etc/login.defs | awk '{print $2}') -gt 365 ]; then
+   for i in $(egrep ^[^:]+:[^\!*] /etc/shadow | awk -F: '$5>365 {print $1}'); do
+        if [ $i != 'root' ]; then
+          if [ $(chage --list $i | grep "Maximum.*days.*between password.*" | awk -F ':' '{print $2}') -gt 365 ]; then
+                        count=$((count+1))
+          fi
+        fi
+   done
+fi
+
+if [ "$count" -ne "0" ]; then
+        echo "{ \"passwdexpiration_5411_actual\" : \"failed $failfact1,$failfact\" }"
+else
+        echo "{ \"passwdexpiration_5411_actual\" : \"password expiration is 365 days or less\"}"
+        exit 1
+fi

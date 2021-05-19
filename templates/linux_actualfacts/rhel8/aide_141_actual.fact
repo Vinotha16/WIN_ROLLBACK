@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa aide | grep "aide-[0-9]\+")
+if [ $(rpm -qa aide | grep "aide-[0-9]\+" | wc -l) -eq 0 ]; then
+   echo "{ \"aide_141_actual\" : \"\" }"
+else
+   echo "{ \"aide_141_actual\" : \"$cmd\" }"
+
+fi

@@ -1,0 +1,26 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.9 - Ensure users own their home directories (Scored)
+count=0
+for user in `grep /home /etc/passwd | awk -F: '$3>=500 { print $1 }'`;
+do
+for dir in `grep /home /etc/passwd | awk -F: '$3>=500 { print $6 }'`;
+do
+    if [ "$(ls /home | grep "$user")" != "$user" ]; then
+        count=$((count+1))
+    else
+        owner=$(stat -L -c "%U" "$dir" 2> /dev/null)
+                if [ "$owner" != "$user" ]; then
+                        count=$((count+1))
+                fi
+    fi
+
+if [ "$count" -ne "0" ]; then
+        echo "{\"userownhdir_629_audit\" : \"FAILED\"}"
+else
+       echo "{\"userownhdir_629_audit\" : \"PASSED\"}"
+        exit 1
+fi
+done
+done

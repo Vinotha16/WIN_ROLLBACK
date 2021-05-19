@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa | grep "mcstrans" | wc -l) -ne 0 ]; then
+   echo "{ \"mcs_1718_actual\" : \"\" }"
+else
+   echo "{ \"mcs_1718_actual\" : \"package mcstrans is not installed\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep -Ei '^\s*^\s*ENCRYPT_METHOD\s+SHA512' /etc/login.defs)
+if [ $(sudo grep -Ei '^\s*^\s*ENCRYPT_METHOD\s+SHA512' /etc/login.defs | wc -l) -eq 0 ]; then
+   echo "{ \"passwdhashing_5411_actual\" : \"\" }"
+else
+   echo "{ \"passwdhashing_5411_actual\" : \"$cmd\" }"
+   
+fi

@@ -1,0 +1,25 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+EnableLLTDIO
+DWORD:0
+
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+AllowLLTDIOOnDomain
+DWORD:0
+
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+AllowLLTDIOOnPublicNet
+DWORD:0
+
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+ProhibitLLTDIOOnPrivateNet
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

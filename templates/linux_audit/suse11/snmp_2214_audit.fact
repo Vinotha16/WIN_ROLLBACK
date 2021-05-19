@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.14 - Ensure SNMP Server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list snmpd | egrep 'snmpd.*:on ' | wc -l) -ne 0 ]; then
+   echo "{ \"snmp_2214_audit\" : \"FAILED\" }"
+else
+   echo "{ \"snmp_2214_audit\" : \"PASSED\" }"
+fi

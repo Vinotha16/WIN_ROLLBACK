@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.20 - Ensure shadow group is empty (Scored)
+
+if [ $(sudo grep "^shadow:x:" /etc/group | awk -F: {'print $4'} | grep -v '^\s*$' | wc -l) -ne 0 ]; then
+    echo "{ \"shadowgroup_6220_audit\" : \"FAILED\" }"
+else
+    echo "{ \"shadowgroup_6220_audit\" : \"PASSED\" }"
+fi
+
+

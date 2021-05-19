@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# Rule 6.2.17 - Ensure no duplicate GIDs exist (Scored)
+
+if [ $(sudo awk -F: '$3>=1000 {print $3}' /etc/group | sort | uniq -c | awk '$1 > 1' | wc -l) -ne 0 ]; then
+   echo "{ \"6.2.17 - Duplicate GIDs are exist\" : \"FAILED\"}"
+else
+   echo "{ \"duplicategid_6217_audit\" : \"PASSED\"}"
+   
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/sysconfig/boot | grep "PROMPT_FOR_CONfiRM=no")
+if [ $(grep "^PROMPT_FOR_CONfiRM=no" /etc/sysconfig/boot 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"interactiveboot_154_actual\" : \"\" }"
+else
+   echo "{ \"interactiveboot_154_actual\" : \"$cmd\" }"
+   exit 1
+fi

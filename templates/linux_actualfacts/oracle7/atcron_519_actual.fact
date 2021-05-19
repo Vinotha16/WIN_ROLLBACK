@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/at.allow)
+if [ $(stat /etc/at.allow 2> /dev/null | grep 0600 | grep ".*Uid:.*0/.*root" | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ] || [ $(stat /etc/at.deny 2> /dev/null | wc -l) -ne 0 ]; then
+   echo "{ \"atcron_519_actual\" : \"\" }"
+else
+   echo "{ \"atcron_519_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

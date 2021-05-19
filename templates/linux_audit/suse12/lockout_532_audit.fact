@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.2 - Ensure lockout for failed password attempts is configured (Scored)
+
+if [ $(sudo grep pam_tally2.so /etc/pam.d/common-auth | grep "deny=5 unlock_time=900" | wc -l) -eq 0 ] || $(sudo grep pam_tally2.so /etc/pam.d/common-account | wc -l) -eq 0 ]; then
+   echo "{\"lockout_532_audit\" : \"FAILED\"}"
+else
+   echo "{\"lockout_532_audit\" : \"PASSED\"}"
+fi

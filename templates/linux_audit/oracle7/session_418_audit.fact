@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.8 - Ensure session initiation information is collected (Scored)
+
+if [ $(sudo grep -E '(session|logins)' /etc/audit/rules.d/*.rules | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep -E '(session|logins)' | wc -l) -eq 0 ]; then
+   echo "{ \"session_418_audit\" : \"FAILED\" }"
+else
+   echo "{ \"session_418_audit\" : \"PASSED\" }"
+fi
+

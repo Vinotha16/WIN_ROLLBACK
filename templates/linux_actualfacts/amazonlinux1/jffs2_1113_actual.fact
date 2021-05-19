@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/CIS.conf | grep "install jffs2 /bin/true")
+if [ "$(modprobe -n -v jffs2 2> /dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep jffs2 | wc -l)" -ne 0 ]; then
+   echo "{ \"jffs2_1113_actual\" : \"\" }"
+else
+   echo "{ \"jffs2_1113_actual\" : \"$cmd\" }"
+fi
+

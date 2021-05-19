@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa openldap-clients | wc -l) -ne 0 ]; then
+   echo "{ \"ldapc_235_actual\" : \"\" }"
+else
+   echo "{ \"ldapc_235_actual\" : \"LDAP client not installed\" }"
+fi

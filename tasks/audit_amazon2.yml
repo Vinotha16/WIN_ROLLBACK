@@ -1,0 +1,2816 @@
+---
+######AUDIT######
+  - name: RedHat - dependency package [libselinux-python]
+    yum: name=libselinux-python state=present
+    failed_when: no
+    when: ansible_os_family == "RedHat"
+    tags:
+      - audit
+
+  - name: Removing the existing audit directory
+    file:
+      path: /etc/ansible/audit.d
+      state: absent
+    become: yes
+    tags:
+      - always
+
+  - name: Creating the audit directory
+    file:
+      path: /etc/ansible/audit.d
+      state: directory
+      recurse: yes
+    become: yes
+    tags:
+      - always
+
+  - name: Transfering cramfs audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/cramfs_1111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cramfs
+      - 1.1.1.1
+      - one
+      - all
+      - audit
+      
+  - name: Transfering hfs audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/hfs_1112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfs
+      - 1.1.1.2
+      - one
+      - all
+      - audit
+
+  - name: Transfering hfsplus audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/hfsplus_1113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfsplus
+      - 1.1.1.3
+      - one
+      - all
+      - audit
+      
+  - name: Transfering squashfs audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/squashfs_1114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - squashfs 
+      - 1.1.1.4
+      - one
+      - all
+      - audit
+      
+  - name: Transfering udf audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/udf_1115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - udf
+      - 1.1.1.5
+      - one
+      - all
+      - audit
+      
+      
+  - name: Transfering tmp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tmp_112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmp
+      - 1.1.2
+      - one
+      - all
+      - audit
+      
+  - name: Transfering tmpnodev audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tmpnodev_113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnodev
+      - 1.1.3
+      - one
+      - all
+      - audit
+      
+  - name: Transfering tmpnosuid audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tmpnosuid_114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnosuid
+      - 1.1.4
+      - one
+      - all
+      - audit
+      
+  - name: Transfering tmpnoexec audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tmpnoexec_115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnoexec
+      - 1.1.5
+      - one
+      - all
+      - audit
+      
+  - name: Transfering var audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/var_116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - var
+      - 1.1.6
+      - one
+      - all
+      - audit
+      
+  - name: Transfering vartmp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/vartmp_117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vartmp
+      - 1.1.7
+      - one
+      - all
+      - audit
+      
+  - name: Transfering vtnodev audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/vtnodev_118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnodev
+      - 1.1.8
+      - one
+      - all
+      - audit
+
+  - name: Transfering vtnosuid audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/vtnosuid_119_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnosuid
+      - 1.1.9
+      - one
+      - all
+      - audit
+      
+  - name: Transfering vtnoexec audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/vtnoexec_1110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnoexec
+      - 1.1.10
+      - one
+      - all
+      - audit
+      
+  - name: Transfering varlog audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/varlog_1111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlog
+      - 1.1.11
+      - one
+      - all
+      - audit
+      
+  - name: Transfering varlogaudit audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/varlogaudit_1112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlogaudit
+      - 1.1.12
+      - one
+      - all
+      - audit
+      
+  - name: Transfering home audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/home_1113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - home
+      - 1.1.13
+      - one
+      - all
+      - audit
+
+  - name: Transfering homenodev audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/homenodev_1114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - homenodev
+      - 1.1.14
+      - one
+      - all
+      - audit
+      
+  - name: Transfering shmnodev audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/shmnodev_1115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnodev
+      - 1.1.15
+      - one
+      - all
+      - audit
+      
+  - name: Transfering shmnosuid audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/shmnosuid_1116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnosuid
+      - 1.1.16
+      - one
+      - all
+      - audit
+      
+  - name: Transfering shmnoexec audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/shmnoexec_1117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnoexec
+      - 1.1.17
+      - one
+      - all
+      - audit
+      
+  - name: Transfering stickybit audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/stickybit_1118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - stickybit
+      - 1.1.18
+      - one
+      - all 
+      - audit
+      
+  - name: Transfering automount audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/automount_1119_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - automount
+      - 1.1.19
+      - one
+      - all
+      - audit
+      
+  - name: Transfering repoconfig audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/repoconfig_121_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+     - 1.2.1
+     - repoconfig
+     - one
+     - all
+
+  - name: Transfering gpgkey audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/gpgkey_122_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.2
+      - gpgkey
+      - one
+      - all
+      - audit
+      
+  - name: Transfering gpgcheck audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/gpgcheck_123_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.3
+      - gpgcheck
+      - one
+      - all 
+      - audit
+      
+  - name: Transfering aide audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/aide_131_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.1
+      - aide
+      - one
+      - all
+      - audit
+      
+  - name: Transfering fsintegrity audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/fsintegrity_132_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.2
+      - fsintegrity
+      - one
+      - all
+      - audit
+      
+  - name: Transfering bootloadperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/bootloadperm_141_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.4.1
+      - bootloadperm
+      - one
+      - all
+      - audit
+      
+      
+  - name: Transfering singleusermode audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/singleusermode_142_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+     - singleusermode
+     - 1.4.2
+     - one
+     - all
+     
+     
+  - name: Transfering coredumps audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/coredumps_151_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.1
+      - coredumps
+      - one
+      - all
+      - audit
+      
+      
+  - name: Transfering aslr audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/aslr_152_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.2
+      - aslr
+      - one
+      - all
+      - audit
+      
+  - name: Transfering prelink audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/prelink_153_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.3
+      - prelink
+      - one
+      - all
+      - audit
+      
+  - name: Transfering seldisable audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/seldisable_1611_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.1
+      - seldisable
+      - one
+      - all
+      - audit
+      
+  - name: Transfering selstate audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/selstate_1612_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.2
+      - selstate
+      - one
+      - all
+      - audit
+      
+  - name: Transfering selpolicy audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/selpolicy_1613_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.3
+      - selpolicy
+      - one
+      - all
+      - audit
+      
+  - name: Transfering setroubleshoot audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/setroubleshoot_1614_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.4
+      - setroubleshoot
+      - one
+      - all
+      - audit
+      
+  - name: Transfering mcs audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/mcs_1615_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.5
+      - mcs
+      - one
+      - all
+      - audit
+
+  - name: Transfering unconfined audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/unconfined_1616_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.6
+      - unconfined
+      - one
+      - all
+      - audit
+
+      
+  - name: Transfering selinux audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/selinux_162_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.2
+      - selinux
+      - one
+      - all
+      - audit
+      
+  - name: Transfering msgday audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/msgday_1711_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.1
+      - msgday
+      - one
+      - all
+      - audit
+      
+  - name: Transfering locallogin audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/locallogin_1712_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.2
+      - locallogin
+      - one
+      - all
+      - audit
+      
+  - name: Transfering remotelogin audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/remotelogin_1713_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.3
+      - remotelogin
+      - one
+      - all
+      - audit
+      
+  - name: Transfering motdperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/motdperm_1714_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.4
+      - motdperm
+      - one
+      - all
+      - audit
+      
+  - name: Transfering issueperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/issueperm_1715_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.5
+      - issueperm
+      - one
+      - all
+      - audit
+      
+  - name: Transfering issuenetperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/issuenetperm_1716_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.6
+      - issuenetperm
+      - one
+      - all
+      - audit
+      
+  - name: Transfering updates audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/updates_18_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - '1.8'
+      - updates
+      - one
+      - all
+      - audit
+            
+  - name: Transfering timesync audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/timesync_2111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - timesync
+      - 2.1.1.1
+      - two
+      - all
+      - audit
+
+  - name: Transfering ntp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ntp_2112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ntp
+      - 2.1.1.2
+      - two
+      - all
+      - audit
+      
+  - name: Transfering chrony audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/chrony_2113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - chrony
+      - 2.1.1.3
+      - two
+      - all
+      - audit
+      
+  - name: Transfering xorg audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/xorg_212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - xorg
+      - 2.1.2
+      - two
+      - all
+      - audit
+      
+  - name: Transfering avahi audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/avahi_213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - avahi
+      - 2.1.3
+      - two
+      - all
+      - audit
+      
+  - name: Transfering cups audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/cups_214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cups
+      - 2.1.4
+      - two
+      - all
+      - audit
+
+  - name: Transfering dhcp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/dhcp_215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dhcp
+      - 2.1.5
+      - two
+      - all
+      - audit
+      
+  - name: Transfering ldap audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ldap_216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldap
+      - 2.1.6
+      - two
+      - all
+      - audit
+      
+  - name: Transfering nfsrpc audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/nfsrpc_217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nfsrpc
+      - 2.1.7
+      - two
+      - all
+      - audit
+      
+  - name: Transfering dns audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/dns_218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dns
+      - 2.1.8
+      - two
+      - all
+      - audit
+      
+  - name: Transfering ftp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ftp_219_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ftp
+      - 2.1.9
+      - two
+      - all
+      - audit
+      
+  - name: Transfering http audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/http_2110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - http
+      - 2.1.10
+      - two
+      - all
+      - audit
+      
+  - name: Transfering imap audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/imap_2111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - imap
+      - 2.1.11
+      - two
+      - all
+      - audit
+      
+  - name: Transfering samba audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/samba_2112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - samba
+      - 2.1.12
+      - two
+      - all
+      - audit
+      
+  - name: Transfering proxy audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/proxy_2113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - proxy
+      - 2.1.13
+      - two
+      - all
+      - audit
+      
+  - name: Transfering snmp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/snmp_2114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - snmp
+      - 2.1.14
+      - two
+      - all
+      - audit
+      
+  - name: Transfering mail audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/mail_2115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - mail
+      - 2.1.15
+      - two
+      - all
+      - audit
+      
+  - name: Transfering nis audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/nis_2116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nis
+      - 2.1.16
+      - two
+      - all
+      - audit
+
+
+  - name: Transfering rsh audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rsh_2117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsh
+      - 2.1.17
+      - two
+      - all
+      - audit
+
+
+  - name: Transfering telnet audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/telnet_2118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnet
+      - 2.1.18
+      - two
+      - all
+      - audit
+
+  - name: Transfering tftp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tftp_2119_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tftp
+      - 2.1.19
+      - two
+      - all
+      - audit
+
+  - name: Transfering rsync audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rsync_2120_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsync
+      - 2.1.20
+      - two
+      - all
+      - audit
+
+  - name: Transfering talk audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/talk_2121_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talk
+      - 2.1.21
+      - two
+      - all
+      - audit
+
+
+  - name: Transfering nisc audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/nisc_221_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nisc
+      - 2.2.1
+      - two
+      - all
+      - audit
+      
+  - name: Transfering rshc audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rshc_222_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rshc
+      - 2.2.2
+      - two
+      - all
+      - audit
+      
+  - name: Transfering talkc audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/talkc_223_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talkc
+      - 2.2.3
+      - two
+      - all
+      - audit
+
+  - name: Transfering telnetc audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/telnetc_224_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnetc
+      - 2.2.4
+      - two
+      - all
+      - audit
+
+  - name: Transfering ldapc audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ldapc_225_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldapc
+      - 2.2.5
+      - two
+      - all
+      - audit
+
+  - name: Transfering ipforward audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ipforward_311_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipforward
+      - 3.1.1
+      - three
+      - all
+      - audit
+      
+  - name: Transfering packetredirect audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/packetredirect_312_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - packetredirect
+      - 3.1.2
+      - three
+      - all
+      - audit
+      
+  - name: Transfering routedpacket audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/routedpacket_321_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - routedpacket
+      - 3.2.1
+      - three
+      - all
+      - audit
+      
+  - name: Transfering icmp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/icmp_322_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - icmp
+      - 3.2.2
+      - three
+      - all
+      - audit
+
+  - name: Transfering secureicmp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/secureicmp_323_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - secureicmp
+      - 3.2.3
+      - three
+      - all
+      - audit
+
+  - name: Transfering suspicious audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/suspicious_324_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suspicious
+      - 3.2.4
+      - three
+      - all
+      - audit
+      
+  - name: Transfering broadcasticmp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/broadcasticmp_325_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - broadcasticmp
+      - 3.2.5
+      - three
+      - all
+      - audit
+      
+  - name: Transfering bogusicmp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/bogusicmp_326_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - bogusicmp
+      - 3.2.6
+      - three
+      - all
+      - audit
+      
+  - name: Transfering reversepathfilter audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/reversepathfilter_327_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - reversepathfilter
+      - 3.2.7
+      - three
+      - all
+      - audit
+      
+  - name: Transfering tcpsyncookies audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tcpsyncookies_328_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpsyncookies
+      - 3.2.8
+      - three
+      - all
+      - audit
+      
+  - name: Transfering ipv6router audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ipv6router_329_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6router
+      - 3.2.9
+      - three
+      - all
+      - audit
+
+  - name: Transfering tcpwrappers audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tcpwrappers_331_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpwrappers
+      - 3.3.1
+      - three
+      - all
+      - audit
+   
+  - name: Transfering hostsallow audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/hostsallow_332_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsallow
+      - 3.3.2
+      - three
+      - all
+      - audit
+      
+  - name: Transfering hostsdeny audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/hostsdeny_333_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsdeny
+      - 3.3.3
+      - three
+      - all
+      - audit
+
+  - name: Transfering permhostsallow audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permhostsallow_334_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsallow
+      - 3.3.4
+      - three
+      - all
+      - audit
+
+  - name: Transfering permhostsdeny audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permhostsdeny_335_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsdeny
+      - 3.3.5
+      - three
+      - all
+      - audit
+
+  - name: Transfering dccp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/dccp_341_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dccp
+      - 3.4.1
+      - three
+      - all  
+      - audit
+
+  - name: Transfering sctp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sctp_342_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sctp
+      - 3.4.2
+      - three
+      - all
+      - audit
+      
+  - name: Transfering rds audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rds_343_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rds
+      - 3.4.3
+      - three
+      - all
+      - audit
+
+  - name: Transfering tipc audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/tipc_344_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tipc
+      - 3.4.4
+      - three
+      - all
+      - audit
+
+  - name: Transfering iptables audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/iptables_353_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - iptables
+      - 3.6.1
+      - three
+      - all
+      - audit
+ 
+  - name: Transfering firewallpolicy audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/firewallpolicy_3511_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallpolicy
+      - 3.5.1.1
+      - three
+      - all
+      - audit
+
+  - name: Transfering loopbacktraffic audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/loopbacktraffic_3512_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loopbacktraffic
+      - 3.5.1.2
+      - three
+      - all
+      - audit
+
+  - name: Transfering outbound audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/outbound_3513_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - outbound
+      - 3.5.1.3
+      - three
+      - all
+      - audit
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/firewallrules_3514_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallrules
+      - 3.5.1.4
+      - three
+      - all
+      - audit
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ipv6firewallpolicy_3521_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallpolicy
+      - 3.5.2.1
+      - three
+      - all
+      - audit
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ipv6loopbacktraffic_3522_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6loopbacktraffic
+      - 3.5.2.2
+      - three
+      - all
+      - audit
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ipv6outbound_3523_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6outbound
+      - 3.5.2.3
+      - three
+      - all
+      - audit
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ipv6firewallrules_3524_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallrules
+      - 3.5.2.4
+      - three
+      - all
+      - audit
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/iptables_353_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - iptables
+      - 3.5.3
+      - three
+      - all
+      - audit
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ipv6disable_36_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6disable
+      - '3.6'
+      - three
+      - all
+      - audit
+
+      
+  - name: Transfering auditlogsize audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/auditlogsize_4111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogsize
+      - 4.1.1.1
+      - four
+      - all
+      - audit
+
+  - name: Transfering auditlogfull audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/auditlogfull_4112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogfull
+      - 4.1.1.2
+      - four
+      - all
+      - audit
+
+  - name: Transfering auditlogdelete audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/auditlogdelete_4113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogdelete
+      - 4.1.1.3
+      - four
+      - all
+      - audit
+
+  - name: Transfering auditdservice audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/auditdservice_412_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdservice
+      - 4.1.2
+      - four
+      - all
+      - audit
+
+  - name: Transfering auditdenable audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/auditdenable_413_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdenable
+      - 4.1.3
+      - four
+      - all
+      - audit
+
+  - name: Transfering moddatetime audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/moddatetime_414_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - moddatetime
+      - 4.1.4
+      - four
+      - all
+      - audit
+
+  - name: Transfering modusergrp audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/modusergrp_415_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modusergrp
+      - 4.1.5
+      - four
+      - all
+      - audit
+
+  - name: Transfering modsysnet audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/modsysnet_416_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysnet
+      - 4.1.6
+      - four
+      - all 
+      - audit
+      
+  - name: Transfering modsysmac audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/modsysmac_417_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysmac
+      - 4.1.7
+      - four
+      - all
+      - audit
+      
+  - name: Transfering loginout audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/loginout_418_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loginout
+      - 4.1.8
+      - four
+      - all
+      - audit
+
+  - name: Transfering session audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/session_419_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - session
+      - 4.1.9
+      - four
+      - all
+      - audit
+
+  - name: Transfering dacperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/dacperm_4110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dacperm
+      - 4.1.10
+      - four
+      - all
+      - audit
+      
+  - name: Transfering fileaccess audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/fileaccess_4111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fileaccess
+      - 4.1.11
+      - four
+      - all
+      - audit
+
+  - name: Transfering privilegecmd audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/privilegecmd_4112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - privilegecmd
+      - 4.1.12
+      - four
+      - all
+      - audit
+      
+  - name: Transfering fsmount audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/fsmount_4113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fsmount
+      - 4.1.13
+      - four
+      - all
+      - audit
+
+  - name: Transfering filedeletion audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/filedeletion_4114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - filedeletion
+      - 4.1.14
+      - four
+      - all
+      - audit
+      
+  - name: Transfering sudoers audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sudoers_4115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudoers
+      - 4.1.15
+      - four
+      - all
+      - audit
+ 
+  - name: Transfering sudolog audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sudolog_4116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudolog
+      - 4.1.16
+      - four
+      - all
+      - audit
+
+  - name: Transfering kernelmodule audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/kernelmodule_4117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - kernelmodule
+      - 4.1.17
+      - four
+      - all
+      - audit
+
+  - name: Transfering auditconfig audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/auditconfig_4118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditconfig
+      - 4.1.18
+      - four
+      - all
+      - audit
+
+  - name: Transfering rsyslogenb audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rsyslogenb_4211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogenb
+      - 4.2.1.1
+      - four
+      - all
+      - audit
+
+  - name: Transfering rloggingconf audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rloggingconf_4212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.2
+      - four
+      - all
+      - audit
+
+  - name: Transfering rsyslogperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rsyslogperm_4213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogperm
+      - 4.2.1.3
+      - four
+      - all
+      - audit
+
+  - name: Transfering rsyslogsendlogs audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rsyslogsendlogs_4214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.4
+      - four
+      - all
+      - audit
+
+  - name: Transfering remotesyslogmsg audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/remotesyslogmsg_4215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.5
+      - four
+      - all
+      - audit
+
+  - name: Transfering syslogngenb audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/syslogngenb_4221_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngenb
+      - 4.2.2.1
+      - four
+      - all
+      - audit
+      
+  - name: Transfering sloggingconf audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sloggingconf_4222_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sloggingconf
+      - 4.2.2.2
+      - four
+      - all
+      - audit
+
+  - name: Transfering syslogngperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/syslogngperm_4223_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngperm
+      - 4.2.2.3
+      - four
+      - all
+      - audit
+
+  - name: Transfering syslogngsendlogs audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/syslogngsendlogs_4224_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngsendlogs
+      - 4.2.2.4
+      - four
+      - all
+      - audit
+
+      
+  - name: Transfering remotesyslogng audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/remotesyslogng_4225_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogng
+      - 4.2.2.5
+      - four
+      - all
+      - audit
+      
+  - name: Transfering rsyslogng audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rsyslogng_423_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogng
+      - 4.2.3
+      - four
+      - all
+      - audit
+
+  - name: Transfering permlogfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permlogfiles_424_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permlogfiles
+      - 4.2.4
+      - four
+      - all
+      - audit
+
+  - name: Transfering logrotate audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/logrotate_43_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - logrotate
+      - '4.3'
+      - four
+      - all
+      - audit
+
+  - name: Transfering cron audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/cron_511_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cron
+      - 5.1.1
+      - five
+      - all
+      - audit
+
+  - name: Transfering permcrontab audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permcrontab_512_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrontab
+      - 5.1.2
+      - five
+      - all
+      - audit
+   
+  - name: Transfering permcronhourly audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permcronhourly_513_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronhourly
+      - 5.1.3
+      - five
+      - all
+      - audit
+
+  - name: Transfering permcrondaily audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permcrondaily_514_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrondaily
+      - 5.1.4
+      - five
+      - all
+      - audit
+      
+  - name: Transfering permcronweekly audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permcronweekly_515_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronweekly
+      - 5.1.5
+      - five
+      - all
+      - audit
+
+  - name: Transfering permcronmonthly audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permcronmonthly_516_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronmonthly
+      - 5.1.6
+      - five
+      - all
+      - audit
+      
+  - name: Transfering permcrond audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permcrond_517_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrond
+      - 5.1.7
+      - five
+      - all
+      - audit
+
+  - name: Transfering atcron audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/atcron_518_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - atcron
+      - 5.1.8
+      - five
+      - all
+      - audit
+   
+  - name: Transfering sshdperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshdperm_521_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshdperm
+      - 5.2.1
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshpermpvtkey audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshpermpvtkey_522_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpvtkey
+      - 5.2.2
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshpermpubkey audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshpermpubkey_523_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpubkey
+      - 5.2.3
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshprotocol audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshprotocol_524_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshprotocol
+      - 5.2.4
+      - five
+      - all
+      - audit
+  
+  - name: Transfering sshloglevel audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshloglevel_525_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshloglevel
+      - 5.2.5
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshx11forward audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshx11forward_526_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshx11forward
+      - 5.2.6
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshmaxauthtries audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshmaxauthtries_527_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmaxauthtries
+      - 5.2.7
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshignorerhosts audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshignorerhosts_528_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshignorerhosts
+      - 5.2.8
+      - five
+      - all
+      - audit
+      
+  - name: Transfering sshauthentication audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshauthentication_529_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshauthentication
+      - 5.2.9
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshrootlogin audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshrootlogin_5210_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshrootlogin
+      - 5.2.10
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshpep audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshpep_5211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpep
+      - 5.2.11
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshpue audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshpue_5212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpue
+      - 5.2.12
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshchipers audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshchipers_5213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshchipers
+      - 5.2.13
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshmacalgorithm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshmacalgorithm_5214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.2.14
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshkeyexalgorithm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshkeyexalgorithm_5215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.2.15
+      - five
+      - all
+      - audit
+      
+  - name: Transfering sshidletimeout audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshidletimeout_5216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshidletimeout
+      - 5.2.16
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshlogingracetime audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshlogingracetime_5217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshlogingracetime
+      - 5.2.17
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshaccess audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshaccess_5218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshaccess
+      - 5.2.18
+      - five
+      - all
+      - audit
+
+  - name: Transfering sshwarningbanner audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sshwarningbanner_5219_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshwarningbanner
+      - 5.2.19
+      - five
+      - all
+      - audit
+
+  - name: Transfering passwdcreation audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/passwdcreation_531_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdcreation
+      - 5.3.1
+      - five
+      - all
+      - audit
+      
+  - name: Transfering lockout audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/lockout_532_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lockout
+      - 5.3.2
+      - five
+      - all
+      - audit
+
+  - name: Transfering passwdreuse audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/passwdreuse_533_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdreuse
+      - 5.3.3
+      - five
+      - all
+      - audit
+      
+  - name: Transfering passwdhashing audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/passwdhashing_534_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdhashing
+      - 5.3.4
+      - five
+      - all
+      - audit
+      
+  - name: Transfering passwdexpiration audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/passwdexpiration_5411_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.4.1.1
+      - five
+      - all
+      - audit
+
+  - name: Transfering minidays audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/minidays_5412_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - minidays
+      - 5.4.1.2
+      - five
+      - all
+      - audit
+      
+  - name: Transfering warningdays audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/warningdays_5413_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - warningdays
+      - 5.4.1.3
+      - five
+      - all
+      - audit
+      
+  - name: Transfering inactivepasswdlock audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/inactivepasswdlock_5414_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.4.1.4
+      - five
+      - all
+      - audit
+      
+  - name: Transfering lastpasswdchange audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/lastpasswdchange_5415_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lastpasswdchange
+      - 5.4.1.5
+      - five
+      - all
+      - audit
+
+  - name: Transfering sysaccnonlogin audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sysaccnonlogin_542_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sysaccnonlogin
+      - 5.4.2
+      - five
+      - all
+      - audit
+
+  - name: Transfering defaultgroup audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/defaultgroup_543_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultgroup
+      - 5.4.3
+      - five
+      - all
+      - audit
+
+  - name: Transfering defaultuser audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/defaultuser_544_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultuser
+      - 5.4.4
+      - five
+      - all
+      - audit
+
+  - name: Transfering usershelltimeout audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/usershelltimeout_545_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - usershelltimeout
+      - 5.4.5
+      - five
+      - all
+      - audit
+
+  - name: Transfering rootlogin audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rootlogin_55_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootlogin
+      - '5.5'
+      - five
+      - all
+      - audit
+
+  - name: Transfering suaccess audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/suaccess_56_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suaccess
+      - '5.6'
+      - five
+      - all
+      - audit
+      
+  - name: Transfering auditsysperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/auditsysperm_611_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditsysperm
+      - 6.1.1
+      - six
+      - all
+      - audit
+      
+  - name: Transfering permpasswd audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permpasswd_612_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswd
+      - 6.1.2
+      - six
+      - all
+      - audit
+      
+  - name: Transfering permshadow audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permshadow_613_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadow
+      - 6.1.3
+      - six
+      - all  
+      - audit
+      
+  - name: Transfering permgroup audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permgroup_614_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroup
+      - 6.1.4
+      - six
+      - all
+      - audit
+      
+  - name: Transfering permgshadow audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permgshadow_615_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadow
+      - 6.1.5
+      - six
+      - all
+      - audit
+      
+  - name: Transfering permpasswdi audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permpasswdi_616_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswdi
+      - 6.1.6
+      - six
+      - all
+      - audit
+      
+  - name: Transfering permshadowi audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permshadowi_617_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadowi
+      - 6.1.7
+      - six
+      - all
+      - audit
+      
+  - name: Transfering permgroupi audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permgroupi_618_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroupi
+      - 6.1.8
+      - six
+      - all   
+      - audit
+      
+  - name: Transfering permgshadowi audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/permgshadowi_619_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadowi
+      - 6.1.9
+      - six
+      - all
+      - audit
+
+  - name: Transfering wwfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/wwfiles_6110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wwfiles
+      - 6.1.10
+      - six
+      - all     
+      - audit
+
+  - name: Transfering unownedfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/unownedfiles_6111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - all
+      - audit
+
+  - name: Transfering ungroupedfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/ungroupedfiles_6112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - all
+      - audit
+
+  - name: Transfering suidexec audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/suidexec_6113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suidexec
+      - 6.1.13
+      - six
+      - all
+      - audit
+
+  - name: Transfering sgidexec audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/sgidexec_6114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sgidexec
+      - 6.1.14
+      - six
+      - all
+      - audit
+
+  - name: Transfering emptypasswd audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/emptypasswd_621_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - emptypasswd
+      - 6.2.1
+      - six
+      - all
+      - audit
+
+  - name: Transfering nolegacypasswd audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/nolegacypasswd_622_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacypasswd
+      - 6.2.2
+      - six
+      - all
+      - audit
+      
+  - name: Transfering nolegacyshadow audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/nolegacyshadow_623_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacyshadow
+      - 6.2.3
+      - six
+      - all
+      - audit
+      
+  - name: Transfering nolegacygroup audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/nolegacygroup_624_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacygroup
+      - 6.2.4
+      - six
+      - all
+      - audit
+
+  - name: Transfering rootuid audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rootuid_625_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootuid
+      - 6.2.5
+      - six
+      - all
+      - audit
+
+  - name: Transfering rootpath audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rootpath_626_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootpath
+      - 6.2.6
+      - six
+      - all
+      - audit
+
+
+  - name: Transfering userhdir audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/userhdir_627_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdir
+      - 6.2.7
+      - six
+      - all
+      - audit
+      
+  - name: Transfering userhdirperm audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/userhdirperm_628_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdirperm
+      - 6.2.8
+      - six
+      - all
+      - audit
+
+  - name: Transfering userownhdir audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/userownhdir_629_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userownhdir
+      - 6.2.9
+      - six
+      - all
+      - audit
+
+  - name: Transfering dotfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/dotfiles_6210_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dotfiles
+      - 6.2.10
+      - six
+      - all
+      - audit
+      
+  - name: Transfering forwardfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/forwardfiles_6211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - forwardfiles
+      - 6.2.11
+      - six
+      - all
+      - audit
+
+  - name: Transfering netrcfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/netrcfiles_6212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - netrcfiles
+      - 6.2.12
+      - six
+      - all
+      - audit
+      
+  - name: Transfering grpnetrcfiles audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/grpnetrcfiles_6213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - grpnetrcfiles
+      - 6.2.13
+      - six
+      - all
+      - audit
+
+  - name: Transfering rhosts audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/rhosts_6214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rhosts
+      - 6.2.14
+      - six
+      - all
+      - audit
+      
+  - name: Transfering groups audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/groups_6215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - groups
+      - 6.2.15
+      - six
+      - all
+      - audit
+
+  - name: Transfering duplicateuid audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/duplicateuid_6216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuid
+      - 6.2.16
+      - six
+      - all
+      - audit
+      
+  - name: Transfering duplicategid audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/duplicategid_6217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicategid
+      - 6.2.17
+      - six
+      - all
+      - audit
+      
+  - name: Transfering duplicateuser audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/duplicateuser_6218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuser
+      - 6.2.18
+      - six
+      - all
+      - audit
+      
+  - name: Transfering duplicategroup audit file
+    template:
+      src: ../templates/linux_audit/amazonlinux2/duplicategroup_6219_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags: 
+      - duplicategroup
+      - 6.2.19
+      - six
+      - all
+      - audit

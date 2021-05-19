@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /boot/grub/grub.cfg | grep -o "audit=1" | sed "1q")
+if [ $(sudo grep "^\s*linux.*audit=1" /boot/grub/grub.cfg 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"auditdenable_413_actual\" : \"\" }"
+else
+   echo "{ \"auditdenable_413_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

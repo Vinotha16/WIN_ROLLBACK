@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.2.2 - Ensure packet redirect sending is disabled (Scored)
+
+if [ "$(sudo sysctl net.ipv4.conf.all.send_redirects)" != "net.ipv4.conf.all.send_redirects = 0" ] || [ "$(sudo sysctl net.ipv4.conf.default.send_redirects)" != "net.ipv4.conf.default.send_redirects = 0" ] || [ $(sudo grep "^net.ipv4.conf.all.send_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.send_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+   echo "{ \"packetredirect_322_audit\" : \"FAILED\"}"
+else
+   echo "{ \"packetredirect_322_audit\" : \"PASSED\"}"
+   
+fi
+
+
+
+

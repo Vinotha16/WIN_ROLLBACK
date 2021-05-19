@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'maxstartups 10:30:60')
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'maxstartups 10:30:60' | wc -l) -eq 0 ] || [ $(sudo  grep -Ei '^\s*maxstartups\s+(((1[1-9]|[1-9][0-9][0-9]+):([0-9]+):([0-9]+))|(([0-9]+):(3[1-9]|[4-9][0-9]|[1-9][0-9][0-9]+):([0-9]+))|(([0-9]+):([0-9]+):(6[1-9]|[7-9][0-9]|[1-9][0-9][0-9]+)))' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{\"sshmaxstartups_5322_actual\":\"\"}"
+else
+   echo "{\"sshmaxstartups_5322_actual\":\"$cmd\"}"
+   exit 1
+fi

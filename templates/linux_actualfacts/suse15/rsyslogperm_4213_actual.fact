@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(grep "^\$FileCreateMode 0640" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf | paste -sd ",")
+if [ $(grep "^\$FileCreateMode 0640" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf | wc -l) -eq 0 ]; then
+   echo "{ \"rsyslogperm_4213_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogperm_4213_actual\" : \"${cmd}\" }"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# 1.11 - Ensure system-wide crypto policy is not legacy (Scored)
+
+
+if [ $(grep -E -i '^\s*LEGACY\s*(\s+#.*)?$' /etc/crypto-policies/config | wc -l) -eq 1 ]; then
+	echo "{ \"1.11 - Ensure system-wide crypto policy is legacy\" :  \"FAILED\" }"
+else
+	echo "{ \"crypolicyfuture_111_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+# 6.2.12 - Ensure no users have .rhosts_6212_audit files (Scored)
+count=0
+if [ $(find / -name ".rhosts_6212_audit" 2> /dev/null | wc -l) -ne 0 ]; then
+    count=$((count+1))
+else
+        count=$((count+0))
+fi
+if [ "$count" -ne "0" ]; then
+       echo "{ \"rhosts_6212_audit\" : \"FAILED\"}"
+else
+    echo "{ \"rhosts_6212_audit\" : \"PASSED\"}"
+    
+fi

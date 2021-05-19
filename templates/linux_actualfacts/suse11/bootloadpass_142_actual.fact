@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /boot/grub/menu.lst | grep "^password.*--md5.*")
+if [ "$(sudo grep "^password.*--md5" /boot/grub/menu.lst | wc -l)" -eq 0 ] ; then
+   echo "{ \"bootloadpass_142_actual\" : \"\" }"
+else
+   echo "{ \"bootloadpass_142_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

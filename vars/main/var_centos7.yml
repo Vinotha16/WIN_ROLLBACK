@@ -1,0 +1,32 @@
+---
+####CENTOS-7####
+bootloader_password_centos7: zippyops@123
+Selinux_centos7: enforcing
+remote_server_chrony_centos7: sample.zippy.com
+remote_server_ntp_centos7: sample.zippy.com
+nonessen_service_centos7:
+ntp_chrony_centos7: chrony
+zone_name_centos7: customezone
+interface_name_centos7: eth0
+#unnecservport_service_centos7:   #unnecservport
+#unnecservport_port_centos7:      #unnecservport
+table_name_centos7: filter
+table_name_bc_centos7: filter
+base_chain_name_input_centos7: input
+base_chain_name_output_centos7: output
+base_chain_name_forward_centos7: forward
+audit_log_size_centos7: 8
+MaxAuthTries_centos7: MaxAuthTries 4
+PermitRootLogin_centos7: PermitRootLogin no
+ClientAliveInterval_centos7: ClientAliveInterval 300
+ClientAliveCountMax_centos7: ClientAliveCountMax 0
+Pass_max_days_centos7: 365
+Pass_min_days_centos7: 7
+Pass_warn_age_centos7: 7
+allowusers_centos7: ansible
+allowgroups_centos7:
+denyusers_centos7:
+denygroups_centos7:
+
+db_no_centos7: 3
+update_centos7:

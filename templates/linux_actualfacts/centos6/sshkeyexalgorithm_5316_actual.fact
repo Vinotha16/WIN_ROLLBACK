@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -Ei '^\s*kexalgorithms\s+([^#]+,)?(diffie-hellman-group1-sha1|diffie-hellmangroup14-sha1|diffie-hellman-group-exchange-sha1)\b' | wc -l) -ne 0 ] || [ $(sudo grep -Ei '^\s*kexalgorithms\s+([^#]+,)?(diffie-hellman-group1-sha1|diffiehellman-group14-sha1|diffie-hellman-group-exchange-sha1)\b' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{ \"sshkeyexalgorithm_5316_actual\" : \"\"}"
+else
+   echo "{ \"sshkeyexalgorithm_5316_actual\" : \"strong Key Exchange algorithms are used\"}"
+   exit 0
+fi
+

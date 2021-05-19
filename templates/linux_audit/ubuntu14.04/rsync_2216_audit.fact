@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.16 - Ensure rsync service is not enabled (Scored)
+
+if [ $(grep ^RSYNC_ENABLE=false /etc/default/rsync | wc -l) -eq 0 ]; then
+   echo "{\"2.2.16 - Ensure rsync service is enabled\" : \"FAILED\"}"
+else
+   echo "{\"rsync_2216_audit\" : \"PASSED\"}"
+   
+fi
+

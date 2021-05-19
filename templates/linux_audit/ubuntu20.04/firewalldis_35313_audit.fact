@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.1.3 Ensure Uncomplicated Firewall is not installed or disabled 
+
+if [ $(sudo ufw status | grep 'Status: inactive' | wc -l) -eq 0 ]; then
+   echo "{ \"firewalldis_35313_audit\" : \"FAILED\" }"
+else
+   echo "{ \"firewalldis_35313_audit\" : \"PASSED\" }"
+
+fi

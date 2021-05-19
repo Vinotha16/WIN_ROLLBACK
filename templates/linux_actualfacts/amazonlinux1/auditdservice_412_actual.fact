@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list auditd | grep "0:off.*1:off.*2:on.*3:on.*4:on.*5:on.*6:off" | wc -l) -eq 0 ]; then
+   echo "{ \"auditdservice_412_actual\" : \"\" }"
+else
+   echo "{ \"auditdservice_412_actual\" : \"enabled\" }"
+   exit 1
+fi

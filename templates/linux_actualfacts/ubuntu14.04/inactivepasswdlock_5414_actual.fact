@@ -1,0 +1,10 @@
+#!/bin/bash
+failfact=$(egrep "^[^:]+:[\$]|^[^:]+:\!\!" /etc/shadow | awk -F: '$7>30 {print $7, $1}')
+failfact1=$(useradd -D | grep "^INACTIVE.*"| sed 's/=/ /g' | expand -t 1)
+cmd=$(useradd -D | grep "INACTIVE=30")
+if [ $(useradd -D | grep INACTIVE=30 | wc -l) -eq 0 ] || [ $( egrep "^[^:]+:[\$]|^[^:]+:\!\!" /etc/shadow | awk -F: '$7>30 {print $7}' | wc -l) -ne 0 ]; then
+      echo "{ \"inactivepasswdlock_5414_actual\" : \"failed $failfact1,$failfact\" }"
+else
+      echo "{ \"inactivepasswdlock_5414_actual\" : \"$cmd\" }"
+        exit 1
+fi

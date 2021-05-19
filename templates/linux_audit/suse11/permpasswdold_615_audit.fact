@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.5 - Ensure permissions on /etc/passwdold are configured (Scored)
+
+if [ -f /etc/passwd.old ]; then
+   if [ $(sudo stat /etc/passwd.old | egrep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+      echo "{ \"permpasswdold_615_audit\" : \"FAILED\" }"
+   else
+      echo "{ \"permpasswdold_615_audit\" : \"PASSED\"}"
+   fi
+else
+   echo "{ \"permpasswdold_615_audit\" : \"FAILED\" }"
+fi
+
+

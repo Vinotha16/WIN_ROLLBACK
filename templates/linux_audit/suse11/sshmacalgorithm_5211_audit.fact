@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.11 - Ensure only approved MAC algorithms are used (Scored)
+
+if [ $(sudo grep "^MACs.*mac"  /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshmacalgorithm_5211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshmacalgorithm_5211_audit\" : \"PASSED\" }"
+fi

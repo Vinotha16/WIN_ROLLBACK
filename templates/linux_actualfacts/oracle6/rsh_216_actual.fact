@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list | grep 'rexec.*on' | wc -l) -ne 0 ] || [ $( sudo chkconfig --list | grep 'rlogin.*on' | wc -l) -ne 0 ] || [ $( sudo chkconfig --list | grep 'rsh.*on' | wc -l) -ne 0 ]; then
+   echo "{ \"rsh_216_actual\" : \"\"}"
+else
+   echo "{ \"rsh_216_actual\" : \"rsh is disabled\"}"
+      
+fi

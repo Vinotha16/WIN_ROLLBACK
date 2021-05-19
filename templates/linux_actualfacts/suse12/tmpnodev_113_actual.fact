@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(mount | grep "/tmp.*nodev")
+if [ $(mount | grep "/tmp.*nodev" | wc -l) -eq 0 ]; then
+   echo "{ \"tmpnodev_113_actual\" : \"\" }"
+else
+   echo "{ \"tmpnodev_113_actual\" : \"${cmd}\"}"
+   exit 0
+fi
+

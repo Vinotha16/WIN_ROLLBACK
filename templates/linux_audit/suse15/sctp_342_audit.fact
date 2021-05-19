@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.2 - Ensure SCTP is disabled (Not Scored)
+
+if [ $(modprobe -n -v sctp 2> /dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(lsmod | grep sctp 2> /dev/null | wc -l) -ne 0 ]; then
+   echo "{ \"sctp_342_audit\" : \"FAILED\"}"
+else
+   echo "{ \"sctp_342_audit\" : \"PASSED\"}"
+   exit 1
+fi

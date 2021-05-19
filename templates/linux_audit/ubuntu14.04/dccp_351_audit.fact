@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1 - Ensure DCCP is disabled (Not Scored)
+
+if [ $(sudo modprobe -n -v dccp 2> /dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep dccp | wc -l) -ne 0 ]; then
+   echo "{\"3.5.1 DCCP is not Disabled\":\"FAILED\"}"
+else
+   echo "{ \"dccp_351_audit\" : \"PASSED\" }"
+  
+fi

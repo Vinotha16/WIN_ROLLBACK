@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.11 - Ensure no unowned files or directories exist (Scored)
+
+if [ $(sudo df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser 2>/dev/null | wc -l) -gt 0 ] || [ $(sudo find / -xdev -nouser | wc -l) -gt 0 ]; then
+   echo "{ \"unownedfiles_6111_audit\" : \"FAILED\"}"
+else
+   echo "{ \"unownedfiles_6111_audit\" : \"PASSED\"}"
+   
+fi
+

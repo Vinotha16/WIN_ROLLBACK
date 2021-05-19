@@ -1,0 +1,10 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled iptables | grep "enabled")
+if [ $(sudo systemctl is-enabled iptables | grep "enabled" | wc -l) -eq 0 ] || [ $(sudo systemctl status iptables | grep " Active: active (running) " | wc -l) -eq 0 ]; then
+    echo "{ \"iptablesenb_35326_actual\" : \"\" }"
+else
+   echo "{ \"iptablesenb_35326_actual\" : \"$cmd\" }"
+   exit 1
+fi
+ 
+

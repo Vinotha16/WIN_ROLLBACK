@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.16 - Ensure system administrator actions (sudolog) are collected (Scored)
+
+if [ $(sudo grep actions /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"sudolog_4116_audit\" : \"FAILED\"}"
+else
+   echo "{\"sudolog_4116_audit\" : \"PASSED\"}"
+   
+fi

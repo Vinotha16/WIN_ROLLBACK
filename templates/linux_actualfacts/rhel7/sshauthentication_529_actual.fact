@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat /etc/ssh/sshd_config | grep "^HostbasedAuthentication.*no")
+if [ $(sudo grep "^HostbasedAuthentication.*no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshauthentication_529_actual\" : \"\" }"
+else
+   echo "{ \"sshauthentication_529_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

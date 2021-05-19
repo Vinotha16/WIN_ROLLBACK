@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(yum repolist 2> /dev/null | egrep -c 'amzn-main') -eq 0 ] || [ $(yum repolist 2> /dev/null | egrep -c 'amzn-updates') -eq 0 ]; then
+   echo "{ \"repoconfig_121_actual\" : \"\" }"
+else
+   echo "{ \"repoconfig_121_actual\" : \"repo is configured\" }"
+   exit 0
+fi

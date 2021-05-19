@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.1.5 - Ensure remote rsyslog messages are only accepted on designated log hosts. (Not Scored)
+
+if [ $(grep "^\$ModLoad imtcp" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(grep "^\$InputTCPServerRun" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf  | wc -l) -eq 0 ]; then
+   echo "{ \"remotesyslogmsg_4215_audit\" : \"FAILED\" }"
+else
+   echo "{ \"remotesyslogmsg_4215_audit\" : \"PASSED\" }"
+fi

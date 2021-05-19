@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/CIS.conf | grep "install tipc /bin/true")
+if [ $(sudo modprobe -n -v tipc 2> /dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep tipc | wc -l) -ne 0 ]; then
+   echo "{ \"tipc_354_actual\" : \"\" }"
+else
+   echo "{ \"tipc_354_actual\" : \"${cmd}\" }"
+   exit 0
+fi

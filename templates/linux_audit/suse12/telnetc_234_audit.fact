@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+
+# 2.3.4 - Ensure telnet Client is not installed (Scored)
+
+if [ $(sudo rpm -qa | grep telnet | wc -l) -ne 0 ]; then
+
+   echo "{\"telnetc_234_audit\" : \"FAILED\"}"
+
+else
+  
+  echo "{\"telnetc_234_audit\" : \"PASSED\"}"
+
+fi

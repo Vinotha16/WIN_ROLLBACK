@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.8.4 - Ensure XDCMP is not enabled
+
+if [ $(sudo grep -Ei '^\s*Enable\s*=\s*true' /etc/gdm/custom.conf | wc -l) -ne 0 ]; then
+      echo "{ \"xdcmp_184_audit\" : \"FAILED\"}"
+else
+      echo "{ \"xdcmp_184_audit\" : \"PASSED\"}"
+fi

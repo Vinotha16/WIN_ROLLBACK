@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.7 - Ensure permissions on /etc/group- are configured (Scored)
+
+if [ $(sudo stat /etc/group- | grep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permgroupi_617_audit\" : \"FAILED\"}"
+else
+   echo "{ \"permgroupi_617_audit\" : \"PASSED\"}"
+   
+fi
+

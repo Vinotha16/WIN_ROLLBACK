@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ "$(chkconfig --list | grep autofs | wc -l)" -eq 0 ]; then
+echo "{ \"automount_1122_actual\" : \"Automounting is disabled or not present\" }"
+else
+       if [ "$(chkconfig --list autofs 2>/dev/null | egrep '0.*off.*1.*off.*2.*off 3.*off.*4.*off.*5.*off.*6.*off' | wc -l )" -eq 0 ]; then
+           echo "{ \"automount_1122_actual\" : \"\" }"
+       else
+           echo "{ \"automount_1122_actual\" : \"Automounting is disabled or not present\" }"
+       fi
+fi
+

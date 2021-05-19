@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(iptables -L | grep "policy DROP" | paste -sd "," -)
+if [ "$(iptables -L | grep "policy" | wc -l)" -eq 0 ]; then
+   echo "{ \"firewallpolicy_34411_actual\" : \"\" }"
+else
+   echo "{ \"firewallpolicy_34411_actual\" : \"${cmd}\" }"
+   exit 1
+fi

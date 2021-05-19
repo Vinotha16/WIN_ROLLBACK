@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(cat /etc/syslog-ng/syslog-ng.conf | grep "destination logserver { tcp("logfile.example.com" port(514)); };" | tr '"' " " )
+b=$(cat /etc/syslog-ng/syslog-ng.conf | grep "log { source(src); destination(logserver); };" | tr '"' " " )
+cmd="${a}","${b}"
+if [ $(grep logserver /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngsendlogs_4224_actual\" : \"\" }"
+else
+   echo "{ \"syslogngsendlogs_4224_actual\" : \"${cmd}\" }"
+fi

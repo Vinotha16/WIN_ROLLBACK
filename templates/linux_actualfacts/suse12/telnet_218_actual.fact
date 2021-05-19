@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$(chkconfig --list 2>/dev/null | grep "telnet:" | awk {'print $2'})" == "on" ]; then
+
+    echo "{ \"telnet_218_actual\" : \"\" }"
+
+else
+ 
+   echo "{ \"telnet_218_actual\" : \"not enabled\" }"
+
+fi

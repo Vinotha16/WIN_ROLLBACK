@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(mount | grep /dev/shm.*noexec)
+if [ "$(mount | grep /dev/shm.*noexec | wc -l)" -eq 0 ]; then
+   echo "{ \"shmnoexec_1117_actual\" : \"\" }"
+else
+   echo "{ \"shmnoexec_1117_actual\" : \"$cmd\" }"
+fi

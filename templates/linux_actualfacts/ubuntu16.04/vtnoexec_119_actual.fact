@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(mount | grep "/var/tmp.*noexec")
+if [ "$(mount | grep "/var/tmp.*noexec" | wc -l)" -eq 0 ]; then
+   echo "{ \"vtnoexec_119_actual\" : \"\" }"
+else
+   echo "{ \"vtnoexec_119_actual\" : \"$cmd\" }"
+  
+fi

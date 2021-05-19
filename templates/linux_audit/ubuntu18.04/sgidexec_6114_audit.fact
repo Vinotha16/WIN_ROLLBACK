@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.14 - Audit SGID executables (Not Scored)
+
+if [ $(sudo df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000 2>/dev/null | wc -l) -eq 0 ] || [ $(find / -xdev -type f -perm -2000 | wc -l) -eq 0 ]; then
+   echo "{ \"sgidexec_6114_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sgidexec_6114_audit\" : \"PASSED\" }"
+   
+fi

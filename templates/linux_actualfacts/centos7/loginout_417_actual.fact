@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/*.rules | grep "/var/log/lastlog -p wa -k logins")
+b=$(cat /etc/audit/rules.d/*.rules | grep "/var/run/faillog -p wa -k logins")
+cmd="${a}","${b}"
+if [ $(sudo egrep "lastlog|faillock" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep logins | wc -l) -eq 0 ] ; then
+   echo "{ \"loginout_417_actual\" : \"\" }"
+else
+   echo "{ \"loginout_417_actual\" : \"${cmd}\" }"
+   exit 1
+fi

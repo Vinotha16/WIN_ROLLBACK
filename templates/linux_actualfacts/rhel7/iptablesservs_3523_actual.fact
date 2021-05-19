@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q iptables-services)
+if [ $(sudo rpm -q iptables-services | grep 'iptables-services-[0-9]\+' | wc -l) -ne 0 ]; then
+        echo "{ \"iptablesservs_3523_actual\" : \"\" }"
+else
+        echo "{ \"iptablesservs_3523_actual\" : \"${cmd}\" }"
+fi

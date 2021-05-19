@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(cat /etc/dconf/db/gdm.d/01-banner-message | grep "[org/gnome/login-screen]" | paste -sd "," )
+b=$(cat /etc/dconf/db/gdm.d/01-banner-message | grep "banner-message-enable=true" | paste -sd ",")
+c=$(cat /etc/dconf/db/gdm.d/01-banner-message | grep "Authorized uses only. All activity may be monitored and reported")
+d=$(cat /etc/dconf/profile/gdm | grep "user-db:user" | paste -sd "," )
+e=$(cat /etc/dconf/profile/gdm | grep "system-db:gdm" | paste -sd ",")
+f=$(cat /etc/dconf/profile/gdm | grep "file-db:/usr/share/gdm/greeter-dconf-defaults" | paste -sd ",")
+cmd="${a}","${b}","${c}","${d}","${e}","${f}"
+if [ "$(sudo egrep "user-db|system-db|file-db" /etc/dconf/profile/gdm 2> /dev/null | wc -l)" -eq 0  ] || [ "$(sudo egrep "[org/gnome/login-screen]|banner-message-enable|banner-message-text" /etc/dconf/db/gdm.d/*| wc -l)" -eq 0 ]; then
+      echo "{ \"gdmconfig_182_actual\" :  \"\"}"
+else
+      echo "{ \"gdmconfig_182_actual\" : \"$cmd\" }"
+fi

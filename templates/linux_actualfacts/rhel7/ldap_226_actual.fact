@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa openldap-servers | wc -l) -ne 0 ]; then
+   echo "{ \"ldap_226_actual\" : \"\" }"
+else
+   echo "{ \"ldap_226_actual\" : \"not Installed\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.3 - Ensure audit logs are not automatically deleted (Scored)
+
+if [ $(sudo grep "^max_log_file_action = keep_logs" /etc/audit/auditd.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"auditlogdelete_4113_audit\" : \"FAILED\"}"
+else
+   echo "{ \"auditlogdelete_4113_audit\" : \"PASSED\"}"
+   
+fi

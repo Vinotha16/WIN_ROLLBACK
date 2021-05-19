@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo sshd -T | grep 'permitemptypasswords.*no')
+if [ $(sudo sshd -T | grep 'permitemptypasswords.*no' | wc -l) -eq 0 ]; then
+   echo "{ \"sshpep_5211_actual\" : \"\" }"
+else
+   echo "{ \"sshpep_5211_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

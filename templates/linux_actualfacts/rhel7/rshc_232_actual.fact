@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa rsh | wc -l) -ne 0 ]; then
+   echo "{ \"rshc_232_actual\" : \"\" }"
+else
+   echo "{ \"rshc_232_actual\" : \"RSH not installed\" }"
+fi

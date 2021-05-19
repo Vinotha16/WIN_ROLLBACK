@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo grep "^\s*kernel.*" /boot/grub/grub.conf | grep -m1 -o "ipv6.disable=1")
+if [ $(sudo grep "^\s*kernel.*" /boot/grub/grub.conf | grep "ipv6.disable=1" | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6disable_311_actual\" : \"\" }"
+else
+   echo "{ \"ipv6disable_311_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

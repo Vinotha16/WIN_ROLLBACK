@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.2 - Ensure augenrules is enabled
+
+if [ $(sudo grep -Ei '^\s*USE_AUGENRULES\s*="yes"' /etc/sysconfig/auditd | wc -l) -eq 0 ]; then
+   echo "{ \"augenrules_4112_audit\" : \"FAILED\"}"
+else
+   echo "{ \"augenrules_4112_audit\" : \"PASSED\"}"
+   exit 0
+fi
+

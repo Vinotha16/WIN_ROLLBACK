@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(rpm -qa iptables-services | wc -l) -ne 0 ]; then
+        echo "{ \"iptablesservfirewall_3512_actual\" : \"\" }"
+else
+        echo "{ \"iptablesservfirewall_3512_actual\" : \"not installed\" }"
+fi

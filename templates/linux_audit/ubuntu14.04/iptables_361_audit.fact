@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.6.1 - Ensure iptables is installed (Scored)
+
+if [ $(sudo dpkg -s iptables 2> /dev/null | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{\"3.6.1 - Iptables is not Installed\":\"FAILED\"}"
+else
+   echo "{ \"iptables_361_audit\" : \"PASSED\" }"
+   
+fi

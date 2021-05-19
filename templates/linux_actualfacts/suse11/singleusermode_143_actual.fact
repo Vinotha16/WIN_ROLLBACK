@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/inittab | grep "^~~:S:respawn:/sbin/sulogin")
+if [ "$(sudo cat /etc/inittab | grep "^~~:S:respawn:/sbin/sulogin" | wc -l)" -eq 0 ]; then
+   echo "{ \"singleusermode_143_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_143_actual\" : \"$cmd\"}"
+   exit 1
+fi

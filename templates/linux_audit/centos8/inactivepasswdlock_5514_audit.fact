@@ -1,0 +1,26 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.5.1.4 - Ensure inactive password lock is 30 days or less (Scored)
+
+count=0
+if [ $(useradd -D | grep "INACTIVE=30" | wc -l) -eq 0 ]; then
+   for i in $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1); do
+        if [ $(chage --list "$i" | grep "Password inactive.*30" | wc -l) -eq 0 ]; then
+               count=$((count+1))
+        fi
+   done
+
+fi
+if [ "$count" -ne "0" ]; then
+      echo "{\"inactivepasswdlock_5514_audit\" : \"FAILED\"}"
+
+else
+	echo "{\"inactivepasswdlock_5514_audit\" : \"PASSED\"}"
+
+        exit 1
+fi
+
+
+
+

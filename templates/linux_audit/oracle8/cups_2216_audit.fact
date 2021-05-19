@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.16 - Ensure CUPS is not enabled (Scored)
+
+if [ $( sudo systemctl is-enabled cups 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"2.2.16 - CUPS is Enabled\" : \"FAILED\" }"
+else
+   echo "{ \"cups_2216_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

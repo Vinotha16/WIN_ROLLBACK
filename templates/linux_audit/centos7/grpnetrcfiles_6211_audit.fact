@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.11 - Ensure users' .netrc Files are not group or world writable
+
+count=0
+if [ $(find / -name ".netrc" -perm /g+w,o+w | wc -l) -ne 0 ]; then
+   	count=$((count+1))
+fi
+if [ "$count" -ne "0" ]; then
+   echo "{ \"grpnetrcfiles_6211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"grpnetrcfiles_6211_audit\" : \"PASSED\" }"
+   exit 0
+fi
+

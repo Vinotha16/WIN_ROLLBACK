@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3 - Ensure RDS is disabled (Not Scored)
+
+if [ $(sudo modprobe -n -v rds 2> /dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep rds | wc -l) -ne 0 ]; then
+   echo "{\"3.5.3 RDS is not Disabled\":\"FAILED\"}"
+else
+   echo "{\"rds_353_audit\":\"PASSED\"}"
+   
+fi

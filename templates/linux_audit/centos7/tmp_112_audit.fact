@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.2 - Ensure separate partition exists for /tmp (Scored)
+
+if [ $(mount | grep "\s/tmp.*tmpfs" | wc -l) -eq 0 ] || [ $(grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#' | wc -l) -eq 0]; then
+   echo "{ \"tmp_112_audit\" : \"FAILED\" }"
+else
+   echo "{ \"tmp_112_audit\" : \"PASSED\" }"
+fi

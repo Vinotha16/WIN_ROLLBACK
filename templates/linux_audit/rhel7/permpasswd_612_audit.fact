@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.2 - Ensure permissions on /etc/passwd are configured (Automated)
+
+
+if [ $(sudo stat /etc/passwd | grep 0644 | wc -l) -eq 0 ] || [ $(sudo stat /etc/passwd | grep ".*Uid:.*0/.*root" | wc -l) -eq 0 ] || [ $(sudo stat /etc/passwd | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permpasswd_612_audit\"  : \"FAILED\" }"
+else
+   echo "{ \"permpasswd_612_audit\": \"PASSED\" }"
+   exit 1
+fi
+
+

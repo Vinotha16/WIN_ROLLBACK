@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(rpm -qa firewalld)
+b=$(rpm -qa iptables)
+cmd="${a}","${b}"
+if [ $(rpm -qa firewalld | wc -l) -eq 0 ] || [ $(rpm -qa iptables | wc -l) -eq 0 ]; then
+        echo "{ \"firewallpack_3511_actual\"  : \"\" }"
+else
+        echo "{ \"firewallpack_3511_actual\"  : \"$cmd\" }"
+fi

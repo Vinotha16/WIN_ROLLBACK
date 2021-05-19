@@ -1,0 +1,12 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/shadow.old)
+if [ -f /etc/shadow.old ]; then
+   if [ $(sudo stat /etc/shadow.old | egrep "0640.*Uid.*root.*Gid.*root|shadow" | wc -l) -eq 0 ]; then
+      echo "{ \"permshadowold_616_actual\" : \"\" }"
+   else
+      echo "{ \"permshadowold_616_actual\" : \"$cmd\" }"
+   fi
+else
+   echo "{ \"permshadowold_616_actual\" : \"\" }"
+fi
+

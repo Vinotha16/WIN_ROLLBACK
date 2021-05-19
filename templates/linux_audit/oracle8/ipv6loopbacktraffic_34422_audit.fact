@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#  3.4.4.2.2 - Ensure IPv6 loopback traffic is configured (Scored)
+
+if [ $(sudo ip6tables -L INPUT -v -n | grep 'ACCEPT.*all.*lo.*/0' | wc -l) -eq 0 ] || [ $(sudo ip6tables -L INPUT -v -n | grep 'DROP.*all.**.**.*1' | wc -l) -eq 0 ] || [ $(sudo ip6tables -L OUTPUT -v -n | grep 'ACCEPT.*all.*lo.*/0' | wc -l) -eq 0 ]; then
+	echo "{ \"3.4.4.2.2 - Ensure IPv6 loopback traffic is not configured\" : \"FAILED\" }"
+else
+        echo "{ \"ipv6loopbacktraffic_34422_audit\" : \"PASSED\" }"
+fi
+

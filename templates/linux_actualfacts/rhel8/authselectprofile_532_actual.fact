@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(authselect current | grep -v "No.*existing.*configuration.*detected" | grep -o "custom-profile")
+if [ $(authselect current | grep -v "No.*existing.*configuration.*detected" | wc -l) -eq 0 ]; then
+   echo "{ \"authselectprofile_532_actual\" : \"\" }"
+else
+   echo "{ \"authselectprofile_532_actual\" : \"$cmd\" }"
+fi

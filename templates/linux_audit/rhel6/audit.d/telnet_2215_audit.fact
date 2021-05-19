@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.15 - Ensure telnet-server is not installed (Scored)
+
+if [ $(sudo rpm -qa telnet-server | wc -l) -ne 0 ]; then
+       echo "{\"telnet_2215_audit\" : \"FAILED\"}"
+else
+      echo "{\"telnet_2215_audit\" : \"PASSED\"}"
+fi

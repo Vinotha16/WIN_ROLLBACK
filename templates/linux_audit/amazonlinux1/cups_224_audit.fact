@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.4 - Ensure CUPS is not enabled (Scored)
+
+if [ $(sudo chkconfig --list cups 2> /dev/null | grep ":on" | wc -l) -eq 1 ]; then
+    echo "{ \"cups_224_audit\" : \"FAILED\" }"
+else
+    echo "{ \"cups_224_audit\" : \"PASSED\" }"
+fi

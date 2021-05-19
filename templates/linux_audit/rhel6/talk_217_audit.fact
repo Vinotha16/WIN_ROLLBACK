@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.7 - Ensure talk server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list | grep 'talk:.*on' | wc -l) -ne 0 ]; then
+       echo "{\"talk_217_audit\" : \"FAILED\"}"
+else
+      echo "{\"talk_217_audit\" : \"PASSED\"}"
+       
+fi
+
+
+

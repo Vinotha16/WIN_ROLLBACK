@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo dpkg -s rpcbind 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"rpc_236_actual\" : \"\" }"
+else
+   echo "{ \"rpc_236_actual\" : \"rpc not installed\" }"
+   
+fi

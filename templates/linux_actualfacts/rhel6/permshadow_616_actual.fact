@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/shadow)
+if [ $(stat /etc/shadow | grep 0000 | wc -l) -eq 0 ] || [ $(stat /etc/shadow | grep ".*Uid:.*0/.*root" | wc -l) -eq 0 ] || [ $(stat /etc/shadow | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permshadow_616_actual\" : \"\" }"
+else
+   echo "{ \"permshadow_616_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

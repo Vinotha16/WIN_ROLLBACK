@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo systemctl is-enabled cups 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"cups_224_actual\" : \"\" }"
+else
+   echo "{ \"cups_224_actual\" : \"not enabled\" }"
+   
+ fi

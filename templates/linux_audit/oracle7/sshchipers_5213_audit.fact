@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# 5.2.13 - Ensure only strong Ciphers are used
+
+if [ $(sshd -T | grep ciphers | wc -l) -eq 0 ]; then
+      echo "{ \"sshchipers_5213_audit\" : \"FAILED\"}"
+else
+      echo "{ \"sshchipers_5213_audit\" : \"PASSED\"}"
+fi
+

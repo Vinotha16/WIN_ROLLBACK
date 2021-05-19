@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.16 - Ensure nfs-utils is not installed or the nfs-server service is disabled (Scored)
+
+if [ $(sudo rpm -qa nfs-utils | wc -l) -ne 0 ]; then
+   echo "{ \"nfs_2216_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfs_2216_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,25 @@
+---
+####SUSE-11####
+bootloader_password_suse11: zippyops@123
+selinappar_suse11: libselinux1
+remote_server_chrony_suse11: sample.zippy.com
+remote_server_ntp_suse11: sample.zippy.com
+ntp_chrony_suse11: chrony
+hosts_allow_suse11: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_suse11: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_suse11: 8
+rsyslog_syslog_suse11: rsyslog
+MaxAuthTries_suse11: MaxAuthTries 4
+PermitRootLogin_suse11: PermitRootLogin no
+ClientAliveInterval_suse11: ClientAliveInterval 300
+ClientAliveCountMax_suse11: ClientAliveCountMax 0
+Pass_max_days_suse11: 365
+Pass_min_days_suse11: 7
+Pass_warn_age_suse11: 7
+allowusers_suse11: ansible
+allowgroups_suse11:
+denyusers_suse11:
+denygroups_suse11:
+wheelgroup_suse11:
+
+db_no_suse11:

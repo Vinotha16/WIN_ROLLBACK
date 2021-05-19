@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(dpkg -s auditd audispd-plugins | grep -o "ok installed" | sed '1q')
+if [ $(dpkg -s auditd audispd-plugins 2> /dev/null | grep "ok installed" | wc -l) -eq 0 ]; then
+   echo "{ \"auditd_4111_actual\" : \"\" }"
+else
+   echo "{ \"auditd_4111_actual\" : \"${cmd}\" }"
+fi
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(sudo grep '^auth.*required.*pam_wheel.so' /etc/pam.d/su)
+b=$(sudo egrep "^wheel:x:10:[a-z]+" /etc/group)
+cmd="${a}","${b}"
+if [ $(sudo grep '^auth.*required.*pam_wheel.so' /etc/pam.d/su | wc -l) -eq 0 ] || [ $(sudo egrep "^wheel:x:10:[a-z]+" /etc/group | wc -l) -eq 0 ]; then
+   echo "{ \"suaccess_55_actual\" : \"\" }"
+else
+   echo "{ \"suaccess_55_actual\" : \"${cmd}\"}"
+   exit 0
+fi

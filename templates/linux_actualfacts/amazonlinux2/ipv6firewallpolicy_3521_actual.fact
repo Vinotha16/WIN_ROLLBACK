@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo ip6tables -L | grep "policy DROP" | paste -sd ",")
+if [ $(sudo ip6tables -L | grep "Chain INPUT.*DROP" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L | grep "Chain FORWARD.*DROP" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L | grep "Chain OUTPUT.*DROP" | wc -l) -eq 0 ]; then
+    echo " { \"ipv6firewallpolicy_3521_actual\" : \"\"}"
+else
+    echo "{ \"ipv6firewallpolicy_3521_actual\" : \"${cmd}\"}"
+fi

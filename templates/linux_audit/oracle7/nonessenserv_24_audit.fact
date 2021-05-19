@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.4 - Ensure nonessential services are removed or masked  (Scored)
+
+if [ $(sudo lsof -i -P -n | grep -v "(ESTABLISHED)" | wc -l) -ne 0 ]; then
+   echo "{ \"nonessenserv_24_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nonessenserv_24_audit\" : \"PASSED\" }"
+fi
+

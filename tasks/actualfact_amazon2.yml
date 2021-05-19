@@ -1,0 +1,2796 @@
+---
+####ACTUALFACT####
+  - name: Removing the existing actual directory
+    file:
+      path: /etc/ansible/actual.d
+      state: absent
+    become: yes
+    tags:
+      - always
+
+  - name: Creating the actual directory
+    file:
+      path: /etc/ansible/actual.d
+      state: directory
+      recurse: yes
+    become: yes
+    tags:
+      - always
+      
+  - name: Transfering cramfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/cramfs_1111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cramfs
+      - 1.1.1.1
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering hfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/hfs_1112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfs
+      - 1.1.1.2
+      - one
+      - all
+      - actualfact
+
+  - name: Transfering hfsplus actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/hfsplus_1113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfsplus
+      - 1.1.1.3
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering squashfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/squashfs_1114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - squashfs 
+      - 1.1.1.4
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering udf actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/udf_1115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - udf
+      - 1.1.1.5
+      - one
+      - all
+      - actualfact
+      
+      
+  - name: Transfering tmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tmp_112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmp
+      - 1.1.2
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering tmpnodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tmpnodev_113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnodev
+      - 1.1.3
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering tmpnosuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tmpnosuid_114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnosuid
+      - 1.1.4
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering tmpnoexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tmpnoexec_115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnoexec
+      - 1.1.5
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering var actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/var_116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - var
+      - 1.1.6
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering vartmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/vartmp_117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vartmp
+      - 1.1.7
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering vtnodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/vtnodev_118_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnodev
+      - 1.1.8
+      - one
+      - all
+      - actualfact
+
+  - name: Transfering vtnosuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/vtnosuid_119_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnosuid
+      - 1.1.9
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering vtnoexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/vtnoexec_1110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnoexec
+      - 1.1.10
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering varlog actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/varlog_1111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlog
+      - 1.1.11
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering varlogaudit actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/varlogaudit_1112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlogaudit
+      - 1.1.12
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering home actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/home_1113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - home
+      - 1.1.13
+      - one
+      - all
+      - actualfact
+
+  - name: Transfering homenodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/homenodev_1114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - homenodev
+      - 1.1.14
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering shmnodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/shmnodev_1115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnodev
+      - 1.1.15
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering shmnosuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/shmnosuid_1116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnosuid
+      - 1.1.16
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering shmnoexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/shmnoexec_1117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnoexec
+      - 1.1.17
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering stickybit actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/stickybit_1118_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - stickybit
+      - 1.1.18
+      - one
+      - all 
+      - actualfact
+      
+  - name: Transfering automount actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/automount_1119_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - automount
+      - 1.1.19
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering repoconfig actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/repoconfig_121_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+     - 1.2.1
+     - repoconfig
+     - one
+     - all
+
+  - name: Transfering gpgkey actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/gpgkey_122_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.2
+      - gpgkey
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering gpgcheck actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/gpgcheck_123_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.3
+      - gpgcheck
+      - one
+      - all 
+      - actualfact
+      
+  - name: Transfering aide actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/aide_131_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.1
+      - aide
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering fsintegrity actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/fsintegrity_132_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.2
+      - fsintegrity
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering bootloadperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/bootloadperm_141_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.4.1
+      - bootloadperm
+      - one
+      - all
+      - actualfact
+      
+      
+  - name: Transfering singleusermode actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/singleusermode_142_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+     - singleusermode
+     - 1.4.2
+     - one
+     - all
+     
+     
+  - name: Transfering coredumps actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/coredumps_151_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.1
+      - coredumps
+      - one
+      - all
+      - actualfact
+      
+      
+  - name: Transfering aslr actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/aslr_152_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.2
+      - aslr
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering prelink actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/prelink_153_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.3
+      - prelink
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering seldisable actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/seldisable_1611_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.1
+      - seldisable
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering selstate actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/selstate_1612_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.2
+      - selstate
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering selpolicy actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/selpolicy_1613_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.3
+      - selpolicy
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering setroubleshoot actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/setroubleshoot_1614_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.4
+      - setroubleshoot
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering mcs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/mcs_1615_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.5
+      - mcs
+      - one
+      - all
+      - actualfact
+
+  - name: Transfering unconfined actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/unconfined_1616_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.6
+      - unconfined
+      - one
+      - all
+      - actualfact
+
+      
+  - name: Transfering selinux actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/selinux_162_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.2
+      - selinux
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering msgday actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/msgday_1711_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.1
+      - msgday
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering locallogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/locallogin_1712_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.2
+      - locallogin
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering remotelogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/remotelogin_1713_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.3
+      - remotelogin
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering motdperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/motdperm_1714_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.4
+      - motdperm
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering issueperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/issueperm_1715_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.5
+      - issueperm
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering issuenetperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/issuenetperm_1716_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1.6
+      - issuenetperm
+      - one
+      - all
+      - actualfact
+      
+  - name: Transfering updates actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/updates_18_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - '1.8'
+      - updates
+      - one
+      - all
+      - actualfact
+            
+  - name: Transfering timesync actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/timesync_2111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - timesync
+      - 2.1.1.1
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering ntp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ntp_2112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ntp
+      - 2.1.1.2
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering chrony actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/chrony_2113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - chrony
+      - 2.1.1.3
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering xorg actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/xorg_212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - xorg
+      - 2.1.2
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering avahi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/avahi_213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - avahi
+      - 2.1.3
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering cups actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/cups_214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cups
+      - 2.1.4
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering dhcp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/dhcp_215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dhcp
+      - 2.1.5
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering ldap actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ldap_216_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldap
+      - 2.1.6
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering nfsrpc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/nfsrpc_217_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nfsrpc
+      - 2.1.7
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering dns actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/dns_218_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dns
+      - 2.1.8
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering ftp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ftp_219_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ftp
+      - 2.1.9
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering http actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/http_2110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - http
+      - 2.1.10
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering imap actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/imap_2111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - imap
+      - 2.1.11
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering samba actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/samba_2112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - samba
+      - 2.1.12
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering proxy actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/proxy_2113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - proxy
+      - 2.1.13
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering snmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/snmp_2114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - snmp
+      - 2.1.14
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering mail actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/mail_2115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - mail
+      - 2.1.15
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering nis actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/nis_2116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nis
+      - 2.1.16
+      - two
+      - all
+      - actualfact
+
+
+  - name: Transfering rsh actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rsh_2117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsh
+      - 2.1.17
+      - two
+      - all
+      - actualfact
+
+
+  - name: Transfering telnet actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/telnet_2118_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnet
+      - 2.1.18
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering tftp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tftp_2119_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tftp
+      - 2.1.19
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering rsync actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rsync_2120_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsync
+      - 2.1.20
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering talk actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/talk_2121_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talk
+      - 2.1.21
+      - two
+      - all
+      - actualfact
+
+
+  - name: Transfering nisc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/nisc_221_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nisc
+      - 2.2.1
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering rshc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rshc_222_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rshc
+      - 2.2.2
+      - two
+      - all
+      - actualfact
+      
+  - name: Transfering talkc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/talkc_223_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talkc
+      - 2.2.3
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering telnetc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/telnetc_224_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnetc
+      - 2.2.4
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering ldapc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ldapc_225_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldapc
+      - 2.2.5
+      - two
+      - all
+      - actualfact
+
+  - name: Transfering ipforward actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ipforward_311_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipforward
+      - 3.1.1
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering packetredirect actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/packetredirect_312_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - packetredirect
+      - 3.1.2
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering routedpacket actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/routedpacket_321_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - routedpacket
+      - 3.2.1
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering icmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/icmp_322_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - icmp
+      - 3.2.2
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering secureicmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/secureicmp_323_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - secureicmp
+      - 3.2.3
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering suspicious actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/suspicious_324_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suspicious
+      - 3.2.4
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering broadcasticmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/broadcasticmp_325_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - broadcasticmp
+      - 3.2.5
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering bogusicmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/bogusicmp_326_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - bogusicmp
+      - 3.2.6
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering reversepathfilter actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/reversepathfilter_327_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - reversepathfilter
+      - 3.2.7
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering tcpsyncookies actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tcpsyncookies_328_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpsyncookies
+      - 3.2.8
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering ipv6router actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ipv6router_329_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6router
+      - 3.2.9
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering tcpwrappers actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tcpwrappers_331_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpwrappers
+      - 3.3.1
+      - three
+      - all
+      - actualfact
+   
+  - name: Transfering hostsallow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/hostsallow_332_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsallow
+      - 3.3.2
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering hostsdeny actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/hostsdeny_333_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsdeny
+      - 3.3.3
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering permhostsallow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permhostsallow_334_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsallow
+      - 3.3.4
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering permhostsdeny actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permhostsdeny_335_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsdeny
+      - 3.3.5
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering dccp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/dccp_341_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dccp
+      - 3.4.1
+      - three
+      - all  
+      - actualfact
+
+  - name: Transfering sctp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sctp_342_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sctp
+      - 3.4.2
+      - three
+      - all
+      - actualfact
+      
+  - name: Transfering rds actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rds_343_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rds
+      - 3.4.3
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering tipc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/tipc_344_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tipc
+      - 3.4.4
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering iptables actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/iptables_353_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - iptables
+      - 3.6.1
+      - three
+      - all
+      - actualfact
+ 
+  - name: Transfering firewallpolicy actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/firewallpolicy_3511_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallpolicy
+      - 3.5.1.1
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering loopbacktraffic actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/loopbacktraffic_3512_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loopbacktraffic
+      - 3.5.1.2
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering outbound actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/outbound_3513_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - outbound
+      - 3.5.1.3
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/firewallrules_3514_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallrules
+      - 3.5.1.4
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ipv6firewallpolicy_3521_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallpolicy
+      - 3.5.2.1
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ipv6loopbacktraffic_3522_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6loopbacktraffic
+      - 3.5.2.2
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ipv6outbound_3523_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6outbound
+      - 3.5.2.3
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ipv6firewallrules_3524_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallrules
+      - 3.5.2.4
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/iptables_353_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - iptables
+      - 3.5.3
+      - three
+      - all
+      - actualfact
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ipv6disable_36_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6disable
+      - '3.6'
+      - three
+      - all
+      - actualfact
+
+      
+  - name: Transfering auditlogsize actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/auditlogsize_4111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogsize
+      - 4.1.1.1
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering auditlogfull actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/auditlogfull_4112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogfull
+      - 4.1.1.2
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering auditlogdelete actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/auditlogdelete_4113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogdelete
+      - 4.1.1.3
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering auditdservice actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/auditdservice_412_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdservice
+      - 4.1.2
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering auditdenable actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/auditdenable_413_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdenable
+      - 4.1.3
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering moddatetime actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/moddatetime_414_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - moddatetime
+      - 4.1.4
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering modusergrp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/modusergrp_415_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modusergrp
+      - 4.1.5
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering modsysnet actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/modsysnet_416_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysnet
+      - 4.1.6
+      - four
+      - all 
+      - actualfact
+      
+  - name: Transfering modsysmac actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/modsysmac_417_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysmac
+      - 4.1.7
+      - four
+      - all
+      - actualfact
+      
+  - name: Transfering loginout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/loginout_418_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loginout
+      - 4.1.8
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering session actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/session_419_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - session
+      - 4.1.9
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering dacperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/dacperm_4110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dacperm
+      - 4.1.10
+      - four
+      - all
+      - actualfact
+      
+  - name: Transfering fileaccess actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/fileaccess_4111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fileaccess
+      - 4.1.11
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering privilegecmd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/privilegecmd_4112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - privilegecmd
+      - 4.1.12
+      - four
+      - all
+      - actualfact
+      
+  - name: Transfering fsmount actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/fsmount_4113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fsmount
+      - 4.1.13
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering filedeletion actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/filedeletion_4114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - filedeletion
+      - 4.1.14
+      - four
+      - all
+      - actualfact
+      
+  - name: Transfering sudoers actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sudoers_4115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudoers
+      - 4.1.15
+      - four
+      - all
+      - actualfact
+ 
+  - name: Transfering sudolog actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sudolog_4116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudolog
+      - 4.1.16
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering kernelmodule actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/kernelmodule_4117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - kernelmodule
+      - 4.1.17
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering auditconfig actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/auditconfig_4118_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditconfig
+      - 4.1.18
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering rsyslogenb actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rsyslogenb_4211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogenb
+      - 4.2.1.1
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering rloggingconf actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rloggingconf_4212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.2
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering rsyslogperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rsyslogperm_4213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogperm
+      - 4.2.1.3
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering rsyslogsendlogs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rsyslogsendlogs_4214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.4
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering remotesyslogmsg actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/remotesyslogmsg_4215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.5
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering syslogngenb actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/syslogngenb_4221_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngenb
+      - 4.2.2.1
+      - four
+      - all
+      - actualfact
+      
+  - name: Transfering sloggingconf actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sloggingconf_4222_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sloggingconf
+      - 4.2.2.2
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering syslogngperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/syslogngperm_4223_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngperm
+      - 4.2.2.3
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering syslogngsendlogs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/syslogngsendlogs_4224_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngsendlogs
+      - 4.2.2.4
+      - four
+      - all
+      - actualfact
+
+      
+  - name: Transfering remotesyslogng actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/remotesyslogng_4225_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogng
+      - 4.2.2.5
+      - four
+      - all
+      - actualfact
+      
+  - name: Transfering rsyslogng actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rsyslogng_423_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogng
+      - 4.2.3
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering permlogfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permlogfiles_424_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permlogfiles
+      - 4.2.4
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering logrotate actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/logrotate_43_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - logrotate
+      - '4.3'
+      - four
+      - all
+      - actualfact
+
+  - name: Transfering cron actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/cron_511_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cron
+      - 5.1.1
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering permcrontab actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permcrontab_512_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrontab
+      - 5.1.2
+      - five
+      - all
+      - actualfact
+   
+  - name: Transfering permcronhourly actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permcronhourly_513_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronhourly
+      - 5.1.3
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering permcrondaily actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permcrondaily_514_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrondaily
+      - 5.1.4
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering permcronweekly actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permcronweekly_515_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronweekly
+      - 5.1.5
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering permcronmonthly actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permcronmonthly_516_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronmonthly
+      - 5.1.6
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering permcrond actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permcrond_517_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrond
+      - 5.1.7
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering atcron actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/atcron_518_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - atcron
+      - 5.1.8
+      - five
+      - all
+      - actualfact
+   
+  - name: Transfering sshdperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshdperm_521_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshdperm
+      - 5.2.1
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshpermpvtkey actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshpermpvtkey_522_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpvtkey
+      - 5.2.2
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshpermpubkey actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshpermpubkey_523_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpubkey
+      - 5.2.3
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshprotocol actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshprotocol_524_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshprotocol
+      - 5.2.4
+      - five
+      - all
+      - actualfact
+  
+  - name: Transfering sshloglevel actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshloglevel_525_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshloglevel
+      - 5.2.5
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshx11forward actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshx11forward_526_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshx11forward
+      - 5.2.6
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshmaxauthtries actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshmaxauthtries_527_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmaxauthtries
+      - 5.2.7
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshignorerhosts actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshignorerhosts_528_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshignorerhosts
+      - 5.2.8
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering sshauthentication actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshauthentication_529_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshauthentication
+      - 5.2.9
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshrootlogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshrootlogin_5210_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshrootlogin
+      - 5.2.10
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshpep actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshpep_5211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpep
+      - 5.2.11
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshpue actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshpue_5212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpue
+      - 5.2.12
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshchipers actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshchipers_5213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshchipers
+      - 5.2.13
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshmacalgorithm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshmacalgorithm_5214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.2.14
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshkeyexalgorithm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshkeyexalgorithm_5215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.2.15
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering sshidletimeout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshidletimeout_5216_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshidletimeout
+      - 5.2.16
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshlogingracetime actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshlogingracetime_5217_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshlogingracetime
+      - 5.2.17
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshaccess actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshaccess_5218_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshaccess
+      - 5.2.18
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sshwarningbanner actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sshwarningbanner_5219_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshwarningbanner
+      - 5.2.19
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering passwdcreation actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/passwdcreation_531_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdcreation
+      - 5.3.1
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering lockout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/lockout_532_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lockout
+      - 5.3.2
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering passwdreuse actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/passwdreuse_533_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdreuse
+      - 5.3.3
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering passwdhashing actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/passwdhashing_534_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdhashing
+      - 5.3.4
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering passwdexpiration actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/passwdexpiration_5411_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.4.1.1
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering minidays actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/minidays_5412_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - minidays
+      - 5.4.1.2
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering warningdays actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/warningdays_5413_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - warningdays
+      - 5.4.1.3
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering inactivepasswdlock actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/inactivepasswdlock_5414_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.4.1.4
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering lastpasswdchange actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/lastpasswdchange_5415_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lastpasswdchange
+      - 5.4.1.5
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering sysaccnonlogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sysaccnonlogin_542_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sysaccnonlogin
+      - 5.4.2
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering defaultgroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/defaultgroup_543_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultgroup
+      - 5.4.3
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering defaultuser actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/defaultuser_544_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultuser
+      - 5.4.4
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering usershelltimeout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/usershelltimeout_545_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - usershelltimeout
+      - 5.4.5
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering rootlogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rootlogin_55_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootlogin
+      - '5.5'
+      - five
+      - all
+      - actualfact
+
+  - name: Transfering suaccess actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/suaccess_56_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suaccess
+      - '5.6'
+      - five
+      - all
+      - actualfact
+      
+  - name: Transfering auditsysperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/auditsysperm_611_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditsysperm
+      - 6.1.1
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering permpasswd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permpasswd_612_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswd
+      - 6.1.2
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering permshadow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permshadow_613_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadow
+      - 6.1.3
+      - six
+      - all  
+      - actualfact
+      
+  - name: Transfering permgroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permgroup_614_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroup
+      - 6.1.4
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering permgshadow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permgshadow_615_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadow
+      - 6.1.5
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering permpasswdi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permpasswdi_616_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswdi
+      - 6.1.6
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering permshadowi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permshadowi_617_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadowi
+      - 6.1.7
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering permgroupi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permgroupi_618_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroupi
+      - 6.1.8
+      - six
+      - all   
+      - actualfact
+      
+  - name: Transfering permgshadowi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/permgshadowi_619_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadowi
+      - 6.1.9
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering wwfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/wwfiles_6110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wwfiles
+      - 6.1.10
+      - six
+      - all     
+      - actualfact
+
+  - name: Transfering unownedfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/unownedfiles_6111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering ungroupedfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/ungroupedfiles_6112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering suidexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/suidexec_6113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suidexec
+      - 6.1.13
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering sgidexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/sgidexec_6114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sgidexec
+      - 6.1.14
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering emptypasswd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/emptypasswd_621_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - emptypasswd
+      - 6.2.1
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering nolegacypasswd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/nolegacypasswd_622_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacypasswd
+      - 6.2.2
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering nolegacyshadow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/nolegacyshadow_623_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacyshadow
+      - 6.2.3
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering nolegacygroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/nolegacygroup_624_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacygroup
+      - 6.2.4
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering rootuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rootuid_625_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootuid
+      - 6.2.5
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering userhdir actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/userhdir_627_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdir
+      - 6.2.7
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering userhdirperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/userhdirperm_628_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdirperm
+      - 6.2.8
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering userownhdir actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/userownhdir_629_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userownhdir
+      - 6.2.9
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering dotfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/dotfiles_6210_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dotfiles
+      - 6.2.10
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering forwardfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/forwardfiles_6211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - forwardfiles
+      - 6.2.11
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering netrcfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/netrcfiles_6212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - netrcfiles
+      - 6.2.12
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering grpnetrcfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/grpnetrcfiles_6213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - grpnetrcfiles
+      - 6.2.13
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering rhosts actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/rhosts_6214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rhosts
+      - 6.2.14
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering groups actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/groups_6215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - groups
+      - 6.2.15
+      - six
+      - all
+      - actualfact
+
+  - name: Transfering duplicateuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/duplicateuid_6216_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuid
+      - 6.2.16
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering duplicategid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/duplicategid_6217_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicategid
+      - 6.2.17
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering duplicateuser actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/duplicateuser_6218_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuser
+      - 6.2.18
+      - six
+      - all
+      - actualfact
+      
+  - name: Transfering duplicategroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/amazonlinux2/duplicategroup_6219_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags: 
+      - duplicategroup
+      - 6.2.19
+      - six
+      - all
+      - actualfact
+      

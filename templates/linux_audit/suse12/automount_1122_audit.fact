@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.22 - Disable Automounting (Scored)
+
+if [ $(sudo systemctl is-enabled autofs | grep disabled | wc -l) -eq 0 ]; then
+   echo "{\"automount_1122_audit\" : \"FAILED\"}"
+else
+   echo "{\"automount_1122_audit\" : \"PASSED\"}"
+fi

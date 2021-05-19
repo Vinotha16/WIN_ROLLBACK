@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#  3.5.3.3.1 -  Ensure IPv6 default deny firewall policy (Scored)
+
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+      if [ $(sudo ip6tables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | wc -l) -eq 0 ] ||[ $(sudo ip6tables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | wc -l) -eq 0 ] || [ $(sudo ip6tables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | wc -l) -eq 0 ]; then
+          echo "{ \"ipv6firewallpolicy_35331_audit\" : \"FAILED\" }"
+      else
+          echo "{ \"ipv6firewallpolicy_35331_audit\" : \"PASSED\" }"
+      fi
+else
+     echo "{ \"ipv6firewallpolicy_35331_audit\" : \"PASSED\" }"
+fi

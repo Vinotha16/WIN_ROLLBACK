@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.10 - Ensure noexec option set on /var/tmp partition (Scored)
+
+if [ $(sudo mount | grep /var/tmp.*noexec | wc -l) -eq 0 ]; then
+   echo "{ \"1.1.10 - Noexec option not set on /var/tmp partition\" : \"FAILED\" }"
+else
+   echo "{ \"vtnoexec_1110_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

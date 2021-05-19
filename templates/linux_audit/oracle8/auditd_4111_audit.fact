@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.1 -  Ensure auditd is installed (Scored)
+
+if [ $(rpm -qa audit audit-libs | wc -l) -eq 0 ]; then
+   echo "{ \"auditd_4111_audit\" : \"FAILED\" }"
+else
+   echo "{ \"auditd_4111_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ "$(chkconfig --list 2>/dev/null | grep "talk:" | awk {'print $2'})" == "on" ]; then
+   echo "{ \"talk_217_actual\" : \"\" }"
+else
+   echo "{ \"talk_217_actual\" : \"not enabled\" }"
+   exit 1
+fi
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.12 - Ensure no ungrouped files or directories exist (Scored)
+
+
+if [ $(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup | wc -l) -gt 0 ] || [ $(find / -xdev -nogroup | wc -l) -gt 0 ]; then
+   echo "{ \"ungroupedfiles_6112_audit\" : \"FAILED\" }"
+else
+   echo "{ \"ungroupedfiles_6112_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

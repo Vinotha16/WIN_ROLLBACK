@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(cat /etc/audit/audit.rules | grep "/var/log/lastlog -p wa -k logins")
+b=$(cat /etc/audit/audit.rules | grep "/var/run/faillog -p wa -k logins")
+c=$(cat /etc/audit/audit.rules | grep "-w /var/log/tallylog -p wa -k logins")
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(egrep "lastlog|faillog" /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"loginout_418_actual\" : \"\" }"
+else
+   echo "{ \"loginout_418_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

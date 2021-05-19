@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(grep "^\$ModLoad imtcp" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf | paste -sd ",")
+b=$(grep "^\$InputTCPServerRun" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(grep "^\$ModLoad imtcp" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(grep "^\$InputTCPServerRun" /etc/rsyslog.conf  /etc/rsyslog.d/*.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"remotesyslogmsg_4216_actual\" : \"\" }"
+else
+   echo "{ \"remotesyslogmsg_4216_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

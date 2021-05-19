@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.18 - Ensure the audit configuration is immutable (Scored)
+
+if [ $(sudo grep "^\s*[^#]" /etc/audit/audit.rules 2> /dev/null | grep "-e 2" | wc -l) -eq 0 ]; then
+   echo "{\"4.1.18 - Audit configuration is not immutable\" : \"FAILED\"}"
+else
+   echo "{ \"auditconfig_4118_audit\" : \"PASSED\" }"
+
+fi

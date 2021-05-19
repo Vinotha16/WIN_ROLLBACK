@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.7 - Ensure access to the su command is restricted (Scored)
+
+if [ $( sudo grep ^auth.*pam_wheel.so /etc/pam.d/su | wc -l) -eq 0 ] || [ "$( sudo grep "wheel:.*" /etc/group | awk -F: '{print $4}')" == '' ]; then
+   echo "{\"suaccess_57_audit\" : \"FAILED\"}"
+else
+   echo "{\"suaccess_57_audit\" : \"PASSED\"}"
+   
+fi
+

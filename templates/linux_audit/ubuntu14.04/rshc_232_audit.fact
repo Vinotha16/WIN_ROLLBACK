@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.2 - Ensure rsh client is not installed (Scored)
+
+if [ $(sudo dpkg -s rsh-client 2> /dev/null | grep "installed" |  wc -l) -ne 0 ] || [ $(sudo dpkg -s rsh-redone-client 2> /dev/null | grep "installed" | wc -l) -ne 0 ]; then
+   echo "{\"2.3.2 - RSH Client is Installed\" : \"FAILED\"}"
+else
+   echo "{\"rshc_232_audit\" : \"PASSED\"}"
+   
+fi

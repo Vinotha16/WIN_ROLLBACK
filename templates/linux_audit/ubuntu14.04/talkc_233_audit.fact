@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.3 - Ensure talk client is not installed (Scored)
+
+if [ $(sudo dpkg -s talk 2> /dev/null | grep "installed" | wc -l) -ne 0 ]; then
+   echo "{\"2.3.3 - Talk Client is Installed\" : \"FAILED\"}"
+else
+   echo "{\"talkc_233_audit\" : \"PASSED\"}"
+   
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.2 - Ensure separate partition exists for /tmp (Scored)
+
+if [ "$(mount | grep "\s/tmp.*tmpfs" | wc -l)" -eq 0 ]; then
+   echo "{\"1.1.2 - Separate partition not exists for /tmp\"   :   \"FAILED\"}"
+else
+   echo "{\"tmp_112_audit\"  :  \"PASSED\"}"
+   
+fi

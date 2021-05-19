@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.3 - Ensure remote login warning banner is configured properly (Not Scored)
+
+if [ $(cat /etc/issue.net | grep "Authorized.*uses.*All activity.*and reported" | wc -l) -eq 0 ] || [ $(sudo egrep '(\\v|\\r|\\m|\\s|Amazon)' /etc/issue.net | wc -l) -ne 0 ]; then
+   echo "{ \"remotelogin_1713_audit\" : \"FAILED\"}"
+else
+   echo "{ \"remotelogin_1713_audit\" : \"PASSED\"}"
+fi
+

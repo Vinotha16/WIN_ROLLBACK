@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo  [ -f /boot/efi/EFI/*/grub.conf ] && grep "^password" /boot/efi/EFI/*/grub.conf || grep "^password" /boot/grub/grub.conf | paste -sd ",")
+if [ $(sudo [ -f /boot/efi/EFI/*/grub.conf ] && grep "^password" /boot/efi/EFI/*/grub.conf || grep "^password" /boot/grub/grub.conf | wc -l) -eq 0 ] ; then
+   echo "{ \"bootloadpass_142_actual\" : \"\" }"
+else
+   echo "{ \"bootloadpass_142_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

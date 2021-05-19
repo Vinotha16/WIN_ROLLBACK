@@ -1,0 +1,26 @@
+---
+####UBUNTU-16####
+bootloader_password_ubuntu16: zippyops@123
+singleusermode_ubuntu16: zippyops
+fileage_ubuntu16: -1d
+remote_server_chrony_ubuntu16: sample.zippy.com
+remote_server_ntp_ubuntu16: sample.zippy.com
+ntp_chrony_ubuntu16: chrony
+hosts_allow_ubuntu16: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_ubuntu16: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_ubuntu16: 8
+rsyslog_syslog_ubuntu16: rsyslog
+MaxAuthTries_ubuntu16: MaxAuthTries 4
+PermitRootLogin_ubuntu16: PermitRootLogin no
+ClientAliveInterval_ubuntu16: ClientAliveInterval 300
+ClientAliveCountMax_ubuntu16: ClientAliveCountMax 0
+Pass_max_days_ubuntu16: 365
+Pass_min_days_ubuntu16: 7
+Pass_warn_age_ubuntu16: 7
+allowusers_ubuntu16: ansible
+allowgroups_ubuntu16:
+denyusers_ubuntu16:
+denygroups_ubuntu16:
+wheelgroup_ubuntu16:
+
+db_no_ubuntu16:

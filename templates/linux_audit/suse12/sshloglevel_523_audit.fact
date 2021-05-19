@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.3 - Ensure SSH LogLevel is set to INFO (Scored)
+
+if [ $(sudo grep "^LogLevel INFO" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshloglevel_523_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshloglevel_523_audit\" : \"PASSED\"}"
+fi

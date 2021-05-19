@@ -1,0 +1,102 @@
+---
+# vars file for linux_windows_cis
+#####LINUX_CHAPTER1
+bootloader_password: zippyops@123
+Selinux: enforcing
+singleusermode: zippyops
+fileage_ubuntu: -1d
+subscriptionmanager_user: zippyops
+subscriptionmanager_pass: Zippyops@123
+apparmorprofile_suse15: enforce
+selinappar_suse12: libselinux1 selinux-policy
+selinappar_suse11: libselinux1
+
+#####LINUX_CHAPTER2
+remote_server_chrony: sample.zippy.com
+remote_server_ntp: sample.zippy.com
+nonessen_service:
+ntp_chrony: chrony
+
+#####LINUX_CHAPTER3
+table_name_tablexists: filter
+table_name: filter
+base_chain_name: input
+base_input_forward_output: input
+hosts_allow: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny: 'ALL: 170.16.3.0-170.16.3.4'
+zone_name: customezone
+interface_name: eth0
+NAME_OF_ZONE: public
+#unnecservport(below 2 variables for this script)
+unnecservport_service:
+unnecservport_port:
+#nffirewallpolicy(below 3 variables for this script)
+table_family: inet
+table_name_nf: filter
+chain_name: input
+#ipv6firewallrules(below 2 variables for this script)
+#protocol:
+#port:
+firewallpack_ubuntu18: ufw
+#####LINUX_CHAPTER4
+audit_log_size: 8
+rsyslog_syslog: rsyslog
+
+#####LINUX_CHAPTER5
+MaxAuthTries: MaxAuthTries 4
+#IgnoreRhosts: IgnoreRhosts yes
+#HostbasedAuthentication: HostbasedAuthentication no
+PermitRootLogin: PermitRootLogin no
+#PermitEmptyPasswords: PermitEmptyPasswords no
+#PermitUserEnvironment: PermitUserEnvironment no
+ClientAliveInterval: ClientAliveInterval 300
+ClientAliveCountMax: ClientAliveCountMax 0
+ClientAliveCountMax_U20: ClientAliveCountMax 3
+#LoginGraceTime: LoginGraceTime 60
+Pass_max_days: 365
+Pass_min_days: 7
+Pass_warn_age: 7
+allowusers: ansible
+allowgroups:
+denyusers:
+denygroups:
+wheelgroup:
+
+####DB_NO
+db_no_centos6: 1
+db_no_centos7: 1
+db_no_centos8:
+db_no_oracle6:
+db_no_oracle7:
+db_no_oracle8:
+db_no_rhel6: 
+db_no_rhel7:
+db_no_rhel8:
+db_no_ubuntu14: 
+db_no_ubuntu16:
+db_no_ubuntu18:
+db_no_ubuntu20: 
+db_no_suse11: 
+db_no_suse12:
+db_no_suse15: 1
+db_no_amazonlinux1: 
+db_no_amazonlinux2: 1
+db_no_win2008nr2:
+db_no_win2008r2:
+db_no_win2012nr2:
+db_no_win2012r2:
+db_no_win2016:
+db_no_win2019:
+
+####CHAPTER1-rhel_family
+update_centos6: 7
+update_centos7: 3
+update_centos8:
+update_oracle6:
+update_oracle7:
+update_oracle8: 
+update_rhel6: 3
+update_rhel7:
+update_rhel8:
+update_amazonlinux1:
+update_amazonlinux2: 2

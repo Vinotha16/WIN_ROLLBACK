@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.4 - Ensure no legacy "+" entries exist in /etc/group (Scored)
+
+if [ $(sudo grep '^\+:' /etc/group | awk -F: '{print $1}' | wc -l) -ne 0 ]; then
+   echo "{ \"nolegacygroup_624_audit\" : \"FAILED\"}"
+else
+   echo "{ \"nolegacygroup_624_audit\" : \"PASSED\"}"
+  
+fi
+

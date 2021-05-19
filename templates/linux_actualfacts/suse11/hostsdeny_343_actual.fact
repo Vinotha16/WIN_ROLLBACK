@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(egrep "^ALL: 192|^ALL: 170|^ALL: 172|^ALL: 10|^ALL :ALL" /etc/hosts.deny | paste -sd ",")
+if [ "$(sudo egrep "^ALL: 192|^ALL: 170|^ALL: 172|^ALL: 10|^ALL :ALL" /etc/hosts.deny | wc -l)" -eq 0 ]; then
+   echo "{ \"hostsdeny_343_actual\" : \"\" }"
+else
+   echo "{ \"hostsdeny_343_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/pam.d/common-auth |  grep "pam_tally2.so" | paste -sd ",")
+if [ $(sudo grep "^auth.*required.*pam_tally2" /etc/pam.d/common-auth | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_532_actual\" : \"\" }"
+else
+   echo "{ \"lockout_532_actual\" : \"$cmd\" }"
+   
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+a=$(dpkg -s libpam-pwquality | grep "^Version")
+b=$(cat /etc/pam.d/common-password | grep "password.*requisite.*pam_pwquality.so.*retry=3" | expand -t 1)
+c=$(cat /etc/security/pwquality.conf | grep "^minlen")
+d=$(cat /etc/security/pwquality.conf | grep "^dcredit")
+e=$(cat /etc/security/pwquality.conf | grep "^lcredit")
+f=$(cat /etc/security/pwquality.conf | grep "^ocredit")
+g=$(cat /etc/security/pwquality.conf | grep "^ucredit")
+cmd="${a}","${b}","${c}","${d}","${e}","${f}","${g}"
+if [ $(sudo grep pam_pwquality.so /etc/pam.d/common-password | wc -l) -eq 0 ] || [ $(sudo grep ^minlen /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^dcredit /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^ucredit /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^ocredit /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^lcredit /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+   echo "{ \"passwdcreation_531_actual\" : \"\" }"
+else
+   echo "{ \"paaswdcreation_531_actual\" : \"$cmd\" }"
+
+fi
+

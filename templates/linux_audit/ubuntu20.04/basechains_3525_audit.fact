@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 3.5.2.5 - Ensure base chains exist 
+
+if [ $(sudo nft list ruleset | grep 'hook input' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep 'hook forward' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep 'hook output' | wc -l) -eq 0 ]; then
+	echo "{ \"basechains_3525_audit\" : \"FAILED\" }"
+else
+	echo "{ \"basechains_3525_audit\" : \"PASSED\" }"
+fi

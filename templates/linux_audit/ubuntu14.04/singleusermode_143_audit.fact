@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.4.3 - Ensure authentication required for single user mode (Scored)
+
+if [ "$(sudo egrep "^root:[^\!*]:" /etc/shadow | wc -l)" -ne 0 ]; then
+    echo "{ \"1.4.3 - Password is not set to root for single user mode Authentication\" : \"FAILED\" }"
+else
+   echo "{ \"singleusermode_143_audit\" : \"PASSED\" }"   
+fi

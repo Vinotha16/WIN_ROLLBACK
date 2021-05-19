@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(cat /etc/ntp.conf | grep "restrict -4" | tr '"' " " | paste -sd "," -)
+b=$(cat /etc/ntp.conf | grep "restrict -6" | tr '"' " " | paste -sd "," -)
+c=$(cat /etc/ntp.conf | egrep "^(server|pool)" | tr '"' " " | paste -sd "," -)
+d=$(cat /etc/init.d/ntpd | grep -o 'daemon.*-u ntp:ntp' | tr '"' " " | paste -sd "," -)
+cmd="${a}","${b}","${c}","${d}"
+if [ $(sudo egrep "^restrict -4.*kod|^restrict -6.*kod" /etc/ntp.conf | wc -l) -eq 0 ] || [ $(sudo egrep "^(server|pool)" /etc/ntp.conf | wc -l) -eq 0 ] || [ $(sudo egrep 'daemon.*-u ntp:ntp' /etc/init.d/ntpd | wc -l) -eq 0 ]; then
+   echo "{ \"ntp_2212_actual\" : \"\" }"
+else
+   echo "{ \"ntp_2212_actual\" : \"$cmd\" }"
+exit 1
+fi

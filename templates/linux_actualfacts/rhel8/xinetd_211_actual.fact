@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(rpm -q xinetd )
+if [ $( rpm -qa xinetd | wc -l ) -eq 0 ]; then
+   echo "{ \"xinetd_211_actual\" : \"\" }"
+else
+   echo "{ \"xinetd_211_actual\" : \"$cmd\" }"
+
+fi
+

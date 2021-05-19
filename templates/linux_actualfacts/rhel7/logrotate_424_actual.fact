@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(cat /etc/logrotate.conf  | tr '\n' '\r' | sed -e 's/{.*}//g' | tr '\r' '\n' | grep -v "^\s*#" | grep "maxage" | paste -sd ",")
+if [ $(sudo cat /etc/logrotate.conf  | tr '\n' '\r' | sed -e 's/{.*}//g' | tr '\r' '\n' | grep -v "^\s*#" | grep "maxage" | wc -l) -eq 0 ] || [ $(sudo cat /etc/logrotate.d/*  | tr '\n' '\r' | sed -e 's/{.*}//g' | tr '\r' '\n' | grep -v "^\s*#" | grep "maxage" | wc -l) -eq 0 ]; then
+   echo "{ \"logrotate_424_actual\" : \"\" }"
+else
+   echo "{ \"logrotate_424_actual\" : \"${cmd}\" }"
+fi

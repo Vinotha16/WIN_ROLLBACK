@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(iptables -L | grep "Chain INPUT (policy DROP)" | paste -sd "," -)
+b=$(iptables -L | grep "Chain FORWARD (policy DROP)" | paste -sd "," -)
+c=$(iptables -L | grep "Chain OUTPUT (policy DROP)" | paste -sd "," -)
+cmd="${a}","${b}","${c}"
+if [ "$(iptables -L | grep "policy.*DROP" | wc -l)" -eq 0 ]; then
+   echo "{ \"firewallpolicy_34411_actual\" : \"\" }"
+else
+   echo "{ \"firewallpolicy_34411_actual\" : \"${cmd}\" }"
+   exit 1
+fi

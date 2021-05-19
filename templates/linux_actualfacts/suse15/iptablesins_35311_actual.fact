@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa iptables)
+if [ $(rpm -qa iptables 2> /dev/null | wc -l) -eq 0 ]; then
+    echo "{ \"iptablesins_35311_actual \" : \"\" }"
+else
+    echo "{ \"iptablesins_35311_actual\" : \"$cmd\" }"
+
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+cmd=$(sudo stat -c "%a %U %G %n" /etc/passwd.old)
+if [ -f /etc/passwd.old ]; then
+if [ $(sudo stat /etc/passwd.old | egrep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permpasswdold_615_actual\" : \"\" }"
+else
+   echo "{ \"permpasswdold_615_actual\" : \"${cmd}\" }"
+fi
+else
+   echo "{ \"permpasswdold_615_actual\" : \"\" }"
+fi

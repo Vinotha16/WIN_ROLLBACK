@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.1.1 Ensure iptables packages are installed (Automated)
+
+if [ $(sudo rpm -q iptables iptables-services | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{ \"iptablespkg_35311_audit\" : \"FAILED\" }"
+else
+   echo "{ \"iptablespkg_35311_audit\" : \"PASSED\" }"
+   exit 0
+fi
+

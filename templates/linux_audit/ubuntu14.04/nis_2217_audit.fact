@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.17 - Ensure NIS Server is not enabled (Scored)
+
+if [ $(sudo service ypserv status 2> /dev/null | grep "running" | wc -l) -ne 0 ]; then
+   echo "{\"2.2.17 - Ensure NIS Server is enabled\" : \"FAILED\"}"
+else
+   echo "{ \"nis_2217_audit\" : \"PASSED\"}"
+   
+fi
+
+

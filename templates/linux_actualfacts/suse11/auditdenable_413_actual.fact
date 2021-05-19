@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat /boot/grub/menu.lst | grep -m1 -o "audit=1")
+if [ "$(sudo grep "^\s*kernel" /boot/grub/menu.lst | grep "audit=1" | wc -l)" -eq 0 ]; then
+   echo "{ \"auditdenable_413_actual\" : \"\" }"
+else
+   echo "{ \"auditdenable_413_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

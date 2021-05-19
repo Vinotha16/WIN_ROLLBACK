@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.3 - Ensure loopback traffic is configured (Scored)
+
+if [ $(ufw status verbose | grep "127.0.0.0/8" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "::1" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "lo" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwloopbacktraffic_3523_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfwloopbacktraffic_3523_audit\" : \"PASSED\" }"
+fi

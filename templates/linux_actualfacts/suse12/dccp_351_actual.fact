@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/CIS.conf | grep "install dccp /bin/true")
+if [ "$(modprobe -n -v dccp 2> /dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep dccp 2> /dev/null | wc -l)" -ne 0 ]; then
+   echo "{ \"dccp_351_actual\" : \"\" }"
+else
+   echo "{ \"dccp_351_actual\" : \"${cmd}\" }"
+   exit 1
+fi

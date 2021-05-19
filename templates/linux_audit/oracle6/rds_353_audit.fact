@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3 - Ensure RDS is disabled (Not Scored)
+
+if [ "$(sudo modprobe -n -v rds 2> /dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(sudo lsmod | grep rds 2> /dev/null | wc -l)" -gt 0 ]; then
+   echo "{ \"rds_353_audit\" : \"FAILED\"}"
+else
+   echo "{ \"rds_353_audit\" : \"PASSED\"}"
+  
+fi
+
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo grep "^\s*linux" /boot/grub2/grub.cfg | egrep "selinux=0|enforcing=0" | wc -l) -ne 0 ]; then
+   echo "{ \"seldisable_1712_actual\" : \"\" }"
+else
+   echo "{ \"seldisable_1712_actual\" : \"SELinux is not disabled in bootloader configuration\" }"
+fi

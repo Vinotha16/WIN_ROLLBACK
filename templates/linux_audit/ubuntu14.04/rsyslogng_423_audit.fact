@@ -1,0 +1,17 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.3 - Ensure rsyslog or syslog-ng is installed (Scored)
+
+if [ $(sudo dpkg -s rsyslog 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{\"4.2.3 - Rsyslog is not installed\" : \"FAILED\"}"
+   if [ $(sudo dpkg -s syslog-ng 2>/dev/null | wc -l) -eq 0 ]; then
+      echo "{\"4.2.3 - Syslog-ng is not installed\" : \"FAILED\"}"
+   else
+      echo "{\"rsyslogng_423_audit\" : \"PASSED\"}"
+	 
+   fi
+else
+   echo "{\"rsyslogng_423_audit\" : \"PASSED\"}"
+
+fi

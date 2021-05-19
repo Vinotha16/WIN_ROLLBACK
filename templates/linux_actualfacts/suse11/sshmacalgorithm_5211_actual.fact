@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(grep "^MACs.*mac"  /etc/ssh/sshd_config)
+if [ $(sudo grep "^MACs.*mac"  /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshmacalgorithm_5211_actual\" : \"\" }"
+else
+   echo "{ \"sshmacalgorithm_5211_actual\" : \"$cmd\" }"
+fi

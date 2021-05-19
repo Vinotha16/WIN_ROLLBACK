@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#   3.5.2.8 - Ensure outbound and established connections are configured (Not Scored)
+
+if [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep -E 'ip protocol (tcp|udp|icmp) ct state' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook output/,/}/' | grep -E 'ip protocol (tcp|udp|icmp) ct state' | wc -l) -eq 0 ]; then
+   echo "{ \"nfoutbound_3528_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfoutbound_3528_audit\" : \"PASSED\" }"
+   exit 1
+fi

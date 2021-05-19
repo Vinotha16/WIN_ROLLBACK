@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(cat /etc/hosts.deny | grep "^ALL:")
+if [ $(sudo egrep "^ALL:" /etc/hosts.deny | wc -l) -eq 0 ]; then
+   echo "{ \"hostsdeny_333_actual\" : \"\" }"
+else
+   echo "{ \"hostsdeny_333_actual\" : \"$cmd\" }"
+  
+fi

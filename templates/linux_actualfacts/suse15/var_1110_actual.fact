@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(mount | grep -E '\s/var\s' | wc -l) -eq 0 ]; then
+   echo "{ \"var_1110_actual\" : \"\" }"
+else
+   echo "{ \"var_1110_actual\" : \"Separate partition exists\" }"
+   
+fi

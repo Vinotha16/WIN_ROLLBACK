@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.1 - Ensure permissions on /etc/ssh/sshd_config are configured (Scored)
+
+if [ $(sudo stat /etc/ssh/sshd_config | grep "0600.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"sshdperm_521_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshdperm_521_audit\" : \"PASSED\" }"
+fi
+

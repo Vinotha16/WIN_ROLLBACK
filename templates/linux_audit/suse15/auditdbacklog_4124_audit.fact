@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+#  4.1.2.4 - Ensure auditing for processes that start prior to auditd is enabled
+
+if [ "$(grep -E -i '^GRUB_CMDLINE_LINUX.*audit_backlog_limit=8192' /etc/default/grub 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"auditdbacklog_4124_audit\" : \"FAILED\"}"
+else
+   echo "{ \"auditdbacklog_4124_audit\" : \"PASSED\"}"
+   exit 0
+fi

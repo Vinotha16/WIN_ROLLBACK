@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo rpm -qa rsync | wc -l) -ne 0 ]; then
+   echo "{ \"rsync_2217_actual\" : \"\" }"
+else
+   echo "{ \"rsync_2217_actual\" : \"not installed\" }"
+   exit 1
+fi
+

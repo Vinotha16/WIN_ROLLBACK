@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa iptables)
+if [ $(sudo rpm -qa iptables | wc -l) -eq 0 ]; then
+   echo "{ \"iptables_353_actual\" : \"\"}"
+else
+   echo "{ \"iptables_353_actual\" : \"$cmd\"}"
+   
+fi

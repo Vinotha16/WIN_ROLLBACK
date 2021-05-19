@@ -1,0 +1,14 @@
+#!/bin/bash
+failfact=$(find /home -name ".netrc" | paste -sd ",")
+count=0
+if [ $(find /home -name ".netrc" | wc -l) -ne 0 ]; then
+   count=$((count+1))
+else
+   count=$((count+0))
+fi
+
+if [ "$count" -ne "0" ]; then
+   echo "{ \"netrcfiles_6212_actual\" : \"$cmd\" }"
+else
+   echo "{ \"netrcfiles_6212_actual\" : \"no users have .netrc files\" }"
+fi

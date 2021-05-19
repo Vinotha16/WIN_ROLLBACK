@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $(sudo systemctl is-enabled xinetd | grep disabled | wc -l) -eq 0 ] ; then
+
+    echo "{ \"xinetd_2111_actual\" : \"\" }"
+
+else
+  
+    echo "{ \"xinetd_2111_actual\" : \"not enabled\" }"
+
+fi

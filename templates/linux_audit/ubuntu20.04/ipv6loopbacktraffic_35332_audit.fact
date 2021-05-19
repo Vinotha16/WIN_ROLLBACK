@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.3.2 - Ensure IPv6 loopback traffic is configured
+
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+   if [ $(sudo ip6tables -L INPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L INPUT -v -n | egrep ".*DROP.*all.*--.*127.0.0.0/8.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $( sudo ip6tables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ]; then
+        echo "{ \"ipv6loopbacktraffic_35332_audit\" : \"FAILED\"}"
+   else
+        echo "{ \"ipv6loopbacktraffic_35332_audit\" : \"PASSED\"}"
+   fi
+else
+   echo "{ \"ipv6loopbacktraffic_35332_audit\" : \"PASSED\"}"
+fi

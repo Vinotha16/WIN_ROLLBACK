@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(systemctl is-enabled rhnsd  | grep "enabled" | wc -l) -ne 0 ]; then
+   echo "{ \"rhnsd_125_actual\" : \"\" }"
+else
+   echo "{ \"rhnsd_125_actual\" : \"not enabled\" }"
+fi

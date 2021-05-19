@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.21 - Disable Automounting (Scored)
+
+if [ "$(sudo service autofs status 2> /dev/null | grep "running" | wc -l)" -ne 0 ]; then
+   echo "{\"1.1.21 - Automounting not Disabled\"  :    \"FAILED\"}"
+else
+   echo "{ \"automount_1121_audit\" : \"PASSED\" }" 
+fi
+

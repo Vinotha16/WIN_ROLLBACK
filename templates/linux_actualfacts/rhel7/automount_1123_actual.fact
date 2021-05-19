@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $(sudo systemctl is-enabled autofs 2>/dev/null | wc -l) -ne 0 ]; then
+   if [ $(sudo systemctl is-enabled autofs 2>/dev/null | grep disabled | wc -l) -eq 0 ]; then
+      echo "{ \"automount_1123_actual\" : \"\" }"
+   else
+      echo "{ \"automount_1123_actual\" : \"not enabled\" }"
+   fi
+else
+   echo "{ \"automount_1123_actual\" : \"not enabled\" }"
+fi

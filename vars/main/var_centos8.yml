@@ -1,0 +1,32 @@
+---
+####CENTOS-8####
+bootloader_password_centos8: zippyops@123
+remote_server_chrony_centos8: sample.zippy.com
+remote_server_ntp_centos8: sample.zippy.com
+CRYPTO_POLICY_centos8: DEFAULT 
+ntp_chrony_centos8: chrony
+zone_name_centos8: customezone
+interface_name_centos8: eth0
+#unnecservport_service_centos8:   #unnecservport
+#unnecservport_port_centos8:      #unnecservport
+table_name_centos8: filter
+table_name_bc_centos8: filter
+base_chain_name_input_centos8: input
+base_chain_name_output_centos8: output
+base_chain_name_forward_centos8: forward
+audit_log_size_centos8: 8
+MaxAuthTries_centos8: MaxAuthTries 4
+PermitRootLogin_centos8: PermitRootLogin no
+ClientAliveInterval_centos8: ClientAliveInterval 300
+ClientAliveCountMax_centos8: ClientAliveCountMax 0
+Pass_max_days_centos8: 365
+Pass_min_days_centos8: 7
+Pass_warn_age_centos8: 7
+allowusers_centos8: ansible
+allowgroups_centos8:
+denyusers_centos8:
+denygroups_centos8:
+wheelgroup_centos8:
+
+db_no_centos8: 2
+update_centos8: 10

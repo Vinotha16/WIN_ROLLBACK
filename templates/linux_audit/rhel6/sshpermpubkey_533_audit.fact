@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.3 - Ensure permissions on SSH public host key files are configured
+
+if [ $(sudo find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec stat -c '%a %U %G' {} \; | egrep -v '644 root root|604 root root|640 root root' | wc -l) -ne 0 ]; then
+   echo "{\"sshpermpubkey_533_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshpermpubkey_533_audit\" : \"PASSED\"}"
+   exit 0
+fi

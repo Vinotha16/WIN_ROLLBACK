@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.6 - Ensure permissions on /etc/issue.net are configured (Not Scored)
+
+if [ "$(stat /etc/issue.net | grep 0644 | grep ".*Uid:.*0/.*root" |  grep ".*Gid:.*0/.*root" | wc -l)" -eq 0 ]; then
+   echo "{ \"issuenetperm_1716_audit\" : \"FAILED\" }"
+else
+   echo "{ \"issuenetperm_1716_audit\" : \"PASSED\" }"
+fi

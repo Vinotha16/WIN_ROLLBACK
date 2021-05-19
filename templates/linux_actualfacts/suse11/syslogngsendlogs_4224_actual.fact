@@ -1,0 +1,12 @@
+#!/bin/bash
+
+a=$(cat /etc/syslog-ng/syslog-ng.conf | grep '^destination.*logserver.*tcp.*logfile' | tr '"' " ")
+b=$(cat /etc/syslog-ng/syslog-ng.conf | grep "^log { source(src); destination(logserver); };") 
+cmd="${a}","${b}"
+if [ $(sudo grep '^destination.*logserver.*tcp.*logfile' /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngsendlogs_4224_actual\" : \"\" }"
+else
+   echo "{ \"syslogngsendlogs_4224_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

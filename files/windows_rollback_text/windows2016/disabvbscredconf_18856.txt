@@ -1,0 +1,16 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\Windows\DeviceGuard
+LsaCfgFlags
+DWORD:0
+
+Computer
+Software\Policies\Microsoft\Windows\DeviceGuard
+EnableVirtualizationBasedSecurity
+DWORD:1
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

@@ -1,0 +1,25 @@
+---
+####SUSE-12####
+bootloader_password_suse12: zippyops@123
+selinappar_suse12: libselinux1 selinux-policy
+remote_server_chrony_suse12: sample.zippy.com
+remote_server_ntp_suse12: sample.zippy.com
+ntp_chrony_suse12: chrony
+hosts_allow_suse12: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_suse12: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_suse12: 8
+rsyslog_syslog_suse12: rsyslog
+MaxAuthTries_suse12: MaxAuthTries 4
+PermitRootLogin_suse12: PermitRootLogin no
+ClientAliveInterval_suse12: ClientAliveInterval 300
+ClientAliveCountMax_suse12: ClientAliveCountMax 0
+Pass_max_days_suse12: 365
+Pass_min_days_suse12: 7
+Pass_warn_age_suse12: 7
+allowusers_suse12: ansible
+allowgroups_suse12:
+denyusers_suse12:
+denygroups_suse12:
+wheelgroup_suse12:
+
+db_no_suse12:

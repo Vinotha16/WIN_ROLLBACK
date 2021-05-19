@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$(sudo grep "^\s*linux.*apparmor=0" /boot/grub/grub.cfg | wc -l)" -ne 0 ]; then
+   echo "{ \"armordisable_1621_actual\"  :  \"\" }"
+else
+   echo "{ \"armordisable_1621_actual\" : \"AppArmor is disabled in bootloader configuration\" }"
+#exit 1
+fi

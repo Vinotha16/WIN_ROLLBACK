@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+# 3.5.2.11 - Ensure nftables rules are permanent (Scored)
+
+FILE=/etc/sysconfig/nftables.conf
+
+if [[ -f "$FILE" ]]; then
+   if [ $( awk '/hook input/,/}/' $(awk '$1 ~ /^\s*include/ { gsub("\"","",$2);print $2 }' /etc/sysconfig/nftables.conf) | wc -l ) -eq 0 ] || [ $(  awk '/hook forward/,/}/' $(awk '$1 ~ /^\s*include/ { gsub("\"","",$2);print $2 }' /etc/sysconfig/nftables.conf) | wc -l) -eq 0 ] || [ $( awk '/hook output/,/}/' $(awk '$1 ~ /^\s*include/ { gsub("\"","",$2);print $2 }' /etc/sysconfig/nftables.conf) | wc -l) -eq 0 ]; then
+      echo "{ \"nftablesrules_35211_audit\" : \"FAILED\" }"
+  else
+      echo "{ \"nftablesrules_35211_audit\" : \"PASSED\" }"
+  fi
+else
+   echo "{ \"nftablesrules_35211_audit\" : \"FAILED\" }"
+fi
+

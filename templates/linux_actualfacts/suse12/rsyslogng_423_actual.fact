@@ -1,0 +1,7 @@
+#!/bin/bash
+val=$(rpm -qa | grep -Ew "rsyslog|syslog-ng" | awk -F'-[0-9]' {'print $1'})
+if [ "$val" != "rsyslog" ] && [ "$val" != "syslog-ng" ]; then
+   echo "{ \"rsyslogng_423_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogng_423_actual\" : \"${val}\" }"
+fi

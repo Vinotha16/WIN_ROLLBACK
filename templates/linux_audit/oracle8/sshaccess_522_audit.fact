@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.2 - Ensure SSH access is limited (Scored)
+
+if [ $( sudo grep "^AllowUsers" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $( sudo grep "^AllowGroups" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $( sudo grep "^DenyUsers" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $( sudo grep "^DenyGroups" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"5.2.2 - SSH access is not limited\" : \"FAILED\" }"
+else
+   echo "{ \"sshaccess_522_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

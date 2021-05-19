@@ -1,0 +1,3 @@
+#!/bin/bash
+cmd=$(rpm -q xinetd | grep "xinetd")
+echo "{ \"xinetd_211_actual\" : \"${cmd}\" }"

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo grep -R ^tftp /etc/inetd.* 2> /dev/null | wc -l) -ne 0 ] || [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep tftp | wc -l) -ne 0 ]; then
+    echo "{ \"tftp_219_actual\" : \"\" }"
+else
+    echo "{ \"tftp_219_actual\" : \"not enabled\" }"
+    exit 1
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$(sudo dpkg -s prelink 2>/dev/null | wc -l)" -ne 0 ]; then
+   echo "{ \"prelink_163_actual\" : \"\" }"
+else
+   echo "{ \"prelink_163_actual\" : \"prelink is not installed\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.10 - Ensure xinetd is not enabled (Scored)
+
+if [ $(sudo systemctl is-enabled xinetd 2> /dev/null | grep "enabled" | wc -l) -gt 0 ]; then
+   echo "{ \"xinetd_2110_audit\" : \"FAILED\" }"
+else
+   echo "{ \"xinetd_2110_audit\" : \"PASSED\" }"
+  
+fi 

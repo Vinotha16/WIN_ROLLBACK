@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.5.2 - Ensure system accounts are non-login (Scored)
+
+if [ $(egrep -v "^\+" /etc/passwd | awk -F: '($1!="root" && $1!="sync" && $1!="shutdown" && $1!="halt" && $3<500 && $7!="/sbin/nologin" && $7!="/bin/false") {print}' | wc -l) -gt 0 ]; then
+   echo "{\"sysaccnonlogin_552_audit\" : \"FAILED\"}"
+else
+   echo "{\"sysaccnonlogin_552_audit\" : \"PASSED\"}"
+   
+fi

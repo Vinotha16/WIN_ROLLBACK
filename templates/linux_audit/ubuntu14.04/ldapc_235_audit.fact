@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.5 - Ensure LDAP client is not installed (Scored)
+
+if [ $(sudo dpkg -s ldap-utils 2> /dev/null | grep "installed" | wc -l) -ne 0 ]; then
+   echo "{\"2.3.5 - LDAP Client is Installed\" : \"FAILED\"}"
+else
+   echo "{ \"ldapc_235_audit\" : \"PASSED\"}"
+
+  
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.9 - Ensure rsync service is not enabled (Scored)
+
+if [ $(sudo chkconfig --list | grep 'rsync:.*on' | wc -l) -ne 0 ]; then
+      echo "{ \"rsync_219_audit\" : \"FAILED\"}"
+else
+      echo "{ \"rsync_219_audit\" : \"PASSED\"}"
+       
+fi

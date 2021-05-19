@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.2.4 - Ensure network interfaces are assigned to appropriate zone (Not Scored)
+
+nmcli -t connection show | awk -F: '{if($4){print $4}}' | while read INT; do
+ 	if [ $(firewall-cmd --get-active-zones | grep -B1 $INT | wc -l) -eq 0 ]; then
+  		echo "{ \"netinterface_3424_audit\" : \"FAILED\"}"
+	else
+  		echo "{ \"netinterface_3424_audit\" : \"PASSED\"}"
+   		exit 1
+	fi
+done
+
+

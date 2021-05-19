@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Internet Explorer\iexplore.exe
+SZ:+EAF+ eaf_modules:mshtml.dll;flash*.ocx;jscript*.dll;vbscript.dll;vgx.dll +ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll asr_zones:1;2
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

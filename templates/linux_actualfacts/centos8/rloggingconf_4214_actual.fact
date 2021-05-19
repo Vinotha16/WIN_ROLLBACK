@@ -1,0 +1,25 @@
+#!/bin/bash
+a=$(cat /etc/rsyslog.conf | grep "*.emerg :omusrmsg:*")
+b=$(cat /etc/rsyslog.conf | grep "mail.* -/var/log/mail" | xargs | sed -e 's/ / /g')
+c=$(cat /etc/rsyslog.conf | grep "mail.info -/var/log/mail.info")
+d=$(cat /etc/rsyslog.conf | grep "mail.warning -/var/log/mail.warn")
+e=$(cat /etc/rsyslog.conf | grep "mail.err /var/log/mail.err")
+f=$(cat /etc/rsyslog.conf | grep "news.crit -/var/log/news/news.crit")
+g=$(cat /etc/rsyslog.conf | grep "news.err -/var/log/news/news.err")
+h=$(cat /etc/rsyslog.conf | grep "news.notice -/var/log/news/news.notice")
+i=$(cat /etc/rsyslog.conf | grep "*.=warning;*.=err -/var/log/warn")
+j=$(cat /etc/rsyslog.conf | grep "*.crit /var/log/warn")
+k=$(cat /etc/rsyslog.conf | grep "*.*;mail.none;news.none -/var/log/messages")
+l=$(cat /etc/rsyslog.conf | grep "local0,local1.* -/var/log/localmessages")
+m=$(cat /etc/rsyslog.conf | grep "local2,local3.* -/var/log/localmessages")
+n=$(cat /etc/rsyslog.conf | grep "local4,local5.* -/var/log/localmessages")
+o=$(cat /etc/rsyslog.conf | grep "local6,local7.* -/var/log/localmessages")
+p="${a}","${b}","${c}","${d}","${e}","${f}","${g}","${h}","${i}","${j}","${k}","${l}","${m}","${n}","${o}"
+cmd=${p}
+if [ $(egrep "\*.emerg|mail.\*|mail.info|mail.warning|mail.err|^news.crit|^news.err|^news.notice|/var/log/warn|none;news.none|/var/log/localmessages" /etc/rsyslog.conf | wc -l) -eq 0 ] || [ $(egrep ".*/var/log/warn|.*/var/log/news/news.notice|.*/var/log/mail|.*/var/log/mail.info|.*/var/log/mail.warn"  /etc/rsyslog.conf | wc -l) -eq 0 ]; then
+   echo "{ \"rloggingconf_4214_actual\" : \"\" }"
+else
+   echo "{ \"rloggingconf_4214_actual\": \"${cmd}\" }"
+   exit 1
+fi
+

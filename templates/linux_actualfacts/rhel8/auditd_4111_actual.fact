@@ -1,0 +1,5 @@
+#!/bin/bash
+a=$(rpm -qa audit | grep "audit-[0-9]\+")
+b=$(rpm -qa audit-libs | grep "audit-libs-[0-9]\+")
+cmd="${a}","${b}"
+echo "{ \"auditd_4111_actual\" : \"${cmd}\" }"

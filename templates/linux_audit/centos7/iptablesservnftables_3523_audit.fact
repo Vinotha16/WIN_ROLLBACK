@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.3 - Ensure iptables-services package is not installed
+
+if [ $(sudo rpm -qa iptables-services | wc -l) -ne 0 ]; then
+   echo "{ \"iptablesservnftables_3523_audit\" : \"FAILED\" }"
+else
+   echo "{ \"iptablesservnftables_3523_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

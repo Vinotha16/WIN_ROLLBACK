@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sshd -T 2> /dev/null | grep -i '^usepam')
+if [ $(sshd -T 2> /dev/null | grep -i '^usepam' | wc -l) -eq 0 ]; then
+   echo "{ \"sshpam_5220_actual\" : \"\" }"
+else
+   echo "{ \"sshpam_5220_actual\" : \"${cmd}\" }"
+fi
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ $(nft list tables | wc -l) -eq 0 ]; then
+        echo "{ \"tablexists_3532_actual\" : \"\" }"
+else
+        echo "{ \"tablexists_3532_actual\" : \"nftables table exists\" }"
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.1 - Ensure chargen services are not enabled (Scored)
+
+if  [ -d /etc/xinetd.d/chargen ]; then
+
+        if [ $(chkconfig --list 2> /dev/null | grep "chargen-dgram:.*off" | wc -l) -eq 0 ] || [ $(chkconfig --list 2> /dev/null | grep "chargen-stream:.*off" | wc -l) -eq 0 ]; then
+	echo "{\"2.1.1 - Chargen Services are enabled\" : \"FAILED\"}"
+        fi
+	 else
+	echo "{ \"chargen_211_audit\" : \"PASSED\" }"
+	
+	fi

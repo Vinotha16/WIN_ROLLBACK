@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.2 - Ensure password fields are not empty (Scored)
+
+if [ $(sudo cat /etc/shadow | awk -F: '$2=="" {print $1}' | wc -l) -ne 0 ]; then
+   echo "{ \"emptypasswd_622_audit\" : \"FAILED\"}"
+else
+   echo "{ \"emptypasswd_622_audit\" : \"PASSED\"}"
+   
+fi

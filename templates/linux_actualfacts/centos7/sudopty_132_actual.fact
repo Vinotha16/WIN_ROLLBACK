@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo grep -Ei '^\s*Defaults\s+([^#]\S+,\s*)?use_pty\b' /etc/sudoers /etc/sudoers.d/* | tr '"' " " | paste -sd ",")
+if [ $(sudo grep -Ei '^\s*Defaults\s+([^#]\S+,\s*)?use_pty\b' /etc/sudoers /etc/sudoers.d/* 2> /dev/null | wc -l ) -eq 0 ]; then
+        echo "{ \"sudopty_132_actual\" : \"\" }"
+else
+        echo "{ \"sudopty_132_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(ss -4tuln | grep 0:22)
+b=$(ufw status | grep ".*22/tcp.*ALLOW.*Anywhere")
+cmd="${a}","${b}"
+if [ $(ss -4tuln | grep 0:22 | wc -l) -eq 0 ] || [ $(ufw status | grep ".*22/tcp.*ALLOW.*Anywhere" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwfirewallrules_3516_actual\" : \"\" }"
+else
+   echo "{ \"nfwfirewallrules_3516_actual\" : \"${cmd}\" }"
+fi

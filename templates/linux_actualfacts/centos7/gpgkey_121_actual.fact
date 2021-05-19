@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo rpm -qa gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}')
+if [ $(sudo rpm -qa gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n' | wc -l) -eq 0 ]; then
+   echo "{ \"gpgkey_121_actual\" : \"\" }"
+else
+   echo "{ \"gpgkey_121_actual\" : \"${cmd}\" }"
+   exit 0
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(rpm -qa audit)
+b=$(rpm -qa audit-libs)
+cmd="${a}","${b}"
+if [ $(rpm -qa audit audit-libs | wc -l) -eq 0 ]; then
+   echo "{ \"auditd_4111_actual\" : \"\" }"
+else
+  echo "{ \"auditd_4111_actual\" : \"${cmd}\" }"
+fi

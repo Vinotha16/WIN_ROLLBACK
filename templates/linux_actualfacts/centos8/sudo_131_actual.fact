@@ -1,0 +1,3 @@
+#!/bin/bash
+cmd=$(rpm -qa sudo | grep "sudo-[0-9]\+")
+echo "{ \"sudo_131_actual\" : \"${cmd}\" }"

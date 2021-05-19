@@ -1,0 +1,4 @@
+Computer
+System\CurrentControlSet\Services\Tcpip\Parameters
+EnableICMPRedirect
+DWORD:0

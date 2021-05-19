@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.9 - Ensure tftp server is not enabled (Scored)
+
+if [ "$(chkconfig --list 2>/dev/null | grep "tftp:" | awk {'print $2'})" == "on" ]; then
+    echo "{ \"tftp_219_audit\" : \"FAILED\" }"
+else
+   echo "{ \"tftp_219_audit\" : \"PASSED\" }"
+fi

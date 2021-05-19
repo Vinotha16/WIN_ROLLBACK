@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.3 - Ensure root is the only UID 0 account 
+
+if [ "$(sudo cat /etc/passwd | awk -F: '$3==0 {print $1}')" != 'root' ]; then
+   echo "{ \"rootuid_623_audit\" : \"FAILED\"}"
+else
+   echo "{ \"rootuid_623_audit\" : \"PASSED\"}"
+   
+fi

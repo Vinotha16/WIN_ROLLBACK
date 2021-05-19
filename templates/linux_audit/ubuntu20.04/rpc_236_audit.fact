@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.6 Ensure RPC is not installed
+
+if [ $(sudo dpkg -s rpcbind 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"rpc_236_audit\" : \"FAILED\" }"
+else
+   echo "{ \"rpc_236_audit\" : \"PASSED\" }"
+   
+fi

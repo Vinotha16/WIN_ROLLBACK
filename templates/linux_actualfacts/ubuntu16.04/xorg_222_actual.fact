@@ -1,0 +1,8 @@
+#!/bin/bash
+failed=$(rpm -qa | grep "xorg-x11*" |  rev | cut -d'-' -f3- | rev | paste -sd "," -)
+if [ $(sudo dpkg -l xserver-xorg* 2> /dev/null | grep "no packages found" | wc -l) -ne 0 ]; then
+   echo "{ \"xorg_222_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"xorg_222_actual\" : \"no packages found matching xserver-xorg*\" }"
+   
+fi

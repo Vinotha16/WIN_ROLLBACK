@@ -1,0 +1,12 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\Windows Defender Security Center\App and Browser protection
+DisallowExploitProtectionOverride
+DWORD:1
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------
+

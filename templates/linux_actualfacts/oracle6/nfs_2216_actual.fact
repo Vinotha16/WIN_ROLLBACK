@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q nfs-utils)
+if [ $(sudo rpm -qa nfs-utils | wc -l) -ne 0 ]; then
+   echo "{ \"nfs_2216_actual\" : \"\" }"
+else
+   echo "{ \"nfs_2216_actual\" : \"$cmd\" }"
+fi

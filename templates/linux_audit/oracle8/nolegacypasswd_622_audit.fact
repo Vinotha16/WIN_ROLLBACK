@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.2 - Ensure no legacy "+" entries exist in /etc/passwd (Scored)
+
+if [ $( sudo grep '\+:' /etc/passwd | wc -l) -gt 0 ]; then
+  echo "{ \"6.2.2 - legacy "+" entries exist in /etc/passwd\" : \"FAILED\" }"
+else
+  echo "{ \"nolegacypasswd_622_audit\" : \"PASSED\" }"
+  exit 1
+fi

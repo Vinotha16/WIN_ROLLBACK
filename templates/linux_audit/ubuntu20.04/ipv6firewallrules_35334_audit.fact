@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.3.4 - Ensure IPv6 firewall rules exist for all open ports (Not Scored)
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(ss -6tuln | grep '.*22' | wc -l) -eq 0 ] || [ $(ip6tables -L INPUT -v -n | grep ".*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW.*tcp dpt" | wc -l) -eq 0 ]; then
+        echo "{ \"ipv6firewallrules_35334_audit\" : \"FAILED\"}"
+    else
+        echo "{ \"ipv6firewallrules_35334_audit\" : \"PASSED\"}"
+    fi
+else
+    echo "{ \"ipv6firewallrules_35334_audit\" : \"PASSED\"}"
+fi

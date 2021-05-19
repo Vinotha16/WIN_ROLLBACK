@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.9 - Ensure updates, patches, and additional security software are installed 
+
+if [ "$(sudo apt-get -s upgrade | grep 'not upgraded' | awk {'print $10'})" != "0" ]; then
+   echo "{ \"updates_19_audit\" : \"FAILED\" }"
+else
+   echo "{ \"updates_19_audit\" : \"PASSED\" }"
+   
+fi

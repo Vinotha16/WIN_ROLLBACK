@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# 3.4.3.4 - Ensure loopback traffic is configured (Scored)
+
+if [ $(nft list tables | grep "table inet filter" | wc -l) -eq 0 ]; then
+        echo "{ \"nfloopbacktraffic_3434_audit\" : \"FAILED\"}"
+else
+        echo "{ \"nfloopbacktraffic_3434_audit\" : \"PASSED\"}"
+fi
+
+

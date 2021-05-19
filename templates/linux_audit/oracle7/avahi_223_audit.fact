@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.3 - Ensure Avahi Server is not installed (Scored)
+
+if [ $(sudo rpm -qa avahi | grep "avahi-[0-9]" | wc -l) -ne 0 ] || [ $(sudo rpm -qa avahi-autoipd | wc -l) -ne 0 ]; then
+   echo "{ \"avahi_223_audit\" : \"FAILED\" }"
+else
+   echo "{ \"avahi_223_audit\" : \"PASSED\" }"
+fi

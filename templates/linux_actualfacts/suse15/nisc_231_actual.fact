@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q ypbind)
+if [ $(sudo rpm -qa ypbind | wc -l) -ne 0 ]; then
+   echo "{ \"nisc_231_actual\" : \"\" }"
+else
+   echo "{ \"nisc_231_actual\" : \"$cmd\" }"
+fi

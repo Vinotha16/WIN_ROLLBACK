@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cmd=$(dpkg --verify | paste -sd "," -)
+if [ $(sudo dpkg --verify | wc -l) -ne 0 ]; then
+   echo "{ \"auditsysperm_611_actual\" : \"\" }"
+else
+   echo "{ \"auditsysperm_611_actual\" : \"Audit system file has permissions\" }"
+
+fi
+

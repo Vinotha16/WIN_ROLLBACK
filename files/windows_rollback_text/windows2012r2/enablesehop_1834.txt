@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+SYSTEM\CurrentControlSet\Control\Session Manager\kernel
+DisableExceptionChainValidation
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

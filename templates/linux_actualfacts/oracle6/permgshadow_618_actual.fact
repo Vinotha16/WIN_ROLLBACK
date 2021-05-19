@@ -1,0 +1,12 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/gshadow)
+if [ -f /etc/gshadow ]; then
+        if [ $(sudo stat /etc/gshadow | egrep "0000.*Uid.*root.*Gid.*root|0000.*Uid.*root.*Gid.*shadow" | wc -l) -eq 0 ]; then
+                echo "{ \"permgshadow_618_actual\" : \"\" }"
+        else
+               echo "{ \"permgshadow_618_actual\" : \"$cmd\" }"
+        fi
+else
+        echo "{ \"permgshadow_618_actual\" : \"\" }"
+fi
+

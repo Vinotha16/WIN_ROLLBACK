@@ -1,0 +1,7 @@
+#!/bin/bash
+failfact=$(dpkg -l xserver-xorg*  2> /dev/null | awk 'NR>4{print $2}' | sed '/^$/d' | paste -sd ",")
+if [ $(dpkg -l xserver-xorg* 2> /dev/null | grep 'xserver-xorg' | wc -l) -ne 0 ]; then
+   echo "{ \"xorg_222_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"xorg_222_actual\" : \"no packages found matching xserver-xorg\" }"
+fi

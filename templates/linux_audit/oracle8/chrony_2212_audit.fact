@@ -1,0 +1,12 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 2.2.1.2 - Ensure chrony is configured (Scored)
+
+if [ $( sudo grep -E "^(server|pool)" /etc/chrony.conf | wc -l) -eq 0 ] || [ $( sudo ps -ef | grep chronyd | wc -l) -eq 0 ]; then
+     echo "{ \"2.2.1.2 - Chrony is not configured\" : \"FAILED\" }"
+else
+     echo "{ \"chrony_2212_audit\" : \"PASSED\" }"
+     exit 1
+fi
+

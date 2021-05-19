@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list rpcbind | egrep 'rpcbind.*:on ' | wc -l) -ne 0 ] || [ $(sudo chkconfig --list nfs | egrep 'nfs.*:on ' | wc -l) -ne 0 ]; then
+  echo "{ \"nfsrpc_227_actual\" : \"\" }"
+else
+  echo "{ \"nfsrpc_227_actual\" : \"not enabled\" }"
+exit 1
+fi

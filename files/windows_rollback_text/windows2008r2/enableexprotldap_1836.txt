@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+SYSTEM\CurrentControlSet\Services\NTDS\Parameters
+LdapEnforceChannelBinding
+DWORD:2
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

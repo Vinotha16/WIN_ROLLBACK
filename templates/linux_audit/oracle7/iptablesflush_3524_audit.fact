@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#  3.5.2.4 - Ensure iptables are flushed (Not Scored)
+
+if [ $(iptables -L | grep '[A-Z]\+.*[0-9]\+' | wc -l) -gt 0 ] || [ $(ip6tables -L | grep '[A-Z]\+.*[0-9]\+' | wc -l) -gt 0 ]; then
+	echo "{ \"iptablesflush_3524_audit\" : \"FAILED\"}"
+else
+	echo "{ \"iptablesflush_3524_audit\" : \"PASSED\"}"
+fi
+

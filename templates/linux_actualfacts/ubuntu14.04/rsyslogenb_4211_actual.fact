@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$( service rsyslog status 2> /dev/null | grep "running" )
+if [ $(sudo service rsyslog status 2> /dev/null | grep "running" | wc -l) -eq 0 ]; then
+   echo "{ \"rsyslogenb_4211_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogenb_4211_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

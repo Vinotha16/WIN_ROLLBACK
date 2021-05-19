@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(sshd -T 2> /dev/null | grep kexalgorithms.*curve25519.*)
+if [ $(sshd -T 2> /dev/null | grep kexalgorithms.*curve25519.* | wc -l) -eq 0 ]; then
+   echo "{ \"sshkeyexalgorithm_5215_actual\" : \"\" }"
+else
+   echo "{ \"sshkeyexalgorithm_5215_actual\" : \"$cmd\" }"
+
+fi

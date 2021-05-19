@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.3.2 - Ensure /etc/hosts.allow is configured (Scored)
+
+if [ $(sudo egrep "^ALL: 192|^ALL: 172|^ALL: 10|^ALL: 172|^ALL: ALL" /etc/hosts.allow | wc -l) -eq 0 ]; then
+   echo "{ \"hostsallow_332_audit\" : \"FAILED\" }"
+else
+   echo "{ \"hostsallow_332_audit\" : \"PASSED\" }"
+   
+fi

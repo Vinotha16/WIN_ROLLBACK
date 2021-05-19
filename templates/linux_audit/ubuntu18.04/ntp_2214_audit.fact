@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.1.4 - Ensure ntp is configured (Scored)
+
+if [ $(sudo egrep "^restrict -4|^restrict -6" /etc/ntp.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "^(server|pool)" /etc/ntp.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo grep "^RUNASUSER=ntp" /etc/init.d/ntp 2> /dev/null | wc -l) -eq 0 ]; then
+    echo "{ \"ntp_2214_audit\" : \"FAILED\" }"
+else
+    echo "{ \"ntp_2214_audit\" : \"PASSED\" }"
+    
+fi

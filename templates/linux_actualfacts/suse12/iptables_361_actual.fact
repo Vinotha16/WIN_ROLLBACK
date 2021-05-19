@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$(sudo rpm -q iptables | grep "not installed" | wc -l)" -ne 0 ]; then
+	echo "{ \"iptables_361_actual\" : \"\" }"
+else
+	echo "{ \"iptables_361_actual\" : \"iptables is not enabled\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.1.4 - Ensure mounting of hfs filesystems is disabled (Scored)
+
+if [ "$(sudo modprobe -n -v hfs 2>/dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(sudo lsmod | grep hfs | wc -l)" -ne 0 ]; then
+   echo "{\"1.1.1.4 - Mounting of hfs filesystems is not Disabled\"  :   \"FAILED\"}"
+else
+   echo "{ \"hfs_1114_audit\" : \"PASSED\" }"
+   exit 1
+fi

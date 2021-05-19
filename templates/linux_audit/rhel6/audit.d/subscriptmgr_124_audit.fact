@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.4 Ensure Red Hat Subscription Manager connection is configured (Not Scored)
+
+if [ $(sudo subscription-manager identity 2> /dev/null | grep "[0-9]\+[a-z]\+" | wc -l) -eq 0 ]; then
+   echo "{\"subscriptmgr_124_audit\" : \"FAILED\"}"
+else
+   echo "{\"subscriptmgr_124_audit\" : \"PASSED\"}"
+fi
+

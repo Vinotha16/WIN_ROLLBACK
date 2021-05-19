@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters
+TcpMaxDataRetransmissions
+DWORD:3
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

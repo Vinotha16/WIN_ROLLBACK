@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.3.3 - Ensure /etc/hosts.deny is configured (Scored)
+
+if [ $(sudo egrep "^ALL: 192|^ALL: 172|^ALL: 10|^ALL: 170|^ALL: ALL" /etc/hosts.deny | wc -l) -eq 0 ]; then
+    echo "{ \"hostsdeny_333_audit\" : \"FAILED\"}"
+else
+    echo "{ \"hostsdeny_333_audit\" : \"PASSED\"}"
+fi
+

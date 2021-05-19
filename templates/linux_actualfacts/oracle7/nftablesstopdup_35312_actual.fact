@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cmd=$(sudo rpm -q nftables)
+if [ $(rpm -qa nftables | grep 'nftables-[0-9]\+' | wc -l) -ne 0 ]; then
+   echo "{ \"nftablesstopdup_35312_actual\" : \"\"}"
+else
+   echo "{ \"nftablesstopdup_35312_actual\" : \"$cmd\"}"
+   exit 0
+fi
+

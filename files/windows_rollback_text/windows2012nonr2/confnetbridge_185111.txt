@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+Software\Policies\Microsoft\Windows\Network Connections
+NC_AllowNetBridge_NLA
+DWORD:0
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

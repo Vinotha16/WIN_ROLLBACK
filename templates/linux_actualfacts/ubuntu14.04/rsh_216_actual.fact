@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ $(sudo egrep "^shell|^login|^exec" /etc/inetd.* 2> /dev/null | wc -l) -ne 0 ] || [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep shell | wc -l) -ne 0 ] || [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep login | wc -l) -ne 0 ] || [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep exec | wc -l) -ne 0 ]; then
+       echo "{ \"rsh_216_actual\" : \"\" }"
+    else
+       echo "{ \"rsh_216_actual\" : \"not enabled\" }"
+       exit 1
+    fi
+done
+

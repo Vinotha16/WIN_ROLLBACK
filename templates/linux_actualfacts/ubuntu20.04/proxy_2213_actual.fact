@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo dpgk -s squid 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+    echo "{ \"proxy_2213_actual\" : \"\" }"
+else
+   echo "{ \"proxy_2213_actual\" : \"squid not installed\" }"
+   
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(sudo sysctl net.ipv4.conf.all.accept_source_route | grep 0 | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv4.conf.default.accept_source_route | grep 0 | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv6.conf.all.accept_source_route | grep 0 | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv6.conf.default.accept_source_route | grep 0 | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.all.accept_source_route.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.accept_source_route.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] ||[ $(sudo grep "net.ipv6.conf.all.accept_source_route.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "net.ipv6.conf.default.accept_source_route.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+        echo "{\"routedpacket_331_audit\" : \"FAILED\"}"
+    else
+        echo "{\"routedpacket_331_audit\" : \"PASSED\"}"
+    fi
+else
+    if [ $(sudo sysctl net.ipv4.conf.all.accept_source_route | grep 0 | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv4.conf.default.accept_source_route | grep 0 | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.all.accept_source_route.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.accept_source_route.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+        echo "{\"routedpacket_331_audit\" : \"FAILED\"}"
+    else
+        echo "{\"routedpacket_331_audit\" : \"PASSED\"}"
+    fi
+fi

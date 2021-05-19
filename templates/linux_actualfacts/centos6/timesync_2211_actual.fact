@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(rpm -qa | egrep "chrony" | paste -sd ",")
+b=$(rpm -qa | egrep "ntp" | paste -sd ",")
+if [ $(rpm -qa | egrep "chrony" | wc -l) -eq 0 ]; then
+    if [ $(rpm -qa | egrep "ntp" | wc -l) -eq 0 ]; then
+       echo "{ \"timesync_2211_actual\" : \"\" }"
+    else
+       echo "{ \"timesync_2211_actual\" : \"ntp $b \" }"
+    fi
+else
+   echo "{ \"timesync_2211_actual\" : \"chrony $a\" }"
+fi

@@ -1,0 +1,32 @@
+---
+####ORACLE-7####
+bootloader_password_oracle7: zippyops@123
+Selinux_oracle7: enforcing
+remote_server_chrony_oracle7: sample.zippy.com
+remote_server_ntp_oracle7: sample.zippy.com
+nonessen_service_oracle7:
+ntp_chrony_oracle7: chrony
+zone_name_oracle7: customezone
+interface_name_oracle7: eth0
+#unnecservport_service_oracle7:   #unnecservport
+#unnecservport_port_oracle7:      #unnecservport
+table_name_oracle7: filter
+table_name_bc_oracle7: filter
+base_chain_name_input_oracle7: input
+base_chain_name_output_oracle7: output
+base_chain_name_forward_oracle7: forward
+audit_log_size_oracle7: 8
+MaxAuthTries_oracle7: MaxAuthTries 4
+PermitRootLogin_oracle7: PermitRootLogin no
+ClientAliveInterval_oracle7: ClientAliveInterval 300
+ClientAliveCountMax_oracle7: ClientAliveCountMax 0
+Pass_max_days_oracle7: 365
+Pass_min_days_oracle7: 7
+Pass_warn_age_oracle7: 7
+allowusers_oracle7: ansible
+allowgroups_oracle7:
+denyusers_oracle7:
+denygroups_oracle7:
+
+db_no_oracle7:
+update_oracle7:

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo yum repolist | grep rhui | wc -l) -eq 0 ]; then
+   echo "{ \"repoconfig_122_actual\" : \"\" }"
+else
+   echo "{ \"repoconfig_122_actual\" : \"package manager repositories are configured\" }"
+fi
+

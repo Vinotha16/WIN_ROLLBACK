@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list syslog-ng 2>/dev/null | grep "0:off.*1:off.*2:on.*3:on.*4:on.*5:on.*6:off" | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngenb_4221_actual\" : \"\" }"
+else
+   echo "{ \"syslogngenb_4221_actual\" : \"enabled\"}"
+   exit 1
+fi
+

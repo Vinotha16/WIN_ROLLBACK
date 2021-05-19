@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(awk -F: '($2 != "x" ) { print $1}' /etc/passwd | paste -sd ",")
+if [ $( awk -F: '($2 != "x" ) { print $1 " is not set to shadowed passwords "}' /etc/passwd | wc -l) -ne 0 ]; then
+      echo "{ \"useshadowed_621_actual\" : \"failed $failfact\"}"
+else
+      echo "{ \"useshadowed_621_actual\" : \"etc/passwd use shadowed passwords\"}"
+
+fi

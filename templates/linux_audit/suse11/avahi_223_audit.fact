@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.3 - Ensure Avahi Server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list avahi-daemon | egrep 'avahi-daemon.*:on ' | wc -l) -ne 0 ] ; then
+   echo "{ \"avahi_223_audit\" : \"FAILED\" }"
+else
+   echo "{ \"avahi_223_audit\" : \"PASSED\" }"
+fi

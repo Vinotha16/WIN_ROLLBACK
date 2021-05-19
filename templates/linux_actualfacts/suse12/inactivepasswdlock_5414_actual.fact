@@ -1,0 +1,18 @@
+#!/bin/bash
+failfact=$(egrep ^[^:]+:[^\!*] /etc/shadow | grep -v 'root' | awk -F':' '{print $7 ,$1}' | paste -sd "," | sed 's/, /,-1 /g;s/^/-1/g')
+failfact1=$(useradd -D | grep "^INACTIVE.*"| sed 's/=/ /g' | expand -t 1)
+count=0
+if [ $(sudo useradd -D | grep "INACTIVE=30" | wc -l) -eq 0 ]; then
+   for i in $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1); do
+        if [ $(chage --list "$i" | grep "Password inactive.*30" | wc -l) -eq 0 ]; then
+               count=$((count+1))
+        fi
+   done
+
+fi
+if [ "$count" -ne "0" ]; then
+      echo "{ \"inactivepasswdlock_5414_actual\" : \"failed $failfact1,$failfact\" }"
+else
+      echo "{ \"inactivepasswdlock_5414_actual\" : \"inactive password lock is 30 days or less\" }"
+        exit 1
+fi

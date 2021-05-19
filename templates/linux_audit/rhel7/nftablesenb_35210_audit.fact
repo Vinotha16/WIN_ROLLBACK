@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.10 Ensure nftables service is enabled (Automated)
+
+if [ $(sudo systemctl is-enabled nftables | grep 'enabled' | wc -l) -eq 0 ]; then
+   echo "{ \"nftablesenb_35210_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nftablesenb_35210_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

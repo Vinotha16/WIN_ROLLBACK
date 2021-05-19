@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(sudo grep "^SELINUXTYPE=targeted" /etc/selinux/config | cut -d= -f2)
+b=$(sestatus | grep "Loaded policy name.*targeted")
+cmd="${a}","${b}"
+if [ $(grep "^SELINUXTYPE=targeted" /etc/selinux/config | wc -l) -eq 0 ] || [ $(sestatus | grep "Loaded policy name.*targeted" | wc -l) -eq 0 ]; then
+   echo "{ \"selpolicy_1713_actual\" : \"\" }"
+else
+   echo "{ \"selpolicy_1713_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

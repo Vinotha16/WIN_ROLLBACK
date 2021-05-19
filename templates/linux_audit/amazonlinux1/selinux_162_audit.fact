@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.2 - Ensure SELinux is installed (Scored)
+
+if [ $(sudo rpm -qa libselinux | grep "libselinux-" | wc -l) -eq 0 ]; then
+    echo "{ \"selinux_162_audit\" : \"FAILED\" }"
+else
+    echo "{ \"selinux_162_audit\" : \"PASSED\" }"
+fi

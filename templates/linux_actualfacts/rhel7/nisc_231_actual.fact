@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa ypbind | wc -l) -ne 0 ]; then
+   echo "{ \"nisc_231_actual\" : \"\" }"
+else
+   echo "{ \"nisc_231_actual\" : \"not installed\" }"
+fi

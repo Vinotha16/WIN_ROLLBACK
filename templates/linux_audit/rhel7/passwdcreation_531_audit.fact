@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.1 - Ensure password creation requirements are configured (Automated)
+
+if [ $(sudo grep '^\s*minlen.*14' /etc/security/pwquality.conf  | wc -l) -eq 0 ] || [ $(grep '^\s*minclass.*4' /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+   echo "{ \"passwdcreation_531_audit\" : \"FAILED\" }"
+else
+   echo "{ \"passwdcreation_531_audit\" : \"PASSED\" }"
+
+fi

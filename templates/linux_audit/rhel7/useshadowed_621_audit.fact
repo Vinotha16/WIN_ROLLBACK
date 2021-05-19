@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.1 - Ensure accounts in /etc/passwd use shadowed passwords (Automated)
+
+if [ $(sudo awk -F: '($2 != "x" ) { print $1 " is not set to shadowed passwords "}' /etc/passwd | wc -l) -ne 0 ]; then
+   echo "{ \"shadowedpasswd_621_audit\" : \"FAILED\" }"
+else
+   echo "{ \"shadowedpasswd_621_audit\" : \"PASSED\" }"
+   exit 1
+fi 

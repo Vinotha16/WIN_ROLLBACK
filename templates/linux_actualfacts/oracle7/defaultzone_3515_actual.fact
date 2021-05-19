@@ -1,0 +1,13 @@
+#!/bin/bash
+failed=$(firewall-cmd --get-default-zone 2>/dev/null)
+cmd=$(sudo firewall-cmd --get-default-zone 2>/dev/null | grep -o -m1 'public' )
+if [ "$(firewall-cmd --get-default-zone | wc -l)" -ne 0 ]; then
+   if [ "$(firewall-cmd --get-default-zone 2>/dev/null | grep 'public' | wc -l)" -eq 0 ]; then
+      echo "{ \"defaultzone_3515_actual\" : \"failed $failed\" }"
+   else
+      echo "{ \"defaultzone_3515_actual\" : \"$cmd\" }"
+      exit 1
+   fi
+else
+echo "{ \"defaultzone_3515_actual\" : \"failed_command not found\" }"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+failed=$(find /home/ -name ".[A-Za-z0-9]*" -perm /g+w,o+w  )
+failfact=$(stat -c "%a %n" $failed  2>/dev/null | paste -sd ",")
+if [ $(sudo find /home/ -name ".[A-Za-z0-9]*" -perm /g+w,o+w | wc -l) -ne 0 ]; then
+    echo "{ \"dotfiles_628_actual\" : \"failed $failfact\" }"
+else
+    echo "{ \"dotfiles_628_actual\" : \"Users dot files are not group or world writable\" }"
+        exit 1
+fi

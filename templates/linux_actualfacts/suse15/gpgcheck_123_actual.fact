@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/zypp/zypp.conf | grep '^gpgcheck=1')
+b=$(cat /etc/zypp/repos.d/*.repo | grep -m1 '^gpgcheck=1' | paste -sd ",")
+failfact=$(grep -iRl ^gpgcheck=0 /etc/zypp/repos.d/*.repo | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(grep '^gpgcheck=1' /etc/zypp/zypp.conf | wc -l) -eq 0 ] || [ $(grep '^gpgcheck=0' /etc/zypp/repos.d/*.repo | wc -l) -ne 0 ]; then
+   echo "{ \"gpgcheck_123_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"gpgcheck_123_actual\" : \"${cmd}\" }"
+fi

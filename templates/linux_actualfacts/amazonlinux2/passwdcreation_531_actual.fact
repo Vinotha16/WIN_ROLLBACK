@@ -1,0 +1,14 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep "^password.*requisite.*pam_pwquality.so.*try_first_pass.*retry=3")
+b=$(cat /etc/pam.d/system-auth | grep "^password.*requisite.*pam_pwquality.so.*try_first_pass.*retry=3")
+c=$(cat /etc/security/pwquality.conf | grep "^minlen = 14" | paste -sd ",")
+d=$(cat /etc/security/pwquality.conf | grep "^dcredit = -1" | paste -sd ",")
+e=$(cat /etc/security/pwquality.conf | grep "^ucredit = -1" | paste -sd ",")
+f=$(cat /etc/security/pwquality.conf | grep "^ocredit = -1" | paste -sd ",")
+g=$(cat /etc/security/pwquality.conf | grep "^lcredit = -1" | paste -sd ",")
+cmd="${a}","${b}","${c}","${d}","${e}","${f}","${g}"
+if [ $(sudo grep "try_first_pass retry=3" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(sudo grep "try_first_pass retry=3" /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $(sudo egrep "^minlen.*14|^dcredit.*-1|^lcredit.*-1|^ocredit.*-1|^ucredit.*-1"  /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+        echo "{ \"passwdcreation_531_actual\" : \"\" }"
+else
+        echo "{ \"passwdcreation_531_actual\" : \"${cmd}\" }"
+fi

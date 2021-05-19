@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(grep ^RSYNC_ENABLE=false /etc/default/rsync | wc -l) -eq 0 ]; then
+   echo "{ \"rsync_2216_actual\" : \"\" }"
+else
+   echo "{ \"rsync_2216_actual\" : \"not enabled\" }"
+   exit 1
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(nft list ruleset | grep 'hook input' | grep 'hook forward' | grep 'hook output' | xargs | sed -e 's/ /, /g')
+
+if [ $(nft list ruleset | grep 'hook input' | wc -l) -eq 0 ] || [ $(nft list ruleset | grep 'hook forward' | wc -l) -eq 0 ] || [ $(nft list ruleset | grep 'hook output' | wc -l) -eq 0 ]; then
+	echo "{ \"basechains_3433_actual\" : \"\" }"
+else
+	echo "{ \"basechains_3433_actual\" : \"${cmd}\" }"
+fi

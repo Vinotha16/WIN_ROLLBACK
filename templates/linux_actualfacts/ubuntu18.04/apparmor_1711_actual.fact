@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo dpkg -s apparmor apparmor-utils 2>/dev/null | grep "installed")
+if [ $(sudo dpkg -s apparmor apparmor-utils 2>/dev/null | grep "installed" | wc -l) -eq 0 ]; then
+  echo "{ \"apparmor_1711_actual\" : \"\" }"
+else
+   echo "{ \"apparmor_1711_actual\" : \"${cmd}\" }"
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.14 - Ensure nodev option set on /run/shm partition (Scored)
+
+if [ "$(mount | grep /run/shm.*nodev | wc -l)" -eq 0 ]; then
+   echo "{\"1.1.14 - nodev option not set on /run/shm partition\"   :   \"FAILED\"}"
+else
+   echo "{\"shmnodev_1114_audit\"  :  \"PASSED\"}"
+  
+fi
+

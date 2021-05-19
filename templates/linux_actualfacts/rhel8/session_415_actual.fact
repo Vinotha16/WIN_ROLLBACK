@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/logins.rules | grep "/var/run/utmp -p wa -k session")
+b=$(cat /etc/audit/rules.d/logins.rules | grep "/var/log/wtmp -p wa -k logins")
+c=$(cat /etc/audit/rules.d/logins.rules | grep "/var/log/btmp -p wa -k logins")
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(egrep  "utmp" /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(egrep  "wtmp|btmp" /etc/audit/audit.rules  2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"session_415_actual\" : \"\" }"
+else
+   echo "{ \"session_415_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

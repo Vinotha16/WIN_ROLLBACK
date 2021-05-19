@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 5.2.2 - Ensure sudo commands use pty (Scored)
+
+if [ $(sudo grep -Ei '^\s*Defaults\s+([^#]\S+,\s*)?use_pty\b' /etc/sudoers /etc/sudoers.d/* 2> /dev/null | wc -l ) -eq 0 ]; then
+        echo "{\"sudopty_522_audit\" : \"FAILED\"}"
+else
+        echo "{\"sudopty_522_audit\" : \"PASSED\"}"
+fi

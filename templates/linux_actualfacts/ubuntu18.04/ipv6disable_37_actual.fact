@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep "ipv6.disable=1" /etc/default/grub | tr '"' " ")
+if [ $(grep "ipv6.disable=1" /etc/default/grub | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6disable_37_actual\" : \"\" }"
+else
+   echo "{ \"ipv6disable_37_actual\" : \"${cmd}\" }"
+   exit 1
+fi

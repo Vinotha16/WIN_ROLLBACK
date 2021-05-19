@@ -1,0 +1,23 @@
+#!/bin/bash
+count=0
+NOW=$(date +%s)
+for i in $(egrep "^[^:]+:[\$]|^[^:]+:\!\!" /etc/shadow | awk -F: '$6==7 {print $1}'); do
+    if [ "$i" != 'root' ]; then
+       UPA=$(chage --list $i | grep "Last password change" | cut -d: -f2)
+       EPOCH=$(date -d "$UPA" +%s)
+if [[ $EPOCH -gt $NOW ]]; then
+       echo "$i" >> /tmp/cis_lastpasswdchange
+       count=$((count+1))
+else
+       count=$((count+0))
+fi
+fi
+done
+if [ "$count" != "0" ]; then
+        failed=$(cat /tmp/cis_lastpasswdchange | paste -sd ",")
+        echo "{ \"lastpasswdchange_5416_actual\" : \"failed $failed\"}"
+        rm -rf /tmp/cis_lastpasswdchange
+else
+        echo "{ \"lastpasswdchange_5416_actual\" : \"all users last password change date is in the past\"}"
+        exit  1
+fi

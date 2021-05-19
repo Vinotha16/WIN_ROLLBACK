@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(stat -c "%a %U %G %n" /etc/cron.allow)
+b=$(stat -c "%a %U %G %n" /etc/at.allow)
+cmd="${a}","${b}"
+if [ $(stat /etc/cron.allow | grep 0600 | grep ".*Uid:.*0/.*root" | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ] || [ $(stat /etc/at.allow | grep 0600 | grep ".*Uid:.*0/.*root" | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ] || [ $(stat /etc/cron.deny 2> /dev/null | grep root | wc -l) -eq 1 ] || [ $(stat /etc/at.deny 2> /dev/null | grep root | wc -l) -eq 1 ]; then
+   echo "{ \"atcron_518_actual\" : \"\" }"
+else
+   echo "{ \"atcron_518_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

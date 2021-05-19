@@ -1,0 +1,15 @@
+#!/bin/bash
+a=$(sudo cat /etc/audit/audit.rules | grep "/etc/group -p wa -k identity")
+b=$(sudo cat /etc/audit/audit.rules | grep "/etc/passwd -p wa -k identity")
+c=$(sudo cat /etc/audit/audit.rules | grep "/etc/gshadow -p wa -k identity")
+d=$(sudo cat /etc/audit/audit.rules | grep "/etc/shadow -p wa -k identity")
+e=$(sudo cat /etc/audit/audit.rules | grep "-w /etc/security/opasswd -p wa -k identity")
+cmd="${a}","${b}","${c}","${d}","${e}"
+#cmd=$( sudo cat /etc/audit/audit.rules | grep "identity"| paste -sd "," -)
+if [ "$(sudo grep "identity" /etc/audit/audit.rules 2> /dev/null | wc -l)" -eq 0 ] || [ "$(sudo auditctl -l | grep identity  | wc -l)" -eq 0 ]; then
+   echo "{ \"modusergrp_415_actual\" : \"\" }"
+else
+   echo "{ \"modusergrp_415_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

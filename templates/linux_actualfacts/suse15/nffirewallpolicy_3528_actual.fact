@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(sudo nft list ruleset | grep "hook input" | expand -t 1)
+b=$(sudo nft list ruleset | grep "hook forward" | expand -t 1)
+c=$(sudo nft list ruleset | grep "hook output" | expand -t 1)
+cmd="${a}","${b}","${c}"
+if [ $(sudo nft list ruleset | grep "hook input.*policy drop" | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep "hook forward.*policy drop" | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep "hook output.*policy drop" | wc -l) -eq 0 ]; then
+   echo "{ \"nffirewallpolicy_3528_actual\" : \"\" }"
+else
+   echo "{ \"nffirewallpolicy_3528_actual\" : \"$cmd\" }"
+
+fi
+

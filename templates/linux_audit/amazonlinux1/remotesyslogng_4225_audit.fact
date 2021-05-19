@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.2.5 - Ensure remote syslog-ng messages are only accepted on designated log hosts (Not Scored)
+
+if [ $(sudo egrep 'source net|destination remote|source\(net\)' /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+    echo "{ \"remotesyslogng_4225_audit\" : \"FAILED\" }"
+else
+    echo "{ \"remotesyslogng_4225_audit\" : \"PASSED\" }"
+fi

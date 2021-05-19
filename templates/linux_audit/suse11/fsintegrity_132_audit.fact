@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.3.2 - Ensure filesystem integrity is regularly checked (Scored)
+
+if [ "$(sudo crontab -u root -l | grep 'aide' | wc -l)" -eq 0 ] || [ "$(sudo grep -r aide /var/spool/cron/tabs/ | wc -l)" -eq 0 ] ; then
+  echo "{ \"fsintegrity_132_audit\" : \"FAILED\" }"
+else
+   echo "{ \"fsintegrity_132_audit\" : \"PASSED\" }"
+fi

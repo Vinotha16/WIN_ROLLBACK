@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(iptables -L | grep '[A-Z]\+.*[0-9]\+' | wc -l) -gt 0 ] || [ $(ip6tables -L | grep '[A-Z]\+.*[0-9]\+' | wc -l) -gt 0 ]; then
+   echo "{ \"iptablesflush_3523_actual\" : \"\" }"
+else
+   echo "{ \"iptablesflush_3523_actual\" : \"iptables are flushed\" }"
+fi

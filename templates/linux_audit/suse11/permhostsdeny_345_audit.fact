@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.5 - Ensure permissions on /etc/hosts.deny are configured (Scored)
+
+if [ "$(stat /etc/hosts.deny | grep 0644 | grep ".*Uid:.*0/.*root.*" | grep ".*Gid:.*0/.*root.*" | wc -l)" -eq 0 ]; then
+   echo "{ \"permhostsdeny_345_audit\" : \"FAILED\" }"
+else
+   echo "{ \"permhostsdeny_345_audit\" : \"PASSED\" }"
+fi
+

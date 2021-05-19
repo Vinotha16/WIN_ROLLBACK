@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.12 - Ensure Samba is not installed (Scored)
+
+if [ $(sudo rpm -qa samba | wc -l) -ne 0 ]; then
+    echo "{\"samba_2211_audit\" : \"FAILED\"}"
+else
+    echo "{\"samba_2211_audit\" : \"PASSED\"}"
+fi
+
+

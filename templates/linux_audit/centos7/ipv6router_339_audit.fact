@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.3.9 - Ensure IPv6 router advertisements are not accepted (Not Scored)
+
+if [ "$(sudo sysctl net.ipv6.conf.all.accept_ra)" != "net.ipv6.conf.all.accept_ra = 0" ] || [ "$(sudo sysctl net.ipv6.conf.default.accept_ra)" != "net.ipv6.conf.default.accept_ra = 0" ] || [ $(sudo grep "^net.ipv6.conf.all.accept_ra.*0" /etc/sysctl.conf  /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv6.conf.default.accept_ra.*0" /etc/sysctl.conf  /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6router_339_audit\" : \"FAILED\"}"
+else
+   echo "{ \"ipv6router_339_audit\" : \"PASSED\"}"
+   exit 0
+fi

@@ -1,0 +1,30 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+Software\Policies\Microsoft\Windows\WCN\Registrars
+EnableRegistrars
+DWORD:1
+
+Computer
+Software\Policies\Microsoft\Windows\WCN\Registrars
+DisableUPnPRegistrar
+DWORD:1
+
+Computer
+Software\Policies\Microsoft\Windows\WCN\Registrars
+DisableInBand802DOT11Registrar
+DWORD:1
+
+Computer
+Software\Policies\Microsoft\Windows\WCN\Registrars
+DisableFlashConfigRegistrar
+DWORD:1
+
+Computer
+Software\Policies\Microsoft\Windows\WCN\Registrars
+DisableWPDRegistrar
+DWORD:1
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

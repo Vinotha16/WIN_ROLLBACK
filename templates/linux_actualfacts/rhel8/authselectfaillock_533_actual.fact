@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(cat /etc/authselect/authselect.conf | grep "with-faillock")
+if [ $(authselect current | grep with-faillock /etc/authselect/authselect.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"authselectfaillock_533_actual\" : \"\" }"
+else
+   echo "{ \"authselectfaillock_533_actual\" : \"${cmd}\" }"
+fi

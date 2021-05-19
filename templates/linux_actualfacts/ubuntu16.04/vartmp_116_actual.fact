@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(mount | grep "/var/tmp")
+if [ "$(mount | grep "/var/tmp" | wc -l)" -eq 0 ]; then
+   echo "{ \"vartmp_116_actual\" : \"\" }"
+else
+   echo "{ \"vartmp_116_actual\" : \"$cmd\" }"
+   
+fi
+

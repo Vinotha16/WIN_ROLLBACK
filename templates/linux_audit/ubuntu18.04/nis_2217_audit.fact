@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.17 - Ensure NIS Server is not enabled (Scored)
+
+if [ $(sudo systemctl is-enabled nis 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"nis_2217_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nis_2217_audit\" : \"PASSED\" }"
+   
+fi

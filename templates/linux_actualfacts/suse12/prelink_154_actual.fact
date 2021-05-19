@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q prelink)
+if [ "$(sudo rpm -qa | grep prelink | wc -l)" -ne 0 ]; then
+   echo "{ \"prelink_154_actual\" : \"\" }"
+else
+   echo "{ \"prelink_154_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.9 - Ensure discretionary access control permission modification events are collected (Scored)
+
+if [ $(sudo grep "perm_mod" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep "perm_mod" | wc -l) -eq 0 ]; then
+   echo "{\"dacperm_419_audit\" : \"FAILED\"}"
+else
+   echo "{\"dacperm_419_audit\" : \"PASSED\"}"
+  
+fi

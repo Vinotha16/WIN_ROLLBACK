@@ -1,0 +1,27 @@
+---
+####UBUNTU-14####
+bootloader_password_ubuntu14: zippyops@123
+singleusermode_ubuntu14: zippyops
+fileage_ubuntu14: -1d
+remote_server_chrony_ubuntu14: sample.zippy.com
+remote_server_ntp_ubuntu14: sample.zippy.com
+ntp_chrony_suse11: chrony
+ntp_chrony_ubuntu14: chrony
+hosts_allow_ubuntu14: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_ubuntu14: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_ubuntu14: 8
+rsyslog_syslog_ubuntu14: rsyslog
+MaxAuthTries_ubuntu14: MaxAuthTries 4
+PermitRootLogin_ubuntu14: PermitRootLogin no
+ClientAliveInterval_ubuntu14: ClientAliveInterval 300
+ClientAliveCountMax_ubuntu14: ClientAliveCountMax 0
+Pass_max_days_ubuntu14: 365
+Pass_min_days_ubuntu14: 7
+Pass_warn_age_ubuntu14: 7
+allowusers_ubuntu14: ansible
+allowgroups_ubuntu14:
+denyusers_ubuntu14:
+denygroups_ubuntu14:
+wheelgroup_ubuntu14:
+
+db_no_ubuntu14:

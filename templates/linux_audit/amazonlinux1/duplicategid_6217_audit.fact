@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.17 - Ensure no duplicate GIDs exist (Scored)
+
+count=0
+if [ $(awk -F: '$3>=500 {print $3}' /etc/group | sort | uniq -c | awk '$1 > 1' | wc -l) -ne 0 ]; then
+   	count=$((count+1))
+fi
+if [ "$count" -ne "0" ]; then
+    echo "{ \"duplicategid_6217_audit\" : \"FAILED\" }"
+else
+    echo "{ \"duplicategid_6217_audit\" : \"PASSED\" }"
+fi

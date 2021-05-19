@@ -1,0 +1,20 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b64 -S adjtimex -S settimeofday -k time-change")
+b=$(cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change")
+c=$(cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b64 -S clock_settime -k time-change")
+d=$(cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b32 -S clock_settime -k time-change")
+e=$(cat /etc/audit/rules.d/*.rules | grep "/etc/localtime -p wa -k time-change")
+f="${a}","${b}","${c}","${d}","${e}"
+cmd=${f}
+g="${b}","${d}","${e}"
+cmd1=${g}
+if [ $(sudo grep "time-change" /etc/audit/rules.d/*.rules | wc -l) -eq 0 ]; then
+   echo "{ \"moddatetime_413_actual\" : \"\" }"
+else
+  if [ "$(uname -m)" == 'x86_64' ]; then
+        echo "{\"moddatetime_413_actual\":\"${cmd}\"}"
+     else
+        echo "{\"moddatetime_413_actual\":\"${cmd1}\"}"
+  fi
+exit 1
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.5 - Ensure permissions on /etc/gshadow are configured (Scored)
+
+if [ -f /etc/gshadow ]; then
+   if [ $(sudo stat /etc/gshadow | grep "0000.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+       echo "{ \"permgshadow_615_audit\" : \"FAILED\" }"
+   else
+       echo "{ \"permgshadow_615_audit\" : \"PASSED\" }"
+   fi
+else
+   echo "{ \"permgshadow_615_audit\" : \"FAILED\" }"
+fi

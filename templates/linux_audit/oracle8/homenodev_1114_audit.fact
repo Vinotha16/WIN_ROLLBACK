@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.14 - Ensure nodev option set on /home partition (Scored)
+
+if [ $(mount | grep /home.*nodev | wc -l) -eq 0 ]; then
+   echo "{ \"1.1.14 - Nodev option not set on /home partition\" : \"FAILED\" }"
+else
+   echo "{ \"homenodev_1114_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

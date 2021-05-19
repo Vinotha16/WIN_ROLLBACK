@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$(grep -E -i '^\s*LEGACY\s*(\s+#.*)?$' /etc/crypto-policies/config | wc -l)" -eq 1 ]; then
+	echo "{ \"crypolicy_10_actual\" : \"\" }"
+else
+   echo "{ \"crypolicy_110_actual\" : \"system-wide crypto policy is not legacy\" }"
+fi

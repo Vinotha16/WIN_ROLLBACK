@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.15 - Ensure mail transfer agent is configured for local-only mode (Scored)
+
+if [ $(sudo netstat -an | grep LIST | grep "127.0.0.1:25[[:space:]]" | wc -l) -ne 0 ]; then
+   echo "{ \"mail_2215_audit\" : \"FAILED\" }"
+else
+   echo "{ \"mail_2215_audit\" : \"PASSED\" }"
+   exit 1
+fi

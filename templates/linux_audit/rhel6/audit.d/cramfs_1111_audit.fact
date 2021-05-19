@@ -1,0 +1,13 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled (Scored)
+
+if [ "$(modprobe -n -v cramfs | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep cramfs | wc -l)" -ne 0 ]; then
+   echo "{\"cramfs_1111_audit\" : \"FAILED\"}"
+else
+   echo "{\"cramfs_1111_audit\" : \"PASSED\"}"
+   
+fi
+
+

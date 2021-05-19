@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.6 Ensure no unconfined services exist (Automated)
+
+if [ $(ps -eZ | grep unconfined_service_t | wc -l) -ne 0 ]; then
+   echo "{ \"unconfined_1716_audit\" : \"FAILED\" }"
+else
+   echo "{ \"unconfined_1716_audit\" : \"PASSED\" }"
+   
+fi
+
+
+

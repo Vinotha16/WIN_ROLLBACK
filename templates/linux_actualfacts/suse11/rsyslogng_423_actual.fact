@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(rpm -qa rsyslog | grep "rsyslog")
+b=$(rpm -qa syslog-ng | grep "syslog-ng")
+cmd="${a}""${b}"
+if [ $(rpm -qa | egrep "rsyslog|syslog-ng" | wc -l) -eq 0 ]; then
+        echo "{ \"rsyslogng_423_actual\" : \"\" }"
+else
+        echo "{ \"rsyslogng_423_actual\" : \"${cmd}\"}"
+        exit 1
+fi
+

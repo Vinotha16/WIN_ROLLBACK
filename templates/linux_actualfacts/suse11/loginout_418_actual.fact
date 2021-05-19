@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo egrep "tallylog.*logins|lastlog.*logins|faillock.*logins" /etc/audit/audit.rules | paste -sd ",")
+if [ "$(sudo egrep "tallylog.*logins|lastlog.*logins|faillock.*logins" /etc/audit/audit.rules 2> /dev/null | wc -l)" -eq 0 ]; then
+   echo "{ \"loginout_418_actual\" : \"\" }"
+else
+   echo "{ \"loginout_418_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

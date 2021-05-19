@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.7 - Ensure NFS is not enabled (Scored)
+
+if [ $(sudo dpkg -s nfs-kernel-server 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+    echo "{ \"nfs_227_audit\" : \"FAILED\" }"
+else
+    echo "{ \"nfs_227_audit\" : \"PASSED\" }"
+    
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5 - Ensure wireless interfaces are disabled (Not Scored)
+
+if [ $(nmcli radio all | grep "[0-9][aAa-zZz][0-9]" | awk -F: {'print $2'} | cut -d' ' -f2 | wc -l) -ge 1 ]; then
+   echo "{\"wireless_35_audit\" : \"FAILED\"}"
+else
+   echo "{\"wireless_35_audit\" : \"PASSED\"}"
+   
+fi
+

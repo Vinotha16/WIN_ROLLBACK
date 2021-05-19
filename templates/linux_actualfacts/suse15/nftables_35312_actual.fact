@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -q nftables)
+if [ $(sudo rpm -qa nftables | wc -l) -ne 0 ]; then
+   echo "{ \"nftables_35312_actual\" : \"\" }"
+else
+   echo "{ \"nftables_35312_actual\" : \"$cmd\" }"
+
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cmd=$(systemctl is-enabled systemd-timesyncd.service | grep enabled) 
+if [ $(sudo dpkg -s ntp 2> /dev/null | grep installed | wc -l) -ne 0 ]||[ $(sudo dpkg -s chrony 2> /dev/null | grep installed | wc -l) -ne 0 ]||[ $(systemctl is-enabled systemd-timesyncd.service | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"timesynconf_2212_actual\" : \"\" }"
+else
+   echo "{ \"timesynconf_2212_actual\" : \"${cmd}\" }"
+fi

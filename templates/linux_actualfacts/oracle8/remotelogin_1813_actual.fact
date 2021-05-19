@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cmd=$(cat /etc/issue.net | grep "Authorized uses only. All activity may be monitored and reported")
+
+if [ $(cat /etc/issue.net | wc -l) -eq 0 ] || [ $(grep -E -i "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/"//g'))" /etc/issue.net | wc -l) -ne 0 ]; then
+   echo "{ \"remotelogin_1813_actual\" : \"\" }"
+else
+   echo "{ \"remotelogin_1813_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

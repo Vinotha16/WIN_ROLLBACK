@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(rpm -q openldap2-client)
+if [ $(sudo rpm -qa openldap2-client | wc -l) -ne 0 ]; then
+   echo "{ \"ldapc_235_actual\" : \"\" }"
+else
+   echo "{ \"ldapc_235_actual\" : \"$cmd\" }"
+   exit 0
+fi
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled firewalld | grep 'masked')
+if [ $(systemctl is-enabled firewalld | grep 'masked' | wc -l) -eq 0 ]; then
+   echo "{ \"firewallnodup_35313_actual\" : \"\" }"
+else
+   echo "{ \"firewallnodup_35313_actual\" : \"$cmd\" }"
+   exit 0
+fi
+

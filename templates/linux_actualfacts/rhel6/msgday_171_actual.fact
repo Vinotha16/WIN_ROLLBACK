@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/motd | grep -o "Welcome to oracle6")
+if [ $(sudo cat /etc/motd | grep "Welcome to oracle6" | wc -l) -eq 0 ] || [ $(sudo egrep '(\\v|\\r|\\m|\\s|linux)' /etc/motd | wc -l) -ne 0 ]; then
+   echo "{ \"msgday_171_actual\" : \"\"}"
+else
+   echo "{ \"msgday_171_actual\" : \"$cmd\" }"
+
+fi

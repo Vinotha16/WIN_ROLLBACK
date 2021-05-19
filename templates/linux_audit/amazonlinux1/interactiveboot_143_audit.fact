@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.4.3 - Ensure interactive boot is not enabled (Scored)
+
+if [ $(grep "^PROMPT=no" /etc/sysconfig/init | wc -l) -eq 0 ]; then
+   echo "{ \"interactiveboot_143_audit\" : \"FAILED\" }"
+else
+   echo "{ \"interactiveboot_143_audit\" : \"PASSED\" }"
+fi

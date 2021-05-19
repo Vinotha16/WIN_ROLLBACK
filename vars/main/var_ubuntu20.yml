@@ -1,0 +1,33 @@
+---
+####UBUNTU-20####
+bootloader_password_ubuntu20: zippyops@123
+singleusermode_ubuntu20: zippyops
+fileage_ubuntu20: -1d
+apparmorprofile_ubuntu20: enforce
+remote_server_chrony_ubuntu20: sample.zippy.com
+remote_server_ntp_ubuntu20: sample.zippy.com
+nonessen_service_ubuntu20: 
+ntp_chrony_ubuntu20: chrony
+zone_name_ubuntu20: customezone
+interface_name_ubuntu20: eth0
+#unnecservport_service_ubuntu20:   #unnecservport
+#unnecservport_port_ubuntu20:      #unnecservport
+table_name_ubuntu18: filter
+table_name_bc_ubuntu18: filter
+base_chain_name_input_ubuntu18: input
+base_chain_name_output_ubuntu18: output
+base_chain_name_forward_ubuntu18: forward
+audit_log_size_ubuntu20: 8
+MaxAuthTries_ubuntu20: MaxAuthTries 4
+PermitRootLogin_ubuntu20: PermitRootLogin no
+ClientAliveInterval_ubuntu20: ClientAliveInterval 300
+ClientAliveCountMax_ubuntu20: ClientAliveCountMax 0
+Pass_max_days_ubuntu20: 365
+Pass_min_days_ubuntu20: 7
+Pass_warn_age_ubuntu20: 7
+allowusers_ubuntu20: ansible
+allowgroups_ubuntu20:
+denyusers_ubuntu20:
+denygroups_ubuntu20:
+
+db_no_ubuntu20:

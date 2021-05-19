@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/ssh/sshd_config | grep "^PermitRootLogin.*no")
+if [ $(sudo grep "^PermitRootLogin.*no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshrootlogin_528_actual\" : \"\" }"
+else
+   echo "{ \"sshrootlogin_528_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

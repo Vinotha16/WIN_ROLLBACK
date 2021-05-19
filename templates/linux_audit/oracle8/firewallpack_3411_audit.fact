@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#   3.4.1.1 - Ensure a Firewall package is installed (Scored)
+
+if [ $(rpm -q firewalld | grep 'firewalld-[0-9]\+' | wc -l) -eq 0 ]; then
+	echo "{ \"3.4.1.1 Firewall package is not installed\" : \"FAILED\" }"
+else
+	echo "{ \"firewallpack_3411_audit\" : \"PASSED\" }"
+fi

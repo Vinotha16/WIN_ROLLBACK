@@ -1,0 +1,25 @@
+---
+####CENTOS-6####
+bootloader_password_centos6: zippyops@123
+remote_server_chrony_centos6: sample.zippy.com
+remote_server_ntp_centos6: sample.zippy.com
+ntp_chrony_centos6: chrony
+hosts_allow_centos6: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_centos6: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_centos6: 8
+rsyslog_syslog_centos6: rsyslog
+MaxAuthTries_centos6: MaxAuthTries 4
+PermitRootLogin_centos6: PermitRootLogin no
+ClientAliveInterval_centos6: ClientAliveInterval 300
+ClientAliveCountMax_centos6: ClientAliveCountMax 0
+Pass_max_days_centos6: 365
+Pass_min_days_centos6: 7
+Pass_warn_age_centos6: 7
+allowusers_centos6: ansible
+allowgroups_centos6:
+denyusers_centos6:
+denygroups_centos6:
+wheelgroup_centos6:
+
+db_no_centos6: 
+update_centos6:

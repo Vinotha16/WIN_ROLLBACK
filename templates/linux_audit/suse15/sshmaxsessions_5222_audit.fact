@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.22 - Ensure SSH MaxSessions is limited
+
+if [ $(sudo sshd -T  | grep -i maxsessions | awk -F ' ' '{print $2}') -gt 10 ]; then
+   echo "{ \"sshmaxsessions_5222_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshmaxsessions_5222_audit\" : \"PASSED\" }"
+fi

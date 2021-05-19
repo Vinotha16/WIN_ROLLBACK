@@ -1,0 +1,3 @@
+#!/bin/bash
+cmd=$( dmesg | grep NX | grep active)
+echo "{ \"xdnx_162_actual\" : \"${cmd}\" }"

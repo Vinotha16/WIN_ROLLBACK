@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$(sudo egrep "^root:[^\!*]:" /etc/shadow | wc -l)" -ne 0 ]; then
+   echo "{ \"singleusermode_143_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_143_actual\" : \"authentication for single user mode is set\"}"
+   exit 1
+fi

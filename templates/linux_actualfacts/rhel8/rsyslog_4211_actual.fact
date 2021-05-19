@@ -1,0 +1,3 @@
+#!/bin/bash
+cmd=$(rpm -qa rsyslog | grep "rsyslog-[0-9]\+")
+echo "{ \"rsyslog_4211_actual\" : \"${cmd}\" }"

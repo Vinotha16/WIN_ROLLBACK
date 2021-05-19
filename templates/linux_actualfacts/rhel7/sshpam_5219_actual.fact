@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat /etc/ssh/sshd_config | grep "^UsePAM yes")
+if [ $(sudo sshd -T | grep -i usepam | wc -l) -eq 0 ]; then
+   echo "{ \"sshpam_5219_actual\" : \"\" }"
+else
+   echo "{ \"sshpam_5219_actual\" : \"${cmd}\" }"
+fi
+
+

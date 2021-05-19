@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.15 - Ensure nodev option set on /dev/shm partition (Scored)
+
+if [ $(sudo mount | grep /dev/shm.*nodev | wc -l) -eq 0 ]; then
+   echo "{ \"shmnodev_1115_audit\" : \"FAILED\"}"
+else
+   echo "{ \"shmnodev_1115_audit\" : \"PASSED\"}"
+fi
+

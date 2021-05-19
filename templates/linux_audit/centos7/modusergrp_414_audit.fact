@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.4 - Ensure  events that modify user/group information are collected
+
+if [ $(sudo grep "identity" /etc/audit/rules.d/*.rules | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep identity | wc -l) -eq 0 ]; then
+   echo "{\"modusergrp_414_audit\":\"FAILED\"}"
+else
+   echo "{\"modusergrp_414_audit\":\"PASSED\"}"
+   exit 1
+fi
+

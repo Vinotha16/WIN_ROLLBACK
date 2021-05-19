@@ -1,0 +1,10 @@
+#!/bin/bash
+failed=$(egrep "^SELINUXTYPE=minimum|^SELINUXTYPE=mls" /etc/selinux/config)
+cmd=$(sudo cat /etc/selinux/config | grep "^SELINUXTYPE=targeted")
+if [ "$(sudo grep "^SELINUXTYPE=targeted" /etc/selinux/config | wc -l)" -eq 0 ]; then
+   echo "{ \"selpolicy_1613_actual\"  : \"failed $failed\" }"
+else
+   echo "{ \"selpolicy_1613_actual\"  :  \"$cmd\" }"
+exit 1
+fi
+

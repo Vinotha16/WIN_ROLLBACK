@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled rsyslog 2> /dev/null | grep enabled)
+if [ $(systemctl is-enabled rsyslog 2> /dev/null | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"rsyslogenb_4211_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogenb_4211_actual\" : \"$cmd\" }"
+   exit 1
+fi

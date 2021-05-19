@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.8 - Ensure telnet server is not enabled (Scored)
+
+if  [ -f /etc/inetd.conf ] && [ -f /etc/inetd.d/*.]  ; then
+
+if [ $(sudo grep -R ^telnet /etc/inetd.* 2> /dev/null | wc -l) -ne 0 ] || [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep telnet | wc -l) -eq 0 ]; then
+   echo "{ \"telnet_218_audit\" : \"FAILED\" }"
+   fi
+else
+   echo "{ \"telnet_218_audit\" : \"PASSED\" }"
+  
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(rpm -qa rsh | wc -l ) -ne 0 ]; then
+   echo "{ \"rshc_222_actual\" : \"\"}"
+else
+   echo "{ \"rshc_222_actual\" : \"not installed\"}"
+   
+fi

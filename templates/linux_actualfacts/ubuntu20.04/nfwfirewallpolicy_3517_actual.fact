@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(sudo ufw status verbose | grep 'deny' | paste -sd "," -)
+if [ $(sudo ufw status verbose | grep 'deny.*incoming' | wc -l) -eq 0 ] || [ $(sudo ufw status verbose | grep 'deny.*routed' | wc -l) -eq 0 ] || [ $(sudo ufw status verbose | grep 'deny.*routed' | wc -l) -eq 0 ]; then
+   echo "{ \"nfwfirewallpolicy_3517_actual\" : \"\" }"
+else
+   echo "{ \"nfwfirewallpolicy_3517_actual\" : \"$cmd\" }"
+  
+fi

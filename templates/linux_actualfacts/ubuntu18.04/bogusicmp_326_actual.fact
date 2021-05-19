@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 "^net.ipv4.icmp_ignore_bogus_error_responses=1")
+if [ $(sudo sysctl net.ipv4.icmp_ignore_bogus_error_responses | grep net.ipv4.icmp_ignore.*1 | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.icmp_ignore_bogus_error_responses.*1" /etc/sysctl.conf /etc/sysctl.d/* 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"bogusicmp_326_actual\" : \"\" }"
+else
+   echo "{ \"bogusicmp_326_actual\" : \"${cmd}\" }"
+   exit 1
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo dpkg -s rsh-client 2> /dev/null | grep "installed" |  wc -l) -ne 0 ] || [ $(sudo dpkg -s rsh-redone-client 2> /dev/null | grep "installed" | wc -l) -ne 0 ]; then
+   echo "{ \"rshc_232_actual\" : \"\" }"
+else
+   echo "{ \"rshc_232_actual\" : \"not installed\" }"
+   
+fi

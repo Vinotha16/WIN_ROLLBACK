@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(grep -E -i '^\s*(FUTURE|FIPS)\s*(\s+#.*)?$' /etc/crypto-policies/config)
+if [ "$( grep -E -i '^\s*(FUTURE|FIPS)\s*(\s+#.*)?$' /etc/crypto-policies/config 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"crypolicyfuture_111_actual\" : \"\" }"
+else
+   echo "{ \"crypolicyfuture_111_actual\" : \"$cmd\" }"
+fi

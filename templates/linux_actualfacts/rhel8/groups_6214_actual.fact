@@ -1,0 +1,22 @@
+#!/bin/bash
+for i in $(cut -s -d: -f4 /etc/passwd | sort -u ); do
+ grep -q -P "^.*?:[^:]*:$i:" /etc/group
+ if [ $? -ne 0 ]; then
+  grep $i /etc/passwd | awk -F: '{print $1 ,$4}' >> /tmp/groups_cis
+ fi
+done
+failfact=$(cat /tmp/groups_cis 2>/dev/null | paste -sd ",")
+rm -rf /tmp/groups_cis 2>/dev/null
+count=0
+for i in `cut -s -d: -f4 /etc/passwd`; do
+    if [ `egrep "^.*?:[^:]*:$i:" /etc/group | wc -l` -eq 0 ]; then
+                count=$((count+1))
+    fi
+done
+
+if [ "$count" -ne "0" ]; then
+        echo "{ \"groups_6214_actual\" : \"failed $failfact\" }"
+else
+        echo "{ \"groups_6214_actual\" : \"all groups in /etc/passwd exist in /etc/group\" }"
+        exit 0
+fi

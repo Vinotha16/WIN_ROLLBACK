@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+
+# 2.1.5 - Ensure time services are not enabled (Scored)
+
+if [ $(chkconfig --list 2>/dev/null | egrep "time|time-udp" | grep " off" | wc -l) -eq 0 ]; then
+
+    echo "{\"time_215_audit\" : \"FAILED\"}"
+
+else
+ 
+    echo "{\"time_215_audit\" : \"PASSED\"}"
+
+fi

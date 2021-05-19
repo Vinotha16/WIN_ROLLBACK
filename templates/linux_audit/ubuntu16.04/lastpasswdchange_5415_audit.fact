@@ -1,0 +1,23 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.1.5 - Ensure all users last password change date is in the past (Scored)
+count=0
+NOW=$(date +%s)
+for i in $(egrep "^[^:]+:[\$]|^[^:]+:\!\!" /etc/shadow | awk -F: '$6==7 {print $1}'); do
+    if [ "$i" != 'root' ]; then
+       UPA=$(chage --list $i | grep "Last password change" | cut -d: -f2)
+       EPOCH=$(date -d "$UPA" +%s)
+    fi
+done
+if [[ $EPOCH -gt $NOW ]]; then
+        count=$((count+1))
+else
+        count=$((count+0))
+fi
+if [ "$count" -ne "0" ]; then
+        echo "{\"lastpasswdchange_5415_audit\" : \"FAILED\"}"
+else
+        echo "{ \"lastpasswdchange_5415_audit\" : \"PASSED\" }"
+        
+fi

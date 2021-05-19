@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.3 - Ensure SELinux or AppArmor is installed (Scored)
+
+if [ "$(sudo dpkg -s selinux 2>/dev/null | grep "installed" | wc -l)" -ne 0 ]; then
+   echo "{\"selinappar_163_audit\" : \"PASSED\"}"
+   
+elif [ "$(sudo dpkg -s apparmor 2>/dev/null | grep "installed" | wc -l)" -ne 0 ]; then
+   echo "{ \"selinappar_163_audit\" : \"PASSED\"}"
+   
+else
+   echo "{\"selinappar_163_audit\" : \"FAILED\"}"
+fi

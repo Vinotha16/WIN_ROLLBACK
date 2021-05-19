@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.2 - Ensure system is disabled when audit logs are full (Scored)
+
+if [ $(sudo grep "^space_left_action = email" /etc/audit/auditd.conf | wc -l) -eq 0 ] || [ $(grep "^action_mail_acct = root" /etc/audit/auditd.conf | wc -l) -eq 0 ] || [ $(grep "^admin_space_left_action = halt" /etc/audit/auditd.conf | wc -l) -eq 0 ]; then
+   echo "{ \"sysdisable_4112_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sysdisable_4112_audit\" : \"PASSED\" }"
+fi

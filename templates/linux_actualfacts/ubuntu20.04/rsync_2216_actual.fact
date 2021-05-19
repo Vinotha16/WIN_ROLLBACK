@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $(sudo dpkg -s rsync 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"rsync_2216_actual\" : \"\" }"
+else
+   echo "{ \"rsync_2216_actual\" : \"not installed\" }"
+   
+fi
+

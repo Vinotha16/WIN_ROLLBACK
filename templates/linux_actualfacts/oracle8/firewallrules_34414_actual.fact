@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(rpm -qa net-tools | grep "net-tools")
+b=$(ss -4tuln | grep "0:[0-9]" | paste -sd "," -)
+c=$(iptables -L INPUT -v -n | egrep ".*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW.*tcp dpt.*|.*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*tcp dpt.*state NEW" | paste -sd "," -)
+cmd="${a}","${b}","${c}"
+if [ $(sudo netstat -ln 2>/dev/null | grep tcp.*0:22 | wc -l) -eq 0 ] || [ $(sudo iptables -L INPUT -v -n | egrep ".*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW.*tcp dpt.*|.*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*tcp dpt.*state NEW" | wc -l) -eq 0 ]; then
+   echo "{ \"firewallrules_34414_actual\" : \"\" }"
+else
+   echo "{ \"firewallrules_34414_actual\" : \"${cmd}\" }"
+   exit 0
+fi

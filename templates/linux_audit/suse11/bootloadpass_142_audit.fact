@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.4.2 - Ensure bootloader password is set (Scored)
+
+if [ "$(sudo grep "^password.*--md5" /boot/grub/menu.lst | wc -l)" -eq 0 ] ; then
+   echo "{ \"bootloadpass_142_audit\" : \"FAILED\" }"
+else
+   echo "{ \"bootloadpass_142_audit\" : \"PASSED\" }"
+fi

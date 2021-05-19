@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /usr/lib/systemd/system/rescue.service | grep -o "/systemd-sulogin-shell")
+b=$(cat /usr/lib/systemd/system/emergency.service | grep -o "/systemd-sulogin-shell")
+cmd="${a}","${b}"
+if [ $(egrep "/systemd-sulogin-shell" /usr/lib/systemd/system/rescue.service | wc -l) -eq 0 ] || [ $(egrep "/systemd-sulogin-shell" /usr/lib/systemd/system/emergency.service | wc -l) -eq 0 ] ; then
+   echo "{ \"singleusermode_153_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_153_actual\" : \"$cmd\" }"
+   exit 1
+fi

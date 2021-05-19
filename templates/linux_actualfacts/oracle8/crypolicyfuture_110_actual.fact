@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$(sudo grep -E -i '^\s*(FUTURE|FIPS)\s*(\s+#.*)?$' /etc/crypto-policies/config 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"crypolicyfuture_110_actual\" : \"\" }"
+else
+   echo "{ \"crypolicyfuture_110_actual\" : \"system-wide crypto policy is FUTURE or FIPS\" }"
+fi

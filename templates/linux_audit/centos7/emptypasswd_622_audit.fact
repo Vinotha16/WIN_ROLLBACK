@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.2 - Ensure /etc/shadow password fields are not empty
+
+if [ $(awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow | wc -l) -ne 0 ]; then
+   echo "{\"emptypasswd_622_audit\" : \"FAILED\"}"
+else
+   echo "{\"emptypasswd_622_audit\" : \"PASSED\"}"
+   exit 1
+fi
+
+

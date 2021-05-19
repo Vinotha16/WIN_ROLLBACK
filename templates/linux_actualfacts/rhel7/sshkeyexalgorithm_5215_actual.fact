@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sshd -T 2> /dev/null | grep '^kexalgorithms')
+if [ $(sshd -T 2> /dev/null | grep '^kexalgorithms' | egrep 'diffie-hellman-group1-sha1|diffie-hellman-group14-sha1|diffie-hellman-group-exchange-sha1'| wc -l) -ne 0 ]; then
+   echo "{ \"sshkeyexalgorithm_5215_actual\" : \"\" }"
+else
+   echo "{ \"sshkeyexalgorithm_5215_actual\" : \"${cmd}\" }"
+fi
+

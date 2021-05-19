@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.2 - Ensure default deny firewall policy (Scored)
+if [ $(ufw status verbose | egrep "Default.*(deny|reject).*incoming.*(deny|reject).*outgoing.*(deny|reject).*routed" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwfirewallpolicy_3522_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfwfirewallpolicy_3522_audit\" : \"PASSED\" }"
+   
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/motd | grep "Welcome.*to.*RedHat.*7")
+if [ $(cat /etc/motd | grep "Welcome.*to.*RedHat.*7" | wc -l) -eq 0 ] || [ $(sudo egrep '(\\v|\\r|\\m|\\s)' /etc/motd 2> /dev/null | wc -l) -ne 0 ]; then
+   echo "{ \"msgday_1811_actual\" : \"\" }"
+else
+   echo "{ \"msgday_1811_actual\" : \"${cmd}\" }"
+
+fi

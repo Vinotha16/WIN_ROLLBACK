@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$( mount -o remount,nodev /home )
+if [ $(mount | grep "/home.*nodev" | wc -l) -eq 0 ]; then
+   echo "{ \"homenodev_1113_actual\" : \"\" }"
+else
+   echo "{ \"homenodev_1113_actual\" : \"${cmd}\" }"
+   exit 0
+fi

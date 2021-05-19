@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(ls /etc/rc*.d/S*nfs-kernel-server 2> /dev/null | wc -l) -ne 0 ] || [ $(sudo service rpcbind status 2> /dev/null | grep "running" | wc -l) -ne 0 ]; then
+  echo "{ \"nfsrpc_227_actual\" : \"\" }"
+else
+  echo "{ \"nfsrpc_227_actual\" : \"not enabled\" }"
+exit 1
+fi

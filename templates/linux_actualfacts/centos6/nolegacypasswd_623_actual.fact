@@ -1,0 +1,8 @@
+#!/bin/bash
+failed=$(grep '^\+:' /etc/passwd | sed 's/+://g' | paste -sd ",")
+if [ $(grep '^\+:' /etc/passwd | wc -l) -ne 0 ]; then
+   echo "{ \"nolegacypasswd_623_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"nolegacypasswd_623_actual\" : \"legacy "+" entries not exist in /etc/passwd\" }"
+    exit 1
+fi

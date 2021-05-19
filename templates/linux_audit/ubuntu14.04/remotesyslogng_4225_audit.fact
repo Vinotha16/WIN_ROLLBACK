@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+# 4.2.2.5 - Ensure remote syslog-ng messages are only accepted on designated log hosts (Not Scored)
+
+#grep -E 'source net{ tcp\(\); };' /etc/syslog-ng/syslog-ng.conf || exit 1
+#grep -E 'destination remote { file\(\"\/var\/log\/remote\/\${FULLHOST}-log\"\); };' /etc/syslog-ng/syslog-ng.conf || exit 1
+#grep -E 'log { source\(net\); destination\(remote\); };' /etc/syslog-ng/syslog-ng.conf || exit 1
+
+if [ $(egrep 'source net|destination remote|source\(net\)' /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+echo "{\"4.2.2.5 - Remote syslog-ng messages are not accepted on designated log hosts\" : \"FAILED\"}"
+ else
+ echo "{\"remotesyslogng_4225_audit\" : \"PASSED\"}"
+exit 1
+fi

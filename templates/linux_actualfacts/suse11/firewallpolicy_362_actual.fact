@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(iptables -L | egrep "policy DROP|policy REJECT" | paste -sd "," | expand -t 1 )
+if [ $(sudo iptables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | wc -l) -eq 0 ] ||[ $(sudo iptables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | wc -l) -eq 0 ] || [ $(sudo iptables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | wc -l) -eq 0 ]; then
+   echo "{ \"firewallpolicy_362_actual\" : \"\" }"
+else
+   echo "{ \"firewallpolicy_362_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

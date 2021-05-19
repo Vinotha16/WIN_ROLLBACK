@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list apache2 | egrep 'apache2.*:on ' | wc -l) -ne 0 ]; then
+  echo "{ \"http_2210_actual\" : \"\" }"
+else
+  echo "{ \"http_2210_actual\" : \"not enabled\" }"
+exit 1
+fi
+

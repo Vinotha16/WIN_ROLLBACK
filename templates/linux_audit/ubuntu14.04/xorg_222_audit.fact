@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.2 - Ensure X Window System is not installed (Scored)
+
+if [ $(sudo dpkg -l xserver-xorg* 2> /dev/null | grep "no packages found" | wc -l) -ne 0 ]; then
+   echo "{\"2.2.2 - X Window System is Installed\" : \"FAILED\"}"
+else
+   echo "{\"xorg_222_audit\" : \"PASSED\"}"
+   
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.6 - Disable IPv6 (Not Scored) 
+
+if [ $(sudo egrep "^\s*linux.*ipv6.disable=1" /boot/grub2/grub.cfg 2> /dev/null | wc -l) -eq 0 ]; then
+    echo "{ \"ipv6disable_36_audit\" : \"FAILED\"}"
+else
+    echo "{ \"ipv6disable_36_audit\" : \"PASSED\"}"
+fi
+

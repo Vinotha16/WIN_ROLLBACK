@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+# 4.2.1.2 - Ensure rsyslog Service is enabled (Scored)
+
+if [ $(sudo chkconfig --list rsyslog | grep "0:off.*1:off.*2:on.*3:on.*4:on.*5:on.*6:off" | wc -l) -eq 0 ]; then
+   echo "{\"rsyslogenb_4212_audit\" : \"FAILED\"}"
+else
+   echo "{\"rsyslogenb_4212_audit\" : \"PASSED\"}"
+   
+fi

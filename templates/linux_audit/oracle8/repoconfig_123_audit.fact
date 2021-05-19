@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.3 - Ensure package manager repositories are configured (Not Scored)
+
+if [ $(sudo dnf repolist 2> /dev/null | egrep -c '^ol8_baseos') -eq 0 ] || [ $(dnf repolist 2> /dev/null | egrep -c '^ol8_appstream') -eq 0 ]; then
+   echo "{ \"1.2.3 - Package manager repositories are not configured\" : \"FAILED\" }"
+else
+   echo "{ \"repoconfig_123_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

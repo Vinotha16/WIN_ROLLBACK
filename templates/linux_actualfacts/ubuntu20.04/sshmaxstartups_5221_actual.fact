@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cmd=$(sudo  sshd -T 2> /dev/null | grep -i "^maxstartups.*10:30:100")
+if [ $(sudo sshd -T 2> /dev/null | grep -i "^maxstartups.*10:30:100" | wc -l) -eq 0 ]; then
+   echo "{ \"sshmaxstartups_5221_actual\" : \"\" }"
+else
+   echo "{ \"sshmaxstartups_5221_actual\" : \"${cmd}\" }"
+fi

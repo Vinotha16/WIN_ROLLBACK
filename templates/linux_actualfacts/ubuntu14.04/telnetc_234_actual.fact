@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo dpkg -s telnet 2> /dev/null | grep "installed" | wc -l) -ne 0 ]; then
+   echo "{ \"telnetc_234_actual\" : \"\" }"
+else
+   echo "{ \"telnetc_234_actual\" : \"not installed\" }"
+   exit 0
+fi
+

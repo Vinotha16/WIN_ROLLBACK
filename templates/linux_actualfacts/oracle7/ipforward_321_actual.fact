@@ -1,0 +1,16 @@
+#!/bin/bash
+cmd=$(sysctl net.ipv4.ip_forward)
+cmd1=$(sysctl net.ipv6.conf.all.forwarding)
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(sudo sysctl net.ipv4.ip_forward | grep 0 | wc -l) -eq 0 ] || [ $(sudo grep -E -s "^\s*net\.ipv4\.ip_forward\s*=\s*1" /etc/sysctl.conf /etc/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /run/sysctl.d/*.conf | wc -l) -ne 0 ] || [ $(sudo sysctl net.ipv6.conf.all.forwarding | grep 0 | wc -l) -eq 0 ] || [ $( sudo grep -E -s "^\s*net\.ipv6\.conf\.all\.forwarding\s*=\s*1" /etc/sysctl.conf /etc/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /run/sysctl.d/*.conf | wc -l) -ne 0 ]; then
+       echo "{ \"ipforward_321_actual\" : \"failed_ipv_4_6\" }"
+    else
+       echo "{ \"ipforward_321_actual\" : \"${cmd},${cmd1}\" }"
+    fi
+else
+    if [ $(sudo sysctl net.ipv4.ip_forward | grep 0 | wc -l) -eq 0 ] || [ $(sudo grep -E -s "^\s*net\.ipv4\.ip_forward\s*=\s*1" /etc/sysctl.conf /etc/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /run/sysctl.d/*.conf | wc -l) -ne 0 ]; then
+       echo "{ \"ipforward_321_actual\" : \"failed_ipv4\" }"
+    else
+       echo "{ \"ipforward_321_actual\" : \"${cmd}\" }"
+    fi
+fi

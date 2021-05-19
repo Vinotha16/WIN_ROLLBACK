@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(dpkg -s rsyslog | grep "ok installed")
+if [ "$(dpkg -s rsyslog | grep "ok installed" | wc -l)" -eq 0 ]; then
+    echo "{ \"rsyslogenb_4212_actual\" : \"\" }"
+else
+    echo "{ \"rsyslogenb_4212_actual\" : \"${cmd}\" }"
+fi

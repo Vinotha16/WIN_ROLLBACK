@@ -1,0 +1,10 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+SOFTWARE\Policies\Microsoft\Windows NT\Rpc
+RestrictRemoteClients
+DWORD:
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

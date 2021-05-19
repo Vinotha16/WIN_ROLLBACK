@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(sudo egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/rescue.service | tr '"' " " | paste -sd ",")
+b=$(sudo egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/emergency.service | tr '"' " " | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(sudo egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/rescue.service | wc -l) -eq 0 ] || [ $(sudo egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/emergency.service | wc -l) -eq 0 ] ; then
+
+   echo "{ \"singleusermode_153_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_153_actual\" : \"${cmd}\" }"
+fi

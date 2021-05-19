@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.9 - Ensure session initiation information is collected (Scored)
+
+if [ $(sudo egrep "utmp.*session" /etc/audit/audit.rules | wc -l) -eq 0 ] || [ $(sudo egrep "wtmp.*logins|btmp.*logins" /etc/audit/audit.rules | wc -l) -eq 0 ]; then
+   echo "{ \"session_419_audit\" : \"FAILED\" }"
+else
+   echo "{ \"session_419_audit\" : \"PASSED\" }"
+fi

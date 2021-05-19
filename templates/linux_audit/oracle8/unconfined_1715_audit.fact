@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.5 - Ensure no unconfined services exist (Scored)
+
+if [ $(sudo ps -eZ | grep unconfined_service_t | wc -l) -ne 0 ]; then
+   echo "{ \"1.7.1.5 - Unconfined daemons exist\" : \"FAILED\" }"
+else
+   echo "{ \"unconfined_1715_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

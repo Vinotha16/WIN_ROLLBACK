@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/default/grub | grep -m1 -o "audit_backlog_limit=8192")
+if [ "$(grep -E -i '^GRUB_CMDLINE_LINUX.*audit_backlog_limit=8192.*' /etc/default/grub 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"auditdbacklog_4114_actual\" : \"\"}"
+else
+   echo "{ \"auditdbacklog_4114_actual\" : \"$cmd\"}"
+fi
+

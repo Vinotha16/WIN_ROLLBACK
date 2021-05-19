@@ -1,0 +1,10 @@
+#!/bin/bash
+
+a=$(rpm -qa firewalld | grep 'firewalld-[0-9]\+')
+b=$(rpm -qa iptables | grep 'iptables-[0-9]\+')
+cmd="${a}","${b}"
+if [ $(rpm -qa firewalld | grep 'firewalld-[0-9]\+' | wc -l) -eq 0 ] || [ $(rpm -qa iptables | grep 'iptables-[0-9]\+' | wc -l) -eq 0 ]; then
+        echo "{ \"firewallpack_3511_actual\" : \"\" }"
+else
+        echo "{ \"firewallpack_3511_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# 3.5.2.4 - Ensure a table exists (Scored)
+
+if [ $(sudo nft list tables 2>/dev/null | wc -l) -eq 0 ]; then
+        echo "{ \"tablexists_3524_audit\" : \"FAILED\" }"
+else
+        echo "{ \"tablexists_3524_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.4 - Ensure password reuse is limited  (Automated)
+
+if [ $(sudo grep "^password.*sufficient.*pam_unix.so.*remember=5" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(sudo grep "^password.*sufficient.*pam_unix.so.*remember=5" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdreuse_534_audit\" : \"FAILED\" }"
+else
+   echo "{ \"passwdreuse_534_audit\" : \"PASSED\" }"
+
+fi

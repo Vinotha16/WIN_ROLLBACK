@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(dpkg -s aide | grep "^Version*")
+b=$(dpkg -s aide-common | grep "^Version*")
+cmd="${a}","${b}"
+if [ "$(sudo dpkg -s aide 2>/dev/null | grep "installed" | wc -l)" -eq 0 ]; then
+   echo "{ \"aide_131_actual\" : \"\" }"
+else
+   echo "{ \"aide_131_actual\" : \"$cmd\" }"
+  
+fi
+

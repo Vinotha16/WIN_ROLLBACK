@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo subscription-manager identity 2> /dev/null | grep "^name:" )
+if [ $(sudo subscription-manager identity 2> /dev/null | grep "[0-9]\+[a-z]\+" | wc -l) -eq 0 ]; then
+   echo "{ \"subscriptmgr_124_actual\" : \"\" }"
+else
+   echo "{ \"subscriptmgr_124_actual\" : \"$cmd\" }"
+fi
+

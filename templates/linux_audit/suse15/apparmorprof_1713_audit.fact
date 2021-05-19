@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+#  1.7.1.3 - Ensure all AppArmor Profiles are in enforce or complain mode
+
+if [ $(sudo apparmor_status 2>/dev/null | egrep 'profiles.*enforce mode|profiles.*complain mode' | wc -l) -eq 0 ] || [ $(sudo apparmor_status 2>/dev/null | egrep '0 processes are unconfined'  | wc -l ) -eq 0 ]; then
+   echo "{ \"apparmorprof_1713_audit\" : \"FAILED\" }"
+else
+   echo "{ \"apparmorprof_1713_audit\" : \"PASSED\" }"
+fi

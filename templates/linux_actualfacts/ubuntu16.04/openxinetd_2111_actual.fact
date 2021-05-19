@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo dpkg -s openbsd-inetd 2> /dev/null | grep installed | wc -l) -ne 0 ]; then
+   echo "{ \"openxinetd_2111_actual\" : \"\" }"
+else
+   echo "{ \"openxinetd_2111_actual\" : \"not installed\" }"
+   
+fi

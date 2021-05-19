@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.21 - Ensure SSH AllowTcpForwarding is disabled
+
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'allowtcpforwarding no' | wc -l) -eq 0 ]; then
+   echo "{\"sshtcpforward_5321_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshtcpforward_5321_audit\" : \"PASSED\"}"
+   exit 1
+fi

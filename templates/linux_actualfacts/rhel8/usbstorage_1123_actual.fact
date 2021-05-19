@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/usb-storage.conf | grep "install usb-storage /bin/true")
+if [ "$(modprobe -n -v usb-storage 2> /dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep usb-storage 2> /dev/null | wc -l)" -ne 0 ]; then
+  echo "{ \"usbstorage_1123_actual\" : \"\" }"
+else
+  echo "{ \"usbstorage_1123_actual\" : \"${cmd}\" }"
+fi
+

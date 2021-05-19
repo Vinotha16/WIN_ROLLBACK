@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.1 - Ensure  AppArmor is installed 
+
+if [ $(sudo dpkg -s apparmor apparmor-utils 2>/dev/null | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{ \"apparmor_1711_audit\" : \"FAILED\" }"
+   
+else
+   echo "{ \"apparmor_1711_audit\" : \"PASSED\" }"
+fi
+

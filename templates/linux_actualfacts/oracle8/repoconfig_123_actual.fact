@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo dnf repolist 2> /dev/null | egrep -c '^ol8_baseos') -eq 0 ] || [ $(dnf repolist 2> /dev/null | egrep -c '^ol8_appstream') -eq 0 ]; then
+   echo "{ \"repoconfig_123_actual\" : \"\" }"
+else
+   echo "{ \"repoconfig_123_actual\" : \"package manager repositories are configured\" }"
+   exit 1
+fi

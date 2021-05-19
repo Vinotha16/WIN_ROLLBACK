@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.15 - Ensure net-snmp Server is not installed (Scored)
+
+if [ $(sudo rpm -qa net-snmp | wc -l) -ne 0 ]; then
+   echo "{ \"snmp_2215_audit\" : \"FAILED\" }"
+else
+   echo "{ \"snmp_2215_audit\" : \"PASSED\" }"
+fi

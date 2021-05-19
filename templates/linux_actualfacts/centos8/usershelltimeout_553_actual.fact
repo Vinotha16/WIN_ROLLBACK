@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(grep "^TMOUT" /etc/bashrc )
+b=$(grep "^TMOUT" /etc/profile /etc/profile.d/*.sh | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(grep "^TMOUT" /etc/bashrc | wc -l) -eq 0 ] || [ $(grep "^TMOUT" /etc/profile /etc/profile.d/*.sh | wc -l) -eq 0 ]; then
+   echo "{ \"usershelltimeout_553_actual\" : \"\" }"
+else
+   echo "{ \"usershelltimeout_553_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.4 - Ensure permissions on /etc/hosts.allow are configured (Scored)
+
+if [ "$(stat /etc/hosts.allow | grep 0644 | grep ".*Uid:.*0/.*root" | grep ".*Gid.*0/.*root" | wc -l)" -eq 0 ]; then
+   echo "{ \"permhostsallow_344_audit\" : \"FAILED\" }"
+else
+   echo "{ \"permhostsallow_344_audit\" : \"PASSED\" }"
+fi
+

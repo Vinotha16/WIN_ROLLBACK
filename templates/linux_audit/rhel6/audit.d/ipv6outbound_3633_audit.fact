@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.6.3.3 - Ensure IPv6 outbound and established connections are configured (Not Scored)
+
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(sudo ip6tables -L -v -n | grep ".*ACCEPT.**.**.*::/0.*::/0.*state ESTABLISHED" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L -v -n | grep ".*ACCEPT.**.**.*::/0.*::/0.*state NEW,ESTABLISHED" | wc -l) -eq 0 ]; then
+        echo "{\"ipv6outbound_3633_audit\" : \"FAILED\"}"
+    else
+        echo "{\"ipv6outbound_3633_audit\" : \"PASSED\"}"
+    fi
+else
+    echo "{\"ipv6outbound_3633_audit\" : \"PASSED\"}"
+fi

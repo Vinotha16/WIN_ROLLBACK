@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.13 - Ensure successful file system mounts are collected (Scored)
+
+if [ $(sudo grep mounts /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"4.1.13 - Succesful file system mounts are not collected\" : \"FAILED\"}"
+else
+   echo "{ \"fsmount_4113_audit\" : \"PASSED\" }"
+  
+fi

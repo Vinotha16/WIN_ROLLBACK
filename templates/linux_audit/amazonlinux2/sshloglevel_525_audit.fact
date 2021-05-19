@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.5 - Ensure SSH LogLevel is set to INFO (Scored)
+
+if [ $(sudo sshd -T | egrep '(loglevel.*VERBOSE|loglevel.*INFO)' | wc -l) -eq 0 ]; then
+    echo "{ \"sshloglevel_525_audit\" : \"FAILED\"}"
+else
+    echo "{ \"sshloglevel_525_audit\" : \"PASSED\"}"
+fi
+

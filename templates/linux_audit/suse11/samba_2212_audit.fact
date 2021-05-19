@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.12 - Ensure Samba is not enabled (Scored)
+
+if [ $(sudo chkconfig --list smb | egrep 'smb.*:on ' | wc -l) -ne 0 ]; then
+   echo "{ \"samba_2212_audit\" : \"FAILED\" }"
+else
+   echo "{ \"samba_2212_audit\" : \"PASSED\" }"
+fi

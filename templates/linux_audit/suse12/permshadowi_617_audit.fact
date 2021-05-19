@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.7 - Ensure permissions on /etc/shadow- are configured (Scored)
+
+if [ $(sudo stat /etc/shadow- | egrep "0640.*Uid.*root.*Gid.*root|0640.*Uid.*root.*Gid.*shadow" | wc -l) -eq 0 ]; then
+   echo "{\"permshadowi_617_audit\" : \"FAILED\"}"
+else
+   echo "{\"permshadowi_617_audit\" : \"PASSED\"}"
+fi
+

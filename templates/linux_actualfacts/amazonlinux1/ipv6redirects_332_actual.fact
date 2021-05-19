@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/sysctl.conf | grep -m1 "^net.ipv6.conf.all.accept_redirects.*0")
+b=$(cat /etc/sysctl.conf | grep -m1 "^net.ipv6.conf.default.accept_redirects.*0")
+cmd="${a}","${b}"
+if [ $(sysctl net.ipv6.conf.all.accept_redirects | grep "net.ipv6.conf.all.accept_redirects = 0" | wc -l) -eq 0 ] || [ $(sysctl net.ipv6.conf.default.accept_redirects | grep "net.ipv6.conf.default.accept_redirects = 0" | wc -l) -eq 0 ] || [ $(grep "^net.ipv6.conf.all.accept_redirects.*0" /etc/sysctl.conf | wc -l) -eq 0 ] || [ $(grep "^net.ipv6.conf.default.accept_redirects.*0" /etc/sysctl.conf | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6redirects_332_actual\" : \"\" }"
+else
+   echo "{ \"ipv6redirects_332_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.8.1.1 - Ensure message of the day is configured properly (Scored)
+
+if [ $(cat /etc/motd | grep "Welcome.*to.*RedHat.*8" | wc -l) -eq 0 ] || [ $(grep -E -i "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/"//g'))" /etc/motd | wc -l) -ne 0 ]; then
+   echo "{ \"1.8.1.1 - Message of the day is not configured properly\" : \"FAILED\" }"
+else
+   echo "{ \"msgday_1811_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

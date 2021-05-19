@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.10 - Ensure SSH root login is disabled (Scored)
+
+if [ $( sudo grep "^PermitRootLogin.*no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshrootlogin_5210_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshrootlogin_5210_audit\" : \"PASSED\"}"
+   
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.14 - Ensure NIS Server is not installed  (Scored)
+
+if [ $(sudo rpm -qa ypserv | wc -l) -ne 0 ]; then
+   echo "{\"nis_2214_audit\" : \"FAILED\"}"
+else
+   echo "{\"nis_2214_audit\" : \"PASSED\"}"
+fi
+
+

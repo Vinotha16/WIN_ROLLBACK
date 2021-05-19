@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.4 - Ensure permissions on /etc/motd are configured (Not Scored)
+
+if [ $(sudo stat /etc/motd 2>/dev/null | grep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+    echo "{ \"motdperm_1714_audit\" : \"FAILED\"}"
+else
+    echo "{ \"motdperm_1714_audit\" : \"PASSED\"}"
+fi
+

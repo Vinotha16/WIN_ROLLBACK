@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled ufw | grep "enabled")
+if [ $(systemctl is-enabled ufw | grep "enabled" | wc -l) -eq 0 ] || [ $(ufw status | grep Status | grep "Status: active" | wc -l) -eq 0 ]; then
+   echo "{ \"firewallenb_3521_actual\" : \"\"}"
+else
+   echo "{ \"firewallenb_3521_actual\" : \"${cmd}\"}"
+   exit 1
+fi

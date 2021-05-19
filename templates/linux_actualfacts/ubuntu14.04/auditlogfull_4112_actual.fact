@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(cat /etc/audit/auditd.conf | grep "^space_left_action = email")
+b=$(cat /etc/audit/auditd.conf | grep "^admin_space_left_action = halt")
+c=$(cat /etc/audit/auditd.conf | grep "^action_mail_acct = root")
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(grep "^space_left_action = email" /etc/audit/auditd.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(grep "^action_mail_acct = root" /etc/audit/auditd.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(grep "^admin_space_left_action = halt" /etc/audit/auditd.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"auditlogfull_4112_actual\" : \"\"}"
+else
+   echo "{ \"auditlogfull_4112_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.12 - Ensure no users have .netrc files (Scored)
+
+count=0
+if [ $(find /home -name ".netrc" | wc -l) -ne 0 ]; then
+    count=$((count+1))
+else
+    count=$((count+0))
+fi
+if [ "$count" -ne "0" ]; then
+     echo "{ \"netrcfiles_6212_audit\" : \"FAILED\" }"
+else
+   echo "{ \"netrcfiles_6212_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,25 @@
+---
+####ORACLE-6####
+Selinux_oracle6: enforcing
+bootloader_password_oracle6: zippyops@123
+remote_server_chrony_oracle6: sample.zippy.com
+remote_server_ntp_oracle6: sample.zippy.com
+ntp_chrony_oracle6: chrony
+hosts_allow_oracle6: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_oracle6: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_oracle6: 8
+MaxAuthTries_oracle6: MaxAuthTries 4
+PermitRootLogin_oracle6: PermitRootLogin no
+ClientAliveInterval_oracle6: ClientAliveInterval 300
+ClientAliveCountMax_oracle6: ClientAliveCountMax 0
+Pass_max_days_oracle6: 365
+Pass_min_days_oracle6: 7
+Pass_warn_age_oracle6: 7
+allowusers_oracle6: ansible
+allowgroups_oracle6:
+denyusers_oracle6:
+denygroups_oracle6:
+wheelgroup_oracle6:
+
+db_no_oracle6: 1
+update_oracle6: 7

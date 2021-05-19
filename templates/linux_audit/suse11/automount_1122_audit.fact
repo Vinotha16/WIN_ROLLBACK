@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.22 - Disable Automounting (Scored)
+
+if [ "$(chkconfig --list | grep autofs | wc -l)" -eq 0 ]; then
+echo "{ \"automount_1122_audit\" : \"PASSED\" }"
+else
+       if [ "$(chkconfig --list autofs 2>/dev/null | egrep '0.*off.*1.*off.*2.*off 3.*off.*4.*off.*5.*off.*6.*off' | wc -l )" -eq 0 ]; then
+           echo "{ \"automount_1122_audit\" : \"FAILED\" }"
+       else
+           echo "{ \"automount_1122_audit\" : \"PASSED\" }"
+       fi
+fi

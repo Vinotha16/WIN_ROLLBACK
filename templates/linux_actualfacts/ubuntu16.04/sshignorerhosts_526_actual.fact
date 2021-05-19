@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(cat /etc/ssh/sshd_config | grep "^IgnoreRhosts yes")
+if [ $(sudo egrep "^\s\s\sIgnoreRhosts yes|^IgnoreRhosts yes" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshignorerhosts_526_actual\" : \"\" }"
+else
+   echo "{ \"sshignorerhosts_526_actual\" : \"$cmd\" }"
+  
+fi

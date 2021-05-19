@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep 'banner /etc/issue.net')
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep 'banner /etc/issue.net' | wc -l) -eq 0 ]; then
+   echo "{ \"sshwarningbanner_5319_actual\" : \"\" }"
+else
+   echo "{ \"sshwarningbanner_5319_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

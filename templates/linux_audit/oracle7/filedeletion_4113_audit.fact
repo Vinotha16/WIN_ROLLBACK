@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.13 - Ensure file deletion events by users are collected (Scored)
+
+if [ $(sudo egrep "unlinkat" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | egrep "unlinkat" | wc -l) -eq 0 ]; then
+   echo "{ \"filedeletion_4113_audit\" : \"FAILED\" }"
+else
+   echo "{ \"filedeletion_4113_audit\" : \"PASSED\" }"
+fi
+

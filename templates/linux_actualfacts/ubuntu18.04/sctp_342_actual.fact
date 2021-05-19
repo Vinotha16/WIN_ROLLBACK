@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/sctp.conf | grep "install sctp /bin/true")
+if [ $(sudo modprobe -n -v sctp 2> /dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep sctp | wc -l) -ne 0 ]; then
+   echo "{ \"sctp_342_actual\" : \"\" }"
+else
+   echo "{ \"sctp_342_actual\" : \"${cmd}\" }"
+   exit 1
+fi

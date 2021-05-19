@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.1 - Ensure message of the day is configured properly (Scored)
+
+if [ "$(cat /etc/motd 2> /dev/null | grep 'Welcome.*to.*ubuntu14' | wc -l)" -eq 0 ] || [ "$(sudo egrep '(\\v|\\r|\\m|\\s)' /etc/motd | wc -l)" -ne 0 ]; then
+   echo "{\"1.7.1.1 - Message of the day is not configured properly\"  :   \"FAILED\"}"
+else
+   echo "{ \"msgday_1711_audit\" : \"PASSED\" }"
+   
+fi

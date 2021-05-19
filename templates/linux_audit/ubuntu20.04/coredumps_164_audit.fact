@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.4 - Ensure core dumps are restricted 
+
+if [ $(sudo grep "* hard core 0" /etc/security/limits.conf | wc -l) -eq 0 ] || [ $(sudo sysctl fs.suid_dumpable | grep 0 | wc -l) -eq 0 ] || [ $(sudo grep "^fs.suid_dumpable.*0" /etc/sysctl.conf | wc -l) -eq 0 ] ; then
+   echo "{ \"coredumps_164_audit\" : \"FAILED\" }"
+else
+   echo "{ \"coredumps_164_audit\" : \"PASSED\" }"
+   
+fi

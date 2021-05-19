@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.15 - Ensure changes to system administration scope (sudoers) is collected (Scored)
+
+if [ $(sudo grep "scope" /etc/audit/audit.rules | wc -l) -eq 0 ]; then
+    echo "{ \"sudoers_4115_audit\" : \"FAILED\"}"
+else
+    echo "{ \"sudoers_4115_audit\" : \"PASSED\"}"
+fi
+

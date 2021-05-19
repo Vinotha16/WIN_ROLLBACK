@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.2 - Ensure X Window System is not installed (Scored)
+
+if [ $(sudo rpm -qa xorg-x11* | wc -l) -ne 0 ]; then
+    echo "{ \"xorg_212_audit\" : \"FAILED\"}"
+else
+    echo "{ \"xorg_212_audit\" : \"PASSED\"}"
+fi
+

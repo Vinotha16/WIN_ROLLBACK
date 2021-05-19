@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.1.5 - Ensure rsyslog is configured to send logs to a remote log host (Scored)
+
+if [ $(sudo  grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf | wc -l) -eq 0 ]; then
+   echo "{\"rsyslogsendlogs_4215_audit\" : \"FAILED\"}"
+else
+   echo "{\"rsyslogsendlogs_4215_audit\" : \"PASSED\"}"
+   
+fi

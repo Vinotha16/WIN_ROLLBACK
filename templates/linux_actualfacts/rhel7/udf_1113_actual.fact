@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/modprobe.d/udf.conf | grep "install udf /bin/true")
+if [ $(sudo modprobe -n -v udf 2</dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep udf | wc -l) -ne 0 ]; then
+   echo "{ \"udf_1113_actual\" : \"\" }"
+else
+   echo "{ \"udf_1113_actual\" : \"${cmd}\" }"
+
+fi

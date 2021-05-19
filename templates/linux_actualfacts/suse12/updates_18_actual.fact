@@ -1,0 +1,7 @@
+#!/bin/bash
+failed=$(zypper list-updates 2>/dev/null | awk -F' ' '{print $5"-"$7}' | grep -v '^\s*$\|^-\|because-the\|Name-Current' | paste -sd ",")
+if [ "$(zypper list-updates | grep 'No updates found')" != "No updates found" ]; then
+   echo "{ \"updates_18_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"updates_18_actual\" : \"No updates available\" }"
+fi

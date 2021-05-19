@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ $(sudo rpm -qa | grep openldap-clients | wc -l) -ne 0 ]; then
+   echo "{ \"ldapc_233_actual\" : \"\" }"
+else
+   echo "{ \"ldapc_233_actual\" : \"not installed\" }"
+   exit 0
+fi
+
+

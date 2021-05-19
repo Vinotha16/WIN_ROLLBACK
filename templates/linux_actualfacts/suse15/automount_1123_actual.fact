@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $(systemctl list-unit-files | grep 'autofs' | wc -l) -ne 0 ]; then
+   if [ $(systemctl is-enabled autofs 2>/dev/null | grep disabled | wc -l) -eq 0 ]; then
+           echo "{ \"automount_1123_actual\" : \"\" }"
+   else
+           echo "{ \"automount_1123_actual\" : \"autofs is disabled or not present\" }"
+   fi
+else
+   echo "{ \"automount_1123_actual\" : \"autofs is disabled or not present\" }"
+fi

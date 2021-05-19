@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/*.rules | grep '/var/run/utmp.*session' | paste -sd ",")
+b=$(cat /etc/audit/rules.d/*.rules | grep '/var/log/wtmp.*logins' | paste -sd ",")
+c=$(cat /etc/audit/rules.d/*.rules | grep '/var/log/btmp.*logins' | paste -sd ",")
+cmd="${a}","${b}","${c}"
+if [ $(sudo grep -E '(utmp.*session|wtmp.*logins|btmp.*logins)' /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"session_418_actual\" : \"\" }"
+else
+   echo "{ \"session_418_actual\" : \"${cmd}\" }"
+   
+fi

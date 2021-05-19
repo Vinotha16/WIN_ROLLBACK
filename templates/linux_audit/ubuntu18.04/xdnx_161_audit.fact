@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1 - Ensure XD/NX support is enabled (Not Scored)
+
+if [ $(sudo dmesg | grep "NX.*active" 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"xdnx_161_audit\" : \"FAILED\" }"
+else
+   echo "{ \"xdnx_161_audit\" : \"PASSED\" }"
+   
+fi

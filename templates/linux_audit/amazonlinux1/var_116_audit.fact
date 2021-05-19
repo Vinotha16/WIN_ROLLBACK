@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.6 - Ensure separate partition exists for /var (Scored)
+
+if [ $(mount | grep " /var " | wc -l) -eq 0 ]; then
+   echo "{ \"var_116_audit\" : \"FAILED\" }"
+else
+   echo "{ \"var_116_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo journalctl | grep 'NX.*protection: active' | paste -sd ",")
+if [ $( journalctl | grep 'NX.*protection: active' | wc -l ) -eq 0 ]; then
+   echo "{ \"xdnx_162_actual\" : \"\" }"
+else
+   echo "{ \"xdnx_162_actual\" : \"$cmd\" }"
+fi

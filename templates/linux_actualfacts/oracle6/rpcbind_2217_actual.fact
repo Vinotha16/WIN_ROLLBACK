@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo rpm -q rpcbind )
+if [ $(sudo rpm -qa rpcbind | wc -l) -ne 0 ]; then
+   echo "{ \"rpcbind_2217_actual\" : \"\" }"
+else
+   echo "{ \"rpcbind_2217_actual\" : \"$cmd\" }"
+fi

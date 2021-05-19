@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/sysctl.conf  /etc/sysctl.d/* | grep "^net.ipv4.tcp_syncookies.*1")
+if [ "$(sysctl net.ipv4.tcp_syncookies)" != "net.ipv4.tcp_syncookies = 1" ] || [ $(grep "^net.ipv4.tcp_syncookies.*1" /etc/sysctl.conf  /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+   echo "{ \"tcpsyncookies_338_actual\" : \"\" }"
+else
+   echo "{ \"tcpsyncookies_338_actual\" : \"${cmd}\" }"
+   exit 1
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+#5.2.2 - Ensure permissions on SSH private host key files are configured (Scored)
+
+if [ $(sudo find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec stat -c '%a %U %G' {} \; | egrep -v '640 root ssh_keys|600 root root' | wc -l) -ne 0 ]; then
+        echo "{ \"sshpermpvtkey_522_audit\" : \"FAILED\" }"
+else
+        echo "{ \"sshpermpvtkey_522_audit\" : \"PASSED\" }"
+
+fi

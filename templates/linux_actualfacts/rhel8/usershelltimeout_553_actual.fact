@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(cat /etc/bashrc | grep "TMOUT=900")
+b=$(cat /etc/profile | grep "TMOUT=900")
+cmd="${a}","${b}"
+if [ $(grep "^TMOUT.*900" /etc/bashrc | wc -l) -eq 0 ] || [ $(grep "^TMOUT.*900" /etc/profile | wc -l) -eq 0 ]; then
+   echo "{ \"usershelltimeout_553_actual\" : \"\" }"
+else
+   echo "{ \"usershelltimeout_553_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+

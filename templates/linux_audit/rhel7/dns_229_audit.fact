@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.9 - Ensure DNS Server is not installed (Scored)
+
+if [ $(sudo rpm -qa rpcbind | wc -l) -ne 0 ]; then
+   echo "{ \"dns_229_audit\" : \"FAILED\" }"
+else
+   echo "{ \"dns_229_audit\" : \"PASSED\" }"
+fi

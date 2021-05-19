@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$( sudo grep "/var/log/audit" /etc/fstab )
+if [ $(mount | grep " /home " | wc -l) -eq 0 ]; then
+   echo "{ \"home_1113_actual\" : \"\" }"
+else
+   echo "{ \"home_1113_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

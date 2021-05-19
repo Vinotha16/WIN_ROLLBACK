@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.2.1 - Ensure firewalld service is enabled and running (Scored)
+
+if [ "$(sudo systemctl is-enabled firewalld | grep 'enabled' | wc -l)" -eq 0 ] || [ "$(firewall-cmd --state | grep 'running' | wc -l)" -eq 0 ]; then
+   echo "{\"firewallenb_3421_audit\" : \"FAILED\"}"
+else
+   echo "{\"firewallenb_3421_audit\" : \"PASSED\"}"
+   
+fi
+

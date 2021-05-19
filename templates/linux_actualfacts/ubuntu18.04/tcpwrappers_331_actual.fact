@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo dpkg -s tcpd | grep "installed")
+if [ $(sudo dpkg -s tcpd 2> /dev/null | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{ \"tcpwrappers_331_actual\" : \"\" }"
+else
+   echo "{ \"tcpwrappers_331_actual\" : \"$cmd\" }"
+fi

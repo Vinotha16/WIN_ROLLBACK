@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(sudo apparmor_status | grep "profiles.*complain mode" | awk {'print $1'})
+b=$(sudo apparmor_status | grep "processes are unconfined" | awk {'print $1'})
+cmd="${a}","${b}"
+if [ "$(sudo apparmor_status | grep "profiles.*complain mode" | awk {'print $1'})" != '0' ] || [ "$(sudo apparmor_status | grep "processes are unconfined" | awk {'print $1'})" != '0' ]; then
+   echo "{ \"armorenfcomp_1713_actual\" : \"\" }"
+else
+   echo "{ \"armorenfcomp_1713_actual\" : \"${cmd}\" }"
+fi

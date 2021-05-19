@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$(sudo service autofs status 2> /dev/null | grep "running" | wc -l)" -ne 0 ]; then
+   echo "{ \"automount_1121_actual\" : \"\" }"
+else
+   echo "{ \"automount_1121_actual\" : \"Automount is disabled\" }"
+   exit 1
+fi

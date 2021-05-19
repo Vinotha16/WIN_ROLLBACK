@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.15 - Ensure SSH warning banner is configured (Scored)
+
+if [ $(grep "^Banner /etc/issue.net" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshwarningbanner_5215_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshwarningbanner_5215_audit\" : \"PASSED\"}"
+fi

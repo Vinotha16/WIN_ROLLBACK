@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa setroubleshoot | wc -l) -ne 0 ]; then
+   echo "{ \"setroubleshoot_1717_actual\" : \"\" }"
+else
+   echo "{ \"setroubleshoot_1717_actual\" : \"package setroubleshoot is not installed\" }"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(yum repolist 2> /dev/null | egrep  '^BaseOS')
+b=$(yum repolist 2> /dev/null | egrep  '^AppStream')
+cmd="${a}","${b}"
+if [ $(dnf repolist 2> /dev/null | egrep -c '^BaseOS') -eq 0 ] || [ $(dnf repolist 2> /dev/null | egrep -c '^AppStream') -eq 0 ]; then
+   echo "{ \"repoconfig_123_actual\" : \"\" }"
+else
+   echo "{ \"repoconfig_123_actual\" : \"$cmd\" }"
+   exit 0
+fi

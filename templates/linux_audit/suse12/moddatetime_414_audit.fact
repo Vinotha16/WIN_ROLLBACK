@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.4 - Ensure events that modify date and time information are collected (Scored)
+
+if [ $(grep time-change /etc/audit/audit.rules | wc -l) -eq 0 ]; then
+   echo "{\"moddatetime_414_audit\" : \"FAILED\"}"
+else
+   echo "{\"moddatetime_414_audit\" : \"PASSED\"}"
+fi

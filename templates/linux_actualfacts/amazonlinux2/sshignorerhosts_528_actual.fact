@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo sshd -T | grep 'ignorerhosts.*yes')
+if [ $(sudo sshd -T | grep 'ignorerhosts.*yes' | wc -l) -eq 0 ]; then
+   echo "{ \"sshignorerhosts_528_actual\" : \"\" }"
+else
+   echo "{ \"sshignorerhosts_528_actual\" : \"${cmd}\" }"
+   exit 1
+fi

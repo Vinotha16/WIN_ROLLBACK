@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.3 - Ensure LDAP client is not installed (Scored)
+
+if [ $(rpm -qa openldap-clients | wc -l) -ne 0 ]; then
+   echo "{ \"ldapc_233_audit\" : \"FAILED\" }"
+else
+   echo "{ \"ldapc_233_audit\" : \"PASSED\" }"
+fi

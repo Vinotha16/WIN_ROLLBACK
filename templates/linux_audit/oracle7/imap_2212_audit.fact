@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.12 - Ensure IMAP and POP3 Server is not installed (Scored)
+
+if [ $(sudo rpm -qa dovecot | wc -l) -ne 0 ]; then
+   echo "{ \"imap_2212_audit\" : \"FAILED\" }"
+else
+   echo "{ \"imap_2212_audit\" : \"PASSED\" }"
+fi

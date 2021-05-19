@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.2 - Ensure GPG keys are configured (Not Scored)
+
+if [ $(sudo rpm -qa gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n' | wc -l) -eq 0 ]; then
+   echo "{\"gpgkey_122_audit\" : \"FAILED\"}"
+else
+   echo "{\"gpgkey_122_audit\" : \"PASSED\"}"
+fi

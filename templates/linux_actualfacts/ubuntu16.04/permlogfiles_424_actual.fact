@@ -1,0 +1,9 @@
+#!/bin/bash
+failed1=$(find /var/log -type f  -perm /g+wx,o+rwx -exec ls -l {} \; | awk '{print $9}')
+failfact=$(stat -c "%a %n" $failed1  2>/dev/null | paste -sd ",")
+if [ $(find /var/log -type f -perm /g+wx,o+rwx -exec ls -l {} \; | wc -l) -ne 0 ]; then
+   echo "{ \"permlogfiles_424_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"permlogfiles_424_actual\" : \"Permissions on all logfiles are configured\" }"
+   exit 1
+fi

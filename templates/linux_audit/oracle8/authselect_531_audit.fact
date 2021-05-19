@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.1 - Create custom authselect profile (Scored)
+
+if [ $(authselect current | grep "Profile ID: custom" | wc -l) -eq 0 ]; then
+   echo "{ \"authselect_531_audit\" : \"FAILED\" }"
+else
+   echo "{ \"authselect_531_audit\" : \"PASSED\" }"
+fi
+

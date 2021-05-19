@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.10 - Ensure HTTP server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list apache2 | egrep 'apache2.*:on ' | wc -l) -ne 0 ]; then
+   echo "{ \"http_2210_audit\" : \"FAILED\" }"
+else
+   echo "{ \"http_2210_audit\" : \"PASSED\" }"
+fi

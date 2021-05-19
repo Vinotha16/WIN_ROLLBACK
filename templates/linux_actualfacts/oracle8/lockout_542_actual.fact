@@ -1,0 +1,18 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep "auth required pam_faillock.so preauth audit silent deny=5 unlock_time=900")
+b=$(cat /etc/pam.d/password-auth | egrep "auth [success=1 default=bad] pam_unix.so")
+c=$(cat /etc/pam.d/password-auth | grep "auth [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900")
+d=$(cat /etc/pam.d/password-auth | grep "auth sufficient pam_faillock.so authsucc audit deny=5 unlock_time=900")
+e=$(cat /etc/pam.d/system-auth | grep "auth required pam_faillock.so preauth audit silent deny=5 unlock_time=900")
+f=$(cat /etc/pam.d/system-auth | grep "auth [success=1 default=bad] pam_unix.so")
+g=$(cat /etc/pam.d/system-auth | grep "auth [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900")
+h=$(cat /etc/pam.d/system-auth | grep "auth sufficient pam_faillock.so authsucc audit deny=5 unlock_time=900")
+i="${a}","${b}","${c}","${d}","${e}","${f}","${g}","${h}"
+cmd=${i}
+if [ $(grep "unlock_time=900" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "default=bad" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "unlock_time=900" /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $(grep "default=bad" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_542_actual\" : \"\" }"
+else
+   echo "{ \"lockout_542_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

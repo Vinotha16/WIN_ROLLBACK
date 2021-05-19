@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.14 - Ensure noexec option set on /var/tmp partition (Scored)
+
+if [ $(mount | grep " /var/tmp.*noexec" | wc -l) -eq 0 ]; then
+   echo "{ \"vtnoexec_1114_audit\" : \"FAILED\" }"
+else
+   echo "{ \"vtnoexec_1114_audit\" : \"PASSED\" }"
+fi

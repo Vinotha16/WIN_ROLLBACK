@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(sudo iptables -L | grep "policy DROP" | paste -sd "," -)
+if [ $(sudo iptables -L | grep "policy DROP" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwfirewallpolicy_3522_actual\" : \"\" }"
+else
+   echo "{ \"nfwfirewallpolicy_3522_actual\" : \"$cmd\" }"
+  
+fi

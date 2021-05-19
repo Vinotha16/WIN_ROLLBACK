@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FILE=/etc/inetd.d/*.
+
+
+if [ -f "$FILE" ] && [ $(sudo egrep "^talk|^ntalk" /etc/inetd.* 2> /dev/null  | wc -l) -ne 0 ] || [ -f "$FILE" ] && [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep talk | wc -l) -eq 0 ] || [ -f "$FILE" ] && [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null  | grep "ntalk" | wc -l) -eq 0 ]; then
+   echo "{ \"talk_217_actual\" : \"\" }"
+else
+   echo "{ \"talk_217_actual\" : \"not enabled\" }"
+
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.5 - Ensure package manager repositories are configured (Not Scored)
+
+if [ $(dnf repolist 2> /dev/null | grep rhui | wc -l) -eq 0 ]; then
+   echo "{\"repoconfig_125_audit\" : \"FAILED\"}"
+else
+   echo "{\"repoconfig_125_audit\" : \"PASSED\"}"
+fi
+

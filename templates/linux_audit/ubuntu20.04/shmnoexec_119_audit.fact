@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.9 - Ensure noexec option set on /dev/shm partition 
+
+if [ $(mount | grep -E '\s/dev/shm\s.*noexec' | wc -l) -eq 0 ]; then
+   echo "{ \"shmnoexec_119_audit\" : \"FAILED\" }"
+else
+   echo "{ \"shmnoexec_119_audit\" : \"PASSED\" }"
+
+fi

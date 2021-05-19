@@ -1,0 +1,24 @@
+---
+####AMAZONLINUX-2####
+remote_server_chrony_amazonlinux2: sample.zippy.com
+remote_server_ntp_amazonlinux2: sample.zippy.com
+ntp_chrony_amazonlinux2: chrony
+hosts_allow_amazonlinux2: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_amazonlinux2: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_amazonlinux2: 8
+rsyslog_syslog_amazonlinux2: rsyslog
+MaxAuthTries_amazonlinux2: MaxAuthTries 4
+PermitRootLogin_amazonlinux2: PermitRootLogin no
+ClientAliveInterval_amazonlinux2: ClientAliveInterval 300
+ClientAliveCountMax_amazonlinux2: ClientAliveCountMax 0
+Pass_max_days_amazonlinux2: 365
+Pass_min_days_amazonlinux2: 7
+Pass_warn_age_amazonlinux2: 7
+allowusers_amazonlinux2: ansible
+allowgroups_amazonlinux2:
+denyusers_amazonlinux2:
+denygroups_amazonlinux2:
+wheelgroup_amazonlinux2:
+
+db_no_amazonlinux2: 
+update_amazonlinux2:

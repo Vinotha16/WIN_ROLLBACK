@@ -1,0 +1,18 @@
+#!/bin/bash
+ufw=$(dpkg -s ufw 2> /dev/null | grep -i status | grep "ok installed")
+nftables=$(dpkg -s nftables 2> /dev/null | grep -i status | grep "ok installed" )
+ipatbles=$(dpkg -s iptables 2> /dev/null | grep -i status | grep "ok installed")
+if [ $(dpkg -s ufw | grep -i status | grep "ok installed" | wc -l) -eq 0 ]; then
+   if [ $(dpkg -s nftables | grep -i status | grep "ok installed" | wc -l) -eq 0 ]; then
+        if [ $(dpkg -s iptables | grep -i status | grep "ok installed" | wc -l) -eq 0 ]; then
+             echo "{ \"firewallpack_3511_actual\" : \"\" }"
+         else
+             echo "{ \"firewallpack_3511_actual\" : \"$iptables\" }"
+         fi
+   else
+       echo "{ \"firewallpack_3511_actual\" : \"$nftables\" }"
+   fi
+else
+    echo "{ \"firewallpack_3511_actual\" : \"$ufw\" }"
+fi
+

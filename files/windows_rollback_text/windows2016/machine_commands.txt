@@ -1,0 +1,176 @@
+sudo su postgres ==> To become postgres user
+
+scl enable rh-postgresql10 "psql"
+scl enable rh-postgresql10 "psql -d cis_benchmark" ==> To enter into our database
+\c cis
+SELECT id,created_at,hostname,ipaddress,values -> 'audit/actual fact names' AS values FROM linuxos;
+
+
+\l ==> To list available database
+\dt ==> To list tables
+
+select * from awscis;
+select values from awscis where id = '1';
+
+drop table tablename;
+drop database databasename;
+
+ . /var/lib/awx/venv/ansible/bin/activate --- python interpreter 
+ansible all -m setup -a "filter=ansible_local"
+ansible all -i hosts -m ping
+ansible all -m setup -a 'filter=ansible_local' --become-method sudo --become
+ansible all -m setup -a 'filter=ansible_distribution'
+ansible all -i inven -m win_ping
+ansible all -i inven -m setup -a "fact_path='c:\custom_facts'"
+
+APPLY THESE COMMANDS IN NODE POWERSHELL
+######plaintext: the specified credentials were rejected by the server
+winrm quickconfig -q
+Set-NetConnectionProfile –NetworkCategory private
+Get-NetFirewallPortFilter | ?{$_.LocalPort -eq 5985 } | Get-NetFirewallRule | ?{ $_.Direction -eq "Inbound" -and $_.Profile -eq "Public" -and $_.Action -eq "Allow"} | Set-NetFirewallRule -RemoteAddress "Any"
+Get-NetFirewallPortFilter | ?{$_.LocalPort -eq 5986 } | Get-NetFirewallRule | ?{ $_.Direction -eq "Inbound" -and $_.Profile -eq "Public" -and $_.Action -eq "Allow"} | Set-NetFirewallRule -RemoteAddress "Any"
+winrm set winrm/config/client/auth '@{Basic="true"}'
+winrm set winrm/config/service/auth '@{Basic="true"}'
+winrm set winrm/config/client '@{AllowUnencrypted="true"}'
+winrm set winrm/config/service '@{AllowUnencrypted="true"}'
+ports 5985 and 5986 are used to connect ansible with windows node
+
+
+
+--skip-tags '2.2.25,2.2.26,2.2.20,2.2.21,18.9.59.3.9.3,18.9.59.3.9.4,18.9.97.2.1,18.9.97.2.2' -- blocks the windows machine 
+%s/- remedy/     - remedy/g  --->> allignment in file
+%s/become: yes/      become: yes/g
+sed -i '/     - all/i     - actualfact'      actualfactplaybookname_.yml --->> insert after
+sed -i '/    tags:/i    become: yes'   playbookname.yml 
+set ff=dos -- converts linux to windows file
+:g/word_to_replace/d -- delete a character
+:%s/auid>=1000/auid>=500/g -- edit a word in vi editor
+:53,10202s/^/#/g
+:%s/^#//g
+
+aws_access_key_id = AKIAJY677RE4EDGJ64WA
+aws_secret_access_key = gnOm0HmJm5abCnXUw0Fok/ovup8QWVroqNvpYJia
+
+DELETE FROM awscis
+WHERE id = 5;
+
+SELECT id,created_at,hostname,ipaddress,values -> 'daytime2' AS values FROM sample;
+
+install jq
+1) yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
+2) yum install jq -y 
+
+install pip3 and boto3
+1) yum install python36
+2) yum install python36-devel
+3) yum install python36-setuptools
+4) easy_install-3.6 pip
+5) pip3 install --upgrade setuptools pip -- to upgrade pip3
+6) pip3 install boto
+
+vi /var/opt/rh/rh-postgresql10/lib/pgsql/data/pg_hba.conf
+ansible_connection: local
+ansible_become: yes
+ansible_user: awx
+ansible_become_method: enable
+chmod 0770 /var/lib/pgsql
+chown postgres:awx /var/lib/pgsql
+usermod -aG awx postgres
+service rh-postgresql10-postgresql.service restart
+ 
+yum install python-psycopg2
+
+"msg": "Aborting, target uses selinux but python bindings (libselinux-python) aren't installed!"} -- for this error intsall the below tool
+yum install -y libselinux-python3
+
+#!/bin/bash
+sudo echo "awx ALL=(ALL)     NOPASSWD: ALL" >> /etc/sudoers
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sudo service sshd restart
+sudo systemctl restart sshd
+
+MYSQL DATABASE
+
+CREATE USER 'username'@'ip_of_the_machine_that_wanted_to_access_this_db' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'ip_of_the_machine_that_wanted_to_access_this_db';
+FLUSH PRIVILEGES;
+###Query to create tables manually
+CREATE TABLE cis_audit(
+id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+audit_result LONGTEXT DEFAULT NULL,
+actual_result LONGTEXT DEFAULT NULL
+);
+CREATE TABLE cis_remedy(
+id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+before_audit LONGTEXT DEFAULT NULL,
+after_audit LONGTEXT DEFAULT NULL,
+before_actual LONGTEXT DEFAULT NULL,
+after_actual LONGTEXT DEFAULT NULL
+);
+CREATE TABLE cis_rollback(
+id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+before_audit LONGTEXT DEFAULT NULL,
+after_audit LONGTEXT DEFAULT NULL,
+before_actual LONGTEXT DEFAULT NULL,
+after_actual LONGTEXT DEFAULT NULL
+);
+INSERT INTO cis_audit (audit_result, actual_result) VALUES ('NULL', NULL);
+UPDATE cis_audit SET  audit_result = '{"auditstdout"}', actual_result = '{"actualstdout"}',  WHERE id = 2;
+
+winRM configuration 
+[win]
+192.168.0.178
+[win:vars]
+ansible_user=Administrator@zippy16.com
+ansible_password=zippy@1
+ansible_connection=winrm
+ansible_port=5985
+ansible_winrm_server_cert_validation=ignore
+[win_member]
+192.168.0.215
+[win_member:vars]
+ansible_user=demo
+ansible_password=zippy@1
+ansible_connection=winrm
+ansible_port=5985
+ansible_winrm_server_cert_validation=ignore 
+
+ python-chardet                                    noarch                             2.2.1-3.el7                                base                             227 k
+ python-requests                                   noarch                             2.6.0-10.el7                               base                              95 k
+ python-urllib3                                    noarch                             1.10.2-7.el7                               base                             103 k
+ python-xmltodict                                  noarch                             0.9.0-2.el7                                epel                              16 k
+ python2-ntlm-auth                                 noarch                             1.1.0-1.el7                                epel                              45 k
+ python2-requests_ntlm                             noarch                             1.1.0-1.el7                                epel                              14 k
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

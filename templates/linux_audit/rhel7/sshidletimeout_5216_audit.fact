@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.16 - Ensure SSH Idle Timeout Interval is configured (Automated)
+
+if [ $(sshd -T 2> /dev/null | grep -i 'clientaliveinterval' | awk -F ' ' '{print $2}') -eq 0 ]; then
+   echo "{ \"sshidletimeout_5216_audit\" : \"FAILED\" }"
+else
+      if [ $(sudo sshd -T 2> /dev/null | grep -i 'clientaliveinterval' | awk -F ' ' '{print $2}') -gt 300 ] || [ $(sudo sshd -T 2> /dev/null | grep -i 'clientalivecountmax' | awk -F ' ' '{print $2}') -gt 4 ]; then
+          echo "{ \"sshidletimeout_5216_audit\" : \"FAILED\" }"
+      else
+         echo "{\"sshidletimeout_5216_audit\":\"PASSED\"}"
+      fi
+fi

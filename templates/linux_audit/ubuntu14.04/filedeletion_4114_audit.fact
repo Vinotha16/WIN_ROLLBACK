@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.14 - Ensure file deletion events by users are collected (Scored)
+
+if [ $(sudo grep "unlinkat" /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"4.1.14 - File deletion events by users are not collected\" : \"FAILED\"}"
+else
+   echo "{ \"filedeletion_4114_audit\" : \"PASSED\" }"
+   
+fi

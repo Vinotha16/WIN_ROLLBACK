@@ -1,0 +1,19 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.15 - Ensure all groups in /etc/passwd exist in /etc/group (Scored)
+
+count=0
+for i in `cut -s -d: -f4 /etc/passwd`; do
+    if [ `egrep "^.*?:[^:]*:$i:" /etc/group | wc -l` -eq 0 ]; then
+		count=$((count+1))
+    fi
+done
+
+if [ "$count" -ne "0" ]; then
+	echo "{ \"groups_6215_audit\" : \"FAILED\" }"
+else
+	echo "{ \"groups_6215_audit\" : \"PASSED\" }"
+	exit 0
+fi
+

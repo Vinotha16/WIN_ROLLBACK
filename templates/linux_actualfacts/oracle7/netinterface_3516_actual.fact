@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ "$(nmcli 2>/dev/null | wc -l)" -ne 0 ]; then
+nmcli -t connection show | awk -F: '{if($4){print $4}}' | while read INT; do
+        if [ $(sudo firewall-cmd --get-active-zones | grep -B1 $INT | wc -l) -eq 0 ]; then
+                echo "{ \"netinterface_3516_actual\" : \"\"}"
+        else
+                echo "{ \"netinterface_3516_actual\"  :  \"network interfaces assigned to appropriate zone\"}"
+                exit 1
+        fi
+done
+else
+  echo "{ \"netinterface_3516_actual\" : \"\"}"
+fi

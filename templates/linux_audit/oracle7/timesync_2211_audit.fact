@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.1.1 - Ensure time synchronization is in use (Not Scored)
+
+if [ $(sudo rpm -qa | grep -Ew "ntp|chrony" | wc -l) -eq 0 ]; then
+   echo "{ \"timesync_2211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"timesync_2211_audit\" : \"PASSED\" }"
+fi

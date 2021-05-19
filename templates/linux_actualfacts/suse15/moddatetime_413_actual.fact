@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo grep time-change /etc/audit/rules.d/*.rules | paste -sd ",")
+if [ $(sudo grep time-change /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep time-change | wc -l) -eq 0 ]; then
+   echo "{ \"moddatetime_413_actual\" : \"\" }"
+else
+   echo "{ \"moddatetime_413_actual\" : \"${cmd}\" }"
+   
+fi

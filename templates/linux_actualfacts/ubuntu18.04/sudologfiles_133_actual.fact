@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo grep -Ei '^\s*Defaults\s+logfile=\S+' /etc/sudoers /etc/sudoers.d/* 2> /dev/null | tr '"' " " | paste -sd "," -)
+if [ "$(grep -Ei '^\s*Defaults\s+logfile=\S+' /etc/sudoers /etc/sudoers.d/* 2> /dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"sudologfiles_133_actual\" : \"\" }"
+else
+   echo "{ \"sudologfiles_133_actual\" : \"${cmd}\" }"
+fi

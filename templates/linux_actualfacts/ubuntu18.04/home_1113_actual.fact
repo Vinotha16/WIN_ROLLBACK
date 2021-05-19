@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(mount | grep /home)
+if [ "$(mount | grep /home | wc -l)" -eq 0 ]; then
+   echo "{ \"home_1113_actual\" : \"\" }"
+else
+   echo "{ \"home_1113_actual\" : \"$cmd\" }"
+fi

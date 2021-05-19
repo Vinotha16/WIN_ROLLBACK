@@ -1,0 +1,12 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\Windows\PowerShell\Transcription
+EnableTranscripting
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------
+

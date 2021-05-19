@@ -1,0 +1,10 @@
+#!/bin/bash
+failed=$(cat /etc/selinux/config | grep "^SELINUXTYPE=.*")
+cmd=$(cat /etc/selinux/config | grep "SELINUXTYPE=targeted")
+if [ "$(grep "SELINUXTYPE=targeted" /etc/selinux/config | wc -l)" -eq 0 ] || [ "$(sestatus | grep "Loaded policy name.*targeted" | wc -l)" -eq 0 ]; then
+   echo "{ \"selpolicy_1713_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"selpolicy_1713_actual\" : \"$cmd\" }"
+exit 1
+fi
+

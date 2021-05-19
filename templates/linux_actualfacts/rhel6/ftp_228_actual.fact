@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -q vsftpd)
+if [ $(sudo rpm -qa vsftpd | wc -l) -ne 0 ]; then
+  echo "{ \"ftp_228_actual\" : \"\" }"
+else
+  echo "{ \"ftp_228_actual\" : \"$cmd\" }"
+exit 1
+fi

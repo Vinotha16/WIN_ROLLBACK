@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo ufw status | grep 'Status: inactive')
+if [ $(sudo ufw status | grep 'Status: inactive' | wc -l) -eq 0 ]; then
+   echo "{ \"firewalldis_35313_actual\" : \"\" }"
+else
+   echo "{ \"firewalldis_35313_actual\" : \"${cmd}\" }"
+
+fi

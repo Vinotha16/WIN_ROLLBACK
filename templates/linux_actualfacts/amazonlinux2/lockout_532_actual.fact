@@ -1,0 +1,17 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep "^auth.*required.*pam_faillock.so.*unlock_time=900" | paste -sd "," -)
+b=$(cat /etc/pam.d/password-auth | grep "^auth.*success=1.*default=bad.*pam_unix.so" | paste -sd "," -)
+c=$(cat /etc/pam.d/password-auth | grep "^auth.*default=die.*pam_faillock.so.*unlock_time=900" | paste -sd "," -)
+d=$(cat /etc/pam.d/password-auth | grep "^auth.*sufficient.*pam_faillock.so.*unlock_time=900" | paste -sd "," -)
+e=$(cat /etc/pam.d/system-auth | grep "^auth.*required.*pam_faillock.so.*unlock_time=900" | paste -sd "," -)
+f=$(cat /etc/pam.d/system-auth | grep "^auth.*success=1.*default=bad.*pam_unix.so" | paste -sd "," -)
+g=$(cat /etc/pam.d/system-auth | grep "^auth.*default=die.*pam_faillock.so.*unlock_time=900" | paste -sd "," -)
+h=$(cat /etc/pam.d/system-auth | grep "^auth.*sufficient.*pam_faillock.so.*unlock_time=900" | paste -sd "," -)
+cmd="${a}","${b}","${c}","${d}","${e}","${f}","${g}","${h}"
+if [ $(grep "^auth.*required.*pam_faillock.so.*unlock_time=900" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "^auth.*success=1.*default=bad" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "^auth.*required.*pam_faillock.so.*" /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $(grep "^auth.*success=1.*default=bad" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_532_actual\" : \"\" }"
+else
+   echo "{ \"lockout_532_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

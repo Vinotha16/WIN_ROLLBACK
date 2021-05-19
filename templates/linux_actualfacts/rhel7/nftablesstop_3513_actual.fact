@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo rpm -q nftables)
+if [ $(sudo rpm -qa nftables | wc -l) -ne 0 ]; then
+        echo "{ \"nftablesstop_3513_actual\" : \"\" }"
+else
+        echo "{ \"nftablesstop_3513_actual\" : \"$cmd\" }"
+fi

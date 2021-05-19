@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.4 - Ensure TIPC is disabled (Not Scored)
+
+if [ "$(sudo modprobe -n -v tipc | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep tipc | wc -l)" -ne 0 ]; then
+   echo "{ \"tipc_354_audit\" : \"FAILED\" }"
+else
+   echo "{ \"tipc_354_audit\" : \"PASSED\" }"
+fi
+

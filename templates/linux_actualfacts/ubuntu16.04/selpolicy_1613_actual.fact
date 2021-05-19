@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/selinux/config | grep "SELINUXTYPE=ubuntu")
+if [ "$(sudo grep "SELINUXTYPE=" /etc/selinux/config 2> /dev/null | egrep "ubuntu|default|mls" | wc -l)" -eq 0 ] || [ "$(sudo sestatus 2> /dev/null | grep "^Policy from config.*" | egrep "ubuntu|default|mls" | wc -l)" -eq 0 ]; then
+   echo "{ \"selpolicy_1613_actual\" : \"\" }"
+else
+   echo "{ \"selpolicy_1613_actual\" : \"$cmd\" }"
+   
+fi

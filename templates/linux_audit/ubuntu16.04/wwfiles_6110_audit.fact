@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.10 - Ensure no world writable files exist (Scored)
+
+if [ $(sudo df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -0002 2>/dev/null | wc -l) -gt 0 ] || [ $(find / -xdev -type f -perm -0002 | wc -l) -gt 0 ]; then
+   echo "{ \"wwfiles_6110_audit\" : \"FAILED\"}"
+else
+   echo "{ \"wwfiles_6110_audit\" : \"PASSED\"}"
+   
+fi
+

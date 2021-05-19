@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.4 - Ensure SSH access is limited (Scored)
+
+if [ $(sudo grep "^AllowUsers.*[a-z]" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(sudo grep "^AllowGroups.*[a-z]" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(sudo grep "^DenyUsers.*[a-z]" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(sudo grep "^DenyGroups.*[a-z]" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshaccess_524_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshaccess_524_audit\" : \"PASSED\" }"
+fi
+

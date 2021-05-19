@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo rpm -q telnet-server)
+if [ $(sudo rpm -qa telnet-server | wc -l) -ne 0 ]; then
+      echo "{ \"telnet_2215_actual\" : \"\"}"
+else
+      echo "{ \"telnet_2215_actual\" : \"$cmd\"}"
+       
+fi

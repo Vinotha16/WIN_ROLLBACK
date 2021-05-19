@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa sudo | grep "sudo-[0-9]\+")
+if [ $(rpm -q sudo | grep 'sudo-[0-9]\+' | wc -l) -eq 0 ]; then
+        echo "{ \"sudo_131_actual\" : \"\" }"
+else
+        echo "{ \"sudo_131_actual\" : \"$cmd\" }"
+fi
+

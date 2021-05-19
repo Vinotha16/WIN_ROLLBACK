@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.1 - Ensure xinetd is not installed (Scored)
+
+
+if [ $(sudo dpkg -s xinetd 2> /dev/null | grep installed | wc -l) -ne 0 ]; then
+   echo "{ \"xinetd_211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"xinetd_211_audit\" : \"PASSED\" }"
+
+fi
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.19 - Ensure SSH MaxSessions is set to 4 or less (Scored)
+
+if [ $( sudo sshd -T 2> /dev/null | grep -i ^maxsessions.*4 /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshmaxsessions_5219_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshmaxsessions_5219_audit\" : \"PASSED\"}"
+fi
+

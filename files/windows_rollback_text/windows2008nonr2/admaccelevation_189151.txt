@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Microsoft\Windows\CurrentVersion\Policies\CredUI
+EnumerateAdministrators
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

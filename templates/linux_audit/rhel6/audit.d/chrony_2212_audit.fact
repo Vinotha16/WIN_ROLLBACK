@@ -1,0 +1,12 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 2.2.1.2 - Ensure chrony is configured (Scored)
+
+if [ $(sudo egrep "^(server|pool)" /etc/chrony.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo grep '^OPTIONS="-u chrony"' /etc/sysconfig/chronyd 2> /dev/null | wc -l) -eq 0 ]; then
+     echo "{\"chrony_2212_audit\" : \"FAILED\"}"
+else
+     echo "{\"chrony_2212_audit\" : \"PASSED\"}"
+     
+fi
+

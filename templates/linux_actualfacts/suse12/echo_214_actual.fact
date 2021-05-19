@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $(chkconfig --list 2>/dev/null | grep "echo|echo-udp" | grep " off" | wc -l) -ne 0 ]; then
+
+    echo "{ \"echo_214_actual\" : \"\" }"
+
+else
+ 
+    echo "{ \"echo_214_actual\" : \"not enabled\" }"
+
+fi

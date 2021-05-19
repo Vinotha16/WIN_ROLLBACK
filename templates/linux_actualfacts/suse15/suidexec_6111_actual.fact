@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [  $(sudo df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 2>/dev/null | wc -l) -eq 0 ] || [ $(find / -xdev -type f -perm -4000 | wc -l) -eq 0  ]; then
+   echo "{ \"suidexec_6111_actual\" : \"\" }"
+else
+   echo "{ \"suidexec_6111_actual\" : \"no rogue SUID programs have been introduced into the system\" }"  
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(systemctl status nftables | grep 'masked' | wc -l) -eq 0 ] || [ $(systemctl is-enabled nftables | grep -E 'disabled|masked' | wc -l) -eq 0 ]; then
+	echo "{ \"nftables_3422_actual\" : \"\"}"
+else
+	echo "{ \"nftables_3422_actual\" : \"not enabled\"}"
+fi
+

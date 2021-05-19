@@ -1,0 +1,17 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.7 - Ensure all users' home directories exist (Scored)
+
+count=0
+for a in  `grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7!=/sbin/nologin && $7!=/bin/false {print $1}'`; do
+       if [ "$(ls /home | grep -w "$a")" != "$a" ]; then
+        count=$((count+1))
+    fi
+done
+if [ "$count" -ne "0" ]; then
+    echo "{ \"userhdir_627_audit\" : \"FAILED\" }"
+else
+   echo "{ \"userhdir_627_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.2 - Ensure permissions on /etc/crontab are configured (Scored)
+
+if [ $(sudo stat /etc/crontab | grep "0600.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"5.1.2 - Permission on /etc/crontab are not configured\" : \"FAILED\" }"
+else
+   echo "{ \"permcrontab_512_audit\" : \"PASSED\" }"
+
+fi

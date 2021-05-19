@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(awk -F: '{print $1}' /etc/passwd | sort | uniq -c | awk '$1 > 1 {print $2}')
+if [ "$a" != "" ]; then
+        for i in $(grep "$a" /etc/passwd | awk -F: '{print $1}'); do
+        echo "{ \"duplicateuser_6218_actual\" : \"\" }"
+        done
+else
+        echo "{ \"duplicateuser_6218_actual\" : \"no duplicate user names exist\"}"
+        exit 1
+ fi

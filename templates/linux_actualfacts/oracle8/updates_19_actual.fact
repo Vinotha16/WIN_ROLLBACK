@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(yum check-update 2> /dev/null | grep 'No packages' | wc -l) -eq "0" ]; then
+   echo "{ \"updates_19_actual\" : \"\" }"
+else
+   echo "{ \"updates_19_actual\" : \"No packages available\" }"
+#exit 1
+fi
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(sudo iptables -L INPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.")
+b=$(sudo iptables -L INPUT -v -n | egrep ".*DROP.*all.*--.*127.0.0.0/8.")
+c=$(sudo iptables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.")
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(sudo iptables -L INPUT -v -n | egrep "ACCEPT.*all.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo iptables -L INPUT -v -n | egrep "DROP.*all.*127.0.0.0/8.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo iptables -L OUTPUT -v -n | egrep "ACCEPT.*all.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ]; then
+  echo "{ \"nfloopbacktraffic_3534_actual\" : \"\" }"
+else
+   echo "{ \"nfloopbacktraffic_3534_actual\" : \"${cmd}\" }"
+   exit 0
+fi

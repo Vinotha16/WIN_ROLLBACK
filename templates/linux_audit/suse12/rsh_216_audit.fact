@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+
+# 2.1.6 - Ensure rsh server is not enabled (Scored)
+
+if [ "$(chkconfig --list 2>/dev/null | grep "rexec:" | awk {'print $2'})" == "on" ] || [ "$(chkconfig --list 2>/dev/null | grep "rlogin:" | awk {'print $2'})" == "on" ] || [ "$(chkconfig --list 2>/dev/null | grep "rsh:" | awk {'print $2'})" == "on" ]; then
+
+    echo "{\"rsh_216_audit\" : \"FAILED\"}"
+
+else
+  
+    echo "{\"rsh_216_audit\" : \"PASSED\"}"
+
+fi

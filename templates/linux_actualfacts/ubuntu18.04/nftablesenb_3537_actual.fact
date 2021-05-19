@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled nftables | grep "enabled")
+if [ $(systemctl is-enabled nftables | grep "enabled" | wc -l) -eq 0 ]; then
+   echo "{ \"nftablesenb_3537_actual\" : \"\" }"
+else
+   echo "{ \"nftablesenb_3537_actual\" : \"${cmd}\" }"
+   exit 1
+fi

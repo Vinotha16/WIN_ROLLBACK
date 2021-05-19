@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(sudo ip link show up | cut -d: -f2 | cut -d' ' -f2 | egrep '^ w|^w' | paste -sd ",")
+if [ $(sudo ip link show up | cut -d: -f2 | cut -d' ' -f2 | egrep '^ w|^w' | wc -l) -ne 0 ]; then
+   echo "{ \"wireless_312_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"wireless_312_actual\" : \"wireless interfaces are disabled\" }"
+   exit 1
+fi

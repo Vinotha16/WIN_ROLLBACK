@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(cat /etc/systemd/journald.conf | grep "^Compress")
+if [ $(grep -e ^\s*Compress /etc/systemd/journald.conf  /etc/systemd/journald.conf | wc -l) -eq 0 ]; then
+   echo "{\"journalcompresslog_4222_actual\" : \"\"}"
+else
+   echo "{\"journalcompresslog_4222_actual\" : \"journald is configured to compress large log files\"}"
+fi

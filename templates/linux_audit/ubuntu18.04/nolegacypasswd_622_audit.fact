@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.2 - Ensure no legacy "+" entries exist in /etc/passwd (Scored)
+
+if [ $(sudo grep '^\+:' /etc/passwd | awk -F: '{print $1}' | wc -l) -ne 0 ]; then
+   echo "{ \"nolegacypasswd_622_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nolegacypasswd_622_audit\" : \"PASSED\" }"
+   
+fi

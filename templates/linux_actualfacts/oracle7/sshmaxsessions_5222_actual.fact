@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cmd=$(sshd -T | grep -i ^maxsessions.*10 /etc/ssh/sshd_config)
+
+if [ $(sshd -T | grep -i ^maxsessions.*10 /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshmaxsessions_5222_actual\" :\"\"}"
+else
+   echo "{ \"sshmaxsessions_5222_actual\" :\"$cmd\"}"
+   exit 1
+fi
+

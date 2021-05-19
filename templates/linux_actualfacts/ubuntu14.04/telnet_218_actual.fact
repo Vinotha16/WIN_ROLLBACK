@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo grep -R ^telnet /etc/inetd.* 2> /dev/null | wc -l) -ne 0 ] || [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep telnet | wc -l) -ne 0 ]; then
+   echo "{ \"telnet_218_actual\" : \"FAILED\" }"
+else
+   echo "{ \"telnet_218_actual\" : \"not enabled\" }"
+   exit 1
+fi
+

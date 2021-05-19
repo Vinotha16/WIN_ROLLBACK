@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep -REi '^\s*UMASK\s+\s*(0[0-7][2-7]7|[0-7][2-7]7|u=(r?|w?|x?)(r?|w?|x?)(r?|w?|x?),g=(r?x?|x?r?),o=)\b' /etc/login.defs /etc/default/login /etc/profile* /etc/bash.bashrc* | expand -t 1 | paste -sd ",")
+if [ $(sudo grep -RPi '(^|^[^#]*)\s*umask\s+([0-7][0-7][01][0-7]\b|[0-7][0-7][0-7][0-6]\b|[0-7][01][0-7]\b|[0-7][0-7][0-6]\b|(u=[rwx]{0,3},)?(g=[rwx]{0,3},)?o=[rwx]+\b|(u=[rwx]{1,3},)?g=[^rx]{1,3}(,o=[rwx]{0,3})?\b)' /etc/login.defs /etc/default/login /etc/profile* /etc/bash.bashrc* | wc -l) -ne 0 ] || [ $(grep -REi '^\s*UMASK\s+\s*(0[0-7][2-7]7|[0-7][2-7]7|u=(r?|w?|x?)(r?|w?|x?)(r?|w?|x?),g=(r?x?|x?r?),o=)\b' /etc/login.defs /etc/default/login /etc/profile* /etc/bash.bashrc* | wc -l) -eq 0 ]; then
+   echo "{ \"defaultuser_545_actual\" : \"\" }"
+else
+   echo "{ \"defaultuser_545_actual\" : \"$cmd\" }"
+   
+fi

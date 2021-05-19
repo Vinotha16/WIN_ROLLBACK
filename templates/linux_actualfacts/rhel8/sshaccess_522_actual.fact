@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(cat /etc/ssh/sshd_config | grep "AllowUsers")
+b=$(cat /etc/ssh/sshd_config | grep "AllowGroups")
+c=$(cat /etc/ssh/sshd_config | grep "DenyUsers")
+d=$(cat /etc/ssh/sshd_config | grep "DenyGroups")
+cmd="${a}","${b}","${c}","${d}"
+if [ $(grep "^AllowUsers" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(grep "^AllowGroups" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(grep "^DenyUsers" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(grep "^DenyGroups" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshaccess_522_actual\" : \"\" }"
+else
+   echo "{ \"sshaccess_522_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

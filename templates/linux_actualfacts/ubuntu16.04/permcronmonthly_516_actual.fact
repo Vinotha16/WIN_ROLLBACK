@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/cron.monthly)
+if [ $(sudo stat /etc/cron.monthly | grep "0700.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permcronmonthly_516_actual\" : \"\" }"
+else
+   echo "{ \"permcronmonthly_516_actual\" : \"$cmd\" }"
+   
+fi

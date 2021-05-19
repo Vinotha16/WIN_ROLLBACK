@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo dpkg --verify | wc -l) -eq 0 ]; then
+   echo "{ \"auditsysperm_611_actual\" : \"\" }"
+else
+   echo "{ \"auditsysperm_611_actual\" : \"Audit system file has permissions\" }"
+   exit 0
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo systemctl is-enabled isc-dhcp-server 2> /dev/null | grep enabled| wc -l) -ne 0 ] || [ $(sudo systemctl is-enabled isc-dhcp-server6 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+
+   echo "{ \"dhcp_225_actual\" : \"\" }"
+else
+   echo "{ \"dhcp_225_actual\" : \"not enabled\" }"
+fi

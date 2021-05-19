@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.2 - Ensure SELinux is not disabled in bootloader configuration (Scored)
+
+if [ "$(grep -E 'kernelopts=(\S+\s+)*(selinux=0|enforcing=0)+\b' /boot/grub2/grubenv | wc -l)" -ne 0 ]; then
+   echo "{\"seldisable_1712_audit\" : \"FAILED\"}"
+else
+   echo "{\"seldisable_1712_audit\" : \"PASSED\"}"
+fi

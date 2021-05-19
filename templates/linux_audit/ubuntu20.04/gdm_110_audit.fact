@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.10 - Ensure GDM is removed or login is configured (Scored)
+
+if [ "$(sudo dpkg -s gdm3 2>/dev/null | wc -l)" -ne 0 ]; then
+   if [ $(sudo egrep "user-db:user" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "system-db:gdm" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "file-db:/usr/share/gdm/greeter-dconf-defaults" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "[org/gnome/login-screen]|banner-message-enable|banner-message-text" /etc/dconf/db/gdm.d/01-banner-message | wc -l) -eq 0 ] || [ $(sudo egrep "[org/gnome/login-screen]" /etc/dconf/db/gdm.d/00-login-screen | wc -l) -eq 0 ] || [ $(sudo egrep "disable-user-list=true" /etc/dconf/db/gdm.d/00-login-screen | wc -l) -eq 0 ]; then
+      echo "{\"gdm_110_audit\"  :  \"FAILED\"}"
+   else
+      echo "{\"gdm_110_audit\"   :  \"PASSED\"}"
+
+   fi
+else
+   echo "{\"gdm_110_audit\"  :   \"PASSED\"}"
+fi
+

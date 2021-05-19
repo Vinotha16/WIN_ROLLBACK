@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(cat /etc/syslog-ng/syslog-ng.conf | grep "source net{ tcp(); };")
+#b=$(cat /etc/syslog-ng/syslog-ng.conf | grep "destination remote { file("/var/log/remote/${FULLHOST}-log"); }; | tr '"' " ")
+b=$(cat /etc/syslog-ng/syslog-ng.conf | grep 'destination remote { file("/var/log/remote/${FULLHOST}-log"); };' | tr '"' " ")
+c=$(cat /etc/syslog-ng/syslog-ng.conf | grep "log { source(net); destination(remote); };")
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(egrep 'source net|destination remote|source\(net\)' /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"remotesyslogng_4225_actual\" : \"\" }"
+else
+   echo "{ \"remotesyslogng_4225_actual\" : \"${cmd}\" }"
+fi

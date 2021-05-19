@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list cups 2> /dev/null | grep ":on" | wc -l) -eq 1 ]; then
+  echo "{ \"cups_224_actual\" : \"\" }"
+else
+  echo "{ \"cups_224_actual\" : \"not enabled\" }"
+exit 1
+fi

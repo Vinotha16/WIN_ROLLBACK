@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/pam.d/common-password | grep "^password.*su.*pam_unix.so.*sha512" | tr -d "[:blank:]")
+if [ $(sudo egrep "^password.*su.*pam_unix.so.*sha512" /etc/pam.d/common-password | wc -l) -eq 0 ]; then
+   echo "{ \"passwdhashing_534_actual\" : \"\" }"
+else
+   echo "{ \"passwdhashing_534_actual\" : \"${cmd}\"}"
+   exit 1
+fi

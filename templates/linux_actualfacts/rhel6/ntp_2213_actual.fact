@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(egrep "^restrict -4.*kod|^restrict -6.*kod" /etc/ntp.conf | paste -sd ",")
+b=$(egrep "^(server|pool)" /etc/ntp.conf | paste -sd "," | tr '"' " ")
+c=$(cat /etc/init.d/ntpd | grep 'OPTIONS="-u ntp:ntp"' | tr '"' " ")
+cmd="${a}","${b}","${c}"
+if [ $(sudo egrep "^restrict -4.*kod|^restrict -6.*kod" /etc/ntp.conf | wc -l) -eq 0 ] || [ $(sudo egrep "^(server|pool)" /etc/ntp.conf | wc -l) -eq 0 ] || [ $(sudo egrep 'OPTIONS.*-u ntp:ntp' /etc/init.d/ntpd | wc -l) -eq 0 ]; then
+     echo "{ \"ntp_2213_actual\" : \"\"}"
+else
+     echo "{ \"ntp_2213_actual\" : \"${cmd}\"}"
+
+fi

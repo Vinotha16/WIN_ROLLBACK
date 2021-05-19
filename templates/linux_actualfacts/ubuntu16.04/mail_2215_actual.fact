@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/postfix/main.cf | grep "inet_interfaces =")
+if [ $(sudo netstat -an | grep LIST | grep "127.0.0.1:25[[:space:]]" | wc -l) -ne 0 ]; then
+   echo "{ \"mail_2215_actual\" : \"\" }"
+else
+   echo "{ \"mail_2215_actual\" : \"$cmd\" }"
+   exit 1
+fi

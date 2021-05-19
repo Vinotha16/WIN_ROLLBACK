@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.2 - Ensure AppArmor is enabled in the bootloader configuration
+
+if [ $(sudo grep "^\s*linux" /boot/grub2/grub.cfg | egrep "apparmor=1" | wc -l) -eq 0 ] || [ $(sudo grep "^\s*linux" /boot/grub2/grub.cfg | egrep "security=apparmor" | wc -l) -eq 0 ]; then 
+   echo "{ \"apparmorenb_1712_audit\" : \"FAILED\" }"
+else
+   echo "{ \"apparmorenb_1712_audit\" : \"PASSED\" }"
+fi

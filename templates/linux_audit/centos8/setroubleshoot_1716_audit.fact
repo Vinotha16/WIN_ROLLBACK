@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.6 - Ensure SETroubleshoot is not installed (Scored)
+
+if [ "$(rpm -qa setroubleshoot | grep "setroubleshoot-[0-9]\+" | wc -l)" -gt 0 ]; then
+   echo "{\"setroubleshoot_1716_audit\" : \" FAILED\"}"
+else
+   echo "{\"setroubleshoot_1716_audit\" : \"PASSED\"}"
+fi

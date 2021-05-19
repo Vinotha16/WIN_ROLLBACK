@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.3 - Ensure talk client is not installed (Scored)
+
+if [ $(rpm -qa talk | wc -l) -ne 0 ]; then
+   echo "{\"talkc_233_audit\" : \"FAILED\"}"
+else
+   echo "{\"talkc_233_audit\" : \"PASSED\"}"
+   
+fi
+
+

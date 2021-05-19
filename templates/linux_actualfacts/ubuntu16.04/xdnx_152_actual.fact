@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(dmesg |grep -E "NX|XD" | grep "active")
+if [ "$(sudo dmesg | grep "NX.*active" 2>/dev/null | wc -l)" -eq 0 ]; then
+   echo "{ \"xdnx_152_actual\" : \"\" }"
+else
+   echo "{ \"xdnx_152_actual\" : \"$cmd\" }"
+   
+fi

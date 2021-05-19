@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q samba)
+if [ $(sudo rpm -qa samba | wc -l) -ne 0 ]; then
+  echo "{ \"samba_2211_actual\" : \"\" }"
+else
+  echo "{ \"samba_2211_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list httpd 2>/dev/null | grep ":on" | wc -l) -eq 1 ]; then
+  echo "{ \"http_2210_actual\" : \"\" }"
+else
+  echo "{ \"http_2210_actual\" : \"not enabled\" }"
+exit 1
+fi
+

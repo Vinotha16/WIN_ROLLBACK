@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(nft list tables | grep "table inet filter")
+if [ $(nft list tables | wc -l) -eq 0 ]; then
+	echo "{ \"tablexists_3432_actual\" : \"\" }"
+else
+	echo "{ \"tablexists_3432_actual\" : \"$cmd\" }"
+fi

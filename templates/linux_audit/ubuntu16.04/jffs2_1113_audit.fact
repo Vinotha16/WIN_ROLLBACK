@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.1.3 - Ensure mounting of jffs2 filesystems is disabled (Scored)
+
+if [ "$(sudo modprobe -n -v jffs2 2>/dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(sudo lsmod | grep jffs2 | wc -l)" -ne 0 ]; then
+   echo "{\"jffs2_1113_audit\" : \"FAILED\"}"
+else
+   echo "{ \"jffs2_1113_audit\" : \"PASSED\"}"
+   exit 1
+fi

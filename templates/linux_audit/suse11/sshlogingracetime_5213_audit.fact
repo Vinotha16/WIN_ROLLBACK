@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.13 - Ensure SSH LoginGraceTime is set to one minute or less (Scored)
+
+if [ $(sshd -T 2> /dev/null | grep -i 'logingracetime' | awk -F ' ' '{print $2}') -eq 0 ]; then
+   echo "{ \"sshlogingracetime_5213_audit\" : \"FAILED\" }"
+else
+     if [ $(sshd -T 2> /dev/null | grep -i 'logingracetime' | awk -F ' ' '{print $2}') -gt 60 ]; then
+          echo "{ \"sshlogingracetime_5213_audit\" : \"FAILED\" }"
+     else
+          echo "{ \"sshlogingracetime_5213_audit\" : \"PASSED\" }"
+     fi
+fi

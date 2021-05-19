@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $( sudo df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 | wc -l) -eq 0 ] || [ $( sudo find / -xdev -type f -perm -4000 | wc -l) -eq 0 ]; then
+   echo "{ \"suidexec_1_actual\" : \"\" }"
+else
+   echo "{ \"suidexec_1_actual\" : \"Audit SUID executables\" }"
+   exit 1
+fi
+

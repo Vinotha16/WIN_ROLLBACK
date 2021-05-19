@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/ssh/sshd_config)
+if [ $(sudo stat /etc/ssh/sshd_config | grep "0600.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permsshd_521_actual\" : \"\" }"
+else
+   echo "{ \"permsshd_521_actual\" : \"${cmd}\" }"
+fi

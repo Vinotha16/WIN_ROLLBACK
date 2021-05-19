@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(ip6tables -L INPUT -v -n | egrep ".*ACCEPT.*all.*lo.*::/0.*::/0" | paste -sd ",")
+b=$(ip6tables -L INPUT -v -n | egrep ".*DROP.*all.*::1.*::/0" | paste -sd ",")
+c=$(ip6tables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*lo.*::/0.*::/0" | paste -sd ",")
+cmd="${a}","${b}","${c}"
+if [ $(sudo ip6tables -L INPUT -v -n | egrep ".*ACCEPT.*all.*lo.*::/0.*::/0" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L INPUT -v -n | egrep ".*DROP.*all.*::1.*::/0" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*lo.*::/0.*::/0" | wc -l) -eq 0 ]; then
+    echo "{ \"ipv6loopbacktraffic_3522_actual\" : \"\"}"
+else
+    echo "{ \"ipv6loopbacktraffic_3522_actual\" : \"${cmd}\"}"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.11 - Ensure openbsd-inetd is not installed (Scored)
+
+if [ $(sudo dpkg -s openbsd-inetd 2> /dev/null | grep installed | wc -l) -ne 0 ]; then
+   echo "{ \"openxinetd_2111_audit\" : \"FAILED\" }"
+else
+   echo "{ \"openxinetd_2111_audit\" : \"PASSED\" }"
+   
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/group-)
+if [ $(sudo stat /etc/group- | grep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permgroupi_618_actual\" : \"\" }"
+else
+   echo "{ \"permgroupi_618_actual\" : \"$cmd\" }"
+   
+fi

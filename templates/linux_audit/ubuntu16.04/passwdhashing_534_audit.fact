@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.4 - Ensure password hashing algorithm is SHA-512 (Scored)
+
+if [ $(sudo egrep "password.*success=1.*pam_unix.so.*sha512" /etc/pam.d/common-password | wc -l) -eq 0 ]; then
+   echo "{\"passwdhashing_534_audit\" : \"FAILED\"}"
+else
+   echo "{\"passwdhashing_534_audit\" : \"PASSED\"}"
+
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.2 - Ensure auditd service is enabled and running
+
+if [ $(sudo systemctl is-enabled auditd | grep enabled | wc -l) -eq 0 ] || [ $(sudo systemctl status auditd | grep "Active: active (running)" | wc -l) -eq 0 ]; then
+   echo "{ \"auditdservice_4112_audit\" : \"FAILED\"}"
+else
+   echo "{ \"auditdservice_4112_audit\" : \"PASSED\"}"
+   exit 0
+fi
+

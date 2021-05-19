@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 -o "^net.ipv4.conf.all.accept_redirects=0")
+b=$(cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 -o "^net.ipv4.conf.default.accept_redirects=0")
+cmd="${a}","${b}"
+if [ "$(sysctl net.ipv4.conf.all.accept_redirects)" != "net.ipv4.conf.all.accept_redirects = 0" ] || [ "$(sysctl net.ipv4.conf.default.accept_redirects)" != "net.ipv4.conf.default.accept_redirects = 0" ] || [ $(grep "^net.ipv4.conf.all.accept_redirects=0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] && [ $(grep "^net.ipv4.conf.default.accept_redirects=0" /etc/sysctl.conf  /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+   echo "{ \"icmp_322_actual\" : \"\" }"
+else
+   echo "{ \"icmp_322_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+

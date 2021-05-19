@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(mount | grep /dev/shm.*nosuid)
+if [ $(mount | grep /dev/shm.*nosuid | wc -l) -eq 0 ]; then
+   echo "{ \"shmnosuid_119_actual\" : \"\" }"
+else
+   echo "{ \"shmnosuid_119_actual\" : \"${cmd}\" }"
+   exit 0
+fi

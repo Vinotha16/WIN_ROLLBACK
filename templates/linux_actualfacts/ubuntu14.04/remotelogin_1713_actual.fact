@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/issue.net | grep "Authorized.*uses.*only.*All.*activity.*monitored.*and.*reported")
+if [ "$(cat /etc/issue.net | grep "Authorized.*uses.*only.*All.*activity.*monitored.*and.*reported" | wc -l)" -eq 0 ] || [ "$(egrep '(\\v|\\r|\\m|\\s)' /etc/issue.net | wc -l)" -ne 0 ]; then
+    echo "{ \"remotelogin_1713_actual\" : \"\" }"
+else
+    echo "{ \"remotelogin_1713_actual\" : \"${cmd}\" }"
+#exit 1
+fi
+

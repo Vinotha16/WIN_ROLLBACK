@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(ufw status verbose | grep "Anywhere.*DENY.*IN.*127.0.0.0/8")
+b=$(ufw status verbose | grep "Anywhere.*v6.*DENY.*IN.*::1")
+c=$(ufw status verbose | grep "Anywhere.*ALLOW.*OUT.*Anywhere.*on.*lo")
+cmd="${a}","${b}","${c}"
+if [ $(ufw status verbose | grep "Anywhere.*DENY.*IN.*127.0.0.0/8" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "Anywhere.*v6.*DENY.*IN.*::1" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "Anywhere.*ALLOW.*OUT.*Anywhere.*on.*lo" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwloopbacktraffic_3514_actual\" : \"\" }"
+else
+   echo "{ \"nfwloopbacktraffic_3514_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.6 - Ensure rsh server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list | grep 'rexec.*on' | wc -l) -ne 0 ] || [ $( sudo chkconfig --list | grep 'rlogin.*on' | wc -l) -ne 0 ] || [ $( sudo chkconfig --list | grep 'rsh.*on' | wc -l) -ne 0 ]; then
+       echo "{ \"rsh_216_audit\" : \"FAILED\"}"
+else
+      echo "{ \"rsh_216_audit\" : \"PASSED\"}"
+      
+fi

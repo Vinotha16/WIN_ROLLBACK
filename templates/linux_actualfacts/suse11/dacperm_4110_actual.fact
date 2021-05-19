@@ -1,0 +1,19 @@
+#!/bin/bash
+a=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod")
+b=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod")
+c=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod")
+d=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod")
+e=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod")
+f=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod")
+cmd="${a}","${b}","${c}","${d}","${e}","${f}"
+cmd1="${b}","${d}","${f}"
+if [ "$(sudo grep perm_mod /etc/audit/audit.rules 2> /dev/null | wc -l)" -eq 0 ] || [ "$(sudo auditctl -l | grep perm_mod | wc -l)" -eq 0 ]; then
+   echo "{ \"dacperm_4110_actual\": \"\" }"
+else
+   if [ "$(uname -m)" == 'x86_64' ]; then
+         echo "{\"dacperm_4110_actual\":\"${cmd}\"}"
+     else
+         echo "{\"dacperm_4110_actual\":\"${cmd1}\"}"
+   fi
+exit 1
+fi

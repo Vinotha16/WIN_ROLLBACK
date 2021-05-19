@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled (Scored)
+
+if [ "$(sudo modprobe -n -v freevxfs 2>/dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(sudo lsmod | grep freevxfs | wc -l)" -ne 0 ]; then
+   echo "{\"freevxfs_1112_audit\" : \"FAILED\"}"
+else
+   echo "{ \"freevxfs_1112_audit\" : \"PASSED\"}"
+   exit 1
+fi

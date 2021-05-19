@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.18 - Ensure SSH warning banner is configured (Scored)
+
+if [ $(sudo grep "^Banner" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshwarningbanner_5218_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshwarningbanner_5218_audit\" : \"PASSED\" }"
+   
+fi
+
+

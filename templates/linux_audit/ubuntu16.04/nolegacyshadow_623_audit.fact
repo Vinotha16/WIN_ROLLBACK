@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.3 - Ensure no legacy "+" entries exist in /etc/shadow (Scored)
+
+if [ $(sudo grep '^\+:' /etc/shadow | awk -F: '{print $1}' | wc -l) -ne 0 ]; then
+   echo "{ \"nolegacyshadow_623_audit\" : \"FAILED\"}"
+else
+   echo "{ \"nolegacyshadow_623_audit\" : \"PASSED\"}"
+  
+fi
+

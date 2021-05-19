@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.8 - Ensure SSH MaxAuthTries is set to 4 or less (Scored)
+
+if [ $(sshd -T 2> /dev/null | grep -i 'maxauthtries' | awk -F ' ' '{print $2}') -gt 4 ]; then
+   echo "{ \"sshmaxauthtries_538_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshmaxauthtries_538_audit\" : \"PASSED\" }"
+   
+fi

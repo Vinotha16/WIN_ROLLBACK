@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+SOFTWARE\Policies\Microsoft\Windows\WDI\{9c5a40da-b965-4fc3-8781-88dd50a6299d}
+ScenarioExecutionEnabled
+DWORD:
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+
+# 2.2.14 - Ensure SNMP Server is not enabled (Scored)
+
+if [ $(sudo systemctl is-enabled snmpd 2>/dev/null | grep enabled | wc -l) -eq 1 ]; then
+
+   echo "{\"snmp_2214_audit\" : \"FAILED\"}"
+
+else
+  
+  echo "{\"snmp_2214_audit\" : \"PASSED\"}"
+
+fi

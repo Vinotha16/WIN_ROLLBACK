@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(iptables -L INPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.")
+b=$(iptables -L INPUT -v -n | egrep ".*DROP.*all.*--.*1")
+c=$(iptables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.")
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(ip6tables -L INPUT -v -n | grep 'ACCEPT.*all.*lo.*/0' | wc -l) -eq 0 ] || [ $(ip6tables -L INPUT -v -n | grep 'DROP.*all.**.**.*1' | wc -l) -eq 0 ] || [ $(ip6tables -L OUTPUT -v -n | grep 'ACCEPT.*all.*lo.*/0' | wc -l) -eq 0 ]; then 
+ echo "{ \"ipv6loopbacktraffic_35422_actual\" : \"\" }"
+else
+   echo "{ \"ipv6loopbacktraffic_35422_actual\" : \"${cmd}\" }"
+   exit 0
+fi

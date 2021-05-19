@@ -1,0 +1,14 @@
+#!/bin/bash
+a=$(ip6tables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | paste -sd ",")
+b=$(ip6tables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | paste -sd ",")
+c=$(ip6tables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | paste -sd ",")
+cmd="${a}","${b}","${c}"
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+      if [ $(sudo ip6tables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | wc -l) -eq 0 ] ||[ $(sudo ip6tables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | wc -l) -eq 0 ] || [ $(sudo ip6tables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | wc -l) -eq 0 ]; then
+          echo "{ \"ipv6firewallpolicy_35331_actual\" : \"\" }"
+      else
+          echo "{ \"ipv6firewallpolicy_35331_actual\" : \"$cmd\" }"
+      fi
+else
+     echo "{ \"ipv6firewallpolicy_35331_actual\" : \"ipv6 is disabled\" }"
+fi

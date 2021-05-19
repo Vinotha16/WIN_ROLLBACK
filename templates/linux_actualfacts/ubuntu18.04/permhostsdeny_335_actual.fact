@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/hosts.deny)
+if [ $(sudo stat /etc/hosts.deny | grep 0644 | grep ".*Uid:.*0/.*root.*" | grep ".*Gid:.*0/.*root.*" | wc -l) -eq 0 ]; then
+   echo "{ \"permhostsdeny_335_actual\" : \"\" }"
+else
+   echo "{ \"permhostsdeny_335_actual\" : \"$cmd\" }"
+   
+fi

@@ -1,0 +1,17 @@
+#!/bin/bash
+failfact=$(grep ':$2' /etc/shadow | awk 'NR != 1' | awk -F: '$4<7 {print $4 ,$1}' | paste -sd ",")
+failfact1=$(cat /etc/login.defs | grep "^PASS_MIN_DAYS.*"  | expand -t 1)
+count=0
+if [ $(grep "^PASS_MIN_DAYS" /etc/login.defs | awk '{print $2}') -lt 7 ]; then
+         for i in  $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1); do
+                if [ $(chage --list $i | grep "Minimum.*:.*" | awk -F ':' '{print $2}' ) -lt 7 ]; then
+                        count=$((count+1))
+                fi
+        done
+fi
+if [ "$count" -ne "0" ]; then
+      echo "{ \"minidays_5412_actual\" : \"failed $failfact1,$failfact\" }"
+else
+      echo "{ \"minidays_5412_actual\" : \"minimum days between password changes is configured\" }"
+        exit 1
+fi

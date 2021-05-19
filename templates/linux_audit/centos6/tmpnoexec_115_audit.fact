@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.5 - Ensure noexec option set on /tmp partition (Scored)
+
+if [ $(sudo mount | grep "/tmp.*noexec" | wc -l) -eq 0 ]; then
+   echo "{ \"tmpnoexec_115_audit\" : \"FAILED\"}"
+else
+   echo "{ \"tmpnoexec_115_audit\" : \"PASSED\"}"
+  
+fi
+
+

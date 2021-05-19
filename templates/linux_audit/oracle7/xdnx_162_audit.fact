@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.2 - Ensure XD/NX support is enabled (Not Scored)
+
+if [ $(journalctl | grep 'NX.*protection: active' | wc -l) -eq 0 ]; then
+   echo "{ \"xdnx_162_audit\" : \"FAILED\" }"
+else
+   echo "{ \"xdnx_162_audit\" : \"PASSED\" }"
+
+fi

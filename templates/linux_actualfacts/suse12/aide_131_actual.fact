@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa aide)
+if [ "$(sudo rpm -qa | grep aide | wc -l)" -eq 0 ]; then
+   echo "{ \"aide_131_actual\" : \"\" }"
+else
+   echo "{ \"aide_131_actual\" : \"$cmd\" }"
+fi
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+a=$(sudo ip6tables -L INPUT -v -n | grep ".*ACCEPT.*all.*lo.*/0" | paste -sd "," )
+b=$(sudo ip6tables -L INPUT -v -n | grep ".*ACCEPT.*all.*lo.*/0" | paste -sd "," )
+c=$(sudo ip6tables -L INPUT -v -n | egrep ".*DROP.*all.*--.*127.0.0.0/8.*0.0.0.0/0" | paste -sd "," )
+cmd="${a}","${b}","${c}"
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+   if [ $(sudo ip6tables -L INPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L INPUT -v -n | egrep ".*DROP.*all.*--.*127.0.0.0/8.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $( sudo ip6tables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ]; then
+        echo "{ \"ipv6loopbacktraffic_35332_actual\" : \"\"}"
+   else
+        echo "{ \"ipv6loopbacktraffic_35332_actual\" : \"$cmd\"}"
+   exit 0
+   fi
+else
+   echo "{ \"ipv6loopbacktraffic_35332_actual\" : \"ipv6 is disabled\"}"
+fi
+

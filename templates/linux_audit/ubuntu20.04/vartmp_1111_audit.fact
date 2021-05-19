@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.11 - Ensure separate partition exists for /var/tmp 
+
+if [ $( mount | grep -E '\s/var/tmp\s' | wc -l) -eq 0 ]; then
+   echo "{ \"vartmp_1111_audit\" : \"FAILED\" }"
+else
+   echo "{ \"vartmp_1111_audit\" : \"PASSED\" }"
+fi

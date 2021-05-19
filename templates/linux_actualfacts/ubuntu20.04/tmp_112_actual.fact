@@ -1,0 +1,10 @@
+#!/bin/bash
+cmd=$(mount | grep -E '\s/tmp\s')
+if [ $(mount | grep -E '\s/tmp\s' | wc -l) -eq 0 ] || [ $(grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#' | wc -l) -eq 0]; then
+   echo "{ \"tmp_112_actual\" : \"\" }"
+else
+   echo "{ \"tmp_112_actual\" : \"$cmd\" }"
+   
+fi
+
+  

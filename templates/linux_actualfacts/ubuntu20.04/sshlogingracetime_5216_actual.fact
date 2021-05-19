@@ -1,0 +1,12 @@
+#!/bin/bash
+cmd=$(sudo sshd -T 2> /dev/null | grep -i 'logingracetime')
+if [ $(sshd -T 2> /dev/null | grep -i 'logingracetime' | awk -F ' ' '{print $2}') -eq 0 ]; then
+   echo "{ \"sshlogingracetime_5216_actual\" : \"\" }"
+else
+     if [ $(sshd -T 2> /dev/null | grep -i 'logingracetime' | awk -F ' ' '{print $2}') -gt 60 ]; then
+          echo "{ \"sshlogingracetime_5216_actual\" : \"\" }"
+     else
+          echo "{ \"sshlogingracetime_5216_actual\" : \"$cmd\" }"
+     fi
+fi
+

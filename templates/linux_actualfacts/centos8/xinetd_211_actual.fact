@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $( rpm -qa xinetd | wc -l ) -ne 0 ]; then
+   echo "{ \"xinetd_211_actual\" : \"\" }"
+else
+   echo "{ \"xinetd_211_actual\" : \"xinetd is not installed\" }"
+fi

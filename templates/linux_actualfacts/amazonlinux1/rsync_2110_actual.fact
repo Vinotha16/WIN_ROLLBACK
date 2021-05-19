@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(chkconfig --list | grep 'rsync.*on' | wc -l) -ne 0 ]; then
+   echo "{ \"rsync_2110_actual\" : \"\" }"
+else
+   echo "{ \"rsync_2110_actual\" : \"not enabled\" }"
+   exit 1
+fi
+

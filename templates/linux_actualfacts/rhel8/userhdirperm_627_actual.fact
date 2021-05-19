@@ -1,0 +1,11 @@
+#!/bin/bash
+fail=$(grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7 != "/sbin/nologin" && $7 != "/bin/false" {print $6}')
+failfact=$(stat -c "%a %n" $fail | egrep -v "700|750" | paste -sd ",")
+for a in `grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7 != "/sbin/nologin" && $7 != "/bin/false" {print $6}'| wc -l`; do
+       if [ $( grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7 != "/sbin/nologin" && $7 != "/bin/false" {print $6}'| xargs -l stat 2> /dev/null | egrep "750/|700/" | wc -l) -ne "$a" ]; then
+               echo "{ \"userhdirperm_627_actual\" : \"failed $failfact\"}"
+       else
+               echo "{ \"userhdirperm_627_actual\" : \"users have home directories permissions with 750 or more\"}"
+               exit 0
+       fi
+done

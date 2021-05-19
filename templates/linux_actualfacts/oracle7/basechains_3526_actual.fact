@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(sudo nft list ruleset | grep "hook input" | expand -t 1 )
+b=$(sudo nft list ruleset | grep "hook forward" | expand -t 1 )
+c=$(sudo nft list ruleset | grep "hook output" | expand -t 1 )
+cmd="${a}","${b}","${c}"
+if [ $(sudo nft list ruleset | grep "hook input" | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep "hook forward" | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep "hook output" | wc -l) -eq 0 ]; then
+   echo "{ \"basechains_3526_actual\" : \"\" }"
+else
+   echo "{ \"basechains_3526_actual\" : \"$cmd\" }"
+   exit 1
+fi
+
+

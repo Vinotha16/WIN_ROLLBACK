@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled firewalld | grep 'masked')
+if [ $(sudo systemctl is-enabled firewalld | grep 'masked' | wc -l) -eq 0 ]; then
+   echo "{ \"firewalldis_35313_actual\" : \"\" }"
+else
+   echo "{ \"firewalldis_35313_actual\" : \"$cmd\" }"
+
+fi

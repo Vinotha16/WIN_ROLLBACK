@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.2.3 - Ensure syslog-ng default file permissions configured (Scored)
+
+if [ $(sudo grep "^options.*perm(0640)" /etc/syslog-ng/syslog-ng.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"4.2.2.3 - Syslog-ng default file permissions is not configured\" : \"FAILED\"}"
+else
+   echo "{\"syslogngperm_4223_audit\" : \"PASSED\"}"
+  
+fi

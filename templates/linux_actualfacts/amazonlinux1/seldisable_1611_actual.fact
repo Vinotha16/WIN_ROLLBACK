@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo grep "^\s*kernel" /boot/grub/menu.lst | egrep "selinux=0|enforcing=0" | wc -l) -ne 0 ]; then
+   echo "{ \"seldisable_1611_actual\"  :  \"\" }"
+else
+   echo "{ \"seldisable_1611_actual\" : \"SELinux is disabled in bootloader configuration\" }"
+#exit 1
+fi

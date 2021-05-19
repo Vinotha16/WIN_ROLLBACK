@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#  5.2.20 Ensure system-wide crypto policy is not over-ridden (Scored)
+
+if [ $( sudo grep '^/s*CRYPTO_POLICY=' /etc/sysconfig/sshd | wc -l) -eq 1 ]; then
+	echo "{\"sshsyscrytopolicy_5220_audit\" : \"FAILED\"}"
+else
+	echo "{\"sshsyscrytopolicy_5220_audit\" : \"PASSED\"}"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.8 - Ensure at/cron is restricted to authorized users (Scored)
+
+if [ $(sudo stat /etc/cron.allow 2> /dev/null | grep "0600.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ] || [ $(sudo stat /etc/at.allow 2> /dev/null | grep "0600.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ] || [ $(sudo stat /etc/cron.deny 2>/dev/null | wc -l) -ne 0 ] || [ $(sudo stat /etc/at.deny 2>/dev/null 2>/dev/null | wc -l) -ne 0 ]; then
+   echo "{\"atcron_518_audit\":\"FAILED\"}"
+else
+   echo "{ \"atcron_518_audit\" : \"PASSED\" }"
+   
+fi

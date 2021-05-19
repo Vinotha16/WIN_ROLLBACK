@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.5 - Ensure default user shell timeout is 900 seconds or less (Scored)
+
+if [ $(grep -P '^\s*([^$#;]+\s+)*TMOUT=(9[0-9][1-9]|0+|[1-9]\d{3,})\b\s*(\S+\s*)*(\s+#.*)?$' /etc/profile /etc/profile.d/*.sh /etc/bashrc | wc -l) -ne '0' ]; then
+   echo "{ \"usershelltimeout_545_audit\" : \"FAILED\" }"
+else
+   echo "{ \"usershelltimeout_545_audit\" : \"PASSED\" }"
+
+fi

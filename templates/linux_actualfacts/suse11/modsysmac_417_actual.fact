@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(cat /etc/audit/audit.rules | grep "/etc/selinux/ -p wa -k MAC-policy")
+b=$(cat /etc/audit/audit.rules | grep "/usr/share/selinux/ -p wa -k MAC-policy")
+c=$(cat /etc/audit/audit.rules | grep "/etc/apparmor/ -p wa -k MAC-policy")
+d=$(cat /etc/audit/audit.rules | grep "/etc/apparmor.d/ -p wa -k MAC-policy")
+cmd="${a}","${b}","${c}","${d}"
+if [ $(sudo grep MAC-policy /etc/audit/audit.rules | wc -l) -eq 0 ] || [ $(auditctl -l | grep "MAC-policy" | wc -l) -eq 0 ]; then
+   echo "{ \"modsysmac_417_actual\" : \"\" }"
+else
+   echo "{ \"modsysmac_417_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

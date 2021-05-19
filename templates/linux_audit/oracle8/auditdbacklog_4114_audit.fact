@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.4 - Ensure audit_backlog_limit is sufficient (Scored)
+
+if [ "$(sudo grep -E -i '^GRUB_CMDLINE_LINUX.*audit_backlog_limit=8192.*' /etc/default/grub 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"4.1.1.4 - Ensure audit_backlog_limit is not sufficient\" : \"FAILED\" }"
+else
+   echo "{ \"auditdbacklog_4114_audit\" : \"PASSED\" }"
+   exit 1
+fi

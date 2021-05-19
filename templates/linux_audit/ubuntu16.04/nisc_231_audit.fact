@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.1 - Ensure NIS Client is not installed (Scored)
+
+if [ $(sudo dpkg -s nis 2> /dev/null | grep "installed" | wc -l) -ne 0 ]; then
+   echo "{ \"nisc_231_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nisc_231_audit\" : \"PASSED\" }"
+   exit 1
+fi

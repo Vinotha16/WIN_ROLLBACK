@@ -1,0 +1,26 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.1.2 - Ensure minimum days between password changes is 7 or more (Scored)
+
+
+counter=0
+
+if [ $(grep "^PASS_MIN_DAYS 7" /etc/login.defs | wc -l) -eq 0 ]; then
+         for i in  $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1); do
+                if [ $(chage --list $i | grep "Minimum.*days between password change.*:.*7" | wc -l) -eq 0 ]; then
+                        counter=$((counter+1))
+
+                fi
+        done
+
+fi
+
+if [ "$counter" -ne "0" ]; then
+      echo "{ \"minidays_5412_audit\" : \"FAILED\" }"
+
+else
+        echo "{ \"minidays_5412_audit\" : \"PASSED\" }"
+
+        
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo grep "set superusers" /boot/grub/grub.cfg | awk -F'"' {'print $2'})
+if [ "$(sudo grep "set superusers" /boot/grub/grub.cfg | awk -F'"' {'print $2'})" != 'root' ] || [ $(sudo grep "^password" /boot/grub/grub.cfg | wc -l) -eq 0 ]; then
+   echo "{ \"bootloadpass_142_actual\" : \"\" }"
+else
+   echo "{ \"bootloadpass_142_actual\" : \"$cmd\" }"
+fi

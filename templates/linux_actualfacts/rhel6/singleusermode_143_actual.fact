@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo grep "^SINGLE=/sbin/sulogin" /etc/sysconfig/init)
+if [ $(sudo grep "^SINGLE=/sbin/sulogin" /etc/sysconfig/init | wc -l) -eq 0 ]; then
+   echo "{ \"singleusermode_143_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_143_actual\" : \"$cmd\" }"
+   exit 1
+fi

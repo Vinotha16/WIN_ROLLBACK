@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.1.8 - Ensure mounting of FAT filesystems is limited (Not Scored)
+
+if [ $(sudo  modprobe --showconfig 2>/dev/null | grep vfat | grep "install vfat /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep vfat | wc -l) -ne 0 ]; then
+   echo "{ \"fat_1118_audit\" : \"FAILED\" }"
+else
+   echo "{ \"fat_1118_audit\" : \"PASSED\" }"
+
+fi

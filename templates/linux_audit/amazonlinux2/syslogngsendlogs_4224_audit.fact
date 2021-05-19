@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.2.4 - Ensure syslog-ng is configured to send logs to a remote log host (Not Scored)
+
+if [ $(sudo grep "logserver" /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+    echo "{ \"syslogngsendlogs_4224_audit\" : \"FAILED\"}"
+else
+    echo "{ \"syslogngsendlogs_4224_audit\" : \"PASSED\"}"
+fi
+

@@ -1,0 +1,33 @@
+---
+####RHEL-7####
+bootloader_password_rhel7: zippyops@123
+Selinux_rhel7: enforcing
+subscriptionmanager_user_rhel7: zippyops
+subscriptionmanager_pass_rhel7: Zippyops@123
+remote_server_chrony_rhel7: sample.zippy.com
+remote_server_ntp_rhel7: sample.zippy.com
+nonessen_service_rhel7:
+ntp_chrony_rhel7: chrony
+zone_name_rhel7: customezone
+interface_name_rhel7: eth0
+#unnecservport_service_rhel7:   #unnecservport
+#unnecservport_port_rhel7:      #unnecservport
+table_name_rhel7: filter
+table_name_bc_rhel7: filter
+base_chain_name_input_rhel7: input
+base_chain_name_output_rhel7: output
+base_chain_name_forward_rhel7: forward
+audit_log_size_rhel7: 8
+MaxAuthTries_rhel7: MaxAuthTries 4
+PermitRootLogin_rhel7: PermitRootLogin no
+ClientAliveInterval_rhel7: ClientAliveInterval 300
+ClientAliveCountMax_rhel7: ClientAliveCountMax 0
+Pass_max_days_rhel7: 365
+Pass_min_days_rhel7: 7
+Pass_warn_age_rhel7: 7
+allowusers_rhel7: ansible
+allowgroups_rhel7:
+denyusers_rhel7:
+denygroups_rhel7:
+db_no_rhel7: 1
+update_rhel7: 

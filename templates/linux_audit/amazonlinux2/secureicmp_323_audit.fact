@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.2.3 - Ensure secure ICMP redirects are not accepted (Scored)
+
+if [ $(sudo sysctl net.ipv4.conf.all.secure_redirects | grep "0" | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv4.conf.default.secure_redirects | grep "0" | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.all.secure_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.secure_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+    echo "{ \"secureicmp_323_audit\" : \"FAILED\"}"
+else
+    echo "{ \"secureicmp_323_audit\" : \"PASSED\"}"
+fi
+

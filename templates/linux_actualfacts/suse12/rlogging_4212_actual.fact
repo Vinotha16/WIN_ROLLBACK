@@ -1,0 +1,24 @@
+#!/bin/bash
+a=$(cat /etc/rsyslog.conf | grep "*.emerg.*:omusrmsg:*" | tr -d "[:blank:]" )
+b=$(cat /etc/rsyslog.conf | grep "mail.*-/var/log/mail" | paste -sd "," - | tr -d "[:blank:]")
+c=$(cat /etc/rsyslog.conf | grep "mail.info.*-/var/log/mail.info" | paste -sd "," - | tr -d "[:blank:]" )
+d=$(cat /etc/rsyslog.conf | grep "mail.warning.*-/var/log/mail.warn" | paste -sd "," - | tr -d "[:blank:]")
+e=$(cat /etc/rsyslog.conf | grep "mail.err.*/var/log/mail.err" | paste -sd "," - | tr -d "[:blank:]" )
+f=$(cat /etc/rsyslog.conf | grep "news.crit.*-/var/log/news/news.crit" | paste -sd "," - | tr -d "[:blank:]" )
+g=$(cat /etc/rsyslog.conf | grep "news.err.*-/var/log/news/news.err" | paste -sd "," - | tr -d "[:blank:]" )
+h=$(cat /etc/rsyslog.conf | grep "news.notice.*-/var/log/news/news.notice" | paste -sd "," - | tr -d "[:blank:]" )
+i=$(cat /etc/rsyslog.conf | grep "*.=warning;*.=err.*-/var/log/warn" | paste -sd "," - | tr -d "[:blank:]" )
+j=$(cat /etc/rsyslog.conf | grep "*.crit.*/var/log/warn" | paste -sd "," - | tr -d "[:blank:]" )
+k=$(cat /etc/rsyslog.conf | grep "*.*;mail.none;news.none.*-/var/log/messages" | paste -sd "," - | tr -d "[:blank:]" )
+l=$(cat /etc/rsyslog.conf | grep "local0,local1.*-/var/log/localmessages" | paste -sd "," - | tr -d "[:blank:]" )
+m=$(cat /etc/rsyslog.conf | grep "local2,local3.*-/var/log/localmessages" | paste -sd "," - | tr -d "[:blank:]" )
+n=$(cat /etc/rsyslog.conf | grep "local4,local5.*-/var/log/localmessages" | paste -sd "," - | tr -d "[:blank:]" )
+o=$(cat /etc/rsyslog.conf | grep "local6,local7.*-/var/log/localmessages" | paste -sd "," - | tr -d "[:blank:]" )
+p="${a}","${b}","${c}","${d}","${e}","${f}","${g}","${h}","${i}","${j}","${k}","${l}","${m}","${n}","${o}"
+cmd=${p}
+if [ $(egrep "\*.emerg|mail.\*|mail.info|mail.warning|mail.err|^news.crit|^news.err|^news.notice|/var/log/warn|none;news.none|/var/log/localmessages" /etc/rsyslog.conf | wc -l) -eq 0 ] || [ $(egrep ".*/var/log/warn|.*/var/log/news/news.notice"  /etc/rsyslog.conf | wc -l) -eq 0 ]; then
+   echo "{ \"rlogging_4212_actual\" : \"\" }"
+else
+   echo "{ \"rlogging_4212_actual\": \"${cmd}\" }"
+   exit 1
+fi

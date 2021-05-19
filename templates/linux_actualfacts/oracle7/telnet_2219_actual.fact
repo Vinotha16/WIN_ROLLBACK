@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo rpm -qa telnet-server | wc -l) -ne 0 ]; then
+   echo "{ \"telnet_2219_actual\" : \"\" }"
+else
+   echo "{ \"telnet_2219_actual\" : \"not installed\" }"
+   exit 1
+fi
+

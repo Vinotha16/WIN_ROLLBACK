@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(nft list tables | paste -sd "," -)
+
+if [ $(nft list tables | wc -l) -eq 0 ]; then
+echo "{ \"tablexists_3525_actual\" : \"\" }"
+else
+      echo "{ \"tablexists_3525_actual\" : \"$cmd\" }"
+fi

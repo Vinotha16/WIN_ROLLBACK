@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list | grep 'tftp:.*on' | wc -l) -ne 0 ]; then
+      echo "{ \"tftp_218_actual\" : \"\"}"
+else
+      echo "{ \"tftp_218_actual\" : \"not enabled\"}"
+       
+fi

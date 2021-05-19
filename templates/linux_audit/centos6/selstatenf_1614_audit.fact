@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1.4 - Ensure the SELinux state is enforcing (Scored)
+
+if [ $(grep SELINUX=enforcing /etc/selinux/config | wc -l) -eq 0 ] || [ $(sestatus | grep "Current mode.*enforcing" | wc -l) -eq 0 ]; then
+   echo "{ \"selstate_1614_audit\" : \"FAILED\" }"
+else
+   echo "{ \"selstate_1614_audit\" : \"PASSED\" }"
+   exit 1
+fi

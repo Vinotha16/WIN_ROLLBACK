@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /boot/grub/grub.cfg | grep -o -m1 "audit=1")
+if [ $(sudo grep "^\s*linux.*audit=1" /boot/grub/grub.cfg | wc -l) -eq 0 ]; then
+   echo "{ \"auditd_4111_actual\" : \"\" }"
+else
+   echo "{ \"auditd_4111_actual\" : \"GRUB_CMDLINE_LINUX="audit=1"\" }"
+
+fi

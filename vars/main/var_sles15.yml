@@ -1,0 +1,29 @@
+---
+####SUSE-15####
+bootloader_password_suse15: zippyops@123
+apparmorprofile_suse15: enforce
+remote_server_chrony_suse15: sample.zippy.com
+nonessen_service_suse15:
+zone_name_suse15: customezone
+interface_name_suse15: eth0
+#unnecservport_service_suse15:   #unnecservport
+#unnecservport_port_suse15:      #unnecservport
+table_name_suse15: filter
+table_name_bc_suse15: filter
+base_chain_name_input_suse15: input
+base_chain_name_output_suse15: output
+base_chain_name_forward_suse15: forward
+audit_log_size_suse15: 8
+MaxAuthTries_suse15: MaxAuthTries 4
+PermitRootLogin_suse15: PermitRootLogin no
+ClientAliveInterval_suse15: ClientAliveInterval 300
+ClientAliveCountMax_suse15: ClientAliveCountMax 0
+Pass_max_days_suse15: 365
+Pass_min_days_suse15: 7
+Pass_warn_age_suse15: 7
+allowusers_suse15: ansible
+allowgroups_suse15:
+denyusers_suse15:
+denygroups_suse15:
+
+db_no_suse15:

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.2 - Ensure system accounts are secured (Scored)
+
+if [ $(sudo awk -F: '($1!="root" && $1!="sync" && $1!="shutdown" && $1!="halt" && $1!~/^\+/ && $3<'"$(awk '/^\s*UID_MIN/{print $2}' /etc/login.defs)"' && $7!="'"$(which nologin)"'" && $7!="/bin/false") {print}' /etc/passwd | wc -l) -ne 0 ]; then
+   echo "{ \"sysaccnonlogin_542_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sysaccnonlogin_542_audit\" : \"PASSED\" }"
+   
+fi

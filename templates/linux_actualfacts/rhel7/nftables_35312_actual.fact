@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo  rpm -q nftables | grep "not installed")
+if [ $(sudo  rpm -q nftables | grep "not installed" | wc -l) -eq 0]; then
+    echo "{ \"nftables_35312_actual\" : \"\" }"
+else
+   echo "{ \"nftables_35312_actual\" : \"${cmd}\" }"
+   exit 0
+fi

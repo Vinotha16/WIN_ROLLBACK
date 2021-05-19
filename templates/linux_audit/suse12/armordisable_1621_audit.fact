@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.2.1 - Ensure AppArmor is not disabled in bootloader configuration (Scored)
+
+if [ $(sudo grep "^\s*linux" /boot/grub2/grub.cfg | grep "apparmor=0" | wc -l) -ne 0 ]; then
+   echo "{\"armordisable_1621_audit\" : \"FAILED\"}"
+else
+   echo "{\"armordisable_1621_audit\" : \"PASSED\"}"
+fi

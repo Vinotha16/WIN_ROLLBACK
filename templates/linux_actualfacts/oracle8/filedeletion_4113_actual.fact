@@ -1,0 +1,18 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/delete.rules | grep "exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete")
+b=$(cat /etc/audit/rules.d/delete.rules | grep "exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete")
+c="${a}","${b}"
+cmd=${c}
+d="${b}"
+cmd1=${d}
+if [ $(egrep "unlinkat" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"filedeletion_4113_actual\" : \"\" }"
+else
+  if [ "$(uname -m)" == 'x86_64' ]; then
+        echo "{ \"filedeletion_4113_actual\" : \"${cmd}\" }"
+     else
+        echo "{ \"filedeletion_4113_actual\" : \"${cmd1}\" }"
+  fi
+exit 1
+fi
+

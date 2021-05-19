@@ -1,0 +1,10 @@
+#!/bin/sh
+a=$(cat /etc/bash.bashrc | grep "^TMOUT=600")
+b=$(cat /etc/profile | grep "^TMOUT=600")
+cmd="${a}","${b}"
+if [ $(sudo grep ^TMOUT.*600 /etc/bash.bashrc 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo grep ^TMOUT.*600 /etc/profile | wc -l) -eq 0 ]; then
+   echo "{ \"usershelltimeout_545_actual\" : \"\" }"
+else
+   echo "{ \"usershelltimeout_545_actual\" : \"$cmd\" }"
+ 
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(grep "^kernel.randomize_va_space.*2" /etc/sysctl.conf /etc/sysctl.d/*)
+b=$(cat /etc/systemd/coredump.conf | grep 'ProcessSizeMax=0' | paste -sd ",")
+c=$(cat /etc/systemd/coredump.conf | grep 'Storage=none' | paste -sd ",")
+cmd="${a}","${b}","${c}"
+if [ $(sudo sysctl kernel.randomize_va_space | grep 2 | wc -l) -eq 0 ] || [ $(sudo grep "^kernel.randomize_va_space.*2" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] ; then
+   echo "{ \"aslr_163_actual\" : \"\" }"
+else
+   echo "{ \"aslr_163_actual\" : \"${cmd}\" }"
+
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo dpkg -s sudo 2>/dev/null | grep "installed")
+if [ $(sudo dpkg -s sudo 2>/dev/null | grep "installed" | wc -l) -eq 0 ]; then
+  echo "{ \"sudo_131_actual\" : \"\" }"
+else
+  echo "{ \"sudo_131_actual\" : \"${cmd}\" }"
+fi

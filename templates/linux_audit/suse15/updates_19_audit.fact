@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.9 - Ensure updates_19_audit, patches, and additional security software are installed (Scored)
+
+if [ "$(zypper list-updates | grep 'No updates found' | cut -d '|' -f1)" != "No updates found" ]; then
+   echo "{ \"updates_19_audit\" : \"FAILED\" }"
+else
+   echo "{ \"updates_19_audit\" : \"PASSED\" }"
+fi

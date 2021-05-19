@@ -1,0 +1,11 @@
+#!/bin/bash
+
+a=$(cat /etc/systemd/timesyncd.conf/ | grep "/NTP=0.ubuntu.pool.ntp.org 1.ubuntu.pool.ntp.org 2.ubuntu.pool.ntp.org")
+b=$(cat /etc/systemd/timesyncd.conf/ | grep "/FallbackNTP=ntp.ubuntu.com 3.ubuntu.pool.ntp.org")
+c=$(cat /etc/systemd/timesyncd.conf/ | grep "/RootDistanceMaxSec=1")
+cmd="${a}","${b}","${c}"
+if [ $(systemctl is-enabled systemd-timesyncd.service | grep enabled | wc -l) -eq 0 ]; then
+  echo "{ \"timesynconf_2212_actual\" : \"\" }"
+else
+   echo "{ \"timesynconf_2212_actual\" : \"systemd-timesyncd configured\" }"
+fi

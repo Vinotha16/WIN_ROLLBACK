@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo grep "^\s*[^#]" /etc/audit/audit.rules 2> /dev/null | grep "-e 2" | wc -l) -eq 0 ]; then
+   echo "{ \"auditconfig_4117_actual\" : \"\" }"
+else
+   echo "{ \"auditconfig_4117_actual\" : \"-e 2\" }"
+
+fi

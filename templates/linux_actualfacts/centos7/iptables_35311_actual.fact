@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa iptables)
+if [ $(sudo rpm -qa iptables | wc -l) -eq 1 ] || [ $(sudo rpm -qa iptables-services | wc -l) -eq 1 ]; then
+   echo "{ \"iptables_35311_actual\" : \"$cmd\" }"
+else
+   echo "{ \"iptables_35311_actual\" : \"\" }"
+   exit 1
+fi

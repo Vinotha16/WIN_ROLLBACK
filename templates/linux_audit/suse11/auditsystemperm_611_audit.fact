@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.1 - Audit system file permissions (Not Scored)
+
+if [ $(sudo rpm -Va --nomtime --nosize --nomd5 --nolinkto | wc -l) -eq 0 ]; then
+   echo "{ \"auditsystemperm_611_audit\" : \"FAILED\" }"
+else
+   echo "{ \"auditsystemperm_611_audit\" : \"PASSED\" }"
+fi
+

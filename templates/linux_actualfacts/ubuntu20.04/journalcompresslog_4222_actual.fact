@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(grep -e ^\s*Compress=yes /etc/systemd/journald.conf)
+if [ $(grep -e ^\s*Compress=yes /etc/systemd/journald.conf | wc -l) -eq 0 ]; then
+   echo "{ \"journalcompresslog_4222_actual\" : \"\" }"
+else
+   echo "{ \"journalcompresslog_4222_actual\" : \"${cmd}\" }"
+fi
+
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/passwd)
+if [ $(sudo stat /etc/passwd | grep 0644 | wc -l) -eq 0 ] || [ $(sudo stat /etc/passwd | grep ".*Uid:.*0/.*root" | wc -l) -eq 0 ] || [ $(sudo stat /etc/passwd | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permpasswd\"  : \"\" }"
+else
+   echo "{ \"permpasswd_612_actual\": \"${cmd}\" }"
+   exit 1
+fi
+
+

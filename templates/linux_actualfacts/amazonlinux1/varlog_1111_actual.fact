@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo mount | grep "/var/log" /etc/fstab )
+if [ $(sudo mount | grep /var/log | wc -l) -eq 0 ]; then
+   echo "{ \"varlog_1111_actual\" : \"\" }"
+else
+   echo "{ \"varlog_1111_actual\" : \"$cmd\" }"
+   exit 0
+fi

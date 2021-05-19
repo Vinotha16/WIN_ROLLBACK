@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo grep '^\+:' /etc/group | awk -F: '{print $1}' | wc -l) -ne 0 ]; then
+   echo "{ \"nolegacygroup_625_actual\" : \"\" }"
+else
+   echo "{ \"nolegacygroup_625_actual\" : \"no legacy + entries exist in /etc/group\" }"
+fi

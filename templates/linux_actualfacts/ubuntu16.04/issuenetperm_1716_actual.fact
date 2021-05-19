@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/issue.net)
+if [ "$(stat /etc/issue.net | grep 0644 | grep ".*Uid:.*0/.*root" |  grep ".*Gid:.*0/.*root" | wc -l)" -eq 0 ]; then
+   echo "{ \"issuenetperm_1716_actual\" : \"\" }"
+else
+   echo "{ \"issuenetperm_1716_actual\" : \"${cmd}\" }"
+#exit 1
+fi

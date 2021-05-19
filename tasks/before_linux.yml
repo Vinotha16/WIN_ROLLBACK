@@ -1,0 +1,112 @@
+---
+  - name: removing and creating directory
+    file:
+      path: "/root/linuxcisfacts"
+      state: "{{ item }}"
+    with_items:
+      - absent
+      - directory
+    become: yes
+    tags:
+      - db
+      - all
+
+  - name: creating a directory for facts storing
+    file:
+      path: /root/linuxcisfacts/
+      state: directory
+    ignore_errors: yes
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Reloading ansible_local actual facts
+    setup: fact_path=/etc/ansible/actual.d
+    become: yes
+    become_method: sudo
+    tags:
+      - db
+      - all
+
+  - name: saving all facts to host specific filename for actual facts
+    copy:
+      content: "{{ ansible_local | to_json }}\n"
+      dest: "/root/linuxcisfacts/before_actual_{{ansible_hostname}}.json"
+      mode: 0666
+    failed_when: no
+    become: yes
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Getting the actual json content
+    shell: cat /root/linuxcisfacts/before_actual_{{ansible_hostname}}.json
+    register: beforeactualfact
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Importing the actualfacts values into DB
+    community.mysql.mysql_query:
+      login_host: "{{ db_host }}"
+      login_db: "{{ db }}"
+      login_user: "{{ db_user }}"
+      login_password: "{{ db_passwd }}"
+      query: "UPDATE cis_rollback SET before_actual = '{{ beforeactualfact.stdout }}' WHERE id = '{{ id_no }}';"
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: creating a directory for facts storing
+    file:
+      path: /root/linuxcisfacts/
+      state: directory
+    ignore_errors: yes
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Reloading ansible_local audit facts
+    setup: fact_path=/etc/ansible/audit.d
+    become: yes
+    become_method: sudo
+    tags:
+      - db
+      - all
+
+  - name: saving all facts to host specific filename for audit facts
+    copy:
+      content: "{{ ansible_local | to_json }}\n"
+      dest: "/root/linuxcisfacts/before_audit_{{ansible_hostname}}.json"
+      mode: 0666
+    failed_when: no
+    become: yes
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Getting the audit json content
+    shell: cat /root/linuxcisfacts/before_audit_{{ansible_hostname}}.json
+    register: beforeauditfact
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Importing the db audit values into DB
+    community.mysql.mysql_query:
+      login_host: "{{ db_host }}"
+      login_db: "{{ db }}"
+      login_user: "{{ db_user }}"
+      login_password: "{{ db_passwd }}"
+      query: "UPDATE cis_rollback SET before_audit = '{{ beforeauditfact.stdout }}' WHERE id = '{{ id_no }}';"
+    delegate_to: localhost
+    tags:
+      - db
+      - all

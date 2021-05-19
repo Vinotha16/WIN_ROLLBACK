@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.1.2 - Ensure systemd-timesyncd is configured (Not Scored)
+
+
+if [ $(systemctl is-enabled systemd-timesyncd.service | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"timesynconf_2212_audit\" : \"FAILED\" }"
+else
+   echo "{ \"timesynconf_2212_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(authselect current | grep "Profile ID: custom")
+if [ $(authselect current | grep "Profile ID: custom" | wc -l) -eq 0 ]; then
+   echo "{ \"authselect_531_actual\" : \"\" }"
+else
+   echo "{ \"authselect_531_actual\" : \"$cmd\" }"
+fi

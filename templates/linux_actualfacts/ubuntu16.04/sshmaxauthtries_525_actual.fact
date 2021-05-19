@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sshd -T 2> /dev/null | grep -i 'maxauthtries')
+if [ $(sshd -T 2> /dev/null | grep -i 'maxauthtries' | awk -F ' ' '{print $2}') -gt 4 ]; then
+   echo "{ \"sshmaxauthtries_525_actual\" : \"\" }"
+else
+   echo "{ \"sshmaxauthtries_525_actual\" : \"$cmd\" }"
+fi

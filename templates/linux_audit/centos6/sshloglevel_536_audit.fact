@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.6 - Ensure SSH LogLevel is set to INFO (Scored)
+
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | egrep 'loglevel.*INFO|loglevel.*VERBOSE' | wc -l) -eq 0 ] || [ $(sudo grep -i 'loglevel' /etc/ssh/sshd_config | grep -Evi '(VERBOSE|INFO)' | wc -l) -ne 0 ]; then
+   echo "{ \"sshloglevel_536_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshloglevel_536_audit\" : \"PASSED\" }"
+   
+fi

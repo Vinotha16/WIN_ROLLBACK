@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1.1 - Ensure SELinux is not disabled in bootloader configuration (Scored)
+
+if [ $(sudo grep "^\s*kernel" /boot/grub/menu.lst | egrep "selinux=0|enforcing=0" | wc -l) -ne 0 ]; then
+   echo "{ \"seldisable_1611_audit\" : \"FAILED\" }"
+else
+   echo "{ \"seldisable_1611_audit\" : \"PASSED\" }"
+fi

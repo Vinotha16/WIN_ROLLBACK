@@ -1,0 +1,12 @@
+#!/bin/bash
+
+a=$(ufw status verbose | grep "127.0.0.0./8" | tr '"' " " | paste -sd "," -)
+b=$(ufw status verbose | grep "::1" | tr '"' " " | paste -sd "," -)
+c=$(ufw status verbose | grep "lo" | tr '"' " " | paste -sd "," -)
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(ufw status verbose | grep "127.0.0.0/8" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "::1" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "lo" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwloopbacktraffic_3523_actual\" : \"\" }"
+else
+   echo "{ \"nfwloopbacktraffic_3523_actual\" : \"$cmd\" }"
+fi

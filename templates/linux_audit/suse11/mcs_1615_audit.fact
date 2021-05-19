@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1.5 - Ensure the MCS Translation Service (mcstrans) is not installed (Scored)
+
+if [ "$(sudo rpm -qa mcstrans | wc -l)" -ne 0 ]; then
+   echo "{ \"mcs_1615_audit\" : \"FAILED\" }"
+else
+   echo "{ \"mcs_1615_audit\" : \"PASSED\" }"
+fi

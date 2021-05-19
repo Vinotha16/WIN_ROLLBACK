@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep -E '^\s*auth\s+\S+\s+pam_(faillock|unix)\.so')
+b=$(cat /etc/pam.d/system-auth | grep -E '^\s*auth\s+\S+\s+pam_(faillock|unix)\.so')
+cmd="${a}","${b}"
+if [ $(sudo grep -E '^\s*auth\s+\S+\s+pam_(faillock|unix)\.so' /etc/pam.d/system-auth  /etc/pam.d/password-auth | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_532_actual\" : \"\" }"
+else
+   echo "{ \"lockout_532_actual\" : \"${cmd}\" }"
+   
+fi

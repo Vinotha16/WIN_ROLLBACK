@@ -1,0 +1,15 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters
+DevicePKInitBehavior 
+
+Computer
+SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters
+DevicePKInitEnabled 
+
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

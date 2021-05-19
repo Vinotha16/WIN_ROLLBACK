@@ -1,0 +1,9 @@
+#!/bin/bash
+if  [ -d /etc/xinetd.d/discard ]; then
+        if [ "$(chkconfig --list 2> /dev/null | grep "discard-dgram:.*off" | wc -l)" -eq 0 ] || [ "$(chkconfig --list 2> /dev/null | grep "discard-stream:.*off" | wc -l)" -eq 0 ]; then
+                echo "{ \"discard_213_actual\" : \"\" }"
+        fi
+else
+    echo "{ \"discard_213_actual\" : \"not enabled\" }"
+exit 1
+fi

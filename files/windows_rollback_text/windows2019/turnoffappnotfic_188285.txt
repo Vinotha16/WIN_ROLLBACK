@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\System
+DisableLockScreenAppNotifications
+DWORD:
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

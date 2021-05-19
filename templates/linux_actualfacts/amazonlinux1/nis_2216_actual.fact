@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list ypserv 2>/dev/null | grep ":on" | wc -l) -eq 1 ]; then
+   echo "{ \"nis_2216_actual\" : \"\" }"
+else
+   echo "{ \"nis_2216_actual\" : \"not enabled\" }"
+   exit 1
+fi
+

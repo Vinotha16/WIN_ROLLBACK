@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(egrep "^(server|pool)" /etc/chrony/chrony.conf 2> /dev/null | paste -sd ",")
+if [ $(sudo egrep "^(server|pool)" /etc/chrony/chrony.conf 2> /dev/null | wc -l) -eq 0 ]; then
+     echo "{ \"chrony_2213_actual\" : \"\" }"
+else
+     echo "{ \"chrony_2213_actual\" : \"$cmd\" }"
+
+fi

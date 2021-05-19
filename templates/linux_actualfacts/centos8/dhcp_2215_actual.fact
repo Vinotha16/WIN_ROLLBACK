@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(systemctl is-enabled dhcpd 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+  echo "{ \"dhcp_2215_actual\" : \"\" }"
+else
+  echo "{ \"dhcp_2215_actual\" : \"dhcpd is not enabled\" }"
+exit 1
+fi

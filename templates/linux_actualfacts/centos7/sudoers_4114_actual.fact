@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/scope.rules | grep "/etc/sudoers -p wa -k scope")
+b=$(cat /etc/audit/rules.d/scope.rules | grep "/etc/sudoers.d/ -p wa -k scope")
+cmd="${a}","${b}"
+if [ $(grep scope /etc/audit/rules.d/scope.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(auditctl -l | grep scope | wc -l) -eq 0 ]; then
+   echo "{ \"sudoers_4114_actual\" : \"\" }"
+else
+   echo "{ \"sudoers_4114_actual\" : \"$cmd\" }"
+   exit 1
+fi

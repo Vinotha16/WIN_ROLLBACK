@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.5.2 - Ensure bootloader password is set (Scored)
+
+if [ "$(sudo grep "set superusers" /boot/grub/grub.cfg | awk -F'"' {'print $2'})" != 'root' ] || [ $(sudo grep "^password" /boot/grub/grub.cfg | wc -l) -eq 0] ; then
+   echo "{ \"bootloadpass_152_audit\" : \"FAILED\" }"
+else
+   echo "{ \"bootloadpass_152_audit\" : \"PASSED\" }"
+   
+fi

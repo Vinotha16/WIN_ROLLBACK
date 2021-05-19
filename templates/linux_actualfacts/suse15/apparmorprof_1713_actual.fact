@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(sudo apparmor_status 2>/dev/null | egrep -o -m1 "enforce|complain" | paste -sd "," )
+b=$(sudo apparmor_status 2>/dev/null | grep -o -m1 "0 processes are unconfined" )
+cmd="${a}","${b}"
+if [ $(sudo apparmor_status 2>/dev/null | egrep 'profiles.*enforce mode|profiles.*complain mode' | wc -l) -eq 0 ] || [ $(sudo apparmor_status 2>/dev/null | egrep '0 processes are unconfined'  | wc -l ) -eq 0 ]; then
+   echo "{ \"apparmorprof_1713_actual\" : \"\" }"
+else
+   echo "{ \"apparmorprof_1713_actual\" : \"${cmd}\" }"
+fi

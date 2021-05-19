@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.6 - Ensure permissions on /etc/cron.monthly are configured (Scored)
+
+if [ $(sudo stat /etc/cron.monthly | grep "0700.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permcronmonthly_516_audit\" : \"FAILED\" }"
+else
+   echo "{ \"permcronmonthly_516_audit\" : \"PASSED\" }"
+fi
+

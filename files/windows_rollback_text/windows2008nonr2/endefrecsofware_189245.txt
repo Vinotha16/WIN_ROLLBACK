@@ -1,0 +1,102 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+IE
+SZ:+EAF+ eaf_modules:mshtml.dll;flash*.ocx;jscript*.dll;vbscript.dll;vgx.dll +ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll asr_zones:1;2
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Windows NT\Accessories\wordpad.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\OUTLOOK.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\WINWORD.EXE
+SZ:+ASR asr_modules:flash*.ocx
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\EXCEL.EXE
+SZ:+ASR asr_modules:flash*.ocx
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\POWERPNT.EXE
+SZ:+ASR asr_modules:flash*.ocx
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\MSACCESS.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\MSPUB.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\INFOPATH.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\VISIO.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\VPREVIEW.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\LYNC.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\PPTVIEW.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\OFFICE1*\OIS.EXE
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Adobe\*\Reader\AcroRd32.exe
+SZ:+EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll;AcroForm.api
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Adobe\Acrobat*\Acrobat\Acrobat.exe
+SZ:+EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll;AcroForm.api
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Java\jre*\bin\java.exe
+SZ:-HeapSpray
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Java\jre*\bin\javaw.exe
+SZ:-HeapSpray
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Java\jre*\bin\javaws.exe
+SZ:-HeapSpray
+
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

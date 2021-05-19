@@ -1,0 +1,17 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.19 - Ensure noexec option set on removable media partitions (Not Scored)
+
+MEDIA=$(mount -l -t vfat,iso9660,ext)
+cmd=$( mount -l -t vfat,iso9660,ext | grep -m1 -o "noexec")
+if [[ -z $MEDIA ]]; then
+   echo "{ \"medianoexec_1120_actual\" : \"no removable partition is present\" }"
+else
+        if [ $(  mount -l -t vfat,iso9660,ext | grep "noexec" | wc -l) -eq 0 ]; then
+                  echo "{ \"medianoexec_1120_actual\" : \"\" }"
+        else
+                  echo "{ \"medianoexec_1120_actual\" : \"$cmd\" }"
+        fi
+fi
+

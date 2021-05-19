@@ -1,0 +1,8 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+# 2.2.11 - Ensure IMAP and POP3 server is not enabled (Scored)
+if [ $(dpkg -s dovecot-imapd dovecot-pop3d 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"imap_2211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"imap_2211_audit\" : \"PASSED\" }"
+fi

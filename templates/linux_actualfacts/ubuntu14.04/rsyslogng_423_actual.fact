@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(dpkg -s rsyslog | grep '^Version')
+b=$(dpkg -s syslog-ng | grep '^Version')
+if [ $(sudo dpkg -s rsyslog 2>/dev/null | grep "ok installed" | wc -l) -eq 0 ]; then
+   if [ $(sudo dpkg -s syslog-ng 2>/dev/null | grep "ok installed" | wc -l) -eq 0 ]; then
+      echo "{\"rsyslogng_423_actual\" : \"\"}"
+   else
+      echo "{\"rsyslogng_423_actual\" : \"syslog-ng $b\"}"
+   fi
+else
+   echo "{\"rsyslogng_423_actual\" : \"rsyslog $a\"}"
+fi

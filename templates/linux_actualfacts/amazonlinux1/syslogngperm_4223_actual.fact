@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep "^options.*0640" /etc/syslog-ng/syslog-ng.conf | grep -o "0640")
+if [ $(sudo grep "^options.*0640" /etc/syslog-ng/syslog-ng.conf 2>/dev/null | grep 0640 | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngperm_4223_actual\" : \"\" }"
+else
+   echo "{ \"syslogngperm_4223_actual\" : \"${cmd}\" }"
+   exit 1
+fi

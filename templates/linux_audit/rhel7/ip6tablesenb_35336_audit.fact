@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.3.6 Ensure ip6tables is enabled and running (Automated)
+
+if [ $(sudo systemctl is-enabled ip6tables | grep "enabled" | wc -l) -eq 0 ] || [ $(sudo systemctl status ip6tables | grep " Active: active (running) " | wc -l) -eq 0]; then
+    echo "{ \"ip6tablesenb_35336_audit\" : \"FAILED\" }"
+else
+   echo "{ \"ip6tablesenb_35336_audit\" : \"PASSED\" }"
+   exit 1
+fi
+ 
+

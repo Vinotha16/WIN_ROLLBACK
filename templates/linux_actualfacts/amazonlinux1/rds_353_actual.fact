@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/modprobe.d/CIS.conf | grep "install rds /bin/true")
+if [ $(sudo modprobe -n -v rds | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(lsmod | grep rds | wc -l) -ne 0 ]; then
+   echo "{ \"rds_353_actual\" : \"\" }"
+else
+   echo "{ \"rds_353_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

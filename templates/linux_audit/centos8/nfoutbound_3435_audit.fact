@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#   3.4.3.5 - Ensure outbound and established connections are configured (Not Scored)
+
+if [ $(nft list tables | grep "table inet filter" | wc -l) -eq 0 ]; then
+
+	echo "{ \"nfoutbound_3435_audit\" : \"FAILED\"}"
+else
+	echo "{ \"nfoutbound_3435_audit\" : \"PASSED\"}"
+fi
+

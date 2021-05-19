@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(ufw status numbered | grep "Anywhere on all")
+if [ $(ufw status numbered | grep "Anywhere on all" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwoutbound_3524_actual\" : \"\" }"
+else
+   echo "{ \"nfwoutbound_3524_actual\" : \"${cmd}\" }"
+   
+fi

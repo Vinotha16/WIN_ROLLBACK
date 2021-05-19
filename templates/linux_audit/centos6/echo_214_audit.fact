@@ -1,0 +1,14 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 2.1.4 - Ensure echo services are not enabled (Scored)
+
+if [ -d /etc/xinetd.d/echo ]; then
+
+        if [ $(sudo chkconfig --list 2> /dev/null | grep "echo-dgram:.*off" | wc -l) -eq 0 ] || [ $(sudo chkconfig --list 2> /dev/null | grep "echo-stream:.*off" | wc -l) -eq 0 ]; then
+                echo "{ \"echo_214_audit\"}"
+        fi
+else
+    echo "{ \"echo_214_audit\" : \"PASSED\"}"
+    
+fi

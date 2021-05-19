@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i x11forwarding)
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'x11forwarding.*no' | wc -l) -eq 0 ] || [ $(sudo grep -Ei '^\s*x11forwarding\s+yes' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{ \"sshx11forward_537_actual\" : \"\" }"
+else
+   echo "{ \"sshx11forward_537_actual\" : \"${cmd}\" }"
+   exit 1
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#5.4.1 - Ensure password creation requirements are configured (Scored)
+
+if [ $(grep pam_pwquality.so /etc/pam.d/system-auth /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep ^minlen.*14 /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(grep ^minclass.*4 /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+	echo "{\"passwdcreation_541_audit\" : \"FAILED\"}"
+else
+	echo "{\"passwdcreation_541_audit\" : \"PASSED\"}"
+fi

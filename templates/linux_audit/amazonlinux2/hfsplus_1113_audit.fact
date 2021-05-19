@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.1.3 - Ensure mounting of hfsplus filesystems is disabled (Scored)
+
+if [ "$(sudo modprobe -n -v hfsplus | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(sudo lsmod | grep hfsplus | wc -l)" -ne 0 ]; then
+   echo "{ \"hfsplus_1113_audit\" : \"FAILED\" }"
+else
+   echo "{ \"hfsplus_1113_audit\" : \"PASSED\" }"
+fi
+

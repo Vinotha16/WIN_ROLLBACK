@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.3 - Ensure SELinux policy is configured (Scored)
+
+if [ "$(grep "SELINUXTYPE=targeted" /etc/selinux/config | wc -l)" -eq 0 ] || [ "$(sestatus | grep "Loaded policy name.*targeted" | wc -l)" -eq 0 ]; then
+   echo "{\"selpolicy_1713_audit\" : \"FAILED\"}"
+else
+   echo "{\"selpolicy_1713_audit\" : \"PASSED\"}"
+fi

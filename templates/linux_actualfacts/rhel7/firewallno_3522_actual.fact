@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo systemctl is-enabled firewalld | grep 'enabled' | wc -l) -eq 0 ]; then
+      echo "{ \"firewallno_3522_actual\" : \"\" }"
+else
+      echo "{ \"firewallno_3522_actual\" : \"enabled\" }"
+fi

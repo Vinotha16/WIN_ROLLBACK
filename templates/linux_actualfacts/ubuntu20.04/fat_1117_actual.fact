@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo modprobe -n -v vfat 2> /dev/null | grep "install /bin/true" | paste -sd "," -)
+if [ $(sudo modprobe -n -v vfat 2> /dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep vfat | wc -l) -ne 0 ]; then
+  echo "{ \"fat_1117_actual\" : \"\" }"
+else
+   echo "{ \"fat_1117_actual\" : \"${cmd}\" }"
+   exit 1
+fi

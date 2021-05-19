@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/gshadow-)
+if [ $(sudo stat /etc/gshadow- | grep "0000.*Uid.*0.*root.*Gid.*0.*root" | wc -l) -eq 0 ]; then
+    echo "{ \"permgshadowi_619_actual\" : \"\" }"
+else
+    echo "{ \"permgshadowi_619_actual\": \"$cmd\" }"
+fi

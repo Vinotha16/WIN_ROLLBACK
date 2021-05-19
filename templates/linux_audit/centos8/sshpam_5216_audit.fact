@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.16 - Ensure SSH PAM is enabled (Scored)
+
+if [ $(sshd -T | grep -i '^UsePAM' | wc -l) -eq 0 ]; then
+   echo "{\"sshpam_5216_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshpam_5216_audit\" : \"PASSED\"}"
+fi
+
+

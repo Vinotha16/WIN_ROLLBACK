@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/ssh/sshd_config | grep "^LogLevel INFO")
+if [ $(sudo grep "^LogLevel.*INFO" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshloglevel_523_actual\" : \"\" }"
+else
+   echo "{ \"sshloglevel_523_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

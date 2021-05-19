@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(mount | grep "/tmp.*noexec")
+if [ $(mount | grep "/tmp.*noexec" | wc -l) -eq 0 ]; then
+   echo "{ \"tmpnoexec_115_actual\" : \"\" }"
+else
+   echo "{ \"tmpnoexec_115_actual\" : \"${cmd}\" }"
+   exit 1
+fi

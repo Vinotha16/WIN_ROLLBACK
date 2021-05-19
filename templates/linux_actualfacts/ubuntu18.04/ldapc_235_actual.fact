@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo dpkg -s ldap-utils 2> /dev/null | grep "installed" | wc -l) -ne 0 ]; then
+   echo "{ \"ldapc_235_actual\" : \"\" }"
+else
+   echo "{ \"ldapc_235_actual\" : \"ldap-utils not installed\" }"
+  
+fi

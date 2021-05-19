@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.1 - Ensure cron daemon is enabled and running
+
+if [ $(systemctl is-enabled crond | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"cron_511_audit\" : \"FAILED\"}"
+else
+   echo "{ \"cron_511_audit\" : \"PASSED\"}"
+   exit 1
+fi

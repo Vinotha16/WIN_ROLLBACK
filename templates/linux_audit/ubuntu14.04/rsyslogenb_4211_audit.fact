@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.1.1 - Ensure rsyslog Service is enabled (Scored)
+
+if [ $(sudo service rsyslog status 2> /dev/null | grep "running" | wc -l) -eq 0 ]; then
+   echo "{\"4.2.1.1 - Rsyslog Service is not enabled\" : \"FAILED\"}"
+else
+   echo "{\"rsyslogenb_4211_audit\" : \"PASSED\"}"
+   
+fi

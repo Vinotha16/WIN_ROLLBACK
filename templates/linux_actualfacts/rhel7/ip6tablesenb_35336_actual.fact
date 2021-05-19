@@ -1,0 +1,10 @@
+#!/bin/bash
+cmd=$(sudo systemctl is-enabled ip6tables | grep "enabled" )
+if [ $(sudo systemctl is-enabled ip6tables | grep "enabled" | wc -l) -eq 0 ] || [ $(sudo systemctl status ip6tables | grep " Active: active (running) " | wc -l) -eq 0]; then
+    echo "{ \"ip6tablesenb_35336_actual\" : \"\" }"
+else
+   echo "{ \"ip6tablesenb_35336_actual\" : \"$cmd\" }"
+   exit 1
+fi
+ 
+

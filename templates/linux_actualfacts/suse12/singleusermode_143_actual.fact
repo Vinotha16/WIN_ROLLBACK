@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /usr/lib/systemd/system/rescue.service | egrep "/sbin/sulogin" | tr '"' " ")
+b=$(cat /usr/lib/systemd/system/emergency.service | egrep "/sbin/sulogin" | tr '"' " ")
+c="${a}","${b}"
+cmd=${c}
+if [ $(egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/rescue.service | wc -l) -eq 0 ] || [ $(egrep "/sbin/sulogin|/usr/sbin/sulogin" /usr/lib/systemd/system/emergency.service | wc -l) -eq 0 ] ; then
+   echo "{ \"singleusermode_143_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_143_actual\" : \"${cmd}\" }"
+   exit 1
+fi

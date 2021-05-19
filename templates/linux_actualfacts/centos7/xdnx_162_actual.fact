@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(dmesg | grep "NX" | grep "active" )
+if [ "$(dmesg | grep ' NX' | cut -d' ' -f10)" != 'active' ]; then
+   echo "{ \"xdnx_162_actual\" : \"\" }"
+else
+   echo "{ \"xdnx_162_actual\" : \"$cmd\" }"
+   exit 1
+fi

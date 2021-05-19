@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(systemctl is-enabled ip6tables  | grep "enabled")
+b=$(systemctl status ip6tables | grep " Active: active (running) ")
+cmd="${a}","${b}"
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(systemctl is-enabled ip6tables | grep "enabled" | wc -l) -eq 0 ] || [ $(systemctl status ip6tables | grep " Active: active (running) " | wc -l) -eq 0 ]; then
+        echo "{ \"ip6tablesenb_35336_actual\" : \"\" }"
+    else
+        echo "{ \"ip6tablesenb_35336_actual\" : \"$cmd\" }"
+    fi
+else
+  echo "{ \"ip6tablesenb_35336_actual\" : \"ipv6 is disabled\" }"
+fi

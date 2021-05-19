@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.6.2.4 - Ensure IPv4 firewall rules exist for all open ports (Scored)
+
+if [ $(sudo ss -4tuln | grep "*:22" | wc -l) -eq 0 ] || [ $(sudo iptables -L INPUT -v -n | egrep ".*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW.*tcp dpt.*|.*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*tcp dpt.*state NEW" | wc -l) -eq 0 ]; then
+   echo "{\"firewallrules_3624_audit\" : \"FAILED\"}"
+else
+   echo "{\"firewallrules_3624_audit\" : \"PASSED\"}"
+   
+fi
+
+

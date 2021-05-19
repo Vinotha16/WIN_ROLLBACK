@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.3.2 - Ensure IPv6 redirects are not accepted (Not Scored)
+
+if [ $(sysctl net.ipv6.conf.all.accept_redirects | grep "net.ipv6.conf.all.accept_redirects = 0" | wc -l) -eq 0 ] || [ $(sysctl net.ipv6.conf.default.accept_redirects | grep "net.ipv6.conf.default.accept_redirects = 0" | wc -l) -eq 0 ] || [ $(grep "^net.ipv6.conf.all.accept_redirects.*0" /etc/sysctl.conf | wc -l) -eq 0 ] || [ $(grep "^net.ipv6.conf.default.accept_redirects.*0" /etc/sysctl.conf | wc -l) -eq 0 ]; then
+    echo "{ \"ipv6redirects_332_audit\" : \"FAILED\" }"
+else
+    echo "{ \"ipv6redirects_332_audit\" : \"PASSED\" }"
+fi

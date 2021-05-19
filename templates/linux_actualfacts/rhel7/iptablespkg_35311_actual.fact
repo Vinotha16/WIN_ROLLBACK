@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(rpm -q iptables)
+b=$(rpm -q iptables-services)
+cmd="${a}","${b}"
+if [ $(sudo rpm -q iptables iptables-services | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{ \"iptablespkg_35311_actual\" : \"\" }"
+else
+   echo "{ \"iptablespkg_35311_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.13 - Ensure HTTP Proxy Server is not enabled(scored)
+
+if [ "$(sudo service squid3 status 2> /dev/null | grep "running" | wc -l)" -ne 0 ]; then
+   echo "{\"2.2.13 - Ensure HTTP Proxy Server is enabled\" : \"FAILED\"}"
+else
+   echo "{\"proxy_2213_audit\"  :  \"PASSED\"}"
+   
+fi
+
+

@@ -1,0 +1,181 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+IE
+SZ:+EAF+ eaf_modules:mshtml.dll;flash*.ocx;jscript*.dll;vbscript.dll;vgx.dll +ASR asr_modules:npjpi*.dll;jp2iexp.dll;vgx.dll;msxml4*.dll;wshom.ocx;scrrun.dll;vbscript.dll asr_zones:1;2
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Windows Media Player\wmplayer.exe
+SZ:-EAF -MandatoryASLR
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Skype\Phone\Skype.exe
+SZ:-EAF
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Microsoft Lync\communicator.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Windows Live\Mail\wlmail.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Windows Live\Photo Gallery\WLXPhotoGallery.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Windows Live\Writer\WindowsLiveWriter.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\SkyDrive\SkyDrive.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Google\Chrome\Application\chrome.exe
+SZ:+EAF+ eaf_modules:chrome_child.dll
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Google\Google Talk\googletalk.exe
+SZ:-DEP
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Mozilla Firefox\firefox.exe
+SZ:+EAF+ eaf_modules:mozjs.dll;xul.dll
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Mozilla Firefox\plugin-container.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Mozilla Thunderbird\thunderbird.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Mozilla Thunderbird\plugin-container.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Adobe\Adobe Photoshop CS*\Photoshop.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Winamp\winamp.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Opera\opera.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Opera\*\opera.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\WinRAR\winrar.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\WinRAR\rar.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\WinRAR\unrar.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\WinZip\winzip32.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\WinZip\winzip64.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\VideoLAN\VLC\vlc.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Real\RealPlayer\realconverter.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Real\RealPlayer\realplay.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\mIRC\mirc.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\7-Zip\7z.exe
+SZ:-EAF
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\7-Zip\7zG.exe
+SZ:-EAF
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\7-Zip\7zFM.exe
+SZ:-EAF
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Safari\Safari.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\QuickTime\QuickTimePlayer.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\iTunes\iTunes.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Pidgin\pidgin.exe
+SZ:
+
+Computer
+Software\Policies\Microsoft\EMET\Defaults
+*\Foxit Reader\Foxit Reader.exe
+SZ:
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

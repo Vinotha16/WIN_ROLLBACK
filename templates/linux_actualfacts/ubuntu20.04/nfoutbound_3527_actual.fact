@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(nft list ruleset 2>/dev/null | awk '/hook input/,/}/' | grep -E 'ip protocol (tcp|udp|icmp) ct state' | expand -t 1 | paste -sd ",")
+b=$(nft list ruleset 2>/dev/null | awk '/hook output/,/}/' | grep -E 'ip protocol (tcp|udp|icmp) ct state' | expand -t 1 | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(sudo nft list ruleset 2>/dev/null | awk '/hook input/,/}/' | grep -E 'ip protocol (tcp|udp|icmp) ct state' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook output/,/}/' | grep -E 'ip protocol (tcp|udp|icmp) ct state' | wc -l) -eq 0 ]; then
+   echo "{ \"nfoutbound_3527_actual\" : \"\" }"
+else
+   echo "{ \"nfoutbound_3527_actual\" : \"${cmd}\" }"
+   exit 0
+fi

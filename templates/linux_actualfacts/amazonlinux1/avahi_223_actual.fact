@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list avahi-daemon 2>/dev/null | grep ":on" | wc -l) -eq 1 ] ; then
+  echo "{ \"avahi_223_actual\" : \"\" }"
+else
+  echo "{ \"avahi_223_actual\" : \"not enabled\" }"
+  exit 1
+fi

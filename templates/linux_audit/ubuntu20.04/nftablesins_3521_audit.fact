@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.1 - Ensure nftables is installed
+
+if [ $(dpkg-query -s nftables | grep 'Status: install ok installed' | wc -l) -eq 0 ]; then
+   echo "{ \"nftablesins_3521_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nftablesins_3521_audit\" : \"PASSED\" }"
+
+fi

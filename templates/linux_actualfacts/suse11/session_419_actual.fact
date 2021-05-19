@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(sudo egrep "utmp.*session" /etc/audit/audit.rules )
+b=$(sudo egrep "wtmp.*logins|btmp.*logins" /etc/audit/audit.rules | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(sudo egrep "utmp.*session" /etc/audit/audit.rules | wc -l) -eq 0 ] || [ $(sudo egrep "wtmp.*logins|btmp.*logins" /etc/audit/audit.rules | wc -l) -eq 0 ]; then
+   echo "{ \"session_419_actual\" : \"\" }"
+else
+   echo "{ \"session_419_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

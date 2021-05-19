@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/common-auth | grep "^auth.*required.*pam_tally2.so" | expand -t 1 | paste -sd ",")
+b=$(grep -E "pam_(tally2|deny)\.so" /etc/pam.d/common-account | expand -t 1 | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(sudo grep "^auth.*required.*pam_tally2.so" /etc/pam.d/common-auth | wc -l) -eq 0 ] || [ $(sudo grep -E "pam_(tally2|deny)\.so" /etc/pam.d/common-account | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_532_actual\" : \"\" }"
+else
+   echo "{ \"lockout_532_actual\" : \"${cmd}\" }"
+   exit 1
+fi

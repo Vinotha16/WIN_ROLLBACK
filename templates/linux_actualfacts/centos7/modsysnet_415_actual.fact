@@ -1,0 +1,21 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b64 -S sethostname -S setdomainname -k system-locale")
+b=$(cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b32 -S sethostname -S setdomainname -k system-locale")
+c=$(cat /etc/audit/rules.d/*.rules | grep "/etc/issue -p wa -k system-locale")
+d=$(cat /etc/audit/rules.d/*.rules | grep "/etc/issue.net -p wa -k system-locale")
+e=$(cat /etc/audit/rules.d/*.rules | grep "/etc/hosts -p wa -k system-locale")
+f=$(cat /etc/audit/rules.d/*.rules | grep "/etc/sysconfig/network -p wa -k system-locale")
+g=$(cat /etc/audit/rules.d/*.rules | grep "/etc/sysconfig/network-scripts/ -p wa -k system-locale")
+cmd="${a}","${b}","${c}","${d}","${e}","${f}","${g}"
+cmd1="${b}","${c}","${d}","${e}","${f}","${g}"
+if [ $(sudo grep "system-locale" /etc/audit/rules.d/*.rules | wc -l) -eq 0 ]; then
+   echo "{ \"modsysnet_415_actual\" : \"\" }"
+else
+  if [ "$(uname -m)" == 'x86_64' ]; then
+        echo "{ \"modsysnet_415_actual\" : \"${cmd}\" }"
+     else
+        echo "{ \"modsysnet_415_actual\" : \"${cmd1}\" }"
+  fi
+exit 1
+fi
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.13 - Ensure SSH Idle Timeout Interval is configured (Scored)
+
+if [ $( sudo grep "^ClientAliveInterval.*300" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $( sudo grep "^ClientAliveCountMax 0" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"5.2.13 - SSH Idle Timeout Interval is not configured\" : \"FAILED\" }"
+else
+   echo "{ \"sshidletimeout_5313_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

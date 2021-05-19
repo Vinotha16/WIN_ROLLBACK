@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.8.3 - Ensure last logged in user display is disabled (Scored)
+
+if [ $(sudo egrep "user-db:user" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "system-db:gdm" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "file-db:/usr/share/gdm/greeter-dconf-defaults" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "disable-user-list=true" /etc/dconf/db/gdm.d/* | wc -l) -eq 0 ]; then
+      echo "{ \"gdmlastlogged_183_audit\" : \"FAILED\"}"
+else
+      echo "{ \"gdmlastlogged_183_audit\" : \"PASSED\"}"
+fi
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/audit/auditd.conf | grep "^max_log_file_action = keep_logs")
+if [ "$(sudo grep "^max_log_file_action = keep_logs" /etc/audit/auditd.conf 2> /dev/null | wc -l)" -eq 0 ]; then
+   echo "{ \"auditlogdelete_4113_actual\" : \"\" }"
+else
+   echo "{ \"auditlogdelete_4113_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

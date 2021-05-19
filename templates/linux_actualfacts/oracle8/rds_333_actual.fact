@@ -1,0 +1,10 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/rds.conf | grep "install rds /bin/true")
+if [ "$(modprobe -n -v rds 2> /dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep rds 2> /dev/null | wc -l)" -gt 0 ]; then
+   echo "{ \"rds_333_actual\" : \"\" }"
+else
+   echo "{ \"rds_333_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+

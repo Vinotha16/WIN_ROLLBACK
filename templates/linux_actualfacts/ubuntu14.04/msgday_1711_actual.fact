@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/motd | grep "Welcome.*to.*ubuntu14")
+if [ "$(cat /etc/motd 2> /dev/null | grep 'Welcome.*to.*ubuntu14' | wc -l)" -eq 0 ] || [ "$(sudo egrep '(\\v|\\r|\\m|\\s)' /etc/motd | wc -l)" -ne 0 ]; then
+   echo "{\"msgday_1711_actual\" :  \"\"}"
+else
+   echo "{ \"msgday_1711_actual\" : \"$cmd\" }"
+
+fi

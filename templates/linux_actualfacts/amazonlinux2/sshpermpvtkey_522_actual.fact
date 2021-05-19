@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/ssh/ssh_host_*_key | paste -sd ",")
+if [ $(sudo find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec stat -c '%a %U %G' {} \; | egrep -v '640 root ssh_keys|600 root ssh_keys' | wc -l) -ne 0 ]; then
+    echo "{ \"sshpermpvtkey_522_actual\" : \"\"}"
+else
+    echo "{ \"sshpermpvtkey_522_actual\" : \"${cmd}\"}"
+fi

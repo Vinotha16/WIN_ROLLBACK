@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep 'ignorerhosts yes')
+if [ $(sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep 'ignorerhosts yes' | wc -l) -eq 0 ] || [ $(sudo grep -Ei '^\s*ignorerhosts\s+no\b' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{ \"sshignorerhosts_539_actual\" : \"\" }"
+else
+   echo "{ \"sshignorerhosts_539_actual\" : \"${cmd}\" }"
+   exit 1
+fi

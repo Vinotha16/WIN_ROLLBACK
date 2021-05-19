@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.4 - Ensure permissions on all logfiles are configured (Scored)
+
+if [ $(sudo find /var/log -type f ! -perm 0640 -ls | wc -l) -eq 0 ]; then
+   echo "{ \"permlogfiles_424_audit\" : \"FAILED\" }"
+else
+   echo "{ \"permlogfiles_424_audit\" : \"PASSED\" }"
+fi

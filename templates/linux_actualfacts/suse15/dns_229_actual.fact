@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q bind)
+if [ $(sudo rpm -qa bind | wc -l) -ne 0 ]; then
+   echo "{ \"dns_229_actual\" : \"\" }"
+else
+   echo "{ \"dns_229_actual\" : \"$cmd\" }"
+fi

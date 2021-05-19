@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.2 - Ensure gpgcheck is globally activated (Scored)
+
+if [ "$(grep ^gpgcheck /etc/yum.conf /etc/yum.repos.d/* | grep 1 | wc -l)" -eq 0 ] ; then
+   echo "{\"gpgcheck_122_audit\" : \"FAILED\"}"
+else
+   echo "{\"gpgcheck_122_audit\" : \"PASSED\"}"
+fi

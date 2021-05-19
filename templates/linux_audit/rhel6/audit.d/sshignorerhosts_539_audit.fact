@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.9 - Ensure SSH IgnoreRhosts is enabled (Scored)
+
+if [ $(sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep 'ignorerhosts yes' | wc -l) -eq 0 ] || [ $(sudo grep -Ei '^\s*ignorerhosts\s+no\b' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{\"sshignorerhosts_539_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshignorerhosts_539_audit\" : \"PASSED\"}"
+   
+fi

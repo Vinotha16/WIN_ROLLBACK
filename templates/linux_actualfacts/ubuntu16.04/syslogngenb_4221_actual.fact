@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$( systemctl is-enabled syslog-ng 2> /dev/null | grep enabled )
+if [ $(sudo systemctl is-enabled syslog-ng 2> /dev/null | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngenb_4221_actual\" : \"\" }"
+else
+   echo "{ \"syslogngenb_4221_actual\" : \"$cmd\" }"
+   
+fi
+

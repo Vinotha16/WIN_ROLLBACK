@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $(chkconfig --list 2>/dev/null | egrep "discard|discard-udp" | grep " off" | wc -l) -eq 0 ]; then
+
+    echo "{ \"discard_213_actual\" : \"\" }"
+
+else
+ 
+   echo "{ \"discard_213_actual\" : \"not enabled\" }"
+
+fi

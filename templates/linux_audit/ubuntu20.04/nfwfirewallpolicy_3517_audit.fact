@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1.7 - Ensure default deny firewall policy (Scored)
+
+if [ $(sudo ufw status verbose | grep 'deny.*incoming' | wc -l) -eq 0 ] || [ $(sudo ufw status verbose | grep 'deny.*routed' | wc -l) -eq 0 ] || [ $(sudo ufw status verbose | grep 'deny.*routed' | wc -l) -eq 0 ]; then
+   echo "{ \"nfwfirewallpolicy_3517_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfwfirewallpolicy_3517_audit\" : \"PASSED\" }"
+   
+fi

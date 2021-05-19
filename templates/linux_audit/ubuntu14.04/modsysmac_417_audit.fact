@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.7 - Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
+
+if [ $(sudo grep "MAC-policy" /etc/audit/audit.rules 2> /dev/null | grep selinux | wc -l) -eq 0 ] || [ $(sudo grep MAC-policy /etc/audit/audit.rules 2> /dev/null | grep apparmor | wc -l) -eq 0 ]; then
+   echo "{\"4.1.7 - Events that modify the systems MAC are not collected\" : \"FAILED\"}"
+else
+   echo "{ \"modsysmac_417_audit\" : \"PASSED\"}"
+   
+fi

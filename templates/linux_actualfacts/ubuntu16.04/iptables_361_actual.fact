@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(dpkg -s iptables | egrep "installed")
+if [ $(sudo dpkg -s iptables 2> /dev/null | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{ \"iptables_361_actual\" : \"\" }"
+else
+   echo "{ \"iptables_361_actual\" : \"$cmd\" }"
+   
+fi

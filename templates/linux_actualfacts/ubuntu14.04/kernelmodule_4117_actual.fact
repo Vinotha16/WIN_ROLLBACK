@@ -1,0 +1,14 @@
+#!/bin/bash
+a=$(cat /etc/audit/audit.rules | grep "/sbin/insmod -p x -k modules")
+b=$(cat /etc/audit/audit.rules | grep "/sbin/rmmod -p x -k modules")
+c=$(cat /etc/audit/audit.rules | grep "/sbin/modprobe -p x -k modules")
+d=$(cat /etc/audit/audit.rules | grep "exit -F arch=b64 -S init_module -S delete_module -k modules")
+e=$(cat /etc/audit/audit.rules | grep "exit -F arch=b32 -S init_module -S delete_module -k modules")
+cmd="${a}","${b}","${c}","${d}"
+if [ $(sudo grep modules /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+     echo "{ \"kernelmodule_4117_actual\" : \"\" }"
+else
+     echo "{\"kernelmodule_4117_actual\":\"${cmd}\"}"
+  fi
+exit 1
+fi

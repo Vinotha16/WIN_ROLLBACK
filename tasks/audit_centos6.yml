@@ -1,0 +1,3171 @@
+---
+####AUDITFACT####
+  - name: RedHat - dependency package [libselinux-python]
+    yum: name=libselinux-python state=present
+    failed_when: no
+    when: ansible_os_family == "RedHat"
+    tags:
+      - audit
+
+  - name: "Ensure Recreate the custom directory"
+    file:
+      path: /etc/ansible/audit.d
+      state: absent
+    become: yes
+    tags:
+      - always
+
+  - name: "Ensure Recreate the custom directory"
+    file:
+      path: /etc/ansible/audit.d
+      state: directory
+      recurse: yes
+    become: yes
+    tags:
+      - always
+
+  - name: Transfering cramfs audit file
+    template:
+      src: ../templates/linux_audit/centos6/cramfs_1111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cramfs
+      - 1.1.1.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering freevxfs audit file
+    template:
+      src: ../templates/linux_audit/centos6/freevxfs_1112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - freevxfs
+      - 1.1.1.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering jffs2 audit file
+    template:
+      src: ../templates/linux_audit/centos6/jffs2_1113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - jffs2
+      - 1.1.1.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering hfs audit file
+    template:
+      src: ../templates/linux_audit/centos6/hfs_1114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfs
+      - 1.1.1.4
+      - one
+      - audit
+      - all
+
+  - name: Transfering hfsplus audit file
+    template:
+      src: ../templates/linux_audit/centos6/hfsplus_1115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfsplus
+      - 1.1.1.5
+      - one
+      - audit
+      - all
+      
+  - name: Transfering squashfs audit file
+    template:
+      src: ../templates/linux_audit/centos6/squashfs_1116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - squashfs 
+      - 1.1.1.6
+      - one
+      - audit
+      - all
+      
+  - name: Transfering udf audit file
+    template:
+      src: ../templates/linux_audit/centos6/udf_1117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - udf
+      - 1.1.1.7
+      - one
+      - audit
+      - all
+      
+  - name: Transfering tmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/tmp_112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmp
+      - 1.1.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering tmpnodev audit file
+    template:
+      src: ../templates/linux_audit/centos6/tmpnodev_113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnodev
+      - 1.1.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering tmpnosuid audit file
+    template:
+      src: ../templates/linux_audit/centos6/tmpnosuid_114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnosuid
+      - 1.1.4
+      - one
+      - audit
+      - all
+      
+  - name: Transfering tmpnoexec audit file
+    template:
+      src: ../templates/linux_audit/centos6/tmpnoexec_115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnoexec
+      - 1.1.5
+      - one
+      - audit
+      - all
+      
+  - name: Transfering var audit file
+    template:
+      src: ../templates/linux_audit/centos6/var_116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - var
+      - 1.1.6
+      - one
+      - audit
+      - all
+      
+  - name: Transfering vartmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/vartmp_117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vartmp
+      - 1.1.7
+      - one
+      - audit
+      - all
+      
+  - name: Transfering vtnodev audit file
+    template:
+      src: ../templates/linux_audit/centos6/vtnodev_118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnodev
+      - 1.1.8
+      - one
+      - audit
+      - all
+
+  - name: Transfering vtnosuid audit file
+    template:
+      src: ../templates/linux_audit/centos6/vtnosuid_119_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnosuid
+      - 1.1.9
+      - one
+      - audit
+      - all
+      
+  - name: Transfering vtnoexec audit file
+    template:
+      src: ../templates/linux_audit/centos6/vtnoexec_1110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnoexec
+      - 1.1.10
+      - one
+      - audit
+      - all
+      
+  - name: Transfering varlog audit file
+    template:
+      src: ../templates/linux_audit/centos6/varlog_1111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlog
+      - 1.1.11
+      - one
+      - audit
+      - all
+      
+  - name: Transfering varlogaudit audit file
+    template:
+      src: ../templates/linux_audit/centos6/varlogaudit_1112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlogaudit
+      - 1.1.12
+      - one
+      - audit
+      - all
+      
+  - name: Transfering home audit file
+    template:
+      src: ../templates/linux_audit/centos6/home_1113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - home
+      - 1.1.13
+      - one
+      - audit
+      - all
+
+  - name: Transfering homenodev audit file
+    template:
+      src: ../templates/linux_audit/centos6/homenodev_1114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - homenodev
+      - 1.1.14
+      - one
+      - audit
+      - all
+      
+  - name: Transfering shmnodev audit file
+    template:
+      src: ../templates/linux_audit/centos6/shmnodev_1115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnodev
+      - 1.1.15
+      - one
+      - audit
+      - all
+      
+  - name: Transfering shmnosuid audit file
+    template:
+      src: ../templates/linux_audit/centos6/shmnosuid_1116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnosuid
+      - 1.1.16
+      - one
+      - audit
+      - all
+      
+  - name: Transfering shmnoexec audit file
+    template:
+      src: ../templates/linux_audit/centos6/shmnoexec_1117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnoexec
+      - 1.1.17
+      - one
+      - audit
+      - all
+
+  - name: Transfering medianodev audit file
+    template:
+      src: ../templates/linux_audit/centos6/medianodev_1118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianodev
+      - 1.1.18
+      - one
+      - audit
+      - all
+
+  - name: Transfering medianosuid audit file
+    template:
+      src: ../templates/linux_audit/centos6/medianosuid_1119_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianosuid
+      - 1.1.19
+      - one
+      - audit
+      - all
+
+  - name: Transfering medianoexec audit file
+    template:
+      src: ../templates/linux_audit/centos6/medianoexec_1120_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianoexec
+      - 1.1.20
+      - one
+      - audit
+      - all
+      
+  - name: Transfering stickybit audit file
+    template:
+      src: ../templates/linux_audit/centos6/stickybit_1121_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - stickybit
+      - 1.1.21
+      - one
+      - audit
+      - all 
+      
+  - name: Transfering automount audit file
+    template:
+      src: ../templates/linux_audit/centos6/automount_1122_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - automount
+      - 1.1.22
+      - one
+      - audit
+      - all
+
+  - name: Transfering usbstorage audit file
+    template:
+      src: ../templates/linux_audit/centos6/usbstorage_1123_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - usbstorage
+      - 1.1.23
+      - one
+      - audit
+      - all
+      
+  - name: Transfering repoconfig audit file
+    template:
+      src: ../templates/linux_audit/centos6/repoconfig_121_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+     - 1.2.1
+     - repoconfig
+     - one
+     - audit
+     - all
+
+  - name: Transfering gpgkey audit file
+    template:
+      src: ../templates/linux_audit/centos6/gpgkey_123_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.3
+      - gpgkey
+      - one
+      - audit
+      - all
+      
+  - name: Transfering gpgcheck audit file
+    template:
+      src: ../templates/linux_audit/centos6/gpgcheck_122_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.2
+      - gpgcheck
+      - one
+      - audit
+      - all 
+      
+  - name: Transfering aide audit file
+    template:
+      src: ../templates/linux_audit/centos6/aide_131_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.1
+      - aide
+      - one
+      - audit
+      - all
+      
+  - name: Transfering fsintegrity audit file
+    template:
+      src: ../templates/linux_audit/centos6/fsintegrity_132_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.2
+      - fsintegrity
+      - one
+      - audit
+      - all
+      
+  - name: Transfering bootloadperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/bootloadperm_141_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.4.1
+      - bootloadperm
+      - one
+      - audit
+      - all
+      
+  - name: Transfering bootloadpass audit file
+    template:
+      src: ../templates/linux_audit/centos6/bootloadpass_142_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.4.2
+      - bootloadpass
+      - one
+      - audit
+      - all
+      
+  - name: Transfering singleusermode audit file
+    template:
+      src: ../templates/linux_audit/centos6/singleusermode_143_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+     - singleusermode
+     - 1.4.3
+     - one
+     - audit
+     - all
+     
+  - name: Transfering interactiveboot audit file
+    template:
+      src: ../templates/linux_audit/centos6/interactiveboot_144_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+     - interactiveboot
+     - 1.4.4
+     - one
+     - audit
+     - all
+     
+  - name: Transfering coredumps audit file
+    template:
+      src: ../templates/linux_audit/centos6/coredumps_151_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.1
+      - coredumps
+      - one
+      - audit
+      - all
+      
+  - name: Transfering xdnx audit file
+    template:
+      src: ../templates/linux_audit/centos6/xdnx_152_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.2
+      - xdnx
+      - one
+      - audit
+      - all
+      
+  - name: Transfering aslr audit file
+    template:
+      src: ../templates/linux_audit/centos6/aslr_153_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.3
+      - aslr
+      - one
+      - audit
+      - all
+      
+  - name: Transfering prelink audit file
+    template:
+      src: ../templates/linux_audit/centos6/prelink_154_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.4
+      - prelink
+      - one
+      - audit
+      - all
+
+  - name: Transfering selinux audit file
+    template:
+      src: ../templates/linux_audit/centos6/selinux_1611_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.1
+      - selinux
+      - one
+      - audit
+      - all
+      
+  - name: Transfering seldisable audit file
+    template:
+      src: ../templates/linux_audit/centos6/seldisable_1612_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.2
+      - seldisable
+      - one
+      - audit
+      - all
+      
+  - name: Transfering selpolicy audit file
+    template:
+      src: ../templates/linux_audit/centos6/selpolicy_1613_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.3
+      - selpolicy
+      - one
+      - audit
+      - all
+
+  - name: Transfering selenfperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/selenfperm_1614_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.4
+      - selenfperm
+      - one
+      - audit
+      - all
+
+  - name: Transfering selstate audit file
+    template:
+      src: ../templates/linux_audit/centos6/selstate_1615_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.5
+      - selstate
+      - one
+      - audit
+      - all
+
+  - name: Transfering unconfined audit file
+    template:
+      src: ../templates/linux_audit/centos6/unconfined_1616_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.6
+      - unconfined
+      - one
+      - audit
+      - all
+      
+  - name: Transfering setroubleshoot audit file
+    template:
+      src: ../templates/linux_audit/centos6/setroubleshoot_1617_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.7
+      - setroubleshoot
+      - one
+      - audit
+      - all
+      
+  - name: Transfering mcs audit file
+    template:
+      src: ../templates/linux_audit/centos6/mcs_1618_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.8
+      - mcs
+      - one
+      - audit
+      - all
+      
+  - name: Transfering msgday audit file
+    template:
+      src: ../templates/linux_audit/centos6/msgday_171_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1
+      - msgday
+      - one
+      - audit
+      - all
+      
+  - name: Transfering locallogin audit file
+    template:
+      src: ../templates/linux_audit/centos6/locallogin_172_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.2
+      - locallogin
+      - one
+      - audit
+      - all
+      
+  - name: Transfering remotelogin audit file
+    template:
+      src: ../templates/linux_audit/centos6/remotelogin_173_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.3
+      - remotelogin
+      - one
+      - audit
+      - all
+      
+  - name: Transfering motdperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/motdperm_174_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.4
+      - motdperm
+      - one
+      - audit
+      - all
+      
+  - name: Transfering issueperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/issueperm_175_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.5
+      - issueperm
+      - one
+      - audit
+      - all
+      
+  - name: Transfering issuenetperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/issuenetperm_176_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.6
+      - issuenetperm
+      - one
+      - audit
+      - all
+      
+  - name: Transfering gdmpack audit file
+    template:
+      src: ../templates/linux_audit/centos6/gdmpack_181_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.1
+      - gdmpack
+      - one
+      - audit
+      - all
+
+  - name: Transfering gdmconfig audit file
+    template:
+      src: ../templates/linux_audit/centos6/gdmconfig_182_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.2
+      - gdmconfig
+      - one
+      - audit
+      - all
+
+  - name: Transfering gdmlastlogged audit file
+    template:
+      src: ../templates/linux_audit/centos6/gdmlastlogged_183_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.3
+      - gdmlastlogged
+      - one
+      - audit
+      - all
+
+  - name: Transfering xdcmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/xdcmp_184_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.4
+      - gdmlastlogged
+      - one
+      - audit
+      - all
+      
+  - name: Transfering updates audit file
+    template:
+      src: ../templates/linux_audit/centos6/updates_19_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - '1.9'
+      - updates
+      - one
+      - audit
+      - all
+      
+  - name: Transfering chargen audit file
+    template:
+      src: ../templates/linux_audit/centos6/chargen_211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - chargen
+      - 2.1.1
+      - two
+      - audit
+      - all
+      
+  - name: Transfering daytime audit file
+    template:
+      src: ../templates/linux_audit/centos6/daytime_212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - daytime
+      - 2.1.2
+      - two
+      - audit
+      - all
+      
+  - name: Transfering discard audit file
+    template:
+      src: ../templates/linux_audit/centos6/discard_213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - discard
+      - 2.1.3
+      - two
+      - audit
+      - all
+      
+  - name: Transfering echo audit file
+    template:
+      src: ../templates/linux_audit/centos6/echo_214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - echo
+      - 2.1.4
+      - two
+      - audit
+      - all
+      
+  - name: Transfering time audit file
+    template:
+      src: ../templates/linux_audit/centos6/time_215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - time
+      - 2.1.5
+      - two
+      - audit
+      - all
+      
+  - name: Transfering rsh audit file
+    template:
+      src: ../templates/linux_audit/centos6/rsh_216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsh
+      - 2.1.6
+      - two
+      - audit
+      - all
+      
+  - name: Transfering talk audit file
+    template:
+      src: ../templates/linux_audit/centos6/talk_217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talk
+      - 2.1.7
+      - two
+      - audit
+      - all
+      
+  - name: Transfering tftp audit file
+    template:
+      src: ../templates/linux_audit/centos6/tftp_218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tftp
+      - 2.1.8
+      - two
+      - audit
+      - all
+      
+  - name: Transfering rsync audit file
+    template:
+      src: ../templates/linux_audit/centos6/rsync_219_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsync
+      - 2.1.9
+      - two
+      - audit
+      - all
+          
+  - name: Transfering xinetd audit file
+    template:
+      src: ../templates/linux_audit/centos6/xinetd_2110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - xinetd
+      - 2.1.10
+      - two
+      - audit
+      - all
+      
+  - name: Transfering timesync audit file
+    template:
+      src: ../templates/linux_audit/centos6/timesync_2211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - timesync
+      - 2.2.1.1
+      - two
+      - audit
+      - all
+
+  - name: Transfering chrony audit file
+    template:
+      src: ../templates/linux_audit/centos6/chrony_2212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - chrony
+      - 2.2.1.2
+      - two
+      - audit
+      - all
+
+  - name: Transfering ntp audit file
+    template:
+      src: ../templates/linux_audit/centos6/ntp_2213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ntp
+      - 2.2.1.3
+      - two
+      - audit
+      - all
+      
+  - name: Transfering xorg audit file
+    template:
+      src: ../templates/linux_audit/centos6/xorg_222_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - xorg
+      - 2.2.2
+      - two
+      - audit
+      - all
+      
+  - name: Transfering avahi audit file
+    template:
+      src: ../templates/linux_audit/centos6/avahi_223_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - avahi
+      - 2.2.3
+      - two
+      - audit
+      - all
+      
+  - name: Transfering cups audit file
+    template:
+      src: ../templates/linux_audit/centos6/cups_224_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cups
+      - 2.2.4
+      - two
+      - audit
+      - all
+
+  - name: Transfering dhcp audit file
+    template:
+      src: ../templates/linux_audit/centos6/dhcp_225_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dhcp
+      - 2.2.5
+      - two
+      - audit
+      - all
+      
+  - name: Transfering ldap audit file
+    template:
+      src: ../templates/linux_audit/centos6/ldap_226_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldap
+      - 2.2.6
+      - two
+      - audit
+      - all
+
+  - name: Transfering dns audit file
+    template:
+      src: ../templates/linux_audit/centos6/dns_227_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dns
+      - 2.2.7
+      - two
+      - audit
+      - all
+      
+  - name: Transfering ftp audit file
+    template:
+      src: ../templates/linux_audit/centos6/ftp_228_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ftp
+      - 2.2.8
+      - two
+      - audit
+      - all
+      
+  - name: Transfering http audit file
+    template:
+      src: ../templates/linux_audit/centos6/http_229_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - http
+      - 2.2.9
+      - two
+      - audit
+      - all
+      
+  - name: Transfering imap audit file
+    template:
+      src: ../templates/linux_audit/centos6/imap_2210_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - imap
+      - 2.2.10
+      - two
+      - audit
+      - all
+      
+  - name: Transfering samba audit file
+    template:
+      src: ../templates/linux_audit/centos6/samba_2211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - samba
+      - 2.2.11
+      - two
+      - audit
+      - all
+      
+  - name: Transfering proxy audit file
+    template:
+      src: ../templates/linux_audit/centos6/proxy_2212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - proxy
+      - 2.2.12
+      - two
+      - audit
+      - all
+      
+  - name: Transfering snmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/snmp_2213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - snmp
+      - 2.2.13
+      - two
+      - audit
+      - all
+
+  - name: Transfering nis audit file
+    template:
+      src: ../templates/linux_audit/centos6/nis_2214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nis
+      - 2.2.14
+      - two
+      - audit
+      - all
+
+  - name: Transfering telnet audit file
+    template:
+      src: ../templates/linux_audit/centos6/telnet_2215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnet
+      - 2.2.15
+      - two
+      - audit
+      - all
+      
+  - name: Transfering nfs audit file
+    template:
+      src: ../templates/linux_audit/centos6/nfs_2216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nfs
+      - 2.2.16
+      - two
+      - audit
+      - all
+
+  - name: Transfering rpcbind audit file
+    template:
+      src: ../templates/linux_audit/centos6/rpcbind_2217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rpcbind
+      - 2.2.17
+      - two
+      - audit
+      - all
+
+  - name: Transfering mail audit file
+    template:
+      src: ../templates/linux_audit/centos6/mail_2218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - mail
+      - 2.2.18
+      - two
+      - audit
+      - all
+
+  - name: Transfering nisc audit file
+    template:
+      src: ../templates/linux_audit/centos6/nisc_231_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nisc
+      - 2.3.1
+      - two
+      - audit
+      - all
+      
+  - name: Transfering rshc audit file
+    template:
+      src: ../templates/linux_audit/centos6/rshc_232_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rshc
+      - 2.3.2
+      - two
+      - audit
+      - all
+      
+  - name: Transfering talkc audit file
+    template:
+      src: ../templates/linux_audit/centos6/talkc_233_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talkc
+      - 2.3.3
+      - two
+      - audit
+      - all
+
+  - name: Transfering telnetc audit file
+    template:
+      src: ../templates/linux_audit/centos6/telnetc_234_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnetc
+      - 2.3.4
+      - two
+      - audit
+      - all
+
+  - name: Transfering ldapc audit file
+    template:
+      src: ../templates/linux_audit/centos6/ldapc_235_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldapc
+      - 2.3.5
+      - two
+      - audit
+      - all
+
+  - name: Transfering ipv6disable audit file
+    template:
+      src: ../templates/linux_audit/centos6/ipv6disable_311_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6disable
+      - 3.1.1
+      - three
+      - audit
+      - all
+
+  - name: Transfering wireless audit file
+    template:
+      src: ../templates/linux_audit/centos6/wireless_312_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wireless
+      - '3.1.2'
+      - three
+      - audit
+      - all
+
+  - name: Transfering ipforward audit file
+    template:
+      src: ../templates/linux_audit/centos6/ipforward_321_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipforward
+      - 3.2.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering packetredirect audit file
+    template:
+      src: ../templates/linux_audit/centos6/packetredirect_322_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - packetredirect
+      - 3.2.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering routedpacket audit file
+    template:
+      src: ../templates/linux_audit/centos6/routedpacket_331_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - routedpacket
+      - 3.3.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering icmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/icmp_332_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - icmp
+      - 3.3.2
+      - three
+      - audit
+      - all
+
+  - name: Transfering secureicmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/secureicmp_333_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - secureicmp
+      - 3.3.3
+      - three
+      - audit
+      - all
+
+  - name: Transfering suspicious audit file
+    template:
+      src: ../templates/linux_audit/centos6/suspicious_334_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suspicious
+      - 3.3.4
+      - three
+      - audit
+      - all
+      
+  - name: Transfering broadcasticmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/broadcasticmp_335_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - broadcasticmp
+      - 3.3.5
+      - three
+      - audit
+      - all
+      
+  - name: Transfering bogusicmp audit file
+    template:
+      src: ../templates/linux_audit/centos6/bogusicmp_336_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - bogusicmp
+      - 3.3.6
+      - three
+      - audit
+      - all
+      
+  - name: Transfering reversepathfilter audit file
+    template:
+      src: ../templates/linux_audit/centos6/reversepathfilter_337_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - reversepathfilter
+      - 3.3.7
+      - three
+      - audit
+      - all
+      
+  - name: Transfering tcpsyncookies audit file
+    template:
+      src: ../templates/linux_audit/centos6/tcpsyncookies_338_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpsyncookies
+      - 3.3.8
+      - three
+      - audit
+      - all
+      
+  - name: Transfering ipv6router audit file
+    template:
+      src: ../templates/linux_audit/centos6/ipv6router_339_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6router
+      - 3.3.9
+      - three
+      - audit
+      - all
+      
+  - name: Transfering tcpwrappers audit file
+    template:
+      src: ../templates/linux_audit/centos6/tcpwrappers_341_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpwrappers
+      - 3.4.1
+      - three
+      - audit
+      - all
+   
+  - name: Transfering hostsallow audit file
+    template:
+      src: ../templates/linux_audit/centos6/hostsallow_342_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsallow
+      - 3.4.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering hostsdeny audit file
+    template:
+      src: ../templates/linux_audit/centos6/hostsdeny_343_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsdeny
+      - 3.4.3
+      - three
+      - audit
+      - all
+
+  - name: Transfering permhostsallow audit file
+    template:
+      src: ../templates/linux_audit/centos6/permhostsallow_344_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsallow
+      - 3.4.4
+      - three
+      - audit
+      - all
+
+  - name: Transfering permhostsdeny audit file
+    template:
+      src: ../templates/linux_audit/centos6/permhostsdeny_345_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsdeny
+      - 3.4.5
+      - three
+      - audit
+      - all
+
+  - name: Transfering dccp audit file
+    template:
+      src: ../templates/linux_audit/centos6/dccp_351_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dccp
+      - 3.5.1
+      - three
+      - audit
+      - all  
+
+  - name: Transfering sctp audit file
+    template:
+      src: ../templates/linux_audit/centos6/sctp_352_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sctp
+      - 3.5.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering rds audit file
+    template:
+      src: ../templates/linux_audit/centos6/rds_353_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rds
+      - 3.5.3
+      - three
+      - audit
+      - all
+
+  - name: Transfering tipc audit file
+    template:
+      src: ../templates/linux_audit/centos6/tipc_354_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tipc
+      - 3.5.4
+      - three
+      - audit
+      - all
+
+  - name: Transfering iptables audit file
+    template:
+      src: ../templates/linux_audit/centos6/iptables_3611_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - iptables
+      - 3.6.1.1
+      - three
+      - audit
+      - all
+ 
+  - name: Transfering firewallpolicy audit file
+    template:
+      src: ../templates/linux_audit/centos6/firewallpolicy_3621_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallpolicy
+      - 3.6.2.1
+      - three
+      - audit
+      - all
+
+  - name: Transfering loopbacktraffic audit file
+    template:
+      src: ../templates/linux_audit/centos6/loopbacktraffic_3622_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loopbacktraffic
+      - 3.6.2.2
+      - three
+      - audit
+      - all
+
+  - name: Transfering outbound audit file
+    template:
+      src: ../templates/linux_audit/centos6/outbound_3623_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - outbound
+      - 3.6.2.3
+      - three
+      - audit
+      - all
+
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/centos6/firewallrules_3624_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallrules
+      - 3.6.2.4
+      - three
+      - audit
+      - all
+
+  - name: Transfering ipv6firewallpolicy audit file
+    template:
+      src: ../templates/linux_audit/centos6/ipv6firewallpolicy_3631_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallpolicy 
+      - 3.6.3.1
+      - three
+      - audit
+      - all
+
+  - name: Transfering ipv6loopbacktraffic audit file
+    template:
+      src: ../templates/linux_audit/centos6/ipv6loopbacktraffic_3632_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6loopbacktraffic
+      - 3.6.3.2
+      - three
+      - audit
+      - all
+
+  - name: Transfering ipv6outbound  audit file
+    template:
+      src: ../templates/linux_audit/centos6/ipv6outbound_3633_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6outbound
+      - 3.6.3.3
+      - three
+      - audit
+      - all
+
+  - name: Transfering ipv6firewallrules audit file
+    template:
+      src: ../templates/linux_audit/centos6/ipv6firewallrules_3634_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallrules
+      - 3.6.3.4
+      - three
+      - audit
+      - all
+
+  - name: Transfering auditd audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditd_4111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditd
+      - 4.1.1.1
+      - four
+      - audit
+      - all
+
+  - name: Transfering augenrules audit file
+    template:
+      src: ../templates/linux_audit/centos6/augenrules_4112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - augenrules 
+      - 4.1.1.2
+      - four
+      - audit
+      - all
+
+  - name: Transfering auditdservice audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditdservice_4113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdservice
+      - 4.1.1.3
+      - four
+      - audit
+      - all
+
+  - name: Transfering auditdenable audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditdenable_4114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdenable
+      - 4.1.1.4
+      - four
+      - audit
+      - all
+
+  - name: Transfering auditlogsize audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditlogsize_4121_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogsize
+      - 4.1.2.1
+      - four
+      - audit
+      - all
+
+  - name: Transfering auditlogdelete audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditlogdelete_4122_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogdelete
+      - 4.1.2.2
+      - four
+      - audit
+      - all
+
+  - name: Transfering auditlogfull audit file
+    template:
+      src: ../templates/linux_audit/centos6/sysdisable_4123_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sysdisable
+      - 4.1.2.3
+      - four
+      - audit
+      - all
+
+  - name: Transfering auditdbacklog audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditdbacklog_4124_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdbacklog
+      - 4.1.2.4
+      - four
+      - audit
+      - all
+
+  - name: Transfering moddatetime audit file
+    template:
+      src: ../templates/linux_audit/centos6/moddatetime_413_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - moddatetime
+      - 4.1.3
+      - four
+      - audit
+      - all
+
+  - name: Transfering modusergrp audit file
+    template:
+      src: ../templates/linux_audit/centos6/modusergrp_414_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modusergrp
+      - 4.1.4
+      - four
+      - audit
+      - all
+
+  - name: Transfering modsysnet audit file
+    template:
+      src: ../templates/linux_audit/centos6/modsysnet_415_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysnet
+      - 4.1.5
+      - four
+      - audit
+      - all 
+      
+  - name: Transfering modsysmac audit file
+    template:
+      src: ../templates/linux_audit/centos6/modsysmac_416_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysmac
+      - 4.1.6
+      - four
+      - audit
+      - all
+      
+  - name: Transfering loginout audit file
+    template:
+      src: ../templates/linux_audit/centos6/loginout_417_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loginout
+      - 4.1.7
+      - four
+      - audit
+      - all
+
+  - name: Transfering session audit file
+    template:
+      src: ../templates/linux_audit/centos6/session_418_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - session
+      - 4.1.8
+      - four
+      - audit
+      - all
+
+  - name: Transfering dacperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/dacperm_419_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dacperm
+      - 4.1.9
+      - four
+      - audit
+      - all
+      
+  - name: Transfering fileaccess audit file
+    template:
+      src: ../templates/linux_audit/centos6/fileaccess_4110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fileaccess
+      - 4.1.10
+      - four
+      - audit
+      - all
+
+  - name: Transfering privilegecmd audit file
+    template:
+      src: ../templates/linux_audit/centos6/privilegecmd_4111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - privilegecmd
+      - 4.1.11
+      - four
+      - audit
+      - all
+      
+  - name: Transfering fsmount audit file
+    template:
+      src: ../templates/linux_audit/centos6/fsmount_4112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fsmount
+      - 4.1.12
+      - four
+      - audit
+      - all
+
+  - name: Transfering filedeletion audit file
+    template:
+      src: ../templates/linux_audit/centos6/filedeletion_4113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - filedeletion
+      - 4.1.13
+      - four
+      - audit
+      - all
+      
+  - name: Transfering sudoers audit file
+    template:
+      src: ../templates/linux_audit/centos6/sudoers_4114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudoers
+      - 4.1.14
+      - four
+      - audit
+      - all
+ 
+  - name: Transfering sudolog audit file
+    template:
+      src: ../templates/linux_audit/centos6/sudolog_4115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudolog
+      - 4.1.15
+      - four
+      - audit
+      - all
+
+  - name: Transfering kernelmodule audit file
+    template:
+      src: ../templates/linux_audit/centos6/kernelmodule_4116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - kernelmodule
+      - 4.1.16
+      - four
+      - audit
+      - all
+
+  - name: Transfering auditconfig audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditconfig_4117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditconfig
+      - 4.1.17
+      - four
+      - audit
+      - all
+
+  - name: Transfering rsyslog audit file
+    template:
+      src: ../templates/linux_audit/centos6/rsyslog_4211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslog
+      - 4.2.1.1
+      - four
+      - audit
+      - all
+
+  - name: Transfering rsyslogenb audit file
+    template:
+      src: ../templates/linux_audit/centos6/rsyslogenb_4212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogenb
+      - 4.2.1.2
+      - four
+      - audit
+      - all
+
+  - name: Transfering rloggingconf audit file
+    template:
+      src: ../templates/linux_audit/centos6/rloggingconf_4213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - audit
+      - all
+
+  - name: Transfering rsyslogperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/rsyslogperm_4214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogperm
+      - 4.2.1.4
+      - four
+      - audit
+      - all
+
+  - name: Transfering rsyslogsendlogs audit file
+    template:
+      src: ../templates/linux_audit/centos6/rsyslogsendlogs_4215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.5
+      - four
+      - audit
+      - all
+
+  - name: Transfering remotesyslogmsg audit file
+    template:
+      src: ../templates/linux_audit/centos6/remotesyslogmsg_4216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.6
+      - four
+      - audit
+      - all
+
+  - name: Transfering permlogfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/permlogfiles_422_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permlogfiles
+      - 4.2.2
+      - four
+      - audit
+      - all
+
+  - name: Transfering logrotate audit file
+    template:
+      src: ../templates/linux_audit/centos6/logrotate_423_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - logrotate
+      - '4.2.3'
+      - four
+      - audit
+      - all
+
+  - name: Transfering cron audit file
+    template:
+      src: ../templates/linux_audit/centos6/cron_511_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cron
+      - 5.1.1
+      - five
+      - audit
+      - all
+
+  - name: Transfering permcrontab audit file
+    template:
+      src: ../templates/linux_audit/centos6/permcrontab_512_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrontab
+      - 5.1.2
+      - five
+      - audit
+      - all
+   
+  - name: Transfering permcronhourly audit file
+    template:
+      src: ../templates/linux_audit/centos6/permcronhourly_513_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronhourly
+      - 5.1.3
+      - five
+      - audit
+      - all
+
+  - name: Transfering permcrondaily audit file
+    template:
+      src: ../templates/linux_audit/centos6/permcrondaily_514_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrondaily
+      - 5.1.4
+      - five
+      - audit
+      - all
+      
+  - name: Transfering permcronweekly audit file
+    template:
+      src: ../templates/linux_audit/centos6/permcronweekly_515_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronweekly
+      - 5.1.5
+      - five
+      - audit
+      - all
+
+  - name: Transfering permcronmonthly audit file
+    template:
+      src: ../templates/linux_audit/centos6/permcronmonthly_516_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronmonthly
+      - 5.1.6
+      - five
+      - audit
+      - all
+      
+  - name: Transfering permcrond audit file
+    template:
+      src: ../templates/linux_audit/centos6/permcrond_517_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrond
+      - 5.1.7
+      - five
+      - audit
+      - all
+
+  - name: Transfering cronuser audit file
+    template:
+      src: ../templates/linux_audit/centos6/cronuser_518_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cronuser
+      - 5.1.8
+      - five
+      - audit
+      - all
+
+  - name: Transfering atcron audit file
+    template:
+      src: ../templates/linux_audit/centos6/atcron_519_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - atcron
+      - 5.1.9
+      - five
+      - audit
+      - all
+
+  - name: Transfering sudo audit file
+    template:
+      src: ../templates/linux_audit/centos6/sudo_521_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudo
+      - 5.2.1
+      - five
+      - audit
+      - all
+
+  - name: Transfering sudopty audit file
+    template:
+      src: ../templates/linux_audit/centos6/sudopty_522_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudopty
+      - 5.2.2
+      - one
+      - audit
+      - all
+
+  - name: Transfering sudologfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/sudologfiles_523_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudopty
+      - 5.2.3
+      - one
+      - audit
+      - all
+   
+  - name: Transfering sshdperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshdperm_531_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshdperm
+      - 5.3.1
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshpermpvtkey audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshpermpvtkey_532_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpvtkey
+      - 5.3.2
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshpermpubkey audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshpermpubkey_533_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpubkey
+      - 5.3.3
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshprotocol audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshprotocol_534_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshprotocol
+      - 5.3.4
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshaccess audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshaccess_535_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshaccess
+      - 5.3.5
+      - five
+      - audit
+      - all
+  
+  - name: Transfering sshloglevel audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshloglevel_536_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshloglevel
+      - 5.3.6
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshx11forward audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshx11forward_537_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshx11forward
+      - 5.3.7
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshmaxauthtries audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshmaxauthtries_538_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmaxauthtries
+      - 5.3.8
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshignorerhosts audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshignorerhosts_539_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshignorerhosts
+      - 5.3.9
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshauthentication audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshauthentication_5310_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshauthentication
+      - 5.3.10
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshrootlogin audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshrootlogin_5311_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshrootlogin
+      - 5.3.11
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshpep audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshpep_5312_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpep
+      - 5.3.12
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshpue audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshpue_5313_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpue
+      - 5.3.13
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshchipers audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshchipers_5314_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshchipers
+      - 5.3.14
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshmacalgorithm audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshmacalgorithm_5315_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.3.15
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshkeyexalgorithm audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshkeyexalgorithm_5316_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshkeyexalgorithm
+      - 5.3.16
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshidletimeout audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshidletimeout_5317_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshidletimeout
+      - 5.3.17
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshlogingracetime audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshlogingracetime_5318_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshlogingracetime
+      - 5.3.18
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshwarningbanner audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshwarningbanner_5319_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshwarningbanner
+      - 5.3.19
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshpam audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshpam_5320_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpam
+      - 5.3.20
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshtcpforward audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshtcpforward_5321_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshtcpforward
+      - 5.3.21
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshmaxstartups audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshmaxstartups_5322_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshtcpforward
+      - 5.3.22
+      - five
+      - audit
+      - all
+
+  - name: Transfering sshmaxsessions audit file
+    template:
+      src: ../templates/linux_audit/centos6/sshmaxsessions_5323_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmaxsessions
+      - 5.3.23
+      - five
+      - audit
+      - all
+
+  - name: Transfering passwdcreation audit file
+    template:
+      src: ../templates/linux_audit/centos6/passwdcreation_541_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdcreation
+      - 5.4.1
+      - five
+      - audit
+      - all
+      
+  - name: Transfering lockout audit file
+    template:
+      src: ../templates/linux_audit/centos6/lockout_542_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lockout
+      - 5.4.2
+      - five
+      - audit
+      - all
+
+  - name: Transfering passwdreuse audit file
+    template:
+      src: ../templates/linux_audit/centos6/passwdreuse_543_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdreuse
+      - 5.4.3
+      - five
+      - audit
+      - all
+      
+  - name: Transfering passwdhashing audit file
+    template:
+      src: ../templates/linux_audit/centos6/passwdhashing_544_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdhashing
+      - 5.4.4
+      - five
+      - audit
+      - all
+      
+  - name: Transfering passwdexpiration audit file
+    template:
+      src: ../templates/linux_audit/centos6/passwdexpiration_5511_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.5.1.1
+      - five
+      - audit
+      - all
+
+  - name: Transfering minidays audit file
+    template:
+      src: ../templates/linux_audit/centos6/minidays_5512_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - minidays
+      - 5.5.1.2
+      - five
+      - audit
+      - all
+      
+  - name: Transfering warningdays audit file
+    template:
+      src: ../templates/linux_audit/centos6/warningdays_5513_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - warningdays
+      - 5.5.1.3
+      - five
+      - audit
+      - all
+      
+  - name: Transfering inactivepasswdlock audit file
+    template:
+      src: ../templates/linux_audit/centos6/inactivepasswdlock_5514_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.5.1.4
+      - five
+      - audit
+      - all
+      
+  - name: Transfering lastpasswdchange audit file
+    template:
+      src: ../templates/linux_audit/centos6/lastpasswdchange_5515_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lastpasswdchange
+      - 5.5.1.5
+      - five
+      - audit
+      - all
+
+  - name: Transfering sysaccnonlogin audit file
+    template:
+      src: ../templates/linux_audit/centos6/sysaccnonlogin_552_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sysaccnonlogin
+      - 5.5.2
+      - five
+      - audit
+      - all
+
+  - name: Transfering defaultgroup audit file
+    template:
+      src: ../templates/linux_audit/centos6/defaultgroup_553_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultgroup
+      - 5.5.3
+      - five
+      - audit
+      - all
+
+  - name: Transfering usershelltimeout audit file
+    template:
+      src: ../templates/linux_audit/centos6/usershelltimeout_554_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - usershelltimeout
+      - 5.5.4
+      - five
+      - audit
+      - all
+
+  - name: Transfering defaultuser audit file
+    template:
+      src: ../templates/linux_audit/centos6/defaultuser_555_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultuser
+      - 5.5.5
+      - five
+      - audit
+      - all
+
+  - name: Transfering rootlogin audit file
+    template:
+      src: ../templates/linux_audit/centos6/rootlogin_56_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootlogin
+      - '5.6'
+      - five
+      - audit
+      - all
+
+  - name: Transfering suaccess audit file
+    template:
+      src: ../templates/linux_audit/centos6/suaccess_57_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suaccess
+      - '5.7'
+      - five
+      - audit
+      - all
+      
+  - name: Transfering auditsysperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/auditsysperm_611_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditsysperm
+      - 6.1.1
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permpasswd audit file
+    template:
+      src: ../templates/linux_audit/centos6/permpasswd_612_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswd
+      - 6.1.2
+      - six
+      - audit
+      - all
+
+  - name: Transfering permpasswdi audit file
+    template:
+      src: ../templates/linux_audit/centos6/permpasswdi_613_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswdi
+      - 6.1.3
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permgroup audit file
+    template:
+      src: ../templates/linux_audit/centos6/permgroup_614_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroup
+      - 6.1.4
+      - six
+      - audit
+      - all
+
+  - name: Transfering permgroupi audit file
+    template:
+      src: ../templates/linux_audit/centos6/permgroupi_615_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroupi
+      - 6.1.5
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permshadow audit file
+    template:
+      src: ../templates/linux_audit/centos6/permshadow_616_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadow
+      - 6.1.6
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permshadowi audit file
+    template:
+      src: ../templates/linux_audit/centos6/permshadowi_617_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadowi
+      - 6.1.7
+      - six
+      - audit
+      - all
+
+  - name: Transfering permgshadow audit file
+    template:
+      src: ../templates/linux_audit/centos6/permgshadow_618_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadow
+      - 6.1.8
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permgshadowi audit file
+    template:
+      src: ../templates/linux_audit/centos6/permgshadowi_619_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadowi
+      - 6.1.9
+      - six
+      - audit
+      - all
+
+  - name: Transfering wwfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/wwfiles_6110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wwfiles
+      - 6.1.10
+      - six
+      - audit
+      - all     
+
+  - name: Transfering unownedfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/unownedfiles_6111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - audit
+      - all
+
+  - name: Transfering ungroupedfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/ungroupedfiles_6112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - audit
+      - all
+
+  - name: Transfering suidexec audit file
+    template:
+      src: ../templates/linux_audit/centos6/suidexec_6113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suidexec
+      - 6.1.13
+      - six
+      - audit
+      - all
+
+  - name: Transfering sgidexec audit file
+    template:
+      src: ../templates/linux_audit/centos6/sgidexec_6114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sgidexec
+      - 6.1.14
+      - six
+      - audit
+      - all
+
+  - name: Transfering useshadowed audit file
+    template:
+      src: ../templates/linux_audit/centos6/useshadowed_621_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - useshadowed
+      - 6.2.1
+      - six
+      - audit
+      - all
+
+  - name: Transfering emptypasswd audit file
+    template:
+      src: ../templates/linux_audit/centos6/emptypasswd_622_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - emptypasswd
+      - 6.2.2
+      - six
+      - audit
+      - all
+
+  - name: Transfering nolegacypasswd audit file
+    template:
+      src: ../templates/linux_audit/centos6/nolegacypasswd_623_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacypasswd
+      - 6.2.3
+      - six
+      - audit
+      - all
+      
+  - name: Transfering nolegacyshadow audit file
+    template:
+      src: ../templates/linux_audit/centos6/nolegacyshadow_624_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacyshadow
+      - 6.2.4
+      - six
+      - audit
+      - all
+      
+  - name: Transfering nolegacygroup audit file
+    template:
+      src: ../templates/linux_audit/centos6/nolegacygroup_625_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacygroup
+      - 6.2.5
+      - six
+      - audit
+      - all
+
+  - name: Transfering rootuid audit file
+    template:
+      src: ../templates/linux_audit/centos6/rootuid_626_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootuid
+      - 6.2.6
+      - six
+      - audit
+      - all
+
+  - name: Transfering rootpath audit file
+    template:
+      src: ../templates/linux_audit/centos6/rootpath_627_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootpath
+      - 6.2.7
+      - six
+      - audit
+      - all
+
+  - name: Transfering userhdir audit file
+    template:
+      src: ../templates/linux_audit/centos6/userhdir_628_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdir
+      - 6.2.8
+      - six
+      - audit
+      - all
+
+  - name: Transfering userownhdir audit file
+    template:
+      src: ../templates/linux_audit/centos6/userownhdir_629_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userownhdir
+      - 6.2.9
+      - six
+      - audit
+      - all
+      
+  - name: Transfering userhdirperm audit file
+    template:
+      src: ../templates/linux_audit/centos6/userhdirperm_6210_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdirperm
+      - 6.2.10
+      - six
+      - audit
+      - all
+
+  - name: Transfering dotfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/dotfiles_6211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dotfiles
+      - 6.2.11
+      - six
+      - audit
+      - all
+      
+  - name: Transfering forwardfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/forwardfiles_6212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - forwardfiles
+      - 6.2.12
+      - six
+      - audit
+      - all
+
+  - name: Transfering netrcfiles audit file
+    template:
+      src: ../templates/linux_audit/centos6/netrcfiles_6213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - netrcfiles
+      - 6.2.13
+      - six
+      - audit
+      - all
+      
+  - name: Transfering rhosts audit file
+    template:
+      src: ../templates/linux_audit/centos6/rhosts_6214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rhosts
+      - 6.2.14
+      - six
+      - audit
+      - all
+      
+  - name: Transfering groups audit file
+    template:
+      src: ../templates/linux_audit/centos6/groups_6215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - groups
+      - 6.2.15
+      - six
+      - audit
+      - all
+
+  - name: Transfering duplicateuid audit file
+    template:
+      src: ../templates/linux_audit/centos6/duplicateuid_6216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuid
+      - 6.2.16
+      - six
+      - audit
+      - all
+      
+  - name: Transfering duplicategid audit file
+    template:
+      src: ../templates/linux_audit/centos6/duplicategid_6217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicategid
+      - 6.2.17
+      - six
+      - audit
+      - all
+      
+  - name: Transfering duplicateuser audit file
+    template:
+      src: ../templates/linux_audit/centos6/duplicateuser_6218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuser
+      - 6.2.18
+      - six
+      - audit
+      - all
+      
+  - name: Transfering duplicategroup audit file
+    template:
+      src: ../templates/linux_audit/centos6/duplicategroup_6219_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags: 
+      - duplicategroup
+      - 6.2.19
+      - six
+      - audit
+      - all
+
+  - name: Transfering shadowgroup audit file
+    template:
+      src: ../templates/linux_audit/centos6/shadowgroup_6220_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shadowgroup
+      - 6.2.20
+      - six
+      - audit
+      - all

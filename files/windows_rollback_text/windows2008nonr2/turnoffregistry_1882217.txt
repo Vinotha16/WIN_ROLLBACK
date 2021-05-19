@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+SOFTWARE\Policies\Microsoft\Windows\Registration Wizard Control
+NoRegistration
+DWORD:1
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

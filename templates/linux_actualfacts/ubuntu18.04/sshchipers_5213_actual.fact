@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sshd -T 2> /dev/null | grep ciphers.*chacha20.*aes256.*)
+if [ $(sshd -T 2> /dev/null | grep ciphers.*chacha20.*aes256.* | wc -l) -eq 0 ]; then
+
+   echo "{ \"sshchipers_5213_actual\" : \"\" }"
+else
+   echo "{ \"sshchipers_5213_actual\" : \"${cmd}\" }"
+fi

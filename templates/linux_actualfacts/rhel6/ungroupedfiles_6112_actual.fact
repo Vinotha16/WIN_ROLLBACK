@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -nogroup | sed 's/[/]/ /g' | awk '/home/  {print $1 ,$2}' | uniq | sed 's/ /"\/"/g' | sed 's/["]//g' | paste -sd ",")
+if [ $(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup | wc -l) -gt 0 ] || [ $(sudo find / -xdev -nogroup | wc -l) -gt 0 ]; then
+ echo "{ \"ungroupedfiles_6112_actual\" : \"failed $failfact\" }"
+else
+ echo "{ \"ungroupedfiles_6112_actual\" : \"no ungrouped files or directories exist\" }"
+   exit 1
+fi

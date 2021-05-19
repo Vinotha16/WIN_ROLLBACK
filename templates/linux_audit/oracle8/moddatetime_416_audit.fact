@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.6 - Ensure events that modify date and time information are collected (Scored)
+
+if [ $(sudo grep "time-change" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"4.1.6 - Events modify date and time information are not collected\" : \"FAILED\" }"
+else
+   echo "{ \"moddatetime_416_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

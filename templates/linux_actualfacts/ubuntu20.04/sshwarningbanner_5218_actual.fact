@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo grep "^Banner.*/etc/issue.net" /etc/ssh/sshd_config)
+if [ $(sudo grep "^Banner.*/etc/issue.net" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshwarningbanner_5218_actual\" : \"\" }"
+else
+   echo "{ \"sshwanringbanner5\" : \"$cmd\" }"
+   exit 1
+fi

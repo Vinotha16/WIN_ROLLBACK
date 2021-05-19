@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.5 - Ensure SSH LogLevel is appropriate (Scored)
+
+if [ $( sudo egrep "^LogLevel.*INFO|^LogLevel.*VERBOSE" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"5.2.5 Ensure SSH LogLevel is appropriate\" : \"FAILED\" }"
+else
+   echo "{ \"sshloglevel_525_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

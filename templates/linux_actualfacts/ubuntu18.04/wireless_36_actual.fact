@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(ip link show up | grep "[0-9][aAa-zZz][0-9]" | awk -F': ' {'print $2'} | paste -sd ",")
+if [ $(sudo ip link show up | grep "[0-9][aAa-zZz][0-9]" | awk -F': ' {'print $2'} | wc -l) -ge 1 ]; then
+   echo "{ \"wireless_36_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"wireless_36_actual\" : \"wireless interfaces are disabled\" }"
+   exit 1
+fi

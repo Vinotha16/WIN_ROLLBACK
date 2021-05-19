@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -q firewalld | grep 'firewalld-[0-9]\+' | wc -l) -ne 0 ]; then
+        echo "{ \"firewalldstop_35313_actual\" : \"\" }"
+else
+        echo "{ \"firewalldstop_35313_actual\" : \"not installed\" }"
+fi

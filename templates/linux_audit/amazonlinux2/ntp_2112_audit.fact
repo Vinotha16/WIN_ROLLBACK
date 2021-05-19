@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.1.2 - Ensure ntp is configured (Scored)
+
+if [ $(sudo egrep "^restrict -4.*kod|^restrict -6.*kod" /etc/ntp.conf | wc -l) -eq 0 ] || [ $(sudo egrep "^(server|pool)" /etc/ntp.conf | wc -l) -eq 0 ] || [ $(sudo egrep '^OPTIONS="-u ntp:ntp"' /etc/sysconfig/ntpd | wc -l) -eq 0 ]; then
+    echo "{ \"ntp_2112_audit\" : \"FAILED\"}"
+else
+    echo "{ \"ntp_2112_audit\" : \"PASSED\"}"
+fi
+

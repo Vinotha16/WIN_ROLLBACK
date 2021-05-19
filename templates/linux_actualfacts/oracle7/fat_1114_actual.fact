@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(sudo modprobe --showconfig 2>/dev/null | grep fat | grep "install fat /bin/true")
+b=$(sudo modprobe --showconfig 2>/dev/null | grep vfat | grep "install vfat /bin/true")
+c=$(sudo modprobe --showconfig 2>/dev/null | grep msdos | grep "install msdos /bin/true")
+cmd="${a}","${b}","${c}"
+
+if [ $(sudo modprobe --showconfig 2>/dev/null | grep fat | grep "install fat /bin/true" | wc -l) -eq 0 ] || [ $(sudo modprobe --showconfig 2>/dev/null | grep vfat | grep "install vfat /bin/true" | wc -l) -eq 0 ] || [ $(sudo modprobe --showconfig 2>/dev/null | grep msdos | grep "install msdos /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep fat | wc -l) -ne 0 ] || [ $(sudo lsmod | grep vfat | wc -l) -ne 0 ] || [ $(sudo lsmod | grep msdos | wc -l) -ne 0 ]; then
+   echo "{ \"fat_1114_actual\" : \"\" }"
+else
+   echo "{ \"fat_1114_actual\" : \"$cmd\" }"
+
+fi
+

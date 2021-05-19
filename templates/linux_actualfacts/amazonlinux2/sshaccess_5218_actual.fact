@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo sshd -T | grep -E '^\s*(allow|deny)(users|groups)\s+\S+' | paste -sd ",")
+if [ $(sudo sshd -T | grep -E '^\s*(allow|deny)(users|groups)\s+\S+' | wc -l) -eq 0 ]; then
+   echo "{ \"sshaccess_5218_actual\" : \"\" }"
+else
+   echo "{ \"sshaccess_5218_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

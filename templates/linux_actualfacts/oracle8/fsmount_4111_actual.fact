@@ -1,0 +1,19 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/mounts.rules | grep "exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts")
+b=$(cat /etc/audit/rules.d/mounts.rules | grep "exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts")
+c="${a}","${b}"
+cmd=${c}
+d="${b}"
+cmd1=${d}
+if [ $(grep mounts /etc/audit/rules.d/mounts.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"fsmount_4111_actual\" : \"\" }"
+else
+  if [ "$(uname -m)" == 'x86_64' ]; then
+        echo "{ \"fsmount_4111_actual\" : \"${cmd}\" }"
+     else
+        echo "{ \"fsmount_4111_actual\" : \"${cmd1}\" }"
+  fi
+exit 1
+fi
+
+

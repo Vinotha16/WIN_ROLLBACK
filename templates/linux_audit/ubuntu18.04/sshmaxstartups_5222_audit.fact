@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.22 - Ensure SSH MaxStartups is configured (Scored)
+
+if [ $(sshd -T 2> /dev/null | grep -i ^maxstartups /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshmaxstartups_5222_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshmaxstartups_5222_audit\" : \"PASSED\" }"
+fi
+

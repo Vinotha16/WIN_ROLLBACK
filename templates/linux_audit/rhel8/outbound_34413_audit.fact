@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.4.1.3 - Ensure outbound and established connections are configured (Not Scored)
+
+if [ $(iptables -L -v -n | grep ".*ACCEPT.*--.*0.0.0.0/0.*0.0.0.0/0.*state ESTABLISHED" | wc -l) -eq 0 ] || [ $(iptables -L -v -n | grep ".*ACCEPT.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW,ESTABLISHED" | wc -l) -eq 0 ]; then
+   echo "{\"outbound_34413_audit\" : \"FAILED\"}"
+else
+   echo "{\"outbound_34413_audit\" : \"PASSED\"}"
+   
+fi
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.5 - Ensure permissions on /etc/issue are configured (Scored)
+
+if [ $(sudo stat /etc/issue | grep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{\"issueperm_175_audit\" : \"FAILED\"}"
+else
+   echo "{\"issueperm_175_audit\" : \"PASSED\"}"
+  
+fi
+
+

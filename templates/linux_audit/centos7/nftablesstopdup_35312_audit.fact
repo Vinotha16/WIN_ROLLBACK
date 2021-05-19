@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.1.2 - Ensure nftables is not installed
+
+if [ $(sudo rpm -qa nftables | wc -l) -ne 0 ]; then
+   echo "{ \"nftablesstopdup_35312_audit\" : \"FAILED\"}"
+else
+   echo "{ \"nftablesstopdup_35312_audit\" : \"PASSED\"}"
+   exit 0
+fi
+

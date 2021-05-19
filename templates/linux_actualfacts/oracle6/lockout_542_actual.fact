@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep  "unlock_time=900" | paste -sd ",")
+b=$(cat /etc/pam.d/password-auth | grep "default=bad" | paste -sd ",")
+c=$(cat /etc/pam.d/system-auth | grep "unlock_time=900" | paste -sd ",")
+d=$(cat /etc/pam.d/system-auth | grep "default=bad" | paste -sd ",")
+cmd="${a}","${b}","${c}","${d}"
+if [ $(grep "unlock_time=900" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "default=bad" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "unlock_time=900" /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $(grep "default=bad" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_542_actual\" : \"\" }"
+else
+   echo "{ \"lockout_542_actual\" : \"${cmd}\" }"
+   exit 1
+fi

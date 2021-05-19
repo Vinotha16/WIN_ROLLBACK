@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/CIS.conf | grep "install hfs /bin/true")
+if [ $(sudo modprobe -n -v hfs | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(lsmod | grep hfs | wc -l) -ne 0 ]; then
+   echo "{ \"hfs_1114_actual\" : \"\" }"
+else
+   echo "{ \"hfs_1114_actual\" : \"${cmd}\" }"
+fi

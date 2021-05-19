@@ -1,0 +1,12 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Microsoft\Windows\CurrentVersion\Policies\System
+DisableAutomaticRestartSignOn
+DWORD:1
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------
+

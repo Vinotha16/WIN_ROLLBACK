@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.6 - Ensure SSH X11 forwarding is disabled (Scored)
+
+if [ $(sudo sshd -T | grep 'x11forwarding.*no' | wc -l) -eq 0 ]; then
+    echo "{ \"sshx11forward_526_audit\" : \"FAILED\"}"
+else
+    echo "{ \"sshx11forward_526_audit\" : \"PASSED\"}"
+fi
+

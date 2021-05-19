@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.9 - Ensure at is restricted to authorized users (Scored)
+
+if [ $(stat /etc/at.allow 2> /dev/null | grep 0600 | grep ".*Uid:.*0/.*root" | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ] || [ $(stat /etc/at.deny 2> /dev/null | wc -l) -ne 0 ]; then
+   echo "{ \"atcron_519_audit\" : \"FAILED\" }"
+else
+   echo "{ \"atcron_519_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.9 - Ensure nosuid option set on /var/tmp partition (Scored)
+
+if [ $(sudo mount | grep " /var/tmp.*nosuid" | wc -l) -eq 0 ]; then
+   echo "{ \"vtnosuid_119_audit\" : \"FAILED\"}"
+else
+   echo "{ \"vtnosuid_119_audit\" : \"PASSED\"}"
+fi
+

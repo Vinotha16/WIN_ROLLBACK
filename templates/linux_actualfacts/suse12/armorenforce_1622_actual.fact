@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(apparmor_status 2>/dev/null | grep "profiles are loaded" | grep "0" | wc -l ) -eq 0 ] || [ $(apparmor_status 2>/dev/null | grep "0 profiles.*complain mode" | wc -l ) -eq 0 ] || [ $(apparmor_status 2>/dev/null | grep "0 processes.*unconfined" | wc -l ) -eq 0 ]; then
+    echo "{ \"armorenforce_1622_actual\" : \"\" }"
+else
+   echo "{ \"armorenforce_1622_actual\" : \"All AppArmor Profiles are now enforced\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cmd=$(grep "^MaxStartups 10:30:60" /etc/ssh/sshd_config)
+
+if [ $(grep "^MaxStartups 10:30:60" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshmaxstartups_5221_actual\":\"\"}"
+else
+   echo "{\"sshmaxstartups_5221_actual\":\"$cmd\"}"
+   exit 1
+fi
+

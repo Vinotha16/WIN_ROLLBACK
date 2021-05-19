@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo apt-cache policy 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"repoconfig_121_actual\" : \"\" }"
+else
+   echo "{ \"repoconfig_121_actual\" : \"package manager repositories are configured\" }"
+fi

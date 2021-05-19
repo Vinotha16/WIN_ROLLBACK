@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.11 - Ensure unsuccessful unauthorized file access attempts are collected (Scored)
+
+if [ $(grep access /etc/audit/audit.rules | wc -l) -eq 0 ]; then
+   echo "{\"fileaccess_4111_audit\" : \"FAILED\"}"
+else
+   echo "{\"fileaccess_4111_audit\" : \"PASSED\"}"
+fi

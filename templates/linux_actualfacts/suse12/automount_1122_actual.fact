@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo systemctl is-enabled autofs | grep disabled | wc -l) -ne 0 ]; then
+   echo "{ \"automount_1122_actual\" : \"automountfs is not enabled\" }"
+else
+   echo "{ \"automount_1122_actual\" : \"\" }"
+   exit 1
+fi

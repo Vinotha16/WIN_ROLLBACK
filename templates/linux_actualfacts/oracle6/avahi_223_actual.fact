@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -q avahi)
+if [ $(sudo rpm -qa avahi | wc -l) -ne 0 ]; then
+  echo "{ \"avahi_223_actual\" : \"\" }"
+else
+  echo "{ \"avahi_223_actual\" : \"$cmd\" }"
+  exit 1
+fi

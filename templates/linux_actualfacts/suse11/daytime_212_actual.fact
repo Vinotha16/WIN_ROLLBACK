@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(chkconfig --list 2>/dev/null | egrep "daytime.*off|daytime-udp.*off" | wc -l) -eq 0 ]; then
+    echo "{ \"daytime_212_actual\" : \"\" }"
+else
+   echo "{ \"daytime_212_actual\" : \"not enabled\" }"
+fi

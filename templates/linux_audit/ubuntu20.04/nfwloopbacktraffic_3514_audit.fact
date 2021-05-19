@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1.4 - Ensure loopback traffic is configured (Scored)
+
+if [ $(ufw status verbose | grep "Anywhere.*DENY.*IN.*127.0.0.0/8" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "Anywhere.*v6.*DENY.*IN.*::1" | wc -l) -eq 0 ] || [ $(ufw status verbose | grep "Anywhere.*ALLOW.*OUT.*Anywhere.*on.*lo" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwloopbacktraffic_3514_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfwloopbacktraffic_3514_audit\" : \"PASSED\" }"
+fi

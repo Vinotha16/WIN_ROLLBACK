@@ -1,0 +1,11 @@
+#!/bin/bash
+cmd=$(grep -E ^\s*Storage /etc/systemd/journald.conf)
+
+if [ $(grep -E ^\s*Storage /etc/systemd/journald.conf | wc -l) -eq 0 ]; then
+   echo "{\"journalpersisdisk_4223_actual\":\"\"}"
+else
+   echo "{\"journalpersisdisk_4223_actual\":\"$cmd\"}"
+   exit 1
+fi
+
+

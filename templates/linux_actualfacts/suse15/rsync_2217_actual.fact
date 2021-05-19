@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q rsync)
+if [ $(sudo rpm -qa rsync | wc -l) -ne 0 ]; then
+   echo "{ \"rsync_2217_actual\" : \"\" }"
+else
+   echo "{ \"rsync_2217_actual\" : \"$cmd\" }"
+fi

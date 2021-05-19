@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(find /var/log -type f ! -perm 0640 -ls | wc -l) -eq 0 ]; then
+   echo "{ \"permlogfiles_424_actual\" : \"\" }"
+else
+   echo "{ \"permlogfiles_424_actual\" : \"Permissions on all logfiles are configured\" }"
+   exit 1
+fi
+

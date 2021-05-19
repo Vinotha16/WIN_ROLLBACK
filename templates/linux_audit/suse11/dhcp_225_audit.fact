@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.5 - Ensure DHCP Server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list dhcpd | egrep 'dhcpd.*:on ' | wc -l) -ne 0 ] ; then
+   echo "{ \"dhcp_225_audit\" : \"FAILED\" }"
+else
+   echo "{ \"dhcp_225_audit\" : \"PASSED\" }"
+fi

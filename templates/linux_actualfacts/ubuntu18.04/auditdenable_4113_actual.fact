@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(dpkg -s auditd audispd-plugins 2> /dev/null | grep "ok installed" | wc -l) -eq 0 ]; then
+   echo "{ \"auditdenable_4113_actual\" : \"\" }"
+else
+   echo "{ \"auditdenable_4113_actual\" : \"audispd-plugins installed\" }"
+   
+fi

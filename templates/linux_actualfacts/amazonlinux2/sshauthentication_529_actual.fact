@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo sshd -T | grep 'hostbasedauthentication.*no')
+if [ $(sudo sshd -T | grep 'hostbasedauthentication.*no' | wc -l) -eq 0 ]; then
+   echo "{ \"sshauthentication_529_actual\" : \"\" }"
+else
+   echo "{ \"sshauthentication_529_actual\" : \"${cmd}\" }"
+   exit 1
+fi

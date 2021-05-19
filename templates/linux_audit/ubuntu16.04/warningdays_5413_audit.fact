@@ -1,0 +1,21 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.1.3 - Ensure password expiration warning days is 7 or more (Scored)
+
+counter=0
+if [ $(grep "^PASS_WARN_AGE 7" /etc/login.defs | wc -l) -ne 0 ]; then
+    for i in $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1); do
+        if [ $(chage --list $i | grep "Numer.*warning before password expires.*:.*7" | wc -l) -eq 0 ]; then
+             counter=$((counter+1))
+        fi
+    done
+fi
+
+if [ "$counter" -ne "0" ]; then
+       echo "{\"warningdays_5413_audit\" : \"FAILED\"}"
+
+else
+       echo "{\"warningdays_5413_audit\" : \"PASSED\"}"
+
+fi

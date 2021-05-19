@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.21 - Ensure SSH MaxStartups is configured (Scored)
+
+if [ $(sudo sshd -T 2> /dev/null | grep -i "^maxstartups.*10:30:100" | wc -l) -eq 0 ]; then
+   echo "{ \"sshmaxstartups_5221_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshmaxstartups_5221_audit\" : \"PASSED\" }"
+fi

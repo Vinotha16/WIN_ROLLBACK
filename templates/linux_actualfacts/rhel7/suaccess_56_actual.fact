@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep -E '^\s*auth\s+required\s+pam_wheel\.so\s+(\S+\s+)*use_uid\s+(\S+\s+)*group=\S+\s*(\S+\s*)*(\s+#.*)?$' /etc/pam.d/su | expand -t 1)
+if [ $(sudo grep -E '^\s*auth\s+required\s+pam_wheel\.so\s+(\S+\s+)*use_uid\s+(\S+\s+)*group=\S+\s*(\S+\s*)*(\s+#.*)?$' /etc/pam.d/su | wc -l) -eq 0 ] || [ $(sudo grep sugroup /etc/group | cut -d: -f4 | sed '/^[[:space:]]*$/d' | wc -l) -ne 0 ]; then
+   echo "{ \"suaccess_56_actual\" : \"\" }"
+else
+   echo "{ \"suaccess_56_actual\" : \"${cmd}\" }"
+   
+fi

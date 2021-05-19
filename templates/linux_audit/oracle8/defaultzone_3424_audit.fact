@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.2.4 - Ensure default zone is set (Scored)
+
+if [ "$(firewall-cmd --get-default-zone | grep 'public' | wc -l)" -eq 0 ]; then
+   echo "{ \"3.4.2.4 - Ensure default zone is not set (Scored)\" : \"FAILED\" }"
+else
+   echo "{ \"defaultzone_3424_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

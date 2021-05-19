@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/shadow-)
+if [ $(sudo stat /etc/shadow- | egrep "0640.*Uid.*root.*Gid.*(shadow|root)" | wc -l) -eq 0 ]; then
+        echo "{ \"permshadowi_616_actual\" : \"\" }"
+    else
+        echo "{ \"permshadowi_616_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo systemctl is-enabled cron | grep "enabled")
+if [ $(sudo systemctl is-enabled cron | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"cron_511_actual\" : \"\" }"
+else
+   echo "{ \"cron_511_actual\" : \"$cmd\" }"
+  
+fi

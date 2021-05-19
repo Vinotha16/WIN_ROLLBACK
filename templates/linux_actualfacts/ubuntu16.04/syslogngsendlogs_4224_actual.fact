@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/syslog-ng/syslog-ng.conf | grep 'logserver' | tr '"' " " | paste -sd "," - )
+if [ $(sudo grep logserver /etc/syslog-ng/syslog-ng.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngsendlogs_4224_actual\" : \"\" }"
+else
+   echo "{ \"syslogngsendlogs_4224_actual\" : \"${cmd}\" }"
+   exit 0
+fi

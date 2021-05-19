@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.1 - Ensure audit log storage size is configured (Not Scored)
+
+if [ $(grep "max_log_file.*10" /etc/audit/auditd.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"auditlogsize_4111_audit\" : \"FAILED\"}"
+else
+   echo "{\"auditlogsize_4111_audit\" : \"PASSED\"}"
+fi

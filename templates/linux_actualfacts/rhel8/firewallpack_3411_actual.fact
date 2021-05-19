@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -qa firewalld | grep "firewalld-[0-9]\+")
+if [ $(sudo rpm -q firewalld | grep 'firewalld-[0-9]\+' | wc -l) -eq 0 ]; then
+        echo "{ \"firewallpack_3411_actual\" : \"$cmd\" }"
+else
+        echo "{ \"firewallpack_3411_actual\" : \"$cmd\" }"
+fi

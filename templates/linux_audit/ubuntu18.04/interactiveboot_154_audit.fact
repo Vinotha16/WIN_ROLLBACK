@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.5.4 - Ensure interactive boot is not enabled (Scored)
+
+if [ $(grep "^PROMPT_FOR_CONFIRM=no" /etc/sysconfig/boot 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"interactiveboot_154_audit\" : \"FAILED\" }"
+else
+   echo "{ \"interactiveboot_154_audit\" : \"PASSED\" }"
+   
+fi

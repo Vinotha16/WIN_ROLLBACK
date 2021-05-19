@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(rpm -qa net-tools | grep "net-tools")
+b=$(netstat -ln | grep "0:[0-9]" | paste -sd "," -)
+c=$(ip6tables -L INPUT -v -n | grep ".*ACCEPT.*tcp.*--.*state NEW")
+d="${a}","${b}","${c}"
+cmd=${d}
+if [ $(ss -6tuln | grep '.*0.*128.*22' | wc -l) -eq 0 ] || [ $(ip6tables -L INPUT -v -n | grep ".*ACCEPT.*tcp.**.**.*/0.*/0.*tcp dpt.*state NEW" | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6firewallrules_35424_actual\" : \"\" }"
+else
+   echo "{ \"ipv6firewallrules_35424_actual\" : \"${cmd}\" }"
+   exit 0
+fi

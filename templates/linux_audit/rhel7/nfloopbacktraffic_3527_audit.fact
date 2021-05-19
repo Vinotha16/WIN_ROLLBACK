@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# 3.5.2.7 Ensure loopback traffic is configured (Automated)
+
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'iif "lo" accept' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip saddr' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip6 saddr' | wc -l) -eq 0 ]; then
+       echo "{ \"nfloopbacktraffic_3527_audit\" : \"FAILED\" }"
+    else
+       echo "{ \"nfloopbacktraffic_3527_audit\" : \"PASSED\" }"
+    fi
+else
+    if [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'iif "lo" accept' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip saddr' | wc -l) -eq 0 ]; then
+       echo "{ \"nfloopbacktraffic_3527_audit\" : \"FAILED\" }"
+    else
+       echo "{ \"nfloopbacktraffic_3527_audit\" : \"PASSED\" }"
+    fi
+fi
+

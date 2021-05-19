@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.1 - Ensure package manager repositories are configured (Not Scored)
+
+if [ $(yum repolist 2> /dev/null | egrep -c 'amzn-main') -eq 0 ] || [ $(yum repolist 2> /dev/null | egrep -c 'amzn-updates') -eq 0 ]; then
+   echo "{ \"repoconfig_121_audit\" : \"FAILED\" }"
+else
+   echo "{ \"repoconfig_121_audit\" : \"PASSED\" }"
+fi

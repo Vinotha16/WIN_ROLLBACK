@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -q cups)
+if [ $(sudo rpm -qa cups | wc -l) -ne 0 ]; then
+  echo "{ \"cups_224_actual\" : \"\" }"
+else
+  echo "{ \"cups_224_actual\" : \"$cmd\" }"
+exit 1
+fi

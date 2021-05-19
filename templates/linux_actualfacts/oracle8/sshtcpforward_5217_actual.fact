@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/ssh/sshd_config | grep "^AllowTcpForwarding no")
+if [ $(sshd -T | grep -i ^allowtcpforwarding  /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshtcpforward_5217_actual\" : \"\" }"
+else
+   echo "{ \"sshtcpforward_5217_actual\" : \"${cmd}\" }"
+fi
+

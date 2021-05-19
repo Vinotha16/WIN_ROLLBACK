@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(yum repolist 2> /dev/null | egrep -c 'ol7') -eq 0 ]; then
+   echo "{ \"repoconfig_122_actual\" : \"\" }"
+else
+   echo "{ \"repoconfig_122_actual\" : \"repo is configured\" }"
+   exit 0
+fi

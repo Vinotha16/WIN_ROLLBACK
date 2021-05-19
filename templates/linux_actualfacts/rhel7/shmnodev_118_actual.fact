@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(mount | grep /dev/shm.*nodev)
+if [ $(mount | grep /dev/shm.*nodev | wc -l) -eq 0 ]; then
+   echo "{ \"shmnodev_118_actual\" : \"\" }"
+else
+   echo "{ \"shmnodev_118_actual\" : \"${cmd}\" }"
+
+fi

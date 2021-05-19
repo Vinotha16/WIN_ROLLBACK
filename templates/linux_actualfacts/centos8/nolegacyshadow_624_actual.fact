@@ -1,0 +1,9 @@
+#!/bin/bash
+failed=$(grep '^\+:' /etc/shadow | sed 's/+://g' | cut -d: -f1 | paste -sd ",")
+if [ "$(grep -o '^\+:' /etc/shadow | wc -l )" -ne "0" ]; then
+   echo "{ \"nolegacyshadow_624_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"nolegacyshadow_624_actual\" : \"legacy "+" entries not exist in /etc/shadow\" }"
+    exit 1
+fi
+

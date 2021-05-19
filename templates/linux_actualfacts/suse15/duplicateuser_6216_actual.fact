@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(awk -F: '$3>=1000 {print $1}' /etc/passwd | sort -n | uniq -c | awk '$1 > 1' | wc -l) -ne 0 ]; then
+   echo "{ \"duplicateuser_6216_actual\" : \"\" }"
+else
+   echo "{ \"duplicateuser_6216_actual\" : \"no duplicate user names exist\" }"
+   
+fi

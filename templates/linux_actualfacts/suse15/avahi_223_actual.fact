@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q avahi avahi-autoipd | paste -sd ",")
+if [ $(sudo rpm -qa avahi | wc -l) -ne 0 ] || [ $(sudo rpm -qa avahi-autoipd | wc -l) -ne 0 ]; then
+   echo "{ \"avahi_223_actual\" : \"\" }"
+else
+   echo "{ \"avahi_223_actual\" : \"$cmd\" }"
+fi

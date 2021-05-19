@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo  sshd -T | grep 'permituserenvironment.*no')
+if [ $(sudo  sshd -T | grep 'permituserenvironment.*no' | wc -l) -eq 0 ]; then
+   echo "{ \"sshpue_5212_actual\" : \"\" }"
+else
+   echo "{ \"sshpue_5212_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

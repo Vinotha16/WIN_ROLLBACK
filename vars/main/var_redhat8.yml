@@ -1,0 +1,34 @@
+---
+####RHEL-8####
+bootloader_password_rhel8: zippyops@123
+subscriptionmanager_user_rhel8: zippyops
+subscriptionmanager_pass_rhel8: Zippyops@123
+CRYPTO_POLICY_rhel8: DEFAULT
+remote_server_chrony_rhel8: sample.zippy.com
+remote_server_ntp_rhel8: sample.zippy.com
+ntp_chrony_rhel8: chrony
+zone_name_rhel8: customezone
+interface_name_rhel8: eth0
+#unnecservport_service_rhel8:   #unnecservport
+#unnecservport_port_rhel8:      #unnecservport
+table_name_rhel8: filter
+table_name_bc_rhel8: filter
+base_chain_name_input_rhel8: input
+base_chain_name_output_rhel8: output
+base_chain_name_forward_rhel8: forward
+audit_log_size_rhel8: 8
+MaxAuthTries_rhel8: MaxAuthTries 4
+PermitRootLogin_rhel8: PermitRootLogin no
+ClientAliveInterval_rhel8: ClientAliveInterval 300
+ClientAliveCountMax_rhel8: ClientAliveCountMax 0
+Pass_max_days_rhel8: 365
+Pass_min_days_rhel8: 7
+Pass_warn_age_rhel8: 7
+allowusers_rhel8: ansible
+allowgroups_rhel8:
+denyusers_rhel8:
+denygroups_rhel8:
+wheelgroup_rhel8:
+
+db_no_rhel8:
+update_rhel8:

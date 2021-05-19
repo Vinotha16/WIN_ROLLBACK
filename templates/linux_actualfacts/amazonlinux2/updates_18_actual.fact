@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$(sudo yum check-update --security | grep 'No packages' | cut -d';' -f1)" != "No packages needed for security" ]; then
+   echo "{ \"updates_18_actual\" : \"\" }"
+else
+   echo "{ \"updates_18_actual\" : \"No packages available\" }"
+#exit 1
+fi

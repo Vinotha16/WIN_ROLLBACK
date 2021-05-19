@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$(sudo apparmor_status | grep "profiles.*complain mode" | awk {'print $1'})" != '0' ] || [ "$(sudo apparmor_status | grep "processes are unconfined" | awk {'print $1'})" != '0' ]; then
+   echo "{ \"apparmorenforce_1714_actual\" : \"\" }"
+else
+   echo "{ \"apparmorenforce_1714_actual\" : \"AppArmor Profiles are enforcing\" }"
+fi

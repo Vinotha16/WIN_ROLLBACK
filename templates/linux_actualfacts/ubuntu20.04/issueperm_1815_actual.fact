@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(stat -c "%a %U %G %n" /etc/issue)
+if [ "$(sudo stat /etc/issue | grep "0644.*Uid.*root.*Gid.*root" | wc -l)" -eq 0 ]; then
+    echo "{ \"issueperm_1815_actual\" : \"\" }"
+else
+    echo "{ \"issueperm_1815_actual\" : \"${cmd}\" }"
+   exit 0
+fi

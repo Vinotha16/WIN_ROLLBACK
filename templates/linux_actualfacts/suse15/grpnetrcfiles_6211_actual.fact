@@ -1,0 +1,10 @@
+#!/bin/bash
+failed=$(find /home/ -name '.netrc' -perm /g+w,o+w)
+failfact=$(stat -c "%a %n" $failed  2>/dev/null | paste -sd ",")
+a=$(find /home/ -name '.netrc' -perm /g+w,o+w | wc -l)
+if [ "${a}" != "0" ]; then
+    echo "{ \"grpnetrcfiles_6211_actual\" : \"failed $failfact\" }"
+else
+    echo "{ \"grpnetrcfiles_6211_actual\" : \"Users .netrc files are not group or world accessible\" }"
+        exit 1
+fi

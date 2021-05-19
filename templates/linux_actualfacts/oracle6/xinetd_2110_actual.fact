@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list | grep 'xinetd:.*on' | wc -l) -ne 0 ]; then
+     echo "{ \"xinetd_2110_actual\" : \"\"}"
+else
+     echo "{ \"xinetd_2110_actual\" : \"xinetd is disabled\"}"
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.4 - Ensure password reuse is limited
+
+if [ $( grep -P '^\s*password\s+(requisite|required)\s+pam_pwhistory\.so\s+([^#]+\s+)*remember=([5-9]|[1-9][0-9]+)\b' /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $( grep -P '^\s*password\s+(requisite|required)\s+pam_pwhistory\.so\s+([^#]+\s+)*remember=([5-9]|[1-9][0-9]+)\b' /etc/pam.d/password-auth | wc -l) -eq 0 ]; then
+        if [ $( grep -P '^\s*password\s+(sufficient|requisite|required)\s+pam_unix\.so\s+([^#]+\s+)*remember=([5-9]|[1-9][0-9]+)\b' /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $( grep -P '^\s*password\s+(sufficient|requisite|required)\s+pam_unix\.so\s+([^#]+\s+)*remember=([5-9]|[1-9][0-9]+)\b' /etc/pam.d/password-auth | wc -l) -eq 0 ]; then
+                echo "{ \"passwdreuse_534_audit\" : \"FAILED\" }"
+        else
+                echo "{ \"passwdreuse_534_audit\" : \"PASSED\" }"
+        fi
+else
+   echo "{ \"passwdreuse_534_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

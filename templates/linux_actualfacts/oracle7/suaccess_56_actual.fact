@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat /etc/pam.d/su | grep -o "group=[Aa-Zz]*")
+if [ $(grep "^auth.*required.*pam_wheel.so.*use_uid.*group=[Aa-Zz]" /etc/pam.d/su | wc -l) -eq 0 ]; then
+   echo "{ \"suaccess_56_actual\" : \"\" }"
+else
+   echo "{ \"suaccess_56_actual\" : \"${cmd}\"}"
+   exit 0
+fi
+

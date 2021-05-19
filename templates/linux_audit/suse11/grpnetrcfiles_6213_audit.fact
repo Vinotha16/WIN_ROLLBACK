@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.13 - Ensure users' .netrc Files are not group or world accessible (Scored)
+
+count=0
+if [ $(find / -name ".netrc" -perm /g+w,o+w | wc -l) -ne 0 ]; then
+   count=$((count+1))
+fi
+if [ "$count" -ne "0" ]; then
+    echo "{ \"grpnetrcfiles_6213_audit\" : \"FAILED\" }"
+else
+   echo "{ \"grpnetrcfiles_6213_audit\" : \"PASSED\" }"
+fi
+

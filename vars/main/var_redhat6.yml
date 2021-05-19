@@ -1,0 +1,27 @@
+---
+####RHEL-6####
+bootloader_password_rhel6: zippyops@123
+subscriptionmanager_user_rhel6: zippyops
+subscriptionmanager_pass_rhel6: Zippyops@123
+remote_server_chrony_rhel6: sample.zippy.com
+remote_server_ntp_rhel6: sample.zippy.com
+ntp_chrony_rhel6: chrony
+hosts_allow_rhel6: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_rhel6: 'ALL: 170.16.3.0-170.16.3.4'
+audit_log_size_rhel6: 8
+rsyslog_syslog_rhel6: rsyslog
+MaxAuthTries_rhel6: MaxAuthTries 4
+PermitRootLogin_rhel6: PermitRootLogin no
+ClientAliveInterval_rhel6: ClientAliveInterval 300
+ClientAliveCountMax_rhel6: ClientAliveCountMax 0
+Pass_max_days_rhel6: 365
+Pass_min_days_rhel6: 7
+Pass_warn_age_rhel6: 7
+allowusers_rhel6: ansible
+allowgroups_rhel6:
+denyusers_rhel6:
+denygroups_rhel6:
+wheelgroup_rhel6:
+
+db_no_rhel6:
+update_rhel6:

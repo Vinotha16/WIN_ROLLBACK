@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.9 - Ensure FTP Server is not enabled (Scored)
+
+if [ $(sudo systemctl is-enabled vsftpd 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"ftp_229_audit\" : \"FAILED\" }"
+else
+   echo "{ \"ftp_229_audit\" : \"PASSED\" }"
+fi

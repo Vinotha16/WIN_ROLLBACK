@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.21 - Ensure nosuid option set on removable media partitions (Not Scored)
+
+MEDIA=$(mount -l -t vfat,iso9660,ext)
+cmd=$( mount -l -t vfat,iso9660,ext | grep -m1 -o "nosuid")
+if [[ -z $MEDIA ]]; then
+   echo "{ \"medianosuid_1118_actual\" : \"no removable partition is present\" }"
+else
+        if [ $(  mount -l -t vfat,iso9660,ext | grep "nosuid" | wc -l) -eq 0 ]; then
+                  echo "{ \"medianosuid_1118_actual\" : \"\" }"
+        else
+                  echo "{ \"medianosuid_1118_actual\" : \"$cmd\" }"
+        fi
+fi

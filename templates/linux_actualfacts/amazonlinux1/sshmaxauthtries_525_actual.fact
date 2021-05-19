@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/ssh/sshd_config | grep "^MaxAuthTries.*[0-9]")
+if [ $(sudo grep "^MaxAuthTries.*[0-9]" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshmaxauthtries_525_actual\" : \"\" }"
+else
+   echo "{ \"sshmaxauthtries_525_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

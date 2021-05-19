@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.2 - Ensure GPG keys are configured (Not Scored)
+
+if [ $(sudo apt-key list 2>/dev/null | grep "/etc/apt/trusted" | wc -l) -eq 0 ]; then
+   echo "{ \"gpgkey_122_audit\" : \"FAILED\" }"
+else
+   echo "{ \"gpgkey_122_audit\" : \"PASSED\" }"
+  
+fi

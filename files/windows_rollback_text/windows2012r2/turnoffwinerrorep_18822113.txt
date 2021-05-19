@@ -1,0 +1,14 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting
+Disabled 
+
+Computer
+SOFTWARE\Policies\Microsoft\PCHealth\ErrorReporting
+DoReport 
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

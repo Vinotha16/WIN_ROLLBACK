@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa tcpd)
+if [ $(sudo rpm -qa tcpd | wc -l) -eq 0 ]; then
+   echo "{ \"tcpwrappers_341_actual\" : \"\" }"
+else
+   echo "{ \"tcpwrappers_341_actual\" : \"$cmd\"}"
+   exit 1
+fi

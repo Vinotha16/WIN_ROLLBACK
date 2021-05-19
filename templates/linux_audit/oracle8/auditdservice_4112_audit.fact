@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.2 - Ensure auditd service is enabled (Scored)
+
+if [ $(systemctl is-enabled auditd 2> /dev/null | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"4.1.1.2 - Auditd Service is not enabled\" : \"FAILED\" }"
+else
+   echo "{ \"auditdservice_4112_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

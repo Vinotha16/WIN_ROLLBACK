@@ -1,0 +1,14 @@
+#!/bin/bash
+a=$(ip6tables -L -v -n | grep ".*ACCEPT.*tcp.*state ESTABLISHED")
+b=$(ip6tables -L -v -n | grep ".*ACCEPT.*udp.*state ESTABLISHED")
+c=$(ip6tables -L -v -n | grep ".*ACCEPT.*icmp.*state ESTABLISHED")
+d=$(ip6tables -L -v -n | grep ".*ACCEPT.*tcp.*state NEW,ESTABLISHED")
+e=$(ip6tables -L -v -n | grep ".*ACCEPT.*udp.*state NEW,ESTABLISHED")
+f=$(ip6tables -L -v -n | grep ".*ACCEPT.*icmp.*state NEW,ESTABLISHED")
+g="${a}","${b}","${c}","${d}","${e}","${f}"
+cmd=${g}
+if [ $(sudo ip6tables -L -v -n | grep ".*ACCEPT.*state ESTABLISHED" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L -v -n | grep ".*ACCEPT.*state NEW,ESTABLISHED" | wc -l) -eq 0 ]; then
+    echo "{ \"ipv6outbound_3523_actual\" : \"\"}"
+else
+    echo "{ \"ipv6outbound_3523_actual\" : \"${cmd}\"}"
+fi

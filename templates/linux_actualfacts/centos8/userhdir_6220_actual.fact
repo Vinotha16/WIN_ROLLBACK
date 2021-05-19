@@ -1,0 +1,20 @@
+#!/bin/bash
+mkdir /userhome_cis 2>/dev/null
+count=0
+for a in  `grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7!=/sbin/nologin && $7!=/bin/false {print $1}'`; do
+      mkdir /userhome_cis/$a 2>/dev/null
+done
+
+failed=$(diff -q /userhome_cis/ /home/ | grep 'Only in' |  awk '{ print $4 }' | paste -sd ",")
+for a in  `grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7!=/sbin/nologin && $7!=/bin/false {print $1}'`; do
+       if [ "$(ls /home | grep "$a")" != "$a" ]; then
+        count=$((count+1))
+    fi
+done
+if [ "$count" != "0" ]; then
+    echo "{ \"userhdir_6220_actual\" : \"failed $failed\" }"
+else
+    echo "{ \"userhdir_6220_actual\" : \"All users home directories exist\" }"
+    exit 1
+fi
+rm -rf /userhome_cis 2>/dev/null

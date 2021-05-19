@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.9 - Ensure updates patches and additional security software are installed (Scored)
+
+if [ $(yum check-update 2> /dev/null | grep 'No packages' | wc -l) -eq "0" ]; then
+   echo "{ \"updates_19_audit\" : \"FAILED\"}"
+else
+   echo "{ \"updates_19_audit\" : \"PASSED\"}"
+   
+fi
+
+
+

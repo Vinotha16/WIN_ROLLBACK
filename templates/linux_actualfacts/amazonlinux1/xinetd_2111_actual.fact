@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(chkconfig --list | grep 'xinetd.*on' | wc -l) -ne 0 ]; then
+  echo "{ \"xinetd_2111_actual\" : \"\" }"
+else
+  echo "{ \"xinetd_2111_actual\" : \"not enabled\" }"
+exit 1
+fi

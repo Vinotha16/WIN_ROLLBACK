@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+#  5.2.8 - Ensure SSH IgnoreRhosts is enabled
+
+if [ $(sudo grep "^IgnoreRhosts.*yes" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshignorerhosts_528_audit\":\"FAILED\"}"
+else
+   echo "{\"sshignorerhosts_528_audit\":\"PASSED\"}"
+   exit 1
+fi
+

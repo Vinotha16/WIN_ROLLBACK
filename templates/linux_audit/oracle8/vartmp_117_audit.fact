@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.7 - Ensure separate partition exists for /var/tmp (Scored)
+
+if [ $(sudo mount | grep /var/tmp | wc -l) -eq 0 ] || [ $(sudo grep /var/tmp /etc/fstab | wc -l) -eq 0]; then
+   echo "{ \"1.1.7 - Separate partition not exists for /var/tmp\" : \"FAILED\" }"
+else
+   echo "{ \"vartmp_117_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

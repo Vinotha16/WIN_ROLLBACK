@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(cat /etc/ssh/sshd_config | grep "^LogLevel.*INFO")
+b=$(cat /etc/ssh/sshd_config | grep "^LogLevel.*VERBOSE")
+c="${a}","${b}"
+cmd="${c}"
+if [ $(sudo egrep "^LogLevel.*INFO|^LogLevel.*VERBOSE" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshloglevel_525_actual\" : \"\" }"
+else
+   echo "{ \"sshloglevel_525_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+

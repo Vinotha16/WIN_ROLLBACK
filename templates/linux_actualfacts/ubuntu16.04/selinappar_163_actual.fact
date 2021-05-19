@@ -1,0 +1,12 @@
+#!/bin/bash
+cmd=$(dpkg -s selinux | grep "Version")
+cmd1=$(dpkg -s apparmor | grep "Version")
+if [ "$(sudo dpkg -s selinux 2>/dev/null | grep "installed" | wc -l)" -ne 0 ]; then
+   echo "{ \"selinappar_163_actual\" : \"$cmd\" }"
+
+elif [ "$(sudo dpkg -s apparmor 2>/dev/null | grep "installed" | wc -l)" -ne 0 ]; then
+   echo "{ \"selinappar_163_actual\" : \"$cmd1\" }"
+
+else
+   echo "{ \"selinappar_163_actual\" : \"\" }"
+fi

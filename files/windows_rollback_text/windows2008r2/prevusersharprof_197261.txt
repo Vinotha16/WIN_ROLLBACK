@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+User
+Software\Microsoft\Windows\CurrentVersion\Policies\Explorer
+NoInplaceSharing
+DWORD:1
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

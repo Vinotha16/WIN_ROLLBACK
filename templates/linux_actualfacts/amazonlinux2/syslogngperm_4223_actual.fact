@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/syslog-ng/syslog-ng.conf | grep -m1 "^options.*chain_hostnames.*flush.*0640")
+if [ $(sudo grep "^options.*chain_hostnames.*flush.*0640" /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngperm_4223_actual\" : \"\" }"
+else
+   echo "{ \"syslogngperm_4223_actual\" : \"${cmd}\" }"
+
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.7 - Ensure login and logout events are collected (Scored)
+
+if [ $(sudo egrep "faillog|lastlog|tallylog" /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"loginout_417_audit\" : \"FAILED\" }"
+else
+   echo "{ \"loginout_417_audit\" : \"PASSED\" }"
+   
+fi

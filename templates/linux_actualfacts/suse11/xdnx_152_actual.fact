@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo dmesg | grep ' NX' | cut -d' ' -f10 | paste -sd ",")
+if [ "$(sudo dmesg | grep ' NX' | cut -d' ' -f10)" != 'active' ]; then
+   echo "{ \"xdnx_152_actual\" : \"\" }"
+else
+   echo "{ \"xdnx_152_actual\" : \"$cmd\" }"
+fi
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+count=0
+if [ $(sudo awk -F: '$3>=1000 {print $1}' /etc/group | sort -n | uniq -c | awk '$1 > 1' | wc -l) -ne 0 ]; then
+        count=$((count+1))
+fi
+if [ "$count" -ne "0" ]; then
+    echo "{ \"duplicategroup_6219_actual\" : \"\" }"
+else
+    echo "{ \"duplicategroup_6219_actual\" : \"no duplicate group names exist\" }"
+fi

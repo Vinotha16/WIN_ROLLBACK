@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.19 - Ensure SSH PAM is enabled (Automated)
+
+if [ $(sudo sshd -T | grep -i usepam | wc -l) -eq 0 ]; then
+   echo "{ \"sshpam_5219_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshpam_5219_audit\" : \"PASSED\" }"
+fi
+
+

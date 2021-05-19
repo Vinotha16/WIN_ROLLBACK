@@ -1,0 +1,22 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.1.1 - Ensure password expiration is 365 days or less (Scored)
+
+counter=0
+if [ $(grep "^PASS_MAX_DAYS" /etc/login.defs | awk '{print $2}') -gt 365 ]; then
+   for i in $(egrep ^[^:]+:[^\!*] /etc/shadow | awk -F: '$5>365 {print $1}'); do
+        if [ $i != 'root' ]; then
+          if [ $(chage --list $i | grep "Maximum.*" | awk -F ':' '{print $2}') -gt 365 ]; then
+                        counter=$((counter+1))
+          fi
+        fi
+   done
+fi
+if [ "$counter" -ne "0" ]; then
+        echo "{\"passwdexpiration_5411_audit\" : \"FAILED\"}"
+else
+        echo "{\"passwdexpiration_5411_audit\" : \"PASSED\"}"
+
+fi
+

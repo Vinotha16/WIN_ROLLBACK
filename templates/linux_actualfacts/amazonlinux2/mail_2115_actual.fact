@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep "^inet_interfaces = loopback-only" /etc/postfix/main.cf)
+if [ $(sudo netstat -an | grep LIST | grep ":25[[:space:]]" | wc -l) -eq 0 ] || [ $(sudo grep "^inet_interfaces = loopback-only" /etc/postfix/main.cf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"mail_2115_actual\" : \"\" }"
+else
+   echo "{ \"mail_2115_actual\" : \"$cmd\" }"
+   exit 1
+fi

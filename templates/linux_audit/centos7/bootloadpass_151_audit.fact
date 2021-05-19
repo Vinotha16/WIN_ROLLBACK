@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.5.1 - Ensure bootloader password is set (Scored)
+
+if [ $(sudo grep "^\s*GRUB2_PASSWORD" /boot/grub2/user.cfg | wc -l) -eq 0 ]; then
+   echo "{ \"bootloadpass_151_audit\" : \"FAILED\" }"
+else
+   echo "{ \"bootloadpass_151_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo grep "^\s*linux.*apparmor=1" /boot/grub/grub.cfg | grep -o "apparmor=1 security=apparmor" | sed '1q')
+if [ $(sudo grep "^\s*linux.*apparmor=1" /boot/grub/grub.cfg | wc -l) -eq 0 ]; then
+   echo "{ \"armorenable_1712_actual\" : \"\" }"
+else
+   echo "{ \"armorenable_1712_actual\" : \"${cmd}\" }"
+fi
+

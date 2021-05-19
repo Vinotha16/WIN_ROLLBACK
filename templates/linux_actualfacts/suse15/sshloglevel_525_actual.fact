@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo sshd -T | egrep '(loglevel.*VERBOSE|loglevel.*INFO)' | paste -sd ",")
+if [ $(sudo sshd -T | egrep '(loglevel.*VERBOSE|loglevel.*INFO)' | wc -l) -eq 0 ]; then
+   echo "{ \"sshloglevel_525_actual\" : \"\" }"
+else
+   echo "{ \"sshloglevel_525_actual\" : \"${cmd}\" }"
+   exit 1
+fi

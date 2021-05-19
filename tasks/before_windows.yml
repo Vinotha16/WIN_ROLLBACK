@@ -1,0 +1,307 @@
+---
+  - name: removing and creating directory
+    file:
+      path: "/root/windowscisfacts"
+      state: "{{ item }}"
+    delegate_to: localhost
+    with_items:
+      - absent
+      - directory
+    become: yes
+    tags:
+      - db
+      - all
+
+  - name: running setup module
+    setup: fact_path='c:\custom_facts'
+    register: winfacts
+    tags:
+      - db
+      - all
+
+  - name: saving windows2008nonr2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windowsdb2008nonr2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_actual_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2008 Standard')) or (ansible_os_name | regex_search('2008 Server Core')) or (ansible_os_name | regex_search('2008 Datacenter')) or (ansible_os_name | regex_search('2008 Enterprise'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2008r2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windowsdb2008r2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_actual_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2008 R2 Standard')) or (ansible_os_name | regex_search('2008 R2 Enterprise')) or (ansible_os_name | regex_search('2008 R2 Web')) or (ansible_os_name | regex_search('2008 R2 Datacenter')) or (ansible_os_name | regex_search('2008 R2 Itanium')) or (ansible_os_name | regex_search('2008 R2 Foundation')) or (ansible_os_name | regex_search('2008 R2 HPC'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2012nonr2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windowsdb2012nonr2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_actual_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2012 Standard')) or (ansible_os_name | regex_search('2012 Datacenter')) or (ansible_os_name | regex_search('2012 Essentials')) or (ansible_os_name | regex_search('2012 Foundation'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2012r2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windowsdb2012r2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_actual_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2012 R2 Standard')) or (ansible_os_name | regex_search('2012 R2 Datacenter')) or (ansible_os_name | regex_search('2012 R2 Essentials')) or (ansible_os_name | regex_search('2012 R2 Foundation'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2016 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windowsdb2016 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_actual_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2016 Standard')) or (ansible_os_name | regex_search('2016 Datacenter')) or (ansible_os_name | regex_search('2016 Essentials'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2019 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windowsdb2019 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_actual_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2019 Standard')) or (ansible_os_name | regex_search('2019 Server Core')) or (ansible_os_name | regex_search('2019 Datacenter')) or (ansible_os_name | regex_search('2019 Enterprise'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: escaping few characters
+    shell: sed -i -e 's;\\;/\\;g' /root/windowscisfacts/before_actual_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - pause: seconds=1
+    tags:
+      - db
+      - all
+
+  - name: removing and replacing colon with additional special characters
+    shell: |
+        sed -i -e 's/ : /": "/g' /root/windowscisfacts/before_actual_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - pause: seconds=1
+    tags:
+      - db
+      - all
+
+  - name: removing square brackets
+    shell: sed -i -e 's/\[//;s/\]//' /root/windowscisfacts/before_actual_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - pause: seconds=1
+    tags:
+      - db
+      - all
+
+  - name: adding flower brackets
+    shell: '{{ item }}'
+    with_items:
+      - sed -i -e 's/^/{/1' /root/windowscisfacts/before_actual_{{ansible_hostname}}.json
+      - sed -i -e 's/$/}/1' /root/windowscisfacts/before_actual_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Getting the actual json content
+    shell: cat /root/windowscisfacts/before_actual_{{ansible_hostname}}.json
+    register: beforeactualfact
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Importing the actualfacts values into DB
+    community.mysql.mysql_query:
+      login_host: "{{ db_host }}"
+      login_db: "{{ db }}"
+      login_user: "{{ db_user }}"
+      login_password: "{{ db_passwd }}"
+      query: "UPDATE cis_rollback SET before_actual = '{{ beforeactualfact.stdout }}' WHERE id = '{{ id_no }}';"
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+#########AUDIT
+  - name: running setup module
+    setup: fact_path='c:\custom_facts'
+    register: winfacts
+    tags:
+      - db
+      - all
+
+  - name: saving windows2008nonr2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windows2008nonr2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_audit_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2008 Standard')) or (ansible_os_name | regex_search('2008 Server Core')) or (ansible_os_name | regex_search('2008 Datacenter')) or (ansible_os_name | regex_search('2008 Enterprise'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2008r2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windows2008r2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_audit_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2008 R2 Standard')) or (ansible_os_name | regex_search('2008 R2 Enterprise')) or (ansible_os_name | regex_search('2008 R2 Web')) or (ansible_os_name | regex_search('2008 R2 Datacenter')) or (ansible_os_name | regex_search('2008 R2 Itanium')) or (ansible_os_name | regex_search('2008 R2 Foundation')) or (ansible_os_name | regex_search('2008 R2 HPC'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2012nonr2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windows2012nonr2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_audit_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2012 Standard')) or (ansible_os_name | regex_search('2012 Datacenter')) or (ansible_os_name | regex_search('2012 Essentials')) or (ansible_os_name | regex_search('2012 Foundation'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2012r2 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windows2012r2 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_audit_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2012 R2 Standard')) or (ansible_os_name | regex_search('2012 R2 Datacenter')) or (ansible_os_name | regex_search('2012 R2 Essentials')) or (ansible_os_name | regex_search('2012 R2 Foundation'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2016 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windows2016 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_audit_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2016 Standard')) or (ansible_os_name | regex_search('2016 Datacenter')) or (ansible_os_name | regex_search('2016 Essentials'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: saving windows2019 facts to host specific filenames
+    copy:
+      content: "{{ winfacts.ansible_facts.ansible_windows2019 | to_json }}\n"
+      dest: "/root/windowscisfacts/before_audit_{{ansible_hostname}}.json"
+      mode: 0666
+    when: (ansible_os_name | regex_search('2019 Standard')) or (ansible_os_name | regex_search('2019 Server Core')) or (ansible_os_name | regex_search('2019 Datacenter')) or (ansible_os_name | regex_search('2019 Enterprise'))
+    failed_when: no
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: escaping few characters
+    shell: sed -i -e 's;\\;/\\;g' /root/windowscisfacts/before_audit_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - pause: seconds=1
+    tags:
+      - db
+      - all
+
+  - name: removing and replacing colon with additional special characters
+    shell: |
+        sed -i -e 's/ : /": "/g' /root/windowscisfacts/before_audit_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - pause: seconds=1
+    tags:
+      - db
+      - all
+
+  - name: removing square brackets
+    shell: sed -i -e 's/\[//;s/\]//' /root/windowscisfacts/before_audit_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - pause: seconds=1
+    tags:
+      - db
+      - all
+
+  - name: adding flower brackets
+    shell: '{{ item }}'
+    with_items:
+      - sed -i -e 's/^/{/1' /root/windowscisfacts/before_audit_{{ansible_hostname}}.json
+      - sed -i -e 's/$/}/1' /root/windowscisfacts/before_audit_{{ansible_hostname}}.json
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Getting the audit json content
+    shell: cat /root/windowscisfacts/before_audit_{{ansible_hostname}}.json
+    register: beforeauditfact
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+
+  - name: Importing the db audit values into DB
+    community.mysql.mysql_query:
+      login_host: "{{ db_host }}"
+      login_db: "{{ db }}"
+      login_user: "{{ db_user }}"
+      login_password: "{{ db_passwd }}"
+      query: "UPDATE cis_rollback SET before_audit = '{{ beforeauditfact.stdout }}' WHERE id = '{{ id_no }}';"
+    delegate_to: localhost
+    tags:
+      - db
+      - all
+

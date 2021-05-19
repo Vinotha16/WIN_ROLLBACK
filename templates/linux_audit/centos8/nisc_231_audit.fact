@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.1 - Ensure NIS Client is not installed (Scored)
+
+if [ $(rpm -qa ypbind | wc -l) -ne 0 ]; then
+   echo "{ \"nisc_231_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nisc_231_audit\" : \"PASSED\" }"
+fi

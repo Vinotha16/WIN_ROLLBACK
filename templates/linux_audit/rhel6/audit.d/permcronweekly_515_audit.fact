@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.5 - Ensure permissions on /etc/cron.weekly are configured (Scored)
+
+if [ $(sudo stat /etc/cron.weekly | grep "0700.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{\"permcronweekly_515_audit\" : \"FAILED\"}"
+else
+   echo "{\"permcronweekly_515_audit\" : \"PASSED\"}"
+  
+fi

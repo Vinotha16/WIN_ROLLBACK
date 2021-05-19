@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo dpkg -s nfs-kernel-server 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+    echo "{ \"nfs_227_actual\" : \"\" }"
+else
+    echo "{ \"nfs_227_actual\" : \"nfs not installed\" }"
+    
+fi

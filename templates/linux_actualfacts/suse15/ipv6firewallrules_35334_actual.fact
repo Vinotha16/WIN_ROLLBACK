@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(sudo ss -6tuln | egrep '.*22' | paste -sd ",")
+b=$(ip6tables -L INPUT -v -n | egrep ".*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW.*tcp dpt" | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(ss -6tuln | grep '.*22' | wc -l) -eq 0 ] || [ $(ip6tables -L INPUT -v -n | grep ".*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW.*tcp dpt" | wc -l) -eq 0 ]; then
+        echo "{ \"ipv6firewallrules_35334_actual\" : \"\" }"
+    else
+        echo "{ \"ipv6firewallrules_35334_actual\" : \"$cmd\" }"
+    fi
+else
+    echo "{ \"ipv6firewallrules_35334_actual\" : \"ipv6 is disabled\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.1.1 - Ensure password hashing algorithm is SHA-512 (Scored)
+
+if [ $(sudo grep -Ei '^\s*^\s*ENCRYPT_METHOD\s+SHA512' /etc/login.defs | wc -l) -eq 0 ]; then
+   echo "{ \"passwdhashing_5411_audit\" : \"FAILED\" }"
+else
+   echo "{ \"passwdhashing_5411_audit\" : \"PASSED\" }"
+
+fi

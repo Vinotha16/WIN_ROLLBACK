@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(egrep "^\s*minlen.*14|^minlen.*14" /etc/security/pwquality.conf)
+b=$(egrep "^minclass.*4|^\s*minclass.*4" /etc/security/pwquality.conf)
+cmd="${a}","${b}"
+if [ $(sudo egrep "^\s*minlen.*14|minlen.*14" /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo egrep "^minclass.*4|^\s*minclass.*4" /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+   echo "{ \"passwdcreation_531_actual\" : \"\" }"
+else
+   echo "{ \"passwdcreation_531_actual\" : \"$cmd\" }"
+ 
+fi

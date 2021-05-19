@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo rpm -qa httpd | wc -l) -ne 0 ]; then
+  echo "{ \"http_2211_actual\" : \"\" }"
+else
+  echo "{ \"http_2211_actual\" : \"not installed\" }"
+exit 1
+fi
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.11 - Ensure DNS Server is not enabled (Scored)
+
+if [ $( sudo systemctl is-enabled named 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"2.2.11 - DNS Server is Enabled\" : \"FAILED\" }"
+else
+   echo "{ \"dns_2211_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

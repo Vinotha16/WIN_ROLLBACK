@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(grep -v -e "^tty" -e "^#" /etc/securetty | sed '/^$/d' | paste -sd ",")
+if [ $(grep -v -e "^tty" -e "^#" /etc/securetty | wc -l) -ne 0 ]; then
+    echo "{ \"rootlogin_56_actual\" : \"failed $failfact\" }"
+else
+    echo "{ \"rootlogin_56_actual\" : \"root login is restricted to system console\" }"
+
+fi

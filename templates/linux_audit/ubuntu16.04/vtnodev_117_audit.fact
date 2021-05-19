@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.7 - Ensure nodev option set on /var/tmp partition (Scored)
+
+if [ "$(mount | grep "/var/tmp.*nodev" | wc -l)" -eq 0 ]; then
+   echo "{\"vtnodev_117_audit\" : \"FAILED\"}"
+else
+   echo "{\"vtnodev_117_audit\" : \"PASSED\"}"
+   
+fi

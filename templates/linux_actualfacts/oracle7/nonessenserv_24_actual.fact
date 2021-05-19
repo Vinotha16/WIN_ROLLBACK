@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(lsof -i -P -n | grep -v "(ESTABLISHED)" | awk '{print $1, $5}' | sed -n '1!p' | paste -sd ",")
+if [ $(sudo lsof -i -P -n | grep -v "(ESTABLISHED)" | wc -l) -ne 0 ]; then
+   echo "{ \"nonessenserv_24_actual\" : \"$cmd\" }"
+else
+   echo "{ \"nonessenserv_24_actual\" : \"nonessential services are removed or masked or lsof command not present\" }"
+fi
+

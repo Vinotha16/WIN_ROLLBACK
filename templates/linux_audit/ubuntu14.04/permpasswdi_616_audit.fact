@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.6 - Ensure permissions on /etc/passwd- are configured (Scored)
+
+if [ $(sudo stat /etc/passwd- | grep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"6.1.6 - Permission on /etc/passwd- are not configured\" : \"FAILED\" }"
+else
+   echo "{ \"permpasswdi_616_audit\" : \"PASSED\" }"
+   
+fi

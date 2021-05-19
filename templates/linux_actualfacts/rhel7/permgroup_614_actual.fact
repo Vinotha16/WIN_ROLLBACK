@@ -1,0 +1,10 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/group) 
+if [ $(sudo stat /etc/group | grep 0644 | wc -l) -eq 0 ] || [ $(sudo stat /etc/group | grep ".*Uid:.*0/.*root" | wc -l) -eq 0 ] || [ $(sudo stat /etc/group | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permgroup_614_actual\" : \"\" }"
+else
+   echo "{ \"permgroup_614_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+

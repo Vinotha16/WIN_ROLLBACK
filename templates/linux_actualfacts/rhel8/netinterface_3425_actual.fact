@@ -1,0 +1,10 @@
+#!/bin/bash
+#cmd=$(firewall-cmd --zone=customezone --change-interface=eth0)
+nmcli -t connection show | awk -F: '{if($4){print $4}}' | while read INT; do
+ 	if [ $(firewall-cmd --get-active-zones | grep -B1 $INT | wc -l) -eq 0 ]; then
+  		echo "{ \"netinterface_3425_actual\" : \"\" }"
+	else
+  		echo "{ \"netinterface_3425_actual\" : \"network interfaces are not assigned to appropriate zone\" }"
+   		exit 1
+	fi
+done

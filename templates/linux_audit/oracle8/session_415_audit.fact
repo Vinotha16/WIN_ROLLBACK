@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.5 - Ensure session initiation information is collected (Scored)
+
+if [ $(sudo egrep  "utmp" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep  "wtmp|btmp" /etc/audit/rules.d/*.rules  2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"4.1.5 - Session initiation information is not collected\" : \"FAILED\" }"
+else
+   echo "{ \"session_415_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

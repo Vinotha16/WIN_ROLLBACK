@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list smb | egrep 'smb.*:on ' | wc -l) -ne 0 ]; then
+  echo "{ \"samba_2212_actual\" : \"\" }"
+else
+  echo "{ \"samba_2212_actual\" : \"not enabled\" }"
+exit 1
+fi

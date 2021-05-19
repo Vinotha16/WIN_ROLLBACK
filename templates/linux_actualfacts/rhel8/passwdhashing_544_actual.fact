@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep "password.*sufficient.*pam_unix.so.*sha512" | paste -sd "," -)
+b=$(cat /etc/pam.d/system-auth | grep "password.*sufficient.*pam_unix.so.*sha512" | paste -sd "," -)
+c="${a}","${b}"
+cmd=${c}
+if [ $(egrep "password.*sufficient.*pam_unix.so.*sha512" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(egrep "password.*sufficient.*pam_unix.so.*sha512" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdhashing_544_actual\" : \"\" }"
+else
+   echo "{ \"passwdhashing_544_actual\" : \"${cmd}\" }"
+   exit 1
+fi

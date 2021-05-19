@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(chkconfig --list rhnsd 2> /dev/null | grep "on" | wc -l) -ne 0 ]; then
+	echo "{ \"rhnsd_122_actual\" : \"\"}"
+else
+	echo "{ \"rhnsd_122_actual\" : \"Daemon is disabled\"}"
+	exit 0
+fi

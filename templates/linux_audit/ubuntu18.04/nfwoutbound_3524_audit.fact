@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.4 - Ensure outbound connections are configured (Not Scored))
+
+if [ $(ufw status numbered | grep "Anywhere on all" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwoutbound_3524_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfwoutbound_3524_audit\" : \"PASSED\" }"
+
+fi

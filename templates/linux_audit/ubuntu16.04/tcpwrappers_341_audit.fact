@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.1 - Ensure TCP Wrappers is installed (Scored)
+
+if [ $(sudo dpkg -s tcpd 2> /dev/null | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{ \"tcpwrappers_341_audit\" : \"FAILED\"}"
+else
+   echo "{ \"tcpwrappers_341_audit\" : \"PASSED\"}"
+  
+fi
+

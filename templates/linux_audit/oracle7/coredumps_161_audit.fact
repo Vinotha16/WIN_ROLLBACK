@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1 - Ensure core dumps are restricted (Scored)
+
+if [ $(sudo grep "* hard core" /etc/security/limits.conf | wc -l) -eq 0 ] || [ $(sudo sysctl fs.suid_dumpable | grep 0 | wc -l) -eq 0 ] || [ $(sudo grep "fs.suid_dumpable=0" /etc/sysctl.conf | wc -l) -eq 0 ] ; then
+   echo "{ \"coredumps_161_audit\" : \"FAILED\" }"
+else
+   echo "{ \"coredumps_161_audit\" : \"PASSED\" }"
+fi
+

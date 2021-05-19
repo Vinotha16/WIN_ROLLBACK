@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cmd=$(grep -E ^\s*ForwardToSyslog /etc/systemd/journald.conf)
+
+if [ $(grep -E ^\s*ForwardToSyslog /etc/systemd/journald.conf | wc -l) -eq 0 ]; then
+   echo "{\"journalsendlogs_4221_actual\":\"\"}"
+else
+   echo "{\"journalsendlogs_4221_actual\":\"$cmd\"}"
+   exit 1
+fi
+
+

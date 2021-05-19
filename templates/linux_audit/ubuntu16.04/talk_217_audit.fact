@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.7 - Ensure talk server is not enabled (Scored)
+
+FILE=/etc/inetd.d/*.
+
+
+if [ -f "$FILE" ] && [ $(sudo egrep "^talk|^ntalk" /etc/inetd.* 2> /dev/null  | wc -l) -ne 0 ] || [ -f "$FILE" ] && [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null | grep talk | wc -l) -eq 0 ] || [ -f "$FILE" ] && [ $(sudo grep disable.*yes /etc/xinetd.conf /etc/xinetd.d/* 2> /dev/null  | grep "ntalk" | wc -l) -eq 0 ]; then
+   echo "{ \"talk_217_audit\" : \"FAILED\" }"
+else
+   echo "{ \"talk_217_audit\" : \"PASSED\" }"
+
+fi
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.14 - Ensure SSH LoginGraceTime is set to one minute or less (Scored)
+
+if [ $( sudo grep "^LoginGraceTime.*60" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshlogingracetime_5214_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshlogingracetime_5214_audit\" : \"PASSED\"}"
+   
+fi
+

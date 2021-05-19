@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.4 - Ensure default user umask is 027 or more restrictive (Scored)
+
+if [ $(sudo grep "^UMASK.*027" /etc/login.defs | wc -l) -eq 0 ] || [ $(sudo grep "session optional.*" /etc/pam.d/common-session | wc -l) -eq 0 ]; then
+   echo "{ \"defaultuser_544_audit\" : \"FAILED\" }"
+else
+   echo "{ \"defaultuser_544_audit\" : \"PASSED\" }"
+
+fi

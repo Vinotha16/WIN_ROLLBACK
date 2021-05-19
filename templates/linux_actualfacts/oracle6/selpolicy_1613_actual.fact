@@ -1,0 +1,9 @@
+#!/bin/bash
+failed=$(cat /etc/selinux/config | grep "^SELINUXTYPE=.*")
+cmd=$(egrep "^SELINUXTYPE=(targeted|mls)" /etc/selinux/config)
+if [ $(sudo egrep "^SELINUXTYPE=(targeted|mls)" /etc/selinux/config | wc -l) -eq 0 ] || [ $(sudo sestatus | egrep "Policy from config file:.*targeted|mls" | wc -l) -eq 0 ]; then
+   echo "{ \"selpolicy_1613_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"selpolicy_1613_actual\" : \"${cmd}\" }"
+exit 1
+fi

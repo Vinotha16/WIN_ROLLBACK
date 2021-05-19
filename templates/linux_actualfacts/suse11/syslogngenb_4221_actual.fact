@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(grep '^SYSLOG_DAEMON="syslog-ng"' /etc/sysconfig/syslog | tr '"' " ")
+if [ $(sudo chkconfig --list syslog 2>/dev/null | grep 2:on.*3:on.*4:on.*5:on | wc -l) -eq 0 ] || [ $(sudo grep '^SYSLOG_DAEMON="syslog-ng"' /etc/sysconfig/syslog | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngenb_4221_actual\" : \"\" }"
+else
+   echo "{ \"syslogngenb_4221_actual\" : \"$cmd\"}"
+   exit 1
+fi
+

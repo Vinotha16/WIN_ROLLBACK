@@ -1,0 +1,14 @@
+#!/bin/bash
+a=$(cat /etc/audit/audit.rules | grep "exit -F arch=b64 -S sethostname -S setdomainname -k system-locale")
+b=$(cat /etc/audit/audit.rules | grep "exit -F arch=b32 -S sethostname -S setdomainname -k system-locale")
+c=$(cat /etc/audit/audit.rules | grep "/etc/issue -p wa -k system-locale")
+d=$(cat /etc/audit/audit.rules | grep "/etc/issue.net -p wa -k system-locale")
+e=$(cat /etc/audit/audit.rules | grep "/etc/hosts -p wa -k system-locale")
+f=$(cat /etc/audit/audit.rules | grep "/etc/sysconfig/network -p wa -k system-locale")
+cmd="${a}","${b}","${c}","${d}","${e}","${f}"
+if [ $(sudo grep "system-locale" /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"modsysnet_416_actual\" : \"\"}"
+else
+   echo "{\"modsysnet_416_actual\" : \"$cmd\"}"
+
+fi

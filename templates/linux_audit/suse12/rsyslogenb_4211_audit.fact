@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.1.1 - Ensure rsyslog Service is enabled (Scored)
+
+#systemctl is-enabled rsyslog 2>&1 | grep -E "enabled|disabled|No such file or directory" || exit $?
+
+if [ $(systemctl is-enabled rsyslog | grep enabled | wc -l) -eq 0 ]; then
+   echo "{\"rsyslogenb_4211_audit\" : \"FAILED\"}"
+else
+   echo "{\"rsyslogenb_4211_audit\" : \"PASSED\"}"
+fi

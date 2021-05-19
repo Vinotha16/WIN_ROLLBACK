@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.16 - Ensure kernel module loading and unloading is collected
+
+if [ $(sudo grep modules /etc/audit/rules.d/*.rules  2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep  modules | wc -l) -eq 0 ]; then
+   echo "{\"kernelmodule_4116_audit\":\"FAILED\"}"
+else
+   echo "{\"kernelmodule_4116_audit\":\"PASSED\"}"
+   exit 1
+fi
+
+

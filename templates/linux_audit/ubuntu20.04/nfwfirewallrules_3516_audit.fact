@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1.6 - Ensure firewall rules exist for all open ports (Not Scored)
+
+if [ $(ss -4tuln | grep 0:22 | wc -l) -eq 0 ] || [ $(ufw status | grep ".*22/tcp.*ALLOW.*Anywhere" | wc -l) -eq 0 ]; then
+   echo "{ \"nfwfirewallrules_3516_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfwfirewallrules_3516_audit\" : \"PASSED\" }"
+
+fi

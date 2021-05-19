@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.4 - Ensure password hashing algorithm is SHA-512 (Scored)
+
+if [ $(grep "^password.*sufficient.*pam_unix.so.*sha512" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "^password.*sufficient.*pam_unix.so.*sha512" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdhashing_544_audit\" : \"FAILED\" }"
+else
+   echo "{ \"passwdhashing_544_audit\" : \"PASSED\" }"
+fi

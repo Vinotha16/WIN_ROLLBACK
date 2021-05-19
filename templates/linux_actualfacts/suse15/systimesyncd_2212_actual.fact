@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled systemd-timesyncd.service | grep enabled )
+if [ $(sudo systemctl is-enabled systemd-timesyncd.service | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"systimesyncd_2212_actual\" : \"\" }"
+else
+   echo "{ \"systimesyncd_2212_actual\" : \"$cmd\" }"
+fi

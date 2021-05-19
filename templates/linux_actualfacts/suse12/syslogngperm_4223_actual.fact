@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(cat /etc/syslog-ng/syslog-ng.conf | grep "options { chain_hostnames(off); flush_lines(0); perm(0640); stats_freq(3600); threaded(yes); };")
+if [ $(grep "^options" /etc/syslog-ng/syslog-ng.conf 2>/dev/null | grep 0640 | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngperm_4223_actual\" : \"\" }"
+else
+   echo "{ \"syslogngperm_4223_actual\" : \"${cmd}\" }"
+fi

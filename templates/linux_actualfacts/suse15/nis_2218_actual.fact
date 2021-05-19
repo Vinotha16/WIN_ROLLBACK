@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q ypserv)
+if [ $(sudo rpm -qa ypserv | wc -l) -ne 0 ]; then
+   echo "{ \"nis_2218_actual\" : \"\" }"
+else
+   echo "{ \"nis_2218_actual\" : \"${cmd}\" }"
+fi

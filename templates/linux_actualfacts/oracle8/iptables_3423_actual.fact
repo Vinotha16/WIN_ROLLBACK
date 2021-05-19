@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(systemctl status iptables 2> /dev/null | grep 'enabled' | wc -l) -eq  1 ] || [ $(systemctl is-enabled iptables 2> /dev/null | grep 'enabled' | wc -l) -eq 1 ]; then
+	echo "{ \"iptables_3423_actual\" : \"\" }"
+else
+	echo "{ \"iptables_3423_actual\" : \"iptables is not enabled\" }"
+fi
+

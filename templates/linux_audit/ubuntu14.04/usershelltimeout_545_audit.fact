@@ -1,0 +1,11 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 5.4.5 - Ensure default user shell timeout is 900 seconds or less (Scored)
+
+if [ $(sudo grep ^TMOUT.*600 /etc/bashrc 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo grep ^TMOUT.*600 /etc/profile | wc -l) -eq 0 ]; then
+   echo "{ \"5.4.5 - Default user shell timeout is not 900 seconds or less\" : \"FAILED\" }"
+else
+   echo "{ \"usersheltimeout_545_audit\" : \"PASSED\" }"
+ 
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat /etc/default/grub | grep -o "audit=1")
+if [ $(grep -E 'kernelopts=(\S+\s+)*audit=1\b' /boot/grub2/grubenv 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"auditdenable_4113_actual\" : \"\" }"
+else
+   echo "{ \"auditdenable_4113_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

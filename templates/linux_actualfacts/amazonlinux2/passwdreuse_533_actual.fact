@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(egrep "^password.*sufficient.*pam_unix.so.*remember=5|^password.*required.*pam_unix.so.*remember=5" /etc/pam.d/password-auth | paste -sd ",")
+b=$(egrep "^password.*sufficient.*pam_unix.so.*remember=5|^password.*required.*pam_unix.so.*remember=5" /etc/pam.d/system-auth)
+cmd="${a}","${b}"
+if [ $(sudo egrep "^password.*sufficient.*pam_unix.so.*remember=5|^password.*required.*pam_unix.so.*remember=5" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(sudo egrep "^password.*sufficient.*pam_unix.so.*remember=5|^password.*required.*pam_unix.so.*remember=5" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdreuse_533_actual\" : \"\" }"
+else
+   echo "{ \"passwdreuse_533_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

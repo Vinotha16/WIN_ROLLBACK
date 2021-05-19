@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo stat -c "%a %U %G %n" /etc/passwd-)
+if [ $(sudo stat /etc/passwd- | grep "0600.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permpasswdi_616_actual\" : \"\" }"
+else
+   echo "{ \"permpasswdi_616_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.3.4 - Ensure suspicious packets are logged (Scored)
+
+if [ "$(sudo sysctl net.ipv4.conf.all.log_martians)" != "net.ipv4.conf.all.log_martians = 1" ] || [ "$(sudo sysctl net.ipv4.conf.default.log_martians)" != "net.ipv4.conf.default.log_martians = 1" ] || [ $(sudo grep "^net.ipv4.conf.all.log_martians.*1" /etc/sysctl.conf | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.log_martians.*1" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+   echo "{\"suspicious_334_audit\":\"FAILED\"}"
+else
+   echo "{\"suspicious_334_audit\":\"PASSED\"}"
+   exit 1
+fi

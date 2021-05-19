@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.1.1 - Ensure audit log storage size is configured (Not Scored)
+
+if [ $(sudo grep '^max_log_file =.*' /etc/audit/auditd.conf 2> /dev/null | awk '{print $3}') -gt "8" ]; then
+   echo "{\"4.1.1.1 - Audit Log Storage size is not configured\" : \"FAILED\"}"
+else
+   echo "{ \"auditlogsize_4111_audit\" : \"PASSED\" }"
+   
+fi

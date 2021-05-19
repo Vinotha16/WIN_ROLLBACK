@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.8.2 - Ensure GDM login banner is configured (Scored)
+
+   if [ $(sudo egrep "[org/gnome/login-screen]| banner-message-enable | banner-message-text" /etc/gdm3/greeter.dconf-defaults 2>/dev/null | wc -l) -eq 0 ]; then
+     echo "{ \"gdm_182_audit\" : \"FAILED\" }"
+   else
+    echo "{ \"gdm_182_audit\" : \"PASSED\" }"
+exit 1
+   fi

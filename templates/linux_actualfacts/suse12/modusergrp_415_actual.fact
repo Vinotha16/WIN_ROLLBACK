@@ -1,0 +1,18 @@
+#!/bin/bash
+a=$(cat /etc/audit/audit.rules | grep "/etc/group -p wa -k identity")
+b=$(cat /etc/audit/audit.rules | grep "/etc/passwd -p wa -k identity")
+c=$(cat /etc/audit/audit.rules | grep "/etc/gshadow -p wa -k identity")
+d=$(cat /etc/audit/audit.rules | grep "/etc/shadow -p wa -k identity")
+e=$(cat /etc/audit/audit.rules | grep "log { source(src); source(chroots); filter(f_warn); destination(warn); };")
+f="${a}","${b}","${c}","${d}","${e}"
+cmd=${f}
+if [ $(grep "identity" /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ] || [$(auditctl -l | grep identity  | wc -l) -eq 0]; then
+   echo "{ \"modusergrp_415_actual\" : \"\" }"
+else
+   echo "{ \"modusergrp_415_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+
+
+

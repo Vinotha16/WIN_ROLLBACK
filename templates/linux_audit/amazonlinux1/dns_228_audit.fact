@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.8 - Ensure DNS Server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list named 2>/dev/null | grep ":on" | wc -l) -eq 1 ]; then
+    echo "{ \"dns_228_audit\" : \"FAILED\" }"
+else
+    echo "{ \"dns_228_audit\" : \"PASSED\" }"
+fi

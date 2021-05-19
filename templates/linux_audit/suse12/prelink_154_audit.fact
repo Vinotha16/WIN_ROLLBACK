@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.5.4 - Ensure prelink is disabled (Scored)
+
+if [ "$(sudo rpm -qa | grep prelink | wc -l)" -ne 0 ]; then
+   echo "{\"prelink_154_audit\" : \"FAILED\"}"
+else
+   echo "{\"prelink_154_audit\" : \"PASSED\"}"
+fi

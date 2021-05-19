@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(rpm -q dovecot)
+if [ $(sudo rpm -qa dovecot | wc -l) -ne 0 ]; then
+   echo "{ \"imap_2212_actual\" : \"\" }"
+else
+   echo "{ \"imap_2212_actual\" : \"$cmd\" }"
+fi

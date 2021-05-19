@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(egrep "^restrict -4|^restrict -6" /etc/ntp.conf  2> /dev/null | paste -sd ",")
+b=$(egrep "^(server|pool)" /etc/ntp.conf 2> /dev/null | paste -sd ","  | tr '"' " ")
+c=$(cat /etc/init.d/ntp | grep "RUNASUSER=ntp")
+cmd="${a}","${b}","${c}"
+if [ $(sudo egrep "^restrict -4|^restrict -6" /etc/ntp.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "^(server|pool)" /etc/ntp.conf 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo grep "RUNASUSER=ntp" /etc/init.d/ntp 2> /dev/null | wc -l) -eq 0 ]; then
+    echo "{ \"ntp_2212_actual\" : \"\" }"
+else
+    echo "{ \"ntp_2212_actual\" : \"$cmd\" }"
+
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/audit/rules.d/*.rules | grep "/etc/selinux/ -p wa -k MAC-policy")
+b=$(cat /etc/audit/rules.d/*.rules | grep "/usr/share/selinux/ -p wa -k MAC-policy")
+cmd="${a}","${b}"
+if [ $(sudo grep "MAC-policy" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"modsysmac_416_actual\" : \"\" }"
+else
+   echo "{ \"modsysmac_416_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

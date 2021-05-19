@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(sudo systemctl is-enabled crond | grep enabled )
+b=$(sudo systemctl status crond | grep 'Active: active (running)')
+cmd="${a}","${b}"
+if [ $(sudo systemctl is-enabled crond | grep enabled | wc -l) -eq 0 ] || [ $(sudo systemctl status crond | grep 'Active: active (running)' | wc -l) -eq 0 ]; then
+   echo "{ \"cron_511_actual\" : \"\" }"
+else
+   echo "{ \"cron_511_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+
+

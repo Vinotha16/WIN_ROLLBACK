@@ -1,0 +1,9 @@
+#!/bin/bash
+failed=$(grep ^SELINUX=.* /etc/selinux/config)
+if [ "$(grep SELINUX=enforcing /etc/selinux/config | wc -l)" -eq 0 ] || [ "$(sestatus | grep "Current mode.*enforcing" | wc -l)" -eq 0 ]; then
+   echo "{ \"selstate_1714_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"selstate_1714_actual\" : \"SELINUX=enforcing\" }"
+#exit 1
+
+fi

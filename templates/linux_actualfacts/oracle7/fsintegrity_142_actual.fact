@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$( crontab -u root -l | grep "usr/sbin/aide --check" )
+if [ $(crontab -u root -l 2> /dev/null | grep '*.*aide' | wc -l) -eq 0 ] || [ $(grep -r aide /var/spool/cron/* | wc -l) -eq 0 ] ; then
+   echo "{ \"fsintegrity_142_actual\" : \"\" }"
+else
+   echo "{ \"fsintegrity_142_actual\" : \"$cmd\" }"
+   exit 0
+fi

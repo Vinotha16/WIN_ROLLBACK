@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 3.5.2.1 Ensure nftables is installed (Scored)
+
+if [ $(rpm -qa nftables | wc -l) -eq 0 ]; then
+      echo "{ \"nftablesins_3521_audit\" : \"FAILED\"}"
+else
+      echo "{ \"nftablesins_3521_audit\" : \"PASSED\"}"
+fi

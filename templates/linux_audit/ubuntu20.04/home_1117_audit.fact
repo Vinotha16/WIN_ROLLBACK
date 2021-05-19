@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.17 - Ensure separate partition exists for /home 
+
+if [ $(mount | grep -E '\s/home\s' | wc -l) -eq 0 ]; then
+   echo "{ \"home_1117_audit\" : \"FAILED\" }"
+else
+   echo "{ \"home_1117_audit\" : \"PASSED\" }"
+
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.4 - Ensure permissions on /etc/cron.daily are configured (Scored)
+
+if [ $(stat /etc/cron.daily | grep 0700 | grep ".*Uid:.*0/.*root" | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{\"permcrondaily_514_audit\" : \"FAILED\"}"
+else
+   echo "{\"permcrondaily_514_audit\" : \"PASSED\"}"
+   exit 1
+fi
+

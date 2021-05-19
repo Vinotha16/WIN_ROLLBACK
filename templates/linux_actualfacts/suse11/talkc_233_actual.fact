@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(rpm -qa talk | wc -l) -ne 0 ]; then
+   echo "{ \"talkc_233_actual\" : \"\" }"
+else
+   echo "{ \"talkc_233_actual\" : \"not installed\" }"
+   exit 1
+fi
+

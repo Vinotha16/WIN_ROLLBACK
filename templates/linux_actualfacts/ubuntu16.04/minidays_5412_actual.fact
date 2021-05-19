@@ -1,0 +1,17 @@
+#!/bin/bash
+failfact=$(for user in $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1 | grep -v 'root'); do echo $user; chage -l $user | grep "Minimum.*number.*of.*days.*between.*password.*change"; done | paste -d " "  - - | sed 's/Minimum.*number.*of.*days.*between.*password.*change//g' | awk '{print $3 ,$1}' | paste -sd "," | sed 's/never/-1/g')
+failfact1=$(cat /etc/login.defs | grep "^PASS_MIN_DAYS.*"  | expand -t 1)
+count=0
+if [ $(grep "^PASS_MIN_DAYS.*7" /etc/login.defs | wc -l) -eq 0 ]; then
+         for i in  $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1); do
+                if [ $(chage --list $i | grep "Minimum.*days between password change.*:.*7" | wc -l) -eq 0 ]; then
+                        count=$((count+1))
+                fi
+        done
+fi
+if [ "$count" -ne "0" ]; then
+      echo "{ \"minidays_5412_actual\" : \"failed $failfact1,$failfact\" }"
+else
+      echo "{ \"minidays_5412_actual\" : \"minimum days between password changes is configured\" }"
+        exit 1
+fi

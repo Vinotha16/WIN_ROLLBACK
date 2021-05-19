@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(grep "pam_cracklib.so.*retry=3.*minlen=.*dcredit=.*ocredit.*lcredit.*" /etc/pam.d/system-auth | paste -sd ",")
+b=$(grep "pam_cracklib.so.*retry=3.*minlen=.*dcredit=.*ocredit.*lcredit.*"  /etc/pam.d/password-auth | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(grep "pam_cracklib.so.*retry=3.*minlen=.*dcredit=.*ocredit.*lcredit.*"  /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "pam_cracklib.so.*retry=3.*minlen=.*dcredit=.*ocredit.*lcredit.*" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+        echo "{ \"passwdcreation_541_actual\" : \"\" }"
+else
+        echo "{ \"passwdcreation_541_actual\" : \"$cmd\" }"
+fi

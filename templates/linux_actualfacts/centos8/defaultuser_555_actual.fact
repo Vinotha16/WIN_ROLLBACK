@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/bashrc | grep "umask 027")
+b=$(grep "umask.*027" /etc/profile  /etc/profile.d/*.sh | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(grep "umask.*027" /etc/bashrc | wc -l) -eq 0 ] || [ $(grep "umask.*027" /etc/profile  /etc/profile.d/*.sh | wc -l) -eq 0 ]; then
+   echo "{ \"defaultuser_555_actual\" : \"\"}"
+else
+   echo "{ \"defaultuser_555_actual\" : \"${cmd}\"}"
+   exit 1
+fi
+

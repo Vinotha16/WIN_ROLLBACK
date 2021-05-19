@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.4 - Ensure CUPS is not enabled (Scored)
+
+if [ $(sudo service cups status 2> /dev/null | grep "running" | wc -l) -ne 0 ]; then
+   echo "{\"2.2.4 Ensure CUPS is enabled\" : \"FAILED\"}"
+else
+   echo "{\"cups_224_audit\" : \"PASSED\"}"
+   
+fi
+

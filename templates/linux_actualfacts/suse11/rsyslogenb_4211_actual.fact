@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(chkconfig --list syslog | grep 2:on.*3:on.*4:on.*5:on | expand -t 1 )
+b=$(egrep '^SYSLOG_DAEMON="rsyslogd"' /etc/sysconfig/syslog | tr '"' " ")
+if [ $(chkconfig --list syslog | grep 2:on.*3:on.*4:on.*5:on | wc -l) -eq 0 ] || [ $(egrep '^SYSLOG_DAEMON="rsyslogd"' /etc/sysconfig/syslog | wc -l) -eq 0 ; then
+   echo "{ \"rsyslogenb_4211_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogenb_4211_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

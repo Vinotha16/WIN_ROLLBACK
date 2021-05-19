@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.1 - Ensure SELinux is installed (Scored)
+
+if [ $(rpm -qa libselinux | grep "libselinux-[0-9]\+" | wc -l) -eq 0 ]; then
+   echo "{\"selinux_1711_audit\" : \"FAILED\"}"
+else
+   echo "{\"selinux_1711_audit\" : \"PASSED\"}"
+   
+fi
+

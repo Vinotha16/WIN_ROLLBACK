@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo apt-key list 2>/dev/null | grep "/etc/apt/trusted" | tr " " '"' |  paste -sd "," -)
+if [ "$(sudo apt-key list 2>/dev/null | grep "/etc/apt/trusted" | wc -l)" -eq 0 ]; then
+   echo "{ \"gpgkey_122_audit\" : \"\" }"
+else
+   echo "{ \"gpgkey_122_audit\" : \"${cmd}\" }"
+   exit 0
+fi

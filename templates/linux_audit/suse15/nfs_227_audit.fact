@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.7 - Ensure nfs-utils is not installed or the nfs-kernel-server service is masked (Scored)
+
+if [ $(sudo rpm -qa nfs-utils | wc -l) -ne 0 ] || [ $(sudo rpm -qa nfs-kernel-server | wc -l) -ne 0 ]; then
+   echo "{ \"nfs_227_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfs_227_audit\" : \"PASSED\" }"
+fi

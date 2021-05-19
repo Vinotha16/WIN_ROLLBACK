@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1.4 - Ensure firewall rules exist for all open ports (Scored)
+
+if [ $(sudo netstat -ln 2>/dev/null | grep tcp.*0:22 | wc -l) -eq 0 ] || [ $(sudo iptables -L INPUT -v -n | egrep ".*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW.*tcp dpt.*|.*ACCEPT.*tcp.*--.*0.0.0.0/0.*0.0.0.0/0.*tcp dpt.*state NEW" | wc -l) -eq 0 ]; then
+    echo "{ \"firewallrules_3514_audit\" : \"FAILED\"}"
+else
+    echo "{ \"firewallrules_3514_audit\" : \"PASSED\"}"
+fi
+

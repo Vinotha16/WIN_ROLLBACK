@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+#5.2.3 - Ensure permissions on SSH private host key files are configured (Scored)
+
+
+if [ $(stat /etc/ssh/ssh_host_*_key | grep 0600 | wc -l) -eq 0 ] || [ $(stat /etc/ssh/ssh_host_*_key | grep ".*Uid:.*0/.*root" | wc -l) -eq 0 ] || [ $(stat /etc/ssh/ssh_host_*_key | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+        echo "{ \"sshpermpvtkey_523_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshpermpvtkey_523_audit\" : \"PASSED\" }"
+fi
+

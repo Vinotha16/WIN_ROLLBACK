@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(stat -c "%a %U %G %n" /boot/grub2/grub.cfg)
+b=$(stat -c "%a %U %G %n" /boot/grub2/user.cfg)
+cmd="${a}","${b}"
+if [ $(sudo stat /boot/grub2/grub.cfg | grep "0600.*Uid:.*0/.*root.*Gid:.*0/.*root" | wc -l) -eq 0 ] || [ $(sudo stat /boot/grub2/user.cfg | grep "0600.*Uid:.*0/.*root.*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"bootloadperm_152_actual\" : \"\" }"
+else
+   echo "{ \"bootloadperm_152_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /boot/grub/grub.cfg)
+if [ "$(sudo stat /boot/grub/grub.cfg | grep "0400.*Uid.*root.*Gid.*root" | wc -l)" -eq 0 ]; then
+   echo "{ \"bootloadperm_141_actual\" : \"\" }"
+else
+   echo "{ \"bootloadperm_141_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(grep -e ^\s*ForwardToSyslog /etc/systemd/journald.conf | wc -l) -eq 0 ]; then
+   echo "{ \"journalsendlogs_4221_actual\" : \"\" }"
+else
+   echo "{ \"journalsendlogs_4221_actual\" : \"journald is configured to send logs to rsyslog\"}"
+fi
+

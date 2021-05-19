@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/ssh/sshd_config | grep "PermitEmptyPasswords no")
+if [ "$(sudo grep "^PermitEmptyPasswords.*no" /etc/ssh/sshd_config | wc -l)" -eq 0 ]; then
+   echo "{ \"sshpep_5211_actual\" : \"\" }"
+else
+   echo "{ \"sshpep_5211_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa net-snmp | wc -l) -ne 0 ]; then
+   echo "{ \"snmp_2215_actual\" : \"\" }"
+else
+   echo "{ \"snmp_2215_actual\" : \"net-snmp not installed\" }"
+fi

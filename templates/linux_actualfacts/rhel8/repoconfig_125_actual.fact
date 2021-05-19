@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(dnf repolist 2> /dev/null | egrep -c '^BaseOS') -eq 0 ] || [ $(dnf repolist 2> /dev/null | egrep -c '^AppStream') -eq 0 ]; then
+   echo "{ \"repoconfig_125_actual\" : \"\" }"
+else
+   echo "{ \"repoconfig_125_actual\" : \"repolist is configured\" }"
+   exit 0
+fi

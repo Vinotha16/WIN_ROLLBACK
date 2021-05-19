@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.2 - Ensure package manager repositories are configured (Not Scored)
+
+if [ $(yum repolist 2> /dev/null | egrep -c 'ol7' | wc -l) -eq 0 ]; then
+   echo "{ \"repoconfig_122_audit\" : \"FAILED\" }"
+else
+   echo "{ \"repoconfig_122_audit\" : \"PASSED\" }"
+fi
+

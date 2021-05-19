@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(grep "^auth.*required.*pam_tally2.so.*deny=.*unlock_time=" /etc/pam.d/common-auth)
+if [ $(sudo grep "^auth.*required.*pam_tally2.so.*deny=.*unlock_time=" /etc/pam.d/common-auth | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_532_actual\" : \"\" }"
+else
+   echo "{ \"lockout_532_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(grep 'ExecStart=.*/systemd-sulogin-shell' /usr/lib/systemd/system/emergency.service | paste -sd ",")
+b=$(grep 'ExecStart=.*/systemd-sulogin-shell' /usr/lib/systemd/system/rescue.service | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(sudo grep 'ExecStart=.*/systemd-sulogin-shell' /usr/lib/systemd/system/rescue.service | wc -l) -eq 0 ] || [ $(sudo grep 'ExecStart=.*/systemd-sulogin-shell' /usr/lib/systemd/system/emergency.service | wc -l) -eq 0 ] ; then
+  echo "{ \"singleusermode_153_actual\" : \"\" }"
+else
+   echo "{ \"singleusermode_153_actual\" : \"${cmd}\" }"
+fi

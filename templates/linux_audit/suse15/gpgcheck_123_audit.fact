@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.3 - Ensure gpgcheck is globally activated (Scored)
+
+if [ $(grep '^gpgcheck=1' /etc/zypp/zypp.conf | wc -l) -eq 0 ] || [ $(grep '^gpgcheck=0' /etc/zypp/repos.d/*.repo | wc -l) -ne 0 ]; then
+   echo "{ \"gpgcheck_123_audit\" : \"FAILED\" }"
+else
+   echo "{ \"gpgcheck_123_audit\" : \"PASSED\" }"
+fi

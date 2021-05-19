@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -q mcstrans)
+if [ $(sudo rpm -qa  mcstrans | wc -l) -ne 0 ]; then
+    echo "{ \"mcs_1618_actual\" : \"\" }"
+else
+    echo "{ \"mcs_1618_actual\" : \"$cmd\" }"
+   exit 0
+fi

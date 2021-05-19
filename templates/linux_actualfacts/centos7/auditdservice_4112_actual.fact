@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled auditd | grep enabled)
+if [ $(sudo systemctl is-enabled auditd | grep enabled | wc -l) -eq 0 ] || [ $(sudo systemctl status auditd | grep "Active: active (running)" | wc -l) -eq 0 ]; then
+   echo "{ \"auditdservice_4112_actual\" : \"\" }"
+else
+   echo "{ \"auditdservice_4112_actual\" : \"$cmd\" }"
+   exit 1
+fi

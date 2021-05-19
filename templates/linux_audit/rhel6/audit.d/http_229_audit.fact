@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.9 Ensure HTTP server is not installed (Scored)
+
+if [ $(sudo rpm -qa httpd | wc -l) -ne 0 ]; then
+      echo "{\"http_229_audit\" : \"FAILED\"}"
+else
+       echo "{\"http_229_audit\" : \"PASSED\"}"
+       
+fi
+
+

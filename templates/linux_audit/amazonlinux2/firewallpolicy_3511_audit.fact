@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1.1 - Ensure default deny firewall policy (Scored)
+
+if [ $(sudo iptables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | wc -l) -eq 0 ] ||[ $(sudo iptables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | wc -l) -eq 0 ] || [ $(sudo iptables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | wc -l) -eq 0 ]; then
+    echo "{ \"firewallpolicy_3511_audit\" : \"FAILED\" }"
+else
+    echo "{ \"firewallpolicy_3511_audit\" : \"PASSED\" }"
+fi
+

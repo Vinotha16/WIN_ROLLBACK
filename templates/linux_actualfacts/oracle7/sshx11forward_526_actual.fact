@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/ssh/sshd_config | grep "^X11Forwarding.*no")
+if [ "$(sudo grep "^X11Forwarding.*no" /etc/ssh/sshd_config | wc -l)" -eq 0 ]; then
+   echo "{ \"sshx11forward_526_actual\" : \"\" }"
+else
+   echo "{ \"sshx11forward_526_actual\" : \"${cmd}\" }"
+   exit 1
+fi

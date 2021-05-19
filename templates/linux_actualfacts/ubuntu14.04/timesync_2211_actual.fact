@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(dpkg -l | egrep "chrony" | awk '{print $2}' | paste -sd ",")
+b=$(dpkg -l | egrep "ntp " | awk '{print $2}' | paste -sd ",")
+if [ $(dpkg -l | egrep "chrony" 2>/dev/null | wc -l) -eq 0 ]; then
+    if [ $(dpkg -l | egrep "ntp " | wc -l) -eq 0 ]; then
+       echo "{ \"timesync_2211_actual\" : \"\" }"
+    else
+       echo "{ \"timesync_2211_actual\" : \"ntp $b\" }"
+    fi
+else
+   echo "{ \"timesync_2211_actual\" : \"chrony $a\" }"
+fi

@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo dpkg-query -s ufw | grep 'Status: install ok installed' | wc -l) -ne 0 ]; then
+   echo "{ \"firewalldisable_3522_actual\" : \"\" }"
+else
+   echo "{ \"firewalldisable_3522_actual\" : \"not installed\" }"
+fi

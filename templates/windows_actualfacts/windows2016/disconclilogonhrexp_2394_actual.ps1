@@ -1,0 +1,23 @@
+#   2.3.9.4 (L1) - Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'Enabled' (Scored)
+$ErrorActionPreference = "stop"
+Try {
+ Get-ItemProperty -Path 'HKLM:\System\Currentcontrolset\Services\Lanmanserver\Parameters' -Name version
+}
+Catch [System.Management.Automation.PSArgumentException]
+{
+secedit /export /cfg c:\secpol.cfg > $null
+$unique = '4,1'
+$output = (Get-content c:\secpol.cfg | select-string 'EnableForcedLogOff').ToString().Split('=')[1].Trim()
+
+if ($unique -ne $output) {
+	write-output "failed $output"
+} else {
+	write-output $output
+}
+rm -force c:\secpol.cfg -confirm:$false 
+}
+Catch [System.Management.Automation.ItemNotFoundException]
+{
+ Write-Output ""
+ }
+Finally { $ErrorActionPreference = "Continue" }

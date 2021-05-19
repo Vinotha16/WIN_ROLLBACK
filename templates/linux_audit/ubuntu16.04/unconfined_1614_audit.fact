@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1.4 - Ensure no unconfined daemons exist (Scored)
+
+if [ "$(sudo ps -eZ | egrep "initrc" | egrep -vw "tr|ps|egrep|bash|awk" | tr ':' ' ' | awk '{ print $NF }' | wc -l)" -ne 0 ]; then
+   echo "{\"unconfined_1614_audit\" : \"FAILED\"}"
+else
+   echo "{\"unconfined_1614_audit\" : \"PASSED\"}"
+   
+fi

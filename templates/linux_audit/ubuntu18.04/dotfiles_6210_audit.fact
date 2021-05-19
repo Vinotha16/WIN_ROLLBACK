@@ -1,0 +1,9 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+# 6.2.10 - Ensure users' dot files are not group or world writable
+
+if [ $(sudo find /home/ -name ".[A-Za-z0-9]*" -perm /g+w,o+w | wc -l) -ne 0 ]; then
+   echo "{ \"dotfiles_6210_audit\" : \"FAILED\" }"
+else
+   echo "{ \"dotfiles_6210_audit\" : \"PASSED\" }"
+fi

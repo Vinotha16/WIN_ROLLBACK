@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(cat /etc/dconf/db/gdm.d/* | grep "[org/gnome/login-screen]" | paste -sd "," )
+b=$(cat /etc/dconf/db/gdm.d/* | grep "banner-message-enable=true" | paste -sd ",")
+c=$(cat /etc/dconf/profile/gdm | grep "user-db:user" | paste -sd "," )
+d=$(cat /etc/dconf/profile/gdm | grep "system-db:gdm" | paste -sd ",")
+e=$(cat /etc/dconf/profile/gdm | grep "file-db:/usr/share/gdm/greeter-dconf-defaults" | paste -sd ",")
+cmd="${a}","${b}","${c}","${d}","${e}"
+if [ $(sudo egrep "user-db:user" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "system-db:gdm" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "file-db:/usr/share/gdm/greeter-dconf-defaults" /etc/dconf/profile/gdm 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo egrep "disable-user-list=true" /etc/dconf/db/gdm.d/* | wc -l) -eq 0 ]; then
+      echo "{ \"gdmlastlogged_183_actual\" :  \"\"}"
+else
+      echo "{ \"gdmlastlogged_183_actual\" : \"$cmd\" }"
+fi

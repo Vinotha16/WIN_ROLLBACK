@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.1.1 - Ensure IP forwarding is disabled (Scored)
+
+if [ "$(sysctl net.ipv4.ip_forward)" != "net.ipv4.ip_forward = 0" ] || [ $(grep "net.ipv4.ip_forward=0" /etc/sysctl.conf | wc -l) -eq 0 ]; then
+   echo "{\"ipforward_311_audit\" : \"FAILED\"}"
+else
+   echo "{\"ipforward_311_audit\" : \"PASSED\"}"
+   exit 1
+fi
+

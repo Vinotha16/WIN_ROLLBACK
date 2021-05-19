@@ -1,0 +1,7 @@
+#!/bin/bash
+failfact=$( df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser | sed 's/[/]/ /g' | awk '/home/  {print $1 ,$2}' | uniq | sed 's/ /"\/"/g' | sed 's/["]//g' |  paste -sd ",")
+if [ $(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser | wc -l) -gt 0 ] || [ $(sudo find / -xdev -nouser | wc -l) -gt 0 ]; then
+   echo "{ \"unownedfiles_6111_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"unownedfiles_6111_actual\" : \"no unowned files or directories exist\" }"
+fi

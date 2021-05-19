@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.1 - Ensure package manager repositories are configured (Not Scored)
+
+if [ $(sudo apt-cache policy 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"repoconfig_121_audit\" : \"FAILED\" }"
+else
+   echo "{ \"repoconfig_121_audit\" : \"PASSED\" }"
+   
+fi

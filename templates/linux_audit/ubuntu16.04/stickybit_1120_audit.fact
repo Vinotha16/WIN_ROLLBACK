@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.20 - Ensure sticky bit is set on all world-writable directories (Scored)
+
+if [ "$(sudo df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null | wc -l)" -ne 0 ]; then
+   echo "{\"stickybit_1120_audit\" : \"FAILED\"}"
+else
+   echo "{ \"stickybit_1120_audit\" : \"PASSED\" }"
+   
+fi

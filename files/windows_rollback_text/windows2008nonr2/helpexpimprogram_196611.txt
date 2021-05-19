@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+User
+Software\Policies\Microsoft\Assistance\Client\1.0
+NoImplicitFeedback
+DWORD:1
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $(sudo systemctl is-enabled rsyncd 2>/dev/null | grep enabled | wc -l) -eq 1 ]; then
+
+   echo "{ \"rsyncs_2218_actual\" : \"\" }"
+
+else
+ 
+  echo "{ \"rsyncs_2218_actual\" : \"not enabled\" }"
+
+fi

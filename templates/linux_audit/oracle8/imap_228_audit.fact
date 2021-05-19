@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.8 - Ensure IMAP and POP3 server is not enabled (Scored)
+
+if [ $( sudo systemctl is-enabled dovecot 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"2.2.8 - IMAP and POP3 Server is Enabled\" : \"FAILED\" }"
+else
+   echo "{ \"imap_228_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

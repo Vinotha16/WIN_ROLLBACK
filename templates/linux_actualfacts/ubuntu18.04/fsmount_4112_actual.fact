@@ -1,0 +1,17 @@
+#!/bin/bash
+a=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts")
+b=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts")
+c="${a}","${b}"
+cmd=${c}
+d="${b}"
+cmd1=${d}
+if [ $(sudo grep mounts /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"fsmount_4112_actual\" : \"\" }"
+else
+  if [ "$(uname -m)" == 'x86_64' ]; then
+        echo "{ \"fsmount_4112_actual\" : \"${cmd}\" }"
+     else
+        echo "{ \"fsmount_4112_actual\" : \"${cmd1}\" }"
+  fi
+exit 1
+fi

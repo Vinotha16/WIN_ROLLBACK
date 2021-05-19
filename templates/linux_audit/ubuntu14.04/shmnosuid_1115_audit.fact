@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.15 - Ensure nosuid option set on /run/shm partition (Scored)
+
+if [ "$(mount | grep /run/shm.*nosuid | wc -l)" -eq 0 ]; then
+   echo "{\"1.1.15 - nosuid option not set on /run/shm partition\"  :   \" FAILED\"}"
+else
+   echo "{\"shmnosuid_1115_audit\"   :   \"PASSED\"}"
+   
+fi
+

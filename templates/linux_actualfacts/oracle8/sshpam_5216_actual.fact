@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sshd -T | grep -i '^UsePAM')
+if [ $(sshd -T | grep -i '^UsePAM' | wc -l) -eq 0 ]; then
+   echo "{ \"sshpam_5216_actual\" : \"\" }"
+else
+   echo "{ \"sshpam_5216_actual\" : \"${cmd}\" }"
+fi
+

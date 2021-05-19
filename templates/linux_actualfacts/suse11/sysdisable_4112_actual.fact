@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(sudo cat /etc/audit/auditd.conf | grep "^space_left_action = email")
+b=$(sudo cat /etc/audit/auditd.conf | grep "^admin_space_left_action = halt")
+c=$(sudo cat /etc/audit/auditd.conf | grep "^action_mail_acct = root")
+cmd="${a}","${b}","${c}"
+if [ $(sudo grep "^space_left_action = email" /etc/audit/auditd.conf | wc -l) -eq 0 ] || [ $(grep "^action_mail_acct = root" /etc/audit/auditd.conf | wc -l) -eq 0 ] || [ $(grep "^admin_space_left_action = halt" /etc/audit/auditd.conf | wc -l) -eq 0 ]; then
+   echo "{ \"sysdisable_4112_actual\" : \"\"}"
+else
+   echo "{ \"sysdisable_4112_actual\" : \"${cmd}\" }"
+   exit 1
+fi

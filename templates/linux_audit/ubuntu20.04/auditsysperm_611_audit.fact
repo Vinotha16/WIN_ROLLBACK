@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.1 - Audit system file permissions (Not Scored)
+
+if [ $(sudo dpkg --verify | wc -l) -ne 0 ]; then
+   echo "{ \"auditsysperm_611_audit\" : \"FAILED\" }"
+else
+   echo "{ \"auditsysperm_611_audit\" : \"PASSED\" }"
+   
+fi

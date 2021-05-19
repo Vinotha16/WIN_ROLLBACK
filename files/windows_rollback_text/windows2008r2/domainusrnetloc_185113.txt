@@ -1,0 +1,10 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+Software\Policies\Microsoft\Windows\Network Connections
+NC_StdDomainUserSetLocation
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

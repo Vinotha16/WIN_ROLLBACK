@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(sudo egrep "^(server|pool)" /etc/chrony.conf | paste -sd ",")
+b=$(sudo egrep '^OPTIONS="-u chrony"' /etc/sysconfig/chronyd | tr '"' " " | paste -sd "," -)
+cmd="${a}","${b}"
+if [ $(sudo egrep "^(server|pool)" /etc/chrony.conf 2>/dev/null | wc -l) -eq 0 ] || [ $(sudo egrep '^OPTIONS="-u chrony"' /etc/sysconfig/chronyd 2> /dev/null | wc -l) -eq 0 ]; then
+echo "{ \"chrony_2213_actual\" : \"\" }"
+else
+echo "{ \"chrony_2213_actual\" : \"$cmd\" }"
+exit 1
+fi

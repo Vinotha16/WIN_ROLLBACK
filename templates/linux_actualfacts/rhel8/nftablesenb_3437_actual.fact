@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$(systemctl is-enabled nftables | grep 'enabled' | wc -l)" -eq 0 ]; then
+   echo "{ \"nftablesenb\" : \"\" }"
+else
+   echo "{ \"nftablesenb_3437_actual\" : \"nftables enabled\" }"
+   exit 1
+fi

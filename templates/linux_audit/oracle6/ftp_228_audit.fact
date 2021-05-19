@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.8 - Ensure FTP Server is not installed (Scored)
+
+if [ $(sudo rpm -qa vsftpd | wc -l) -ne 0 ]; then
+     echo "{ \"ftp_218_audit\" : \"FAILED\"}"
+else
+     echo "{ \"ftp_218_audit\" : \"PASSED\"}"    
+fi

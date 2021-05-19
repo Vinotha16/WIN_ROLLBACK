@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.8.1.2 - Ensure local login warning banner is configured properly (Not Scored)
+
+if [ $(cat /etc/issue | grep "Authorized uses only. All activity may be monitored and reported" | wc -l) -eq 0 ] || [ $(grep -E -i "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/"//g'))" /etc/issue | wc -l) -ne 0 ]; then
+   echo "{ \"1.8.1.2 - Local login warning banner is not configured properly\" : \"FAILED\" }"
+else
+   echo "{ \"locallogin_1812_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

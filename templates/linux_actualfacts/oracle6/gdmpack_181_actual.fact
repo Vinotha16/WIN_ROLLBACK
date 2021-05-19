@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+cmd=$(rpm -q gdm)
+if [ $(sudo rpm -qa gdm | wc -l) -ne 0 ]; then
+   echo "{ \"gdmpack_181_actual\" : \"\" }"
+else
+   echo "{ \"gdmpack_181_actual\" : \"$cmd\" }"
+fi
+

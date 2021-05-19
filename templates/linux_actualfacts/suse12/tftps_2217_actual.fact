@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $(sudo systemctl is-enabled atftpd 2>/dev/null | grep enabled | wc -l) -eq 1 ]; then
+
+   echo "{ \"tftps_2217_actual\" : \"\" }"
+
+else
+ 
+   echo "{ \"tftps_2217_actual\" : \"not enabled\" }"
+
+fi

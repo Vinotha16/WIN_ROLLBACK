@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.3 - Ensure Avahi Server is not enabled (Scored)
+
+if [ $(sudo service avahi-daemon status 2> /dev/null | grep "running" | wc -l) -ne 0 ]; then
+   echo "{\"2.2.3 - Ensure Avahi Server is enabled\" : \"FAILED\"}"
+else
+   echo "{ \"avahi_223_audit\" : \"PASSED\" }"
+   
+fi
+

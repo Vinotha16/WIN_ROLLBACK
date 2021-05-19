@@ -1,0 +1,15 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\Windows\WindowsUpdate\AU
+RescheduleWaitTimeEnabled 
+
+
+Computer
+Software\Policies\Microsoft\Windows\WindowsUpdate\AU
+RescheduleWaitTime 
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

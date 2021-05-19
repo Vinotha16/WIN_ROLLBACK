@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(dpkg -s libpam-pwquality | grep "^Version")
+b=$(cat /etc/security/pwquality.conf | grep "^minlen.*14")
+c=$(cat /etc/security/pwquality.conf | grep "^minclass.*4")
+cmd="${a}","${b}","${c}"
+if [ $(sudo grep "^minlen.*14" /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep "^minclass.*4" /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+   echo "{ \"passwdcreation_531_actual\" : \"\" }"
+else
+   echo "{ \"paaswdcreation5\" : \"$cmd\" }"
+ 
+fi

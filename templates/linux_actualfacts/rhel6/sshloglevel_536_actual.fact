@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | egrep 'loglevel.*INFO|loglevel.*VERBOSE')
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | egrep 'loglevel.*INFO|loglevel.*VERBOSE' | wc -l) -eq 0 ] || [ $(sudo grep -i 'loglevel' /etc/ssh/sshd_config | grep -Evi '(VERBOSE|INFO)' | wc -l) -ne 0 ]; then
+   echo "{ \"sshloglevel_536_actual\" : \"\" }"
+else
+   echo "{ \"sshloglevel_536_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

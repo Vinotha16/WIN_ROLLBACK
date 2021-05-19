@@ -1,0 +1,13 @@
+#!/bin/bash
+cmd=$(cat /etc/gdm3/greeter.dconf-defaults | egrep "[org/gnome/login-screen]|banner-message-enable|banner-message-text" | tr '"' " " | paste -sd ",")
+d=$(rpm -q gdm)
+cmd="${a}","${b}","${c}"
+if [ $(sudo rpm -qa gdm | wc -l) -ne 0 ]; then
+   if [ $(sudo egrep "^[org/gnome/login-screen]" /etc/gdm3/greeter.dconf-defaults | wc -l) -eq 0 ] || [ $(sudo egrep "^banner-message-enable=true" /etc/gdm3/greeter.dconf-defaults | wc -l) -eq 0 ] || [ $(sudo egrep "^banner-message-text=" /etc/gdm3/greeter.dconf-defaults | wc -l) -eq 0 ]; then
+       echo "{ \"gdm_182_actual\" : \"\" }"
+   else
+       echo "{ \"gdm_182_actual\" : \"${cmd}\" }"
+   fi
+else
+   echo "{ \"gdm_182_actual\" : \"$d\" }"
+fi

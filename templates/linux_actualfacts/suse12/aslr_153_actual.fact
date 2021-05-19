@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/sysctl.conf | grep "^kernel.randomize_va_space.*2")
+if [ $(sudo sysctl kernel.randomize_va_space | grep "kernel.randomize_va_space = 2" | wc -l) -eq 0 ] || [ $(sudo grep "^kernel.randomize_va_space.*2" /etc/sysctl.conf | wc -l) -eq 0 ]; then
+    echo "{ \"aslr_153_actual\" : \"\" }"
+else
+    echo "{ \"aslr_153_actual\" : \"${cmd}\" }"
+    exit 0
+fi

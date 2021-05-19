@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.18 - Ensure nodev option set on /home partition (Scored)
+
+if [ $(mount | grep ' /home.*nodev' | wc -l) -eq 0 ]; then
+   echo "{ \"homenodev_1118_audit\" : \"FAILED\" }"
+else
+   echo "{ \"homenodev_1118_audit\" : \"PASSED\" }"
+
+fi

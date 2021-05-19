@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.1 - Ensure password creation requirements are configured (Scored)
+
+if [ $(sudo grep "try_first_pass retry=3" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(sudo grep "try_first_pass retry=3" /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $(sudo egrep "^minlen.*14|^dcredit.*-1|^lcredit.*-1|^ocredit.*-1|^ucredit.*-1"  /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+    echo "{ \"passwdcreation_531_audit\" : \"FAILED\"}"
+else
+    echo "{ \"passwdcreation_531_audit\" : \"PASSED\"}"
+fi
+

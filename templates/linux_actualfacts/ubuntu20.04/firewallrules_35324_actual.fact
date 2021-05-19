@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(dpkg -s net-tools | grep "^Version")
+b=$(netstat -ln | grep tcp.*0:22 | paste -sd "," -)
+c=$(ufw status | grep ".*22/tcp.*ALLOW.*Anywhere"| paste -sd "," -)
+cmd="${a}","${b}","${c}"
+if [ $(ss -4tuln | grep 0:22 | wc -l) -eq 0 ] || [ $(ufw status | grep ".*22/tcp.*ALLOW.*Anywhere" | wc -l) -eq 0 ]; then
+   echo "{ \"firewallrules_35324_actual\" : \"\" }"
+else
+   echo "{ \"firewallrules_35324_actual\" : \"${cmd}\" }"
+   
+fi

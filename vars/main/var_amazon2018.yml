@@ -1,0 +1,26 @@
+---
+####AMAZONLINUX-1####
+remote_server_chrony_amazonlinux1: sample.zippy.com
+remote_server_ntp_amazonlinux1: sample.zippy.com
+ntp_chrony_amazonlinux1: chrony
+hosts_allow_amazonlinux1: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_amazonlinux1: 'ALL: 170.16.3.0-170.16.3.4'
+portsv4_amazonlinux1: tcp 22
+firewallpolicy_portsv4_amazonlinux1: tcp 22,tcp 80
+audit_log_size_amazonlinux1: 8
+rsyslog_syslog_amazonlinux1: rsyslog
+MaxAuthTries_amazonlinux1: MaxAuthTries 4
+PermitRootLogin_amazonlinux1: PermitRootLogin no
+ClientAliveInterval_amazonlinux1: ClientAliveInterval 300
+ClientAliveCountMax_amazonlinux1: ClientAliveCountMax 0
+Pass_max_days_amazonlinux1: 365
+Pass_min_days_amazonlinux1: 7
+Pass_warn_age_amazonlinux1: 7
+allowusers_amazonlinux1: ansible
+allowgroups_amazonlinux1:
+denyusers_amazonlinux1:
+denygroups_amazonlinux1:
+wheelgroup_amazonlinux1:
+
+db_no_amazonlinux1: 
+update_amazonlinux1:

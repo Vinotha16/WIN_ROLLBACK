@@ -1,0 +1,10 @@
+#!/bin/bash
+if  [ -d /etc/xinetd.d/daytime ]; then
+
+        if [ $(sudo chkconfig --list 2> /dev/null | grep "daytime-dgram:.*off" | wc -l) -eq 0 ] || [ $(sudo chkconfig --list 2> /dev/null  | grep "daytime-stream:.*off" | wc -l) -eq 0 ]; then
+                 echo "{ \"daytime_212_actual\" : \"\"}"
+        fi
+else
+    echo "{ \"daytime_212_actual\" : \"daytime is disabled\"}"
+    
+fi

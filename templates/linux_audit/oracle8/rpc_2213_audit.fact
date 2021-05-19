@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.13 - Ensure RPC is not enabled (Scored)
+
+if [ $( sudo systemctl is-enabled rpcbind 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+       echo "{ \"2.2.13 - RPC are Enabled\" : \"FAILED\" }"
+    else
+       echo "{ \"rpc_2213_audit\" : \"PASSED\" } "
+       exit 1
+    fi
+

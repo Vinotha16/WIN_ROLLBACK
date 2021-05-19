@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.6.2 - Ensure default deny firewall policy (Scored)
+
+if [ $(sudo iptables -L | grep "policy DROP" | wc -l) -eq 0 ]; then
+    echo "{ \"firewallpolicy_362_audit\" : \"FAILED\" }"
+else
+    echo "{ \"firewallpolicy_362_audit\" : \"PASSED\" }"
+fi

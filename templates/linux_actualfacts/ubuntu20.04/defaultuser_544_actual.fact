@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/login.defs | grep "^UMASK.*027" | paste -sd "," -)
+if [ $(sudo grep "^UMASK.*027" /etc/login.defs | wc -l) -eq 0 ] || [ $(sudo grep "session optional.*" /etc/pam.d/common-session | wc -l) -eq 0 ]; then
+   echo "{ \"defaultuser_544_actual\" : \"\" }"
+else
+   echo "{ \"defaultuser_544_actual\" : \"$cmd\" }"
+
+fi

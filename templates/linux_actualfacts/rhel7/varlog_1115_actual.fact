@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(mount | grep " /var/log")
+if [ $(mount | grep " /var/log" | wc -l) -eq 0 ]; then
+   echo "{ \"varlog_1115_actual\" : \"\" }"
+else
+   echo "{ \"varlog_1115_actual\" : \"${cmd}\" }"
+fi

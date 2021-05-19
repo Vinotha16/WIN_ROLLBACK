@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.2 - Ensure address space layout randomization (ASLR) is enabled (Scored)
+
+if [ "$(sysctl kernel.randomize_va_space | wc -l)" -eq 0 ] || [ "$(grep "^kernel.randomize_va_space.*2" /etc/sysctl.conf | wc -l)" -eq 0 ] ; then
+   echo "{\"aslr_162_audit\"  :  \"FAILED\"}"
+else
+   echo "{\"aslr_162_audit\"  :  \"PASSED\"}"
+fi

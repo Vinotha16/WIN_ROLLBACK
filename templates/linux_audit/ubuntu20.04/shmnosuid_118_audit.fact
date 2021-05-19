@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.8 - Ensure nosuid option set on /dev/shm partition 
+
+if [ $(mount | grep -E '\s/dev/shm\s.*nosuid' | wc -l) -eq 0 ]; then
+   echo "{ \"shmnosuid_118_audit\" : \"FAILED\" }"
+else
+   echo "{ \"shmnosuid_118_audit\" : \"PASSED\" }"
+
+fi

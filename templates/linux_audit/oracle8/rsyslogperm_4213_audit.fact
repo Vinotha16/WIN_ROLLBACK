@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.1.3 - Ensure rsyslog default file permissions configured (Scored)
+
+if [ $(grep "^\$FileCreateMode" /etc/rsyslog.conf | wc -l) -eq 0 ]; then
+   echo "{ \"4.2.1.3 - Rsyslog default file permissions is not configured\" : \"FAILED\" }"
+else
+   echo "{ \"rsyslogperm_4213_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

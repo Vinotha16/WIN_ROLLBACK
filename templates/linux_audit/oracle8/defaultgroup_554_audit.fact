@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.5.4 - Ensure default group for the root account is GID 0 (Scored)
+
+if [ $(grep "^root" /etc/passwd | cut -d: -f4 | egrep "0") -ne 0 ]; then
+   echo "{ \"5.5.4 - Default group for the root account is not GID 0\" : \"FAILED\" }"
+else
+   echo "{ \"defaultgroup_554_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

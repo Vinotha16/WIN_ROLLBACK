@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.2.1 - Ensure syslog-ng service is enabled (Scored)
+
+if [ $(service syslog-ng status 2> /dev/null | grep "syslog-ng is running" | wc -l) -eq 0 ] || [ $(ls /etc/rc*.d/S*syslog-ng 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"4.2.2.1 - Syslog-ng Service is not enabled\" : \"FAILED\"}"
+else
+   echo "{\"syslogngenb_4221_audit\" : \"PASSED\"}"
+   
+fi

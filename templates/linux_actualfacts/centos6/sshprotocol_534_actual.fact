@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep '^\s*protocol')
+if [ $( sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep '^\s*protocol' | wc -l) -eq 0 ] || [ $(sudo grep -Ei '^\s*Protocol\s+[^2].*$' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{ \"sshprotocol_534_actual\" : \"\" }"
+else
+   echo "{ \"sshprotocol_534_actual\" : \"${cmd}\" }"
+   
+fi

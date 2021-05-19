@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/motd)
+if [ $(sudo stat /etc/motd | grep "0644.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+    echo "{ \"motdperm_1714_actual\" : \"\" }"
+else
+    echo "{ \"motdperm_1714_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

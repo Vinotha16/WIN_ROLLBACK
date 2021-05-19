@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(systemctl is-enabled smb 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+  echo "{ \"samba_227_actual\" : \"\" }"
+else
+  echo "{ \"samba_227_actual\" : \"not enabled\" }"
+exit 1
+fi
+

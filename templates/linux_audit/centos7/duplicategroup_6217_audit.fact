@@ -1,0 +1,17 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.17 - Ensure no duplicate group names exist
+
+count=0
+if [ $(cat /etc/group | cut -f1 -d":" | sort -n | uniq -c | awk '$1 > 1' | wc -l) -ne 0 ]; then
+  	count=$((count+1))
+fi
+
+if [ "$count" -ne "0" ]; then
+   echo "{ \"duplicategroup_6217_audit\" : \"FAILED\"}"
+else
+   echo "{ \"duplicategroup_6217_audit\" : \"PASSED\"}"
+   exit 0
+fi
+

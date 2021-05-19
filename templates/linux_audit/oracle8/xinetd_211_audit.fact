@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.1 - Ensure xinetd is not installed (Scored)
+
+if [ $( sudo rpm -q xinetd | wc -l ) -eq 0 ]; then
+   echo "{ \"2.1.1 - Xinetd Services is Installed\" : \"FAILED\" }"
+else
+   echo "{ \"xinetd_211_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+ 
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.14 - Ensure only strong Ciphers are used
+
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -Ei '^\s*ciphers\s+([^#]+,)?(3descbc|aes128-cbc|aes192-cbc|aes256-cbc|arcfour|arcfour128|arcfour256|blowfishcbc|cast128-cbc|rijndael-cbc@lysator.liu.se)\b' | wc -l) -ne 0 ] || [ $(sudo grep -Ei '^\s*ciphers\s+([^#]+,)?(3des-cbc|aes128-cbc|aes192-cbc|aes256-cbc|arcfour|arcfour128|arcfour256|blowfish-cbc|cast128-cbc|rijndaelcbc@lysator.liu.se)\b' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{ \"sshchipers_5314_audit\" : \"FAILED\"}"
+else
+   echo "{ \"sshchipers_5314_audit\" : \"PASSED\"}"
+   exit 0
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$(sudo dpkg -s selinux 2>/dev/null | grep "installed" | wc -l)" -ne 0 ]; then
+   echo "{ \"selinappar1\" : \"SELinux or AppArmor is installed\" }"
+   
+elif [ "$(sudo dpkg -s apparmor 2>/dev/null | grep "installed" | wc -l)" -ne 0 ]; then
+   echo "{ \"selinappar_163_actual\" : \"SELinux or AppArmor is installed\" }"
+   
+else
+   echo "{ \"selinappar_163_actual\" : \"\" }"
+fi

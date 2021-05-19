@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(sudo grep "MAC-policy" /etc/audit/audit.rules 2> /dev/null | grep selinux | paste -sd ",")
+b=$(sudo grep "MAC-policy" /etc/audit/audit.rules 2> /dev/null | grep apparmor | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(sudo grep "MAC-policy" /etc/audit/audit.rules 2> /dev/null | grep selinux | wc -l) -eq 0 ] || [ $(sudo grep MAC-policy /etc/audit/audit.rules 2> /dev/null | grep apparmor | wc -l) -eq 0 ]; then
+   echo "{ \"modsysmac_417_actual\" : \"\" }"
+else
+   echo "{ \"modsysmac_417_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

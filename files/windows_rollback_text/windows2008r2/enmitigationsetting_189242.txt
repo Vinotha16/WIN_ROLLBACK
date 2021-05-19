@@ -1,0 +1,24 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\EMET\SysSettings
+AntiDetours 
+
+Computer
+Software\Policies\Microsoft\EMET\SysSettings
+BannedFunctions 
+
+
+Computer
+Software\Policies\Microsoft\EMET\SysSettings
+DeepHooks 
+
+
+Computer
+Software\Policies\Microsoft\EMET\SysSettings
+ExploitAction 
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

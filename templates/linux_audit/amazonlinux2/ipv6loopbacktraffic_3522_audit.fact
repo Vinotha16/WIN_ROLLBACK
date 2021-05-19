@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.2 - Ensure ipv6 loopback traffic is configured (Scored)
+
+if [ $(sudo ip6tables -L INPUT -v -n | egrep ".*ACCEPT.*all.*lo.*::/0.*::/0" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L INPUT -v -n | egrep ".*DROP.*all.*::1.*::/0" | wc -l) -eq 0 ] || [ $(sudo ip6tables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*lo.*::/0.*::/0" | wc -l) -eq 0 ]; then
+    echo "{ \"ipv6loopbacktraffic_3522_audit\" : \"FAILED\" }"
+else
+    echo "{ \"ipv6loopbacktraffic_3522_audit\" : \"PASSED\" }"
+fi
+

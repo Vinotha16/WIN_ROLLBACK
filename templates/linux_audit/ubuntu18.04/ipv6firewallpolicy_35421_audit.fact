@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#  3.5.4.2.1 -  Ensure IPv6 default deny firewall policy (Scored)
+
+if [ $(ip6tables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | wc -l) -eq 0 ] ||[ $(ip6tables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | wc -l) -eq 0 ] || [ $(ip6tables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | wc -l) -eq 0 ]; then
+        echo "{ \"ipv6firewallpolicy_35421_audit\" : \"FAILED\" }"
+else
+        echo "{ \"ipv6firewallpolicy_35421_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+
+# 2.1.4 - Ensure echo services are not enabled (Scored)
+
+if [ $(chkconfig --list 2>/dev/null | grep "echo|echo-udp" | grep " off" | wc -l) -ne 0 ]; then
+
+    echo "{\"echo_214_audit\" : \"FAILED\"}"
+
+else
+ 
+    echo "{\"echo_214_audit\" : \"PASSED\"}"
+
+fi

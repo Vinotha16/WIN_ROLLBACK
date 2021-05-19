@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo rpm -qa apparmor-docs apparmor-parser apparmor-profiles apparmor-utils libapparmor1 | paste -sd ",")
+if [ $(sudo rpm -qa apparmor-docs apparmor-parser apparmor-profiles apparmor-utils libapparmor1 | wc -l) -eq 0 ]; then
+   echo "{ \"apparmor_1711_actual\" : \"\" }"
+else
+   echo "{ \"apparmor_1711_actual\" : \"${cmd}\" }"
+fi

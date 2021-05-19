@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(sudo cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 "^net.ipv4.conf.all.secure_redirects.*0")
+b=$(sudo cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 "^net.ipv4.conf.default.secure_redirects.*0")
+cmd="${a}","${b}"
+if [ $(sudo sysctl net.ipv4.conf.all.secure_redirects | grep net.ipv4.conf.all.secure_redirects.*0 | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv4.conf.default.secure_redirects | grep net.ipv4.conf.default.secure_redirects.*0 | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.all.secure_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.secure_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"secureicmp_323_actual\" : \"\" }"
+else
+   echo "{ \"secureicmp_323_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

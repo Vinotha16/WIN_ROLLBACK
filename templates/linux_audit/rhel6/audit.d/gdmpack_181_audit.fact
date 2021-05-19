@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.8.1 Ensure GNOME Display Manager is removed
+
+if [ $(sudo rpm -qa gdm | wc -l) -ne 0 ]; then
+   echo "{\"gdmpack_181_audit\" : \"FAILED\"}"
+else
+   echo "{\"gdmpack_181_audit\" : \"PASSED\"}"
+fi

@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/common-auth | grep "auth required pam_tally2.so onerr=fail audit silent deny=5 unlock_time=900")
+b=$(cat /etc/pam.d/common-auth | grep "pam_tally2.*900")
+if [ $(sudo grep pam_tally2 /etc/pam.d/common-auth | wc -l) -eq 0 ]; then
+   echo "{ \"lockout_532_actual\" : \"\" }"
+else
+   echo "{ \"lockout_532_actual\" : \"${cmd}\" }"
+   exit 1
+fi

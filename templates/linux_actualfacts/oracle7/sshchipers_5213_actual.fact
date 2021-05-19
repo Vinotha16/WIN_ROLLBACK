@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cmd=$(sshd -T | grep ciphers)
+
+if [ $(sshd -T | grep ciphers | wc -l) -eq 0 ]; then
+   echo "{ \"sshchipers_5213_actual\" : \"\"}"
+else
+   echo "{ \"sshchipers_5213_actual\" : \"$cmd\"}"
+   exit 0
+fi
+

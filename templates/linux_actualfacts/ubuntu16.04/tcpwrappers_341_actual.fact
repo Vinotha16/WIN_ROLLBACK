@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(dpkg -s tcpd | grep "^Version")
+if [ $(sudo dpkg -s tcpd 2> /dev/null | grep "installed" | wc -l) -eq 0 ]; then
+   echo "{ \"tcpwrappers_341_actual\" : \"\" }"
+else
+   echo "{ \"tcpwrappers_341_actual\" : \"$cmd\" }"
+  
+fi

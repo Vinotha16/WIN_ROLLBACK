@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo rpm -qa sudo)
+if [ $(sudo rpm -qa sudo | wc -l) -eq 0 ]; then
+  echo "{ \"sudo_131_actual\" : \"\" }"
+else
+  echo "{ \"sudo_131_actual\" : \"${cmd}\" }"
+fi

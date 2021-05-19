@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.6 - Ensure /dev/shm is configured (Scored)
+
+if [ $(sudo mount | grep -E '\s/dev/shm\s'| wc -l) -eq 0 ] || [ $(sudo grep -E '\s/dev/shm\s' /etc/fstab | wc -l) -eq 0 ]; then
+   echo "{ \"shmnconfig_116_audit\" : \"FAILED\" }"
+else
+   echo "{ \"shmnconfig_116_audit\" : \"PASSED\" }"
+
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa rsyslog)
+if [ "$(rpm -qa rsyslog | wc -l)" -eq 0 ]; then
+   echo "{\"rsyslog_4211_actual\" : \"\" }"
+else
+   echo "{\"rsyslog_4211_actual\" : \"${cmd}\" }"
+   exit 1
+fi

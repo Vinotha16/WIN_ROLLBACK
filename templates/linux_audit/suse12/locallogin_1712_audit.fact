@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.2 - Ensure local login warning banner is configured properly (Not Scored)
+
+if [ "$(cat /etc/issue | grep "Authorized.*uses.*All.*activity.*monitored.*reported" | wc -l)" -eq 0 ] || [ "$(egrep '(\\v|\\r|\\m|\\s)' /etc/issue | wc -l)" -ne 0 ]; then
+   echo "{\"locallogin_1712_audit\" : \"FAILED\"}"
+else
+   echo "{\"locallogin_1712_audit\" : \"PASSED\"}"
+fi

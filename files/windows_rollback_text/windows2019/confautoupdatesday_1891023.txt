@@ -1,0 +1,17 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\Windows\WindowsUpdate\AU
+NoAutoUpdate
+DWORD:0
+
+Computer
+Software\Policies\Microsoft\Windows\WindowsUpdate\AU
+ScheduledInstallDay
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------
+

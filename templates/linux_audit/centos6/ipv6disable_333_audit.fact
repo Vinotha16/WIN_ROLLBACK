@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 3.3.3 - Ensure IPv6 is disabled (Not Scored)
+
+if [ $(grep "kernel.*" /boot/grub/grub.conf | grep "ipv6.disable=1" | wc -l) -eq 0 ]; then
+        echo "{ \"ipv6disable_333_audit\" : \"FAILED\" }"
+else
+        echo "{ \"ipv6disable_333_audit\" : \"PASSED\" }"
+fi

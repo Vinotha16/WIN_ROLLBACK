@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/security/pwquality.conf | grep "^minlen")
+b=$(cat /etc/security/pwquality.conf | grep "^minclass")
+cmd="${a}","${b}"
+if [ $(sudo grep "^minlen" /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep "^minclass" /etc/security/pwquality.conf | wc-l) -eq 0 ]; then
+   echo "{ \"passwdcreation_531_actual\" : \"\" }"
+else
+   echo "{ \"passwdcreation_531_actual\" : \"${cmd}\" }"
+
+fi

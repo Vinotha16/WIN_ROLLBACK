@@ -1,0 +1,11 @@
+#!/bin/bash
+failed=$(grep -Ei '^\s*SELINUX=.*' /etc/selinux/config)
+a=$(sudo grep -Ei '^\s*SELINUX=(enforcing|permissive)' /etc/selinux/config)
+b=$(getenforce | egrep "Enforcing|Permissive")
+cmd="${a}","${b}"
+if [ $(sudo grep -Ei '^\s*SELINUX=(enforcing|permissive)' /etc/selinux/config | wc -l) -eq 0 ] || [ $(getenforce | egrep "Enforcing|Permissive" | wc -l) -eq 0 ]; then
+   echo "{ \"selenfperm_1714_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"selenfperm_1714_actual\" : \"$cmd\" }"
+fi
+

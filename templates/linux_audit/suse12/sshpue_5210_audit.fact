@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.10 - Ensure SSH PermitUserEnvironment is disabled (Scored)
+
+if [ $(sudo grep "^PermitUserEnvironment no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshpue_5210_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshpue_5210_audit\" : \"PASSED\"}"
+fi

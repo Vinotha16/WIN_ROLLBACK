@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.7 - Ensure separate partition exists for /var/tmp (Scored)
+
+if [ $(mount | grep /var/tmp | wc -l) -eq 0 ] || [ $(grep /var/tmp /etc/fstab | wc -l) -eq 0]; then
+   echo "{\"vartmp_117_audit\" : \"FAILED\"}"
+else
+   echo "{\"vartmp_117_audit\" : \"PASSED\"}"
+   
+fi
+

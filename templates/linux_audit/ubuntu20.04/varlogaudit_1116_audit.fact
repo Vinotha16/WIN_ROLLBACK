@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.16 - Ensure separate partition exists for /var/log/audit 
+
+if [ $(mount | grep -E '\s\/var\/log\/audit\s' | wc -l) -eq 0 ]; then
+   echo "{ \"varlogaudit_1116_audit\" : \"FAILED\" }"
+else
+   echo "{ \"varlogaudit_1116_audit\" : \"PASSED\" }"
+fi

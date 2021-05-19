@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+# 6.2.8 - Ensure no users have .forward files 
+count=0
+if [ $(find /home/ -type f -name "*.forward" 2> /dev/null | wc -l) -ne 0 ]; then
+    count=$((count+1))
+else
+        count=$((count+0))
+fi
+if [ "$count" -ne "0" ]; then
+       echo "{ \"forwardfiles_628_audit\" : \"FAILED\"}"
+else
+    echo "{ \"forwardfiles_628_audit\" : \"PASSED\"}"
+   
+fi

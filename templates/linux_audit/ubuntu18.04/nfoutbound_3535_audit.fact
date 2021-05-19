@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.5 - Ensure outbound and established connections are configured (Not Scored)
+
+if [ $(sudo iptables -L -v -n | grep ".*ACCEPT.*--.*0.0.0.0/0.*0.0.0.0/0.*state ESTABLISHED" | wc -l) -eq 0 ] || [ $(sudo iptables -L -v -n | grep ".*ACCEPT.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW,ESTABLISHED" | wc -l) -eq 0 ]; then
+   echo "{ \"nfoutbound_3535_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfoutbound_3535_audit\" : \"PASSED\" }"
+  
+fi

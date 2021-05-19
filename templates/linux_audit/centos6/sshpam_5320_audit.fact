@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.20 - Ensure SSH PAM is enabled
+
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'usepam yes' | wc -l) -eq 0 ]; then
+   echo "{\"sshpam_5320_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshpam_5320_audit\" : \"PASSED\"}"
+   exit 1
+fi

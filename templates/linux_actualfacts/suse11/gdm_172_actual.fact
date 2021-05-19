@@ -1,0 +1,13 @@
+#!/bin/bash
+cmd=$(cat /etc/dconf/db/gdm.d/01-banner-message | egrep "[org/gnome/login-screen]|banner-message-enable|banner-message-text" | tr '"' " " | paste -sd "," -)
+if [ "$(rpm -qa | grep gdm | wc -l)" -ne 0 ]; then
+   if [ "$(egrep "user:db|system-db|file-db" /etc/dconf/profile/gdm 2> /dev/null | wc -l)" -eq 0 ] || [ "$(egrep "[org/gnome/login-screen]|banner-message-enable|banner-message-text" /etc/dconf/db/gdm.d/*| wc -l)" -eq 0 ]; then
+      echo "{ \"gdm_172_actual\"  :  \"\"}"
+   else
+      echo "{ \"gdm_172_actual\" : \"$cmd\" }"
+exit 1
+   fi
+else
+   echo "{ \"gdm_172_actual\" :  \"\"}"
+fi
+

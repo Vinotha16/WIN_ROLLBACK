@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(iptables -L -v -n | grep ".*ACCEPT.*tcp.*--.*state ESTABLISHED" | paste -sd ",")
+b=$(iptables -L -v -n | grep ".*ACCEPT.*udp.*--.*state ESTABLISHED" | paste -sd ",")
+c=$(iptables -L -v -n | grep ".*ACCEPT.*icmp.*--.*state ESTABLISHED" | paste -sd ",")
+cmd="${a}","${b}","${c}"
+if [ $(sudo iptables -L -v -n | grep ".*ACCEPT.*--.*0.0.0.0/0.*0.0.0.0/0.*state ESTABLISHED" | wc -l) -eq 0 ] || [ $(sudo iptables -L -v -n | grep ".*ACCEPT.*--.*0.0.0.0/0.*0.0.0.0/0.*state NEW,ESTABLISHED" | wc -l) -eq 0 ]; then
+   echo "{ \"outbound_3623_actual\" : \"\" }"
+else
+   echo "{ \"outbound_3623_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

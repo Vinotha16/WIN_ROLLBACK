@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.23 - Disable USB Storage (Scored)
+
+if [ $(sudo modprobe -n -v usb-storage 2> /dev/null | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep usb-storage | wc -l) -ne 0 ]; then
+   echo "{ \"usbstorage_1123_audit\" : \"FAILED\" }"
+else
+   echo "{ \"usbstorage_1123_audit\" : \"PASSED\" }"
+
+fi

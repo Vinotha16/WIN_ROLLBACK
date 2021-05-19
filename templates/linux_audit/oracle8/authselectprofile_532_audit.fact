@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.2 - Select authselect profile (Scored)
+
+if [ $(authselect current | grep -v "No.*existing.*configuration.*detected" | wc -l) -eq 0 ]; then
+   echo "{ \"5.3.2 - Not Select authselect profile\" : \"FAILED\" }"
+else
+   echo "{ \"authselectprofile_532_audit\" : \"PASSED\" }"
+fi

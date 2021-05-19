@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'usepam yes')
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'usepam yes' | wc -l) -eq 0 ]; then
+   echo "{ \"sshpam_5320_actual\" : \"\" }"
+else
+   echo "{ \"sshpam_5320_actual\" : \"${cmd}\" }"
+fi

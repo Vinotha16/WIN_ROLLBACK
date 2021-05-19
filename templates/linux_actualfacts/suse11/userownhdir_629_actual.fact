@@ -1,0 +1,16 @@
+#!/bin/bash
+sudo grep /home /etc/passwd | awk -F: '$3>=1000 { print $1 " " $6 }' | while read user dir; do
+        owner=$(stat -L -c "%U" "$dir" 2>/dev/null)
+        if [ "$owner" != "$user" ]; then
+           echo "$dir $owner" >> /tmp/userown_cis
+        fi
+done
+        failed=$(awk 'NF>=2' /tmp/userown_cis >>  /tmp/userown1_cis)
+        failed1=$(cat /tmp/userown1_cis | paste -sd ",")
+       if [ $(cat /tmp/userown1_cis | wc -l) -ge 1 ]; then
+           echo "{ \"userownhdir_629_actual\" : \"failed $failed1\" }"
+           rm -rf /tmp/userown_cis /tmp/userown1_cis
+       else
+           echo "{ \"userownhdir_629_actual\" : \"users own their home directories\" }"
+       fi
+

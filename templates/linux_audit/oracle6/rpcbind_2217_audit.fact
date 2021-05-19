@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.17 - Ensure rpcbind is not installed or the rpcbind service is disabled (Scored)
+
+if [ $(sudo rpm -qa rpcbind | wc -l) -ne 0 ]; then
+   echo "{ \"rpcbind_2217_audit\" : \"FAILED\" }"
+else
+   echo "{ \"rpcbind_2217_audit\" : \"PASSED\" }"
+fi
+

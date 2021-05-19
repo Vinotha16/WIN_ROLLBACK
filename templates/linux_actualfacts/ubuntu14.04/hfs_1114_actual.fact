@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat modprobe -n -v hfs 2> /dev/null | grep "install /bin/true")
+if [ "$(sudo modprobe -n -v hfs 2> /dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(sudo lsmod | grep hfs | wc -l)" -ne 0 ]; then
+   echo "{ \"hfs_1114_actual\" : \"\" }"
+else
+   echo "{ \"hfs_1114_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

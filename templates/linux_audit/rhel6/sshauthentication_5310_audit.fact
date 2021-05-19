@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.10 - Ensure SSH HostbasedAuthentication is disabled (Scored)
+
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep 'hostbasedauthentication no' | wc -l) -eq 0 ] || [ $(sudo  grep -Ei '^\s*HostbasedAuthentication\s+yes' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{\"sshauthentication_5310_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshauthentication_5310_audit\" : \"PASSED\"}"
+   
+fi

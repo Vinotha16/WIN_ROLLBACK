@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 "^net.ipv4.conf.all.send_redirects.*0")
+b=$(cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 "^net.ipv4.conf.default.send_redirects.*0")
+cmd="${a}","${b}"
+if [ "$(sudo sysctl net.ipv4.conf.all.send_redirects)" != "net.ipv4.conf.all.send_redirects = 0" ] || [ "$(sudo sysctl net.ipv4.conf.default.send_redirects)" != "net.ipv4.conf.default.send_redirects = 0" ] || [ $(sudo grep "^net.ipv4.conf.all.send_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.send_redirects.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+   echo "{ \"packetredirect_322_actual\" : \"\" }"
+else
+   echo "{ \"packetredirect_322_actual\" : \"${cmd}\" }"
+   exit 0
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.7 - Ensure IPv6 is disabled (Not Scored)
+
+if [ $(grep "ipv6.disable=1" /etc/default/grub | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6disable_37_audit\" : \"FAILED\" }"
+else
+   echo "{ \"ipv6disable_37_audit\" : \"PASSED\" }"
+
+fi
+

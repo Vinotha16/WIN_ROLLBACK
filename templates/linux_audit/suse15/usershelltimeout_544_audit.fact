@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.4 - Ensure Default user shell timeout is configured (Scored)
+
+if [ $(grep -P '^\s*([^$#;]+\s+)*TMOUT=(9[0-9][1-9]|0+|[1-9]\d{3,})\b\s*(\S+\s*)*(\s+#.*)?$' /etc/profile /etc/profile.d/*.sh /etc/bashrc | wc -l) -ne '0' ]; then
+   echo "{ \"usershelltimeout_544_audit\" : \"FAILED\" }"
+else
+   echo "{ \"usershelltimeout_544_audit\" : \"PASSED\" }"
+
+fi

@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.2.2 - Ensure journald is configured to compress large log files
+
+if [ $(grep -E ^\s*Compress /etc/systemd/journald.conf | wc -l) -eq 0 ]; then
+   echo "{\"journalcompresslog_4222_audit\":\"FAILED\"}"
+else
+   echo "{\"journalcompresslog_4222_audit\":\"PASSED\"}"
+   exit 1
+fi
+
+

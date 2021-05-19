@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.7 - Ensure SSH X11 forwarding is disabled (Scored)
+
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep -i 'x11forwarding.*no' | wc -l) -eq 0 ] || [ $(sudo grep -Ei '^\s*x11forwarding\s+yes' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{\"sshx11forward_537_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshx11forward_537_audit\" : \"PASSED\"}"
+   
+fi

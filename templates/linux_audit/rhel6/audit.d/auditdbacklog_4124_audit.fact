@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.2.4 - Ensure audit backlog limit is sufficient
+
+if [ $(sudo grep "^\s*kernel.*" /boot/grub/grub.conf | grep -m1 -o "audit_backlog_limit=[0-9]" | wc -l) -eq 0 ]; then
+   echo "{\"auditdbacklog_4124_audit\" : \"FAILED\"}"
+else
+  if [ $(sudo grep "^\s*kernel.*" /boot/grub/grub.conf | grep -m1 -o "audit_backlog_limit=.*" | cut -d '=' -f 2) -lt 8192 ]; then
+      echo "{\"auditdbacklog_4124_audit\" : \"FAILED\"}"
+  else
+      echo "{\"auditdbacklog_4124_audit\" : \"PASSED\"}"
+  fi
+fi

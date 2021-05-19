@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.1 - Ensure TCP Wrappers is installed (Scored)
+
+if [ $(sudo rpm -qa tcp_wrappers | wc -l) -eq 0 ] || [ $(sudo rpm -qa tcp_wrappers-libs | wc -l) -eq 0 ]; then
+    echo "{ \"tcpwrappers_341_audit\" : \"FAILED\" }"
+else
+    echo "{ \"tcpwrappers_341_audit\" : \"PASSED\" }"
+fi

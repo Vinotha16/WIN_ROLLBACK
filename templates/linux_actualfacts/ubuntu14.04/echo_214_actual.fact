@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -d /etc/xinetd.d/echo ]; then
+        if [ "$(chkconfig --list 2> /dev/null | grep "echo-dgram:.*off" | wc -l)" -eq 0 ] || [ "$(chkconfig --list 2> /dev/null | grep "echo-stream:.*off" | wc -l)" -eq 0 ]; then
+                echo "{ \"echo_214_actual\" : \"\" }"
+        fi
+else
+    echo "{ \"echo_214_actual\" : \"not enabled\" }"
+exit 1
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+failfact=$(find /home -name '.rhosts')
+count=0
+if [ $(find /home -name ".rhosts" | wc -l) -ne 0 ]; then
+   count=$((count+1))
+else
+   count=$((count+0))
+fi
+
+if [ "$count" -ne "0" ]; then
+    echo "{ \"rhosts_6212_actual\" : \"failed $failfact\" }"
+else
+    echo "{ \"rhosts_6212_actual\" : \"no users have .rhosts files\" }"
+fi

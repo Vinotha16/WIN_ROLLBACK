@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# 3.4.2.6 - Ensure unnecessary services and ports are not accepted (Not Scored)
+
+if [ $( firewall-cmd --get-active-zones | awk '!/:/ {print $1}' | while read ZN; do firewall-cmd --list-all --zone=$ZN; done| grep "  services: " | wc -l) -ne 0 ] || [ $( firewall-cmd --get-active-zones | awk '!/:/ {print $1}' | while read ZN; do firewall-cmd --list-all --zone=$ZN; done| grep "  ports: " | wc -l) -ne 0 ]; then
+	echo "{ \"3.4.2.6 - unnecessary services and ports are accepted\" : \"FAILED\" }"
+	
+else
+	echo "{ \"unnecservport_3426_audit\" : \"PASSED\" }"
+fi
+	

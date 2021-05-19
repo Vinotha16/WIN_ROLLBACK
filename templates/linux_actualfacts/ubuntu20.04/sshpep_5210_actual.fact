@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo egrep "^\s\s\sPermitEmptyPasswords no|^PermitEmptyPasswords no" /etc/ssh/sshd_config)
+if [ $(sudo egrep "^\s\s\sPermitEmptyPasswords no|^PermitEmptyPasswords no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshpep_5210_actual\" : \"\" }"
+else
+   echo "{ \"sshpep_5210_actual\" : \"$cmd\" }"
+   
+fi

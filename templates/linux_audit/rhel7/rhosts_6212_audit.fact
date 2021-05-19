@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.12 - Ensure no users have .rhosts files (Automated)
+
+count=0
+if [ $(find /home -name ".rhosts" | wc -l) -ne 0 ]; then
+  	count=$((count+1))
+fi
+
+if [ "$count" -ne "0" ]; then
+	 echo "{ \"rhosts_6212_audit\" : \"FAILED\" }"
+else
+	echo "{ \"rhosts_6212_audit\" : \"PASSED\" }"
+	exit 1
+fi

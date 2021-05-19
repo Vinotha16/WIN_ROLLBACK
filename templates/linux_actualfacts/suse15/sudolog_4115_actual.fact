@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo grep "actions" /etc/audit/rules.d/*.rules | paste -sd ",")
+if [ $(sudo grep "actions" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep actions| wc -l) -eq 0 ]; then
+   echo "{ \"sudolog_4115_actual\" : \"\" }"
+else
+   echo "{ \"sudolog_4115_actual\" : \"${cmd}\" }"
+   
+fi

@@ -1,0 +1,14 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 2.1.2 - Ensure daytime services are not enabled (Scored)
+
+if  [ -d /etc/xinetd.d/daytime ]; then
+
+        if [ $(chkconfig --list 2> /dev/null | grep "daytime-dgram:.*off" | wc -l) -eq 0 ] || [ $(chkconfig --list 2> /dev/null  | grep "daytime-stream:.*off" | wc -l) -eq 0 ]; then
+                 echo "{ \"daytime_212_audit\" : \"FAILED\" }"
+        fi
+else
+    echo "{ \"daytime_212_audit\" : \"PASSED\" }"
+    
+fi

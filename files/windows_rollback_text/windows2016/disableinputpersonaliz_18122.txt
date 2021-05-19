@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+Software\Policies\Microsoft\InputPersonalization
+AllowInputPersonalization
+DWORD:0
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

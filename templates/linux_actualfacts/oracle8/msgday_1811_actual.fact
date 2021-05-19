@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/motd | grep "Welcome.*to.*RedHat.*8")
+if [ $(cat /etc/motd | grep "Welcome.*to.*RedHat.*8" | wc -l) -eq 0 ] || [ $(grep -E -i "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/"//g'))" /etc/motd | wc -l) -ne 0 ]; then
+   echo "{ \"msgday_1811_actual\" : \"\" }"
+else
+   echo "{ \"msgday_1811_actual\" : \"$cmd\" }"
+   exit 1
+fi

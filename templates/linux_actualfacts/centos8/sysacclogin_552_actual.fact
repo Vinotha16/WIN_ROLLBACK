@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(egrep -v "^\+" /etc/passwd | awk -F: '($1!="root" && $1!="sync" && $1!="shutdown" && $1!="halt" && $3<1000 && $7!="/sbin/nologin" && $7!="/bin/false") {print $1 ,$7}' | paste -sd ",")
+if [ $(egrep -v "^\+" /etc/passwd | awk -F: '($1!="root" && $1!="sync" && $1!="shutdown" && $1!="halt" && $3<1000 && $7!="/sbin/nologin" && $7!="/bin/false") {print}' | wc -l) -gt 0 ]; then
+   echo "{ \"sysacclogin_552_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"sysacclogin_552_actual\" : \"System accounts are non-login\" }"
+   exit 1
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.3 - Ensure permissions on all logfiles are configured (Scored)
+
+if [ $(find /var/log -type f -perm /g+wx,o+rwx -exec ls -l {} \; | wc -l) -ne 0 ]; then
+   echo "{ \"permlogfiles_423_audit\" : \"FAILED\" }"
+else
+   echo "{ \"permlogfiles_423_audit\" : \"PASSED\" }"
+   
+fi

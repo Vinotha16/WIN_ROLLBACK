@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.1.4 - Ensure mounting of udf filesystems is disabled (Scored)
+
+if [ "$(modprobe -n -v udf | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep udf | wc -l)" -ne 0 ]; then
+   echo "{\"udf_1114_audit\" : \"FAILED\"}"
+else
+   echo "{\"udf_1114_audit\" : \"PASSED\"}"
+   
+fi
+

@@ -1,0 +1,32 @@
+---
+####UBUNTU-18####
+bootloader_password_ubuntu18: zippyops@123
+singleusermode_ubuntu18: zippyops
+fileage_ubuntu18: -1d
+apparmorprofile_ubuntu18: enforce
+remote_server_chrony_ubuntu18: sample.zippy.com
+remote_server_ntp_ubuntu18: sample.zippy.com
+ntp_chrony_ubuntu18: chrony
+hosts_allow_ubuntu18: 'ALL: 192.168.0.1/255.255.0.0'
+hosts_deny_ubuntu18: 'ALL: 170.16.3.0-170.16.3.4'
+firewallpack_ubuntu18: ufw
+table_name_ubuntu18: filter
+table_name_bc_ubuntu18: filter
+base_chain_name_input_ubuntu18: input
+base_chain_name_output_ubuntu18: output
+base_chain_name_forward_ubuntu18: forward
+audit_log_size_ubuntu18: 8
+MaxAuthTries_ubuntu18: MaxAuthTries 4
+PermitRootLogin_ubuntu18: PermitRootLogin no
+ClientAliveInterval_ubuntu18: ClientAliveInterval 300
+ClientAliveCountMax_ubuntu18: ClientAliveCountMax 0
+Pass_max_days_ubuntu18: 365
+Pass_min_days_ubuntu18: 7
+Pass_warn_age_ubuntu18: 7
+allowusers_ubuntu18: ansible
+allowgroups_ubuntu18:
+denyusers_ubuntu18:
+denygroups_ubuntu18:
+wheelgroup_ubuntu18:
+
+db_no_ubuntu18:

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.1 - Ensure ufw service is enabled (Scored)
+
+if [ $(systemctl is-enabled ufw | grep "enabled" | wc -l) -eq 0 ] || [ $(ufw status | grep Status | grep "Status: active" | wc -l) -eq 0 ]; then
+   echo "{ \"firewallenb_3521_audit\" : \"FAILED\" }"
+else
+   echo "{ \"firewallenb_3521_audit\" : \"PASSED\" }"
+
+fi

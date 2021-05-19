@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy
+fBlockNonDomain
+DWORD:
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

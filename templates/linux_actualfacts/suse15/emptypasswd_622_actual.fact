@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(awk -F: '($2 == "" ) {print $1}' /etc/shadow | paste -sd ",")
+if [ $(awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow | wc -l) -ne 0 ]; then
+ echo "{ \"emptypasswd_622_actual\" : \"failed $failfact\" }"
+else
+ echo "{ \"emptypasswd_622_actual\" : \"Password fields are not empty\" }"
+   exit 1
+fi

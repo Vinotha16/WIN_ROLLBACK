@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.3 Ensure events that modify date and time information are collected (Automated)
+
+if [ $(sudo grep "time-change" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"moddatetime_413_audit\" : \"FAILED\" }"
+else
+   echo "{ \"moddatetime_413_audit\" : \"PASSED\" }"
+fi

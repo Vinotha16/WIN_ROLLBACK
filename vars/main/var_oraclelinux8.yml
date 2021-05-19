@@ -1,0 +1,32 @@
+---
+####ORACLE-8####
+bootloader_password_oracle8: zippyops@123
+CRYPTO_POLICY_oracle8: DEFAULT
+remote_server_chrony_oracle8: sample.zippy.com
+remote_server_ntp_oracle8: sample.zippy.com
+ntp_chrony_oracle8: chrony
+zone_name_oracle8: customezone
+interface_name_oracle8: eth0
+#unnecservport_service_oracle8:   #unnecservport
+#unnecservport_port_oracle8:      #unnecservport
+table_name_oracle8: filter
+table_name_bc_oracle8: filter
+base_chain_name_input_oracle8: input
+base_chain_name_output_oracle8: output
+base_chain_name_forward_oracle8: forward
+audit_log_size_oracle8: 8
+MaxAuthTries_oracle8: MaxAuthTries 4
+PermitRootLogin_oracle8: PermitRootLogin no
+ClientAliveInterval_oracle8: ClientAliveInterval 300
+ClientAliveCountMax_oracle8: ClientAliveCountMax 0
+Pass_max_days_oracle8: 365
+Pass_min_days_oracle8: 7
+Pass_warn_age_oracle8: 7
+allowusers_oracle8: ansible
+allowgroups_oracle8:
+denyusers_oracle8:
+denygroups_oracle8:
+wheelgroup_oracle8:
+
+db_no_oracle8:
+update_oracle8:

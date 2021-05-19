@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(stat stat -c "%a %U %G" /etc/cron.d)
+if [ $(stat /etc/cron.d | grep 0700 |  grep ".*Uid:.*0/.*root" | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"permcrond_517_actual\" : \"\" }"
+else
+   echo "{ \"permcrond_517_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

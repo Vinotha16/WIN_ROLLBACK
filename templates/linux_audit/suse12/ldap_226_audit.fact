@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+
+# 2.2.6 - Ensure LDAP server is not enabled (Scored)
+
+if [ $(sudo systemctl is-enabled slapd 2>/dev/null | grep enabled | wc -l) -eq 1 ]; then
+
+   echo "{\"ldap_226_audit\" : \"FAILED\"}"
+
+else
+  
+   echo "{\"ldap_226_audit\" : \"PASSED\"}"
+
+fi

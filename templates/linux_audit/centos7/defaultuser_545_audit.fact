@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.5 Ensure default user umask is configured
+
+if [ $(grep -Ev '^\s*umask\s+\s*(0[0-7][2-7]7|[0-7][2-7]7|u=(r?|w?|x?)(r?|w?|x?)(r?|w?|x?),g=(r?x?|x?r?),o=)\s*(\s*#.*)?$' /etc/profile /etc/profile.d/*.sh /etc/bashrc | grep -E '(^|^[^#]*)umask' | wc -l ) -ne 0 ] || [ $( grep -E '^\s*umask\s+\s*(0[0-7][2-7]7|[0-7][2-7]7|u=(r?|w?|x?)(r?|w?|x?)(r?|w?|x?),g=(r?x?|x?r?),o=)\s*(\s*#.*)?$' /etc/profile /etc/profile.d/*.sh /etc/bashrc | wc -l) -eq 0 ]; then
+   echo "{\"defaultuser_545_audit\":\"FAILED\"}"
+else
+   echo "{\"defaultuser_545_audit\":\"PASSED\"}"
+   exit 1
+fi
+

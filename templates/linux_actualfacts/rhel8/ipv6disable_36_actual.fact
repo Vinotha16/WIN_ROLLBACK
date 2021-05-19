@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(grep "^\s*linux.*ipv6.disable=1" /boot/grub2/grub.cfg 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6disable_36_actual\" : \"\" }"
+else
+   echo "{ \"ipv6disable_36_actual\" : \"GRUB_CMDLINE_LINUX="ipv6.disable=1"\" }"
+   exit 1
+fi
+

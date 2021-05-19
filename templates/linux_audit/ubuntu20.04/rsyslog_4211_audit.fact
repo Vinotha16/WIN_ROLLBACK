@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.1.1 Ensure rsyslog is installed 
+
+if [ "$(dpkg -s rsyslog | grep "ok installed" | wc -l)" -eq 0 ]; then
+   echo "{ \"rsyslog_4211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"rsyslog_4211_audit\" : \"PASSED\" }"
+  
+fi
+

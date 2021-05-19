@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+SYSTEM\CurrentControlSet\Services\LanmanWorkstation
+DependOnService
+MULTISZ:Bowser\0MRxSmb20\0NSI
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo grep '^\+:' /etc/shadow | awk -F: '{print $1}' | wc -l) -ne 0 ]; then
+   echo "{ \"nolegacyshadow_624_actual\" : \"\" }"
+else
+   echo "{ \"nolegacyshadow_624_actual\" : \"no legacy + entries exist in /etc/shadow\" }"
+fi

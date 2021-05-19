@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(sudo cat /etc/security/limits.conf | grep  "hard core 0" | paste -sd ",")
+b=$(sudo cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 -o "^fs.suid_dumpable.*0")
+cmd="${a}","${b}"
+if [ "$(sudo grep "hard core" /etc/security/limits.conf | wc -l)" -eq 0 ] || [ "$(sudo sysctl fs.suid_dumpable | grep "fs.suid_dumpable = 0" | wc -l)" -eq 0 ] || [ "$(sudo egrep "^fs.suid_dumpable.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l)" -eq 0 ] ; then
+   echo "{ \"coredumps_151_actual\" : \"\" }"
+else
+   echo "{ \"coredumps_151_actual\" : \"${cmd}\" }"
+   exit 1
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(iptables -L INPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.")
+b=$(iptables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.")
+c=$(iptables -L INPUT -v -n | egrep ".*DROP.*all.*--.*127.0.0.0/8.")
+cmd="${a}","${b}","${c}"
+if [ $(sudo iptables -L INPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo iptables -L INPUT -v -n | egrep ".*DROP.*all.*--.*127.0.0.0/8.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo iptables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ]; then
+   echo "{ \"loopbacktraffic_363_actual\" : \"\" }"
+else
+   echo "{ \"loopbacktraffic_363_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

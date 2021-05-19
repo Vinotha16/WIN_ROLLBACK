@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(ls /etc/rc*.d/S*syslog-ng | grep -o "syslog-ng" | sed '1q')
+if [ $(service syslog-ng status 2> /dev/null | grep "syslog-ng is running" | wc -l) -eq 0 ] || [ $(ls /etc/rc*.d/S*syslog-ng 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"syslogngenb_4221_actual\" : \"\" }"
+else
+   echo "{ \"syslogngenb_4221_actual\" : \"${cmd}\"}"
+   exit 1
+fi
+

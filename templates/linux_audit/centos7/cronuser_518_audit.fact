@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+#5.1.8 - Ensure cron is restricted to authorized users
+
+if [ $(sudo stat /etc/cron.deny | wc -l) -ne 0 ] || [ $(sudo stat /etc/cron.allow | grep "0600.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{\"cronuser_518_audit\":\"FAILED\"}"
+else
+   echo "{\"cronuser_518_audit\":\"PASSED\"}"
+   exit 1
+fi

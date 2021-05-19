@@ -1,0 +1,9 @@
+#!/bin/bash
+i=$(rpm -Va --nomtime --nosize --nomd5 --nolinkto)
+if [ $(sudo rpm -Va --nomtime --nosize --nomd5 --nolinkto | wc -l) -eq 0 ]; then
+   echo "{ \"auditsysperm_611_actual\" : \"\" }"
+else
+   echo "{ \"auditsysperm_611_actual\" : \"Audit system file has permissions\" }"
+   exit 0
+fi
+

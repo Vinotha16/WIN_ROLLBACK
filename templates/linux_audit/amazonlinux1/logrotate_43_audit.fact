@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.3 - Ensure logrotate is configured (Not Scored)
+
+if [ $(sudo cat /etc/logrotate.conf  | tr '\n' '\r' | sed -e 's/{.*}//g' | tr '\r' '\n' | grep -v "^\s*#" | grep "maxage" | wc -l) -eq 0 ] || [ $(sudo cat /etc/logrotate.d/*  | tr '\n' '\r' | sed -e 's/{.*}//g' | tr '\r' '\n' | grep -v "^\s*#" | grep "maxage" | wc -l) -eq 0 ]; then
+    echo "{ \"logrotate_43_audit\" : \"FAILED\" }"
+else
+    echo "{ \"logrotate_43_audit\" : \"PASSED\" }"
+fi

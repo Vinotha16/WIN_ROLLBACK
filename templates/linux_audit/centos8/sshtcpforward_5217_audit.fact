@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.17 - Ensure SSH AllowTcpForwarding is disabled (Scored)
+
+if [ $(sshd -T | grep -i ^allowtcpforwarding  /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshtcpforward_5217_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshtcpforward_5217_audit\":\"PASSED\"}"
+fi
+

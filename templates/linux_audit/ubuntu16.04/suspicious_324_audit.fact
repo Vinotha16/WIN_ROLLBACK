@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.2.4 - Ensure suspicious packets are logged (Scored)
+
+if [ $(sudo sysctl net.ipv4.conf.all.log_martians | grep net.ipv4.conf.all.log_martians.*1 | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv4.conf.default.log_martians | grep net.ipv4.conf.default.log_martians.*1 | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.all.log_martians.*1" /etc/sysctl.conf /etc/sysctl.d/* 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv4.conf.default.log_martians.*1" /etc/sysctl.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"suspicious_324_audit\" :  \"FAILED\"}"
+else
+   echo "{ \"suspicious_324_audit\" : \"PASSED\"}"
+   
+fi
+

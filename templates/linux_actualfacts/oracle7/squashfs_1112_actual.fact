@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo  modprobe --showconfig 2> /dev/null | grep squashfs 2> /dev/null | grep "install squashfs /bin/true")
+if [ "$(sudo  modprobe --showconfig 2> /dev/null | grep squashfs 2> /dev/null | grep "install squashfs /bin/true" | wc -l)" -eq 0 ] || [ "$(sudo lsmod | grep squashfs | wc -l)" -ne 0 ]; then
+   echo "{ \"squashfs_1112_actual\" : \"\" }"
+else
+   echo "{ \"squashfs_1112_actual\" : \"${cmd}\" }"
+   exit 1
+fi

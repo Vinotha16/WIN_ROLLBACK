@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(sudo grep "^\s*linux" /boot/grub2/grub.cfg | egrep -m1 -o "apparmor=1")
+b=$(sudo grep "^\s*linux" /boot/grub2/grub.cfg | egrep -m1 -o "security=apparmor")
+cmd="${a}","${b}"
+if [ $(sudo grep "^\s*linux" /boot/grub2/grub.cfg | egrep "apparmor=1" | wc -l) -eq 0 ] || [ $(sudo grep "^\s*linux" /boot/grub2/grub.cfg | egrep "security=apparmor" | wc -l) -eq 0 ]; then
+    echo "{ \"apparmorenb_1712_actual\" : \"\" }"
+else
+    echo "{ \"apparmorenb_1712_actual\" : \"${cmd}\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(mount | grep "/var/tmp.*nosuid")
+if [ $(mount | grep "/var/tmp.*nosuid" | wc -l) -eq 0 ]; then
+   echo "{ \"vtnosuid_118_actual\" : \"\" }"
+else
+   echo "{ \"vtnosuid_118_actual\" : \"$cmd\" }"
+   exit 0
+fi

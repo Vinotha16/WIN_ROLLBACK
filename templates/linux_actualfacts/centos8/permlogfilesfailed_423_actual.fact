@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(find /var/log -type f -perm /037 -ls -o -type d -perm /026 -ls | awk '{print $11}' | paste -sd ",")
+if [ $(find /var/log -type f -perm /037 -ls -o -type d -perm /026 -ls | wc -l) -gt 0 ]; then
+   echo "{ \"permlogfiles_423_actual\" : \"$cmd\" }"
+else
+   echo "{ \"permlogfiles_423_actual\" : \"\" }"
+   exit 1
+fi

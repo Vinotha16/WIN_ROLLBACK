@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.4 Ensure logrotate assigns appropriate permissions
+
+if [ $(sudo grep "^create 0640 root utmp" /etc/logrotate.conf | wc -l) -eq 0 ]; then
+echo "{ \"logrotateperm_44_audit\" : \"FAILED\" }"
+    else
+echo "{ \"logrotateperm_44_audit\" : \"PASSED\" }"
+fi

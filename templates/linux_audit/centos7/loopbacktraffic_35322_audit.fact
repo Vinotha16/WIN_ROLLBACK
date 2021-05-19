@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.3.2.2 - Ensure loopback traffic is configured (Scored)
+
+if [ $(sudo iptables -L INPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo iptables -L INPUT -v -n | egrep ".*DROP.*all.*--.*127.0.0.0/8.*0.0.0.0/0" | wc -l) -eq 0 ] || [ $(sudo iptables -L OUTPUT -v -n | egrep ".*ACCEPT.*all.*--.*lo.*0.0.0.0/0.*0.0.0.0/0" | wc -l) -eq 0 ]; then
+   echo "{ \"loopbacktraffic_35322_audit\" : \"FAILED\"}"
+else
+   echo "{ \"loopbacktraffic_35322_audit\" : \"PASSED\"}"
+   exit 1
+fi
+
+
+

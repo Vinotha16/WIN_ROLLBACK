@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.2 - Ensure SSH Protocol is set to 2 (Scored)
+
+if [ $(sudo grep "^Protocol 2" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{\"sshprotocol_522_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshprotocol_522_audit\" : \"PASSED\"}"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ -d /etc/xinetd.d/time ]; then
+
+        if [ $(sudo chkconfig --list 2> /dev/null | grep "time-dgram:.*off" | wc -l) -eq 0 ] || [ $(sudo chkconfig --list 2> /dev/null | grep "time-stream:.*off" | wc -l) -eq 0 ]; then
+                echo "{ \"time_215_actual\" : \"\"}"
+        fi
+else
+    echo "{ \"time_215_actual\" : \"time is disabled\"}"
+    
+fi

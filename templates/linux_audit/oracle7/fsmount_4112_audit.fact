@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.12 - Ensure successful file system mounts are collected (Scored)
+
+if [ $(sudo grep mounts /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep mounts | wc -l) -eq 0 ]; then
+   echo "{ \"fsmount_4112_audit\" : \"FAILED\" }"
+else
+   echo "{ \"fsmount_4112_audit\" : \"PASSED\" }"
+fi
+

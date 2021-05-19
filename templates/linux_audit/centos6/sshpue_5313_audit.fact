@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.13 - Ensure SSH PermitUserEnvironment is disabled (Scored)
+
+if [ $(sudo sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep 'permituserenvironment no' | wc -l) -eq 0 ] || [ $(sudo grep -Ei '^\s*PermitUserEnvironment\s+yes' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{ \"sshpue_5313_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshpue_5313_audit\" : \"PASSED\" }"
+   
+fi

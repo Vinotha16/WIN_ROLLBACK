@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.1 - Ensure sudo is installed 
+
+if [ $(sudo rpm -qa sudo | wc -l) -eq 0 ]; then
+   echo "{\"sudo_521_audit\" : \"FAILED\"}"
+else
+   echo "{\"sudo_521_audit\" : \"PASSED\"}"
+fi

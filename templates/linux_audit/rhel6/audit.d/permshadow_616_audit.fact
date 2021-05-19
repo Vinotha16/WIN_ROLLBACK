@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.6 - Ensure permissions on /etc/shadow are configured (Scored)
+
+if [ $(stat /etc/shadow | grep 0000 | wc -l) -eq 0 ] || [ $(stat /etc/shadow | grep ".*Uid:.*0/.*root" | wc -l) -eq 0 ] || [ $(stat /etc/shadow | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{\"permshadow_616_audit\" : \"FAILED\"}"
+else
+   echo "{\"permshadow_616_audit\" : \"PASSED\"}"
+  
+fi

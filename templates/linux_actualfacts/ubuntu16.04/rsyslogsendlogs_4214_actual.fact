@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo  grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf  | paste -sd ",")
+if [ $(sudo  grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf | wc -l) -eq 0 ]; then
+   echo "{ \"rsyslogsendlogs_4214_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogsendlogs_4214_actual\" : \"${cmd}\" }"
+   exit 1
+fi

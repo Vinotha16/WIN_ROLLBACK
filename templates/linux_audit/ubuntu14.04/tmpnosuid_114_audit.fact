@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.4 - Ensure nosuid option set on /tmp partition (Scored)
+
+if [ "$(mount | grep "\s/tmp.*nosuid" | wc -l)" -eq 0 ]; then
+   echo "{\"1.1.4 - Nosuid option not set on /tmp partition\"  :   \"FAILED\"}"
+else
+   echo "{\"tmpnosuid_114_audit\"  :  \"PASSED\"}"
+  
+fi

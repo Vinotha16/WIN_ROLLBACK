@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep -Ei '^\s*USE_AUGENRULES\s*="yes"' /etc/sysconfig/auditd | tr '"' " " )
+if [ $(sudo grep -Ei '^\s*USE_AUGENRULES\s*="yes"' /etc/sysconfig/auditd | wc -l) -eq 0 ]; then
+   echo "{ \"augenrules_4112_actual\" : \"\"}"
+else
+   echo "{ \"augenrules_4112_actual\" : \"$cmd\"}"
+   exit 0
+fi

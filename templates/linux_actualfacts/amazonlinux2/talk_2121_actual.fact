@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo systemctl is-enabled ntalk 2> /dev/null | grep enabled | wc -) -ne 0 ]; then
+       echo "{ \"talk_2121_actual\" : \"\"}"
+    else
+      echo "{ \"talk_2121_actual\" : \"not enabled\"}"
+       
+    fi

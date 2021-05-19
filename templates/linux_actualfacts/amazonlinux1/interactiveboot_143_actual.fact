@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep "^PROMPT=no" /etc/sysconfig/init)
+if [ $(grep "^PROMPT=no" /etc/sysconfig/init | wc -l) -eq 0 ]; then
+   echo "{ \"interactiveboot_143_actual\" : \"\" }"
+else
+   echo "{ \"interactiveboot_143_actual\" : \"$cmd\" }"
+   exit 1
+fi

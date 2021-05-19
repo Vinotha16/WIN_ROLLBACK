@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(dpkg-query -s iptables-persistent | grep 'Status: install' | wc -l) -ne 0 ] ; then
+   echo "{ \"iptablespersist_3512_actual\" : \"\" }"
+else
+   echo "{ \"iptablespersist_3512_actual\" : \"iptables-persistent is not installed\" }"
+
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.1 - Ensure message of the day is configured properly (Scored)
+
+if [ $(cat /etc/motd | grep "Welcome.*to.*amazonlinux.*1" | wc -l) -eq 0 ] || [ $(sudo egrep '(\\v|\\r|\\m|\\s)' /etc/motd | wc -l) -ne 0 ]; then
+   echo "{ \"msgday_1711_audit\" : \"FAILED\" }"
+else
+   echo "{ \"msgday_1711_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/modprobe.d/CIS.conf | grep "install cramfs /bin/true")
+if [ "$(sudo modprobe -n -v cramfs 2> /dev/null | grep "install /bin/true" | wc -l)" -eq 0 ] || [ "$(lsmod | grep cramfs | wc -l)" -ne 0 ]; then
+  echo "{ \"cramfs_1111_actual\" : \"\" }"
+else
+  echo "{ \"cramfs_1111_actual\" : \"${cmd}\" }"
+fi
+

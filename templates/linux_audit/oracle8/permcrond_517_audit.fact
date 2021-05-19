@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.1.7 - Ensure permissions on /etc/cron.d are configured (Scored)
+
+if [ $( sudo stat /etc/cron.d | grep 0700 |  grep ".*Uid:.*0/.*root" | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"5.1.7 - Permission on /etc/cron.d are not configured\" : \"FAILED\" }"
+else
+   echo "{ \"permcrond_517_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

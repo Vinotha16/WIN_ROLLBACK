@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo rpm -qa ypserv | wc -l) -ne 0 ]; then
+   echo "{ \"nis_2218_actual\" : \"\" }"
+else
+   echo "{ \"nis_2218_actual\" : \"not installed\" }"
+fi

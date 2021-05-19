@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.14 - Ensure HTTP Proxy Server is not installed (Scored)
+
+if [ $(sudo rpm -qa squid | wc -l) -ne 0 ]; then
+   echo "{ \"proxy_2214_audit\" : \"FAILED\" }"
+else
+   echo "{ \"proxy_2214_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.17 - Ensure SSH access is limited (Scored)
+
+if [ $(sudo sshd -T | grep -E '^\s*(allow|deny)(users|groups)\s+\S+' | wc -l) -eq 0 ]; then
+   echo "{ \"sshaccess_5217_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshaccess_5217_audit\" : \"PASSED\" }"
+   
+fi

@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.1.2-Fetch the rsyslogenb  value from ansible facts
+
+if [ $(systemctl is-enabled rsyslog 2> /dev/null | grep enabled | wc -l) -eq 0 ]; then
+   echo "{\"rsyslogenb_4212_audit\":\"FAILED\"}"
+else
+   echo "{\"rsyslogenb_4212_audit\":\"PASSED\"}"
+   exit 1
+fi
+
+

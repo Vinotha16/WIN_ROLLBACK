@@ -1,0 +1,8 @@
+#!/bin/bash
+failed=$(grep "^shadow:x:" /etc/group | cut -d:   -f4)
+if [ $(sudo grep "^shadow:x:" /etc/group | awk -F: {'print $4'} | grep -v '^\s*$' | wc -l) -ne 0 ]; then
+   echo "{ \"shadowgroup_6220_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"shadowgroup_6220_actual\" : \"shadow group is empty\" }"
+   exit 0
+fi

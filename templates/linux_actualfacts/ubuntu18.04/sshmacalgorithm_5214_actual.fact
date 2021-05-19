@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/ssh/sshd_config | egrep "hmac-sha2|umac")
+if [ $(sudo egrep "^\s\s\sMACs|^MACs" /etc/ssh/sshd_config | egrep "hmac-sha2|umac" | wc -l) -eq 0 ]; then
+   echo "{ \"sshmacalgorithm_5214_actual\" : \"\" }"
+else
+   echo "{ \"sshmacalgorithm_5214_actual\" : \"$cmd\" }"
+   
+fi

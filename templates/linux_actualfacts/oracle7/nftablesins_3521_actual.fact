@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(rpm -qa nftables | grep "nftables-[0-9]")
+
+if [ $(rpm -qa nftables | grep "nftables-[0-9]" | wc -l) -eq 0 ]; then
+      echo "{ \"nftablesins_3521_actual\" : \"\"}"
+else
+      echo "{ \"nftablesins_3521_actual\" : \"$cmd\"}"
+fi

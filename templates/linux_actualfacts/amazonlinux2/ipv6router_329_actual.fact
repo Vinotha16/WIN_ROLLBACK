@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 -o "^net.ipv6.conf.all.accept_ra.*0")
+b=$(cat /etc/sysctl.conf /etc/sysctl.d/* | grep -m1 -o "^net.ipv6.conf.default.accept_ra.*0")
+cmd="${a}","${b}"
+if [ $(sudo sysctl net.ipv6.conf.all.accept_ra | grep "net.ipv6.conf.all.accept_ra = 0" | wc -l) -eq 0 ] || [ $(sudo sysctl net.ipv6.conf.default.accept_ra | grep "net.ipv6.conf.default.accept_ra = 0" | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv6.conf.all.accept_ra.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ] || [ $(sudo grep "^net.ipv6.conf.default.accept_ra.*0" /etc/sysctl.conf /etc/sysctl.d/* | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6router_329_actual\" : \"\" }"
+else
+   echo "{ \"ipv6router_329_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+

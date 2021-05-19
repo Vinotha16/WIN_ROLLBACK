@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1.2 - Ensure the SELinux state is enforcing (Scored)
+
+if [ "$(sudo grep SELINUX=enforcing /etc/selinux/config 2> /dev/null | wc -l)" -eq 0 ] && [ "$(sudo sestatus 2> /dev/null | grep "Current mode.*enforcing" | wc -l)" -eq 0 ]; then
+   echo "{\"1.6.1.2 - SELinux state is not enforcing\"  :   \"FAILED\"}"
+else
+   echo "{\"selstate_1612_audit\"  :   \"PASSED\"}"
+   
+fi

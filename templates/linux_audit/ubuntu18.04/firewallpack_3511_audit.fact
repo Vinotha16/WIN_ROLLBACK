@@ -1,0 +1,19 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1.1 -  Ensure a Firewall package is installed (Scored)
+
+if [ $(dpkg -s ufw | grep -i status | grep "ok installed" | wc -l) -eq 0 ]; then
+   if [ $(dpkg -s nftables | grep -i status | grep "ok installed" | wc -l) -eq 0 ]; then
+        if [ $(dpkg -s iptables | grep -i status | grep "ok installed" | wc -l) -eq 0 ]; then
+             echo "{ \"firewallpack_3511_audit\" : \"FAILED\" }"
+         else
+             echo "{ \"firewallpack_3511_audit\" : \"PASSED\" }"
+         fi
+   else
+       echo "{ \"firewallpack_3511_audit\" : \"PASSED\" }"
+   fi
+else
+    echo "{ \"firewallpack_3511_audit\" : \"PASSED\" }"
+fi
+

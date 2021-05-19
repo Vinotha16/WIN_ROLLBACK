@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.4.2.4 - Ensure IPv6 firewall rules exist for all open ports (Not Scored)
+
+if [ $(ss -6tuln | grep '.*0.*128.*22' | wc -l) -eq 0 ] || [ $(ip6tables -L INPUT -v -n | grep ".*ACCEPT.*tcp.**.**.*/0.*/0.*tcp dpt.*state NEW" | wc -l) -eq 0 ]; then
+   echo "{ \"ipv6firewallrulesip_35424_audit\" : \"FAILED\" }"
+else
+   echo "{ \"ipv6firewallrulesip_35424_audit\" : \"PASSED\" }"
+fi
+
+

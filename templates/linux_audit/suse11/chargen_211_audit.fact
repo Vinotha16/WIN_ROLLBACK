@@ -1,0 +1,10 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 2.1.1 - Ensure chargen services are not enabled (Scored)
+
+if [ $(chkconfig --list 2>/dev/null | egrep "chargen.*off|chargen-udp.*off" | wc -l) -eq 0 ]; then
+    echo "{ \"chargen_211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"chargen_211_audit\" : \"PASSED\" }"
+fi

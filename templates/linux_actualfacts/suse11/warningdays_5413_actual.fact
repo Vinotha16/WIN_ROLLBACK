@@ -1,0 +1,17 @@
+#!/bin/bash
+failfact=$(grep ':$2' /etc/shadow | awk 'NR != 1' | awk -F: '$6<7 {print $6 ,$1}' | paste -sd ",")
+failfact1=$(cat /etc/login.defs | grep "^PASS_WARN_AGE.*" | expand -t 1)
+count=0
+if [ $(grep "^PASS_WARN_AGE" /etc/login.defs | awk '{print $2}') -lt 7 ]; then
+    for i in $(egrep ^[^:]+:[^\!*] /etc/shadow | cut -d: -f1); do
+          if [ $(chage --list $i | grep "Warning.*" | awk -F ':' '{print $2}') -lt 7 ]; then
+             count=$((count+1))
+        fi
+    done
+fi
+if [ "$count" -ne "0" ]; then
+       echo "{ \"warningdays_5413_actual\" : \"failed $failfact1,$failfact\" }"
+else
+       echo "{ \"warningdays_5413_actual\" : \"password expiration warning days is 7 or more\" }"
+        exit 1
+fi

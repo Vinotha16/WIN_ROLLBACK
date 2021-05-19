@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.6.2.1 - Ensure IPv4 default deny firewall policy (Scored)
+
+if [ $(sudo iptables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | wc -l) -eq 0 ] ||[ $(sudo iptables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | wc -l) -eq 0 ] || [ $(sudo iptables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | wc -l) -eq 0 ]; then
+   echo "{ \"firewallpolicy_3621_audit\" : \"FAILED\"}"
+else
+   echo "{ \"firewallpolicy_3621_audit\" : \"PASSED\"}"
+   
+fi
+
+

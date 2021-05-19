@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.2.2 Ensure Uncomplicated Firewall is not installed or disabled 
+
+if [ $(sudo dpkg-query -s ufw | grep 'Status: install ok installed' | wc -l) -ne 0 ]; then
+   echo "{ \"firewalldisable_3522_audit\" : \"FAILED\" }"
+else
+   echo "{ \"firewalldisable_3522_audit\" : \"PASSED\" }"
+
+fi

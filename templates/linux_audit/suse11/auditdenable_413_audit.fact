@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.3 - Ensure auditing for processes that start prior to auditd is enabled (Scored)
+
+if [ $(grep "^\s*kernel" /boot/grub/menu.lst | grep "audit=1" | wc -l) -eq 0 ]; then
+   echo "{ \"auditdenable_413_audit\" : \"FAILED\" }"
+else
+   echo "{ \"auditdenable_413_audit\" : \"PASSED\" }"
+fi

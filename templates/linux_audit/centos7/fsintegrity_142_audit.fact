@@ -1,0 +1,17 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.4.2 - Ensure filesystem integrity is regularly checked (Scored)
+
+if [ $(sudo crontab -u root -l | grep aide | wc -l) -eq 0 ]; then
+	if [ $(sudo systemctl is-enabled aidecheck.service 2>/dev/null | grep 'enabled' | wc -l) -eq 0 ] || [ $(sudo systemctl is-enabled aidecheck.timer 2>/dev/null | | grep 'enabled' | wc -l) -eq 0 ]; then
+		echo "{ \"fsintegrity_142_audit\" : \"FAILED\" }"
+	else
+		echo "{ \"fsintegrity_142_audit\" : \"PASSED\" }"
+	fi
+
+else
+   echo "{ \"fsintegrity_142_audit\" : \"PASSED\" }"
+
+fi
+

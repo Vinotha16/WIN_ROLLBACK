@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo grep system-locale /etc/audit/rules.d/*.rules | paste -sd "," -) 
+if [ $(sudo grep system-locale /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep system-locale | wc -l) -eq 0 ]; then
+        echo "{ \"modsysnet_415_actual\" : \"\" }"
+     else
+        echo "{ \"modsysnet_415_actual\" : \"${cmd}\" }"
+exit 1
+fi

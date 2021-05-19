@@ -1,0 +1,9 @@
+#!/bin/bash
+a=$(netstat -ln | grep "tcp.*0:22")
+b=$(ip6tables -L INPUT -v -n | grep "ACCEPT.*tcp.*::/0.*tcp.*dpt:22 state NEW")
+c="${a}","${b}"
+if [ $(sudo netstat -ln | grep 0.*:22 | wc -l) -eq 0 ] || [ $(sudo ip6tables -L INPUT -v -n | grep ".*ACCEPT.*tcp.*::/0.*::/0.*tcp dpt:22 state NEW" | wc -l) -eq 0 ]; then
+    echo "{ \"ipv6firewallrules_3524_actual\" : \"\"}"
+else
+    echo "{ \"ipv6firewallrules_3524_actual\" : \"${cmd}\"}"
+fi

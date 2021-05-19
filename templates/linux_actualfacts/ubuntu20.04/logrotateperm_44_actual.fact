@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo grep "^create 0640 root utmp" /etc/logrotate.conf)
+if [ $(sudo grep "^create 0640 root utmp" /etc/logrotate.conf | wc -l) -eq 0 ]; then
+echo "{ \"logrotateperm_44_actual\" : \"\" }"
+    else
+echo "{ \"logrotateperm_44_actual\" : \"${cmd}\" }"
+fi

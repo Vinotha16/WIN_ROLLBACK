@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat /etc/default/grub | grep -m1 -o "audit=1" | sed "1q")
+if [ $(grep "audit=1" /etc/default/grub 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"auditdenable_4113_actual\" : \"\" }"
+else
+   echo "{ \"auditdenable_4113_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

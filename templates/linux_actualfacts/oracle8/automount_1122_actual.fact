@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$(systemctl is-enabled autofs  2> /dev/null 2> /dev/null | grep "enabled")" == "" ]; then
+   echo "{ \"automount_1122_actual\" : \"automountfs is not enabled\" }"
+else
+   echo "{ \"automount_1122_actual\" : \"\" }"
+   exit 1
+fi

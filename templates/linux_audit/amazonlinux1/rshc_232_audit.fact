@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.3.2 - Ensure rsh Client is not installed (Scored)
+
+if [ $(sudo rpm -qa rsh | wc -l) -ne 0 ]; then
+    echo "{ \"rshc_232_audit\" : \"FAILED\" }"
+else
+    echo "{ \"rshc_232_audit\" : \"PASSED\" }"
+fi

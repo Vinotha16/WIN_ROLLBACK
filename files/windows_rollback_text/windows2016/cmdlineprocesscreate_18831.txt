@@ -1,0 +1,10 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit
+ProcessCreationIncludeCmdLine_Enabled
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

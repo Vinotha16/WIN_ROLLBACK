@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $(chkconfig --list 2>/dev/null | egrep "chargen|grep chargen-udp" | grep off | wc -l) -eq 0 ]; then
+
+    echo "{ \"chargen_211_actual\" : \"\" }"
+
+else
+   echo "{ \"chargen_211_actual\" : \"not enabled\" }"
+
+fi

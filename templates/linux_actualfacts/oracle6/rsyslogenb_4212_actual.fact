@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list rsyslog | grep "0:off.*1:off.*2:on.*3:on.*4:on.*5:on.*6:off" | wc -l) -eq 0 ]; then
+   echo "{ \"rsyslogenb_4212_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogenb_4212_actual\" : \"enabled\" }"
+   exit 1
+fi
+

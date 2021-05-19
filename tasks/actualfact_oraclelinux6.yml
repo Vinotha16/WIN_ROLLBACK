@@ -1,0 +1,3139 @@
+---
+####ACTUALFACT####
+  - name: Removing the existing actual directory
+    file:
+      path: /etc/ansible/actual.d
+      state: absent
+    become: yes
+    tags:
+      - always
+
+  - name: Creating the actual directory
+    file:
+      path: /etc/ansible/actual.d
+      state: directory
+      recurse: yes
+    become: yes
+    tags:
+      - always
+      
+  - name: Transfering cramfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/cramfs_1111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cramfs
+      - 1.1.1.1
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering freevxfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/freevxfs_1112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - freevxfs
+      - 1.1.1.2
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering jffs2 actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/jffs2_1113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - jffs2
+      - 1.1.1.3
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering hfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/hfs_1114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfs
+      - 1.1.1.4
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering hfsplus actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/hfsplus_1115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfsplus
+      - 1.1.1.5
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering squashfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/squashfs_1116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - squashfs 
+      - 1.1.1.6
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering udf actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/udf_1117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - udf
+      - 1.1.1.7
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering tmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tmp_112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmp
+      - 1.1.2
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering tmpnodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tmpnodev_113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnodev
+      - 1.1.3
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering tmpnosuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tmpnosuid_114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnosuid
+      - 1.1.4
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering tmpnoexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tmpnoexec_115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnoexec
+      - 1.1.5
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering var actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/var_116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - var
+      - 1.1.6
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering vartmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/vartmp_117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vartmp
+      - 1.1.7
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering vtnodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/vtnodev_118_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnodev
+      - 1.1.8
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering vtnosuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/vtnosuid_119_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnosuid
+      - 1.1.9
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering vtnoexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/vtnoexec_1110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnoexec
+      - 1.1.10
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering varlog actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/varlog_1111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlog
+      - 1.1.11
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering varlogaudit actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/varlogaudit_1112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlogaudit
+      - 1.1.12
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering home actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/home_1113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - home
+      - 1.1.13
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering homenodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/homenodev_1114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - homenodev
+      - 1.1.14
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering shmnodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/shmnodev_1115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnodev
+      - 1.1.15
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering shmnosuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/shmnosuid_1116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnosuid
+      - 1.1.16
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering shmnoexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/shmnoexec_1117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnoexec
+      - 1.1.17
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering medianodev actualfact file
+    template:
+      src: ../templates/linux_actualfacts/centos6/medianodev_1118_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianodev
+      - 1.1.18
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering medianosuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/centos6/medianosuid_1119_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianosuid
+      - 1.1.19
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering medianoexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/centos6/medianoexec_1120_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianoexec
+      - 1.1.20
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering stickybit actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/stickybit_1121_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - stickybit
+      - 1.1.21
+      - one
+      - actualfact
+      - all 
+      
+  - name: Transfering automount actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/automount_1122_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - automount
+      - 1.1.22
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering usbstorage actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/usbstorage_1123_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - usbstorage
+      - 1.1.23
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering repoconfig actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/repoconfig_121_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+     - 1.2.1
+     - repoconfig
+     - one
+     - actualfact
+     - all
+
+  - name: Transfering gpgcheck actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/gpgcheck_122_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.2
+      - gpgcheck
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering gpgkey actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/gpgkey_123_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.2.3
+      - gpgkey
+      - one
+      - actualfact
+      - all
+  
+  - name: Transfering aide actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/aide_131_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.1
+      - aide
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering fsintegrity actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/fsintegrity_132_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.3.2
+      - fsintegrity
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering bootloadperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/bootloadperm_141_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.4.1
+      - bootloadperm
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering bootloadpass actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/bootloadpass_142_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.4.2
+      - bootloadpass
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering singleusermode actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/singleusermode_143_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+     - singleusermode
+     - 1.4.3
+     - one
+     - actualfact
+     - all
+     
+  - name: Transfering interactiveboot actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/interactiveboot_144_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+     - interactiveboot
+     - 1.4.4
+     - one
+     - actualfact
+     - all
+     
+  - name: Transfering coredumps actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/coredumps_151_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.1
+      - coredumps
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering xdnx actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/xdnx_152_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.2
+      - xdnx
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering aslr actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/aslr_153_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.3
+      - aslr
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering prelink actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/prelink_154_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.5.4
+      - prelink
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering selinux actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/selinux_1611_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.1
+      - selinux
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering seldisable actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/seldisable_1612_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.2
+      - seldisable
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering selpolicy actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/selpolicy_1613_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.3
+      - selpolicy
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering selenfperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/selenfperm_1614_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.4
+      - selenfperm
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering selstate actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/selstate_1615_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.5
+      - selstate
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering setroubleshoot actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/setroubleshoot_1617_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.7
+      - setroubleshoot
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering mcs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/mcs_1618_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.6.1.8
+      - mcs
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering msgday actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/msgday_171_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.1
+      - msgday
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering locallogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/locallogin_172_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.2
+      - locallogin
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering remotelogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/remotelogin_173_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.3
+      - remotelogin
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering motdperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/motdperm_174_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.4
+      - motdperm
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering issueperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/issueperm_175_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.5
+      - issueperm
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering issuenetperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/issuenetperm_176_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.7.6
+      - issuenetperm
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering gdmpack actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/gdmpack_181_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.1
+      - gdmpack
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering gdmconfig actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/gdmconfig_182_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.2
+      - gdmconfig
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering gdmlastlogged actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/gdmlastlogged_183_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.3
+      - gdmlastlogged
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering xdcmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/xdcmp_184_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.8.4
+      - gdmlastlogged
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering updates actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/updates_19_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - '1.9'
+      - updates
+      - one
+      - actualfact
+      - all
+      
+  - name: Transfering chargen actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/chargen_211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - chargen
+      - 2.1.1
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering daytime actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/daytime_212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - daytime
+      - 2.1.2
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering discard actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/discard_213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - discard
+      - 2.1.3
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering echo actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/echo_214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - echo
+      - 2.1.4
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering time actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/time_215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - time
+      - 2.1.5
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering rsh actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rsh_216_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsh
+      - 2.1.6
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering talk actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/talk_217_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talk
+      - 2.1.7
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering tftp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tftp_218_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tftp
+      - 2.1.8
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering rsync actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rsync_219_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsync
+      - 2.1.9
+      - two
+      - actualfact
+      - all
+          
+  - name: Transfering xinetd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/xinetd_2110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - xinetd
+      - 2.1.10
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering timesync actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/timesync_2211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - timesync
+      - 2.2.1.1
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering chrony actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/chrony_2212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - chrony
+      - 2.2.1.2
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering ntp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ntp_2213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ntp
+      - 2.2.1.3
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering xorg actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/xorg_222_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - xorg
+      - 2.2.2
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering avahi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/avahi_223_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - avahi
+      - 2.2.3
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering cups actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/cups_224_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cups
+      - 2.2.4
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering dhcp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/dhcp_225_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dhcp
+      - 2.2.5
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering ldap actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ldap_226_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldap
+      - 2.2.6
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering dns actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/dns_227_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dns
+      - 2.2.7
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering ftp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ftp_228_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ftp
+      - 2.2.8
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering http actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/http_229_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - http
+      - 2.2.9
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering imap actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/imap_2210_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - imap
+      - 2.2.10
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering samba actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/samba_2211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - samba
+      - 2.2.11
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering proxy actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/proxy_2212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - proxy
+      - 2.2.12
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering snmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/snmp_2213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - snmp
+      - 2.2.13
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering nis actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/nis_2214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nis
+      - 2.2.14
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering telnet actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/telnet_2215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnet
+      - 2.2.15
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering nfs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/nfs_2216_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nfs
+      - 2.2.16
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering rpcbind actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rpcbind_2217_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rpcbind
+      - 2.2.17
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering mail actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/mail_2218_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - mail
+      - 2.2.18
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering nisc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/nisc_231_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nisc
+      - 2.3.1
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering rshc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rshc_232_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rshc
+      - 2.3.2
+      - two
+      - actualfact
+      - all
+      
+  - name: Transfering talkc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/talkc_233_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - talkc
+      - 2.3.3
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering telnetc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/telnetc_234_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - telnetc
+      - 2.3.4
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering ldapc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ldapc_235_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ldapc
+      - 2.3.5
+      - two
+      - actualfact
+      - all
+
+  - name: Transfering ipv6disable actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ipv6disable_311_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6disable
+      - 3.1.1
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering wireless actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/wireless_312_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wireless
+      - '3.1.2'
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering ipforward actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ipforward_321_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipforward
+      - 3.2.1
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering packetredirect actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/packetredirect_322_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - packetredirect
+      - 3.2.2
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering routedpacket actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/routedpacket_331_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - routedpacket
+      - 3.3.1
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering icmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/icmp_332_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - icmp
+      - 3.3.2
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering secureicmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/secureicmp_333_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - secureicmp
+      - 3.3.3
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering suspicious actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/suspicious_334_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suspicious
+      - 3.3.4
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering broadcasticmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/broadcasticmp_335_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - broadcasticmp
+      - 3.3.5
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering bogusicmp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/bogusicmp_336_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - bogusicmp
+      - 3.3.6
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering reversepathfilter actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/reversepathfilter_337_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - reversepathfilter
+      - 3.3.7
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering tcpsyncookies actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tcpsyncookies_338_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpsyncookies
+      - 3.3.8
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering ipv6router actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ipv6router_339_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6router
+      - 3.3.9
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering tcpwrappers actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tcpwrappers_341_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpwrappers
+      - 3.4.1
+      - three
+      - actualfact
+      - all
+   
+  - name: Transfering hostsallow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/hostsallow_342_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsallow
+      - 3.4.2
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering hostsdeny actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/hostsdeny_343_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsdeny
+      - 3.4.3
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering permhostsallow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permhostsallow_344_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsallow
+      - 3.4.4
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering permhostsdeny actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permhostsdeny_345_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsdeny
+      - 3.4.5
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering dccp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/dccp_351_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dccp
+      - 3.5.1
+      - three
+      - actualfact
+      - all  
+
+  - name: Transfering sctp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sctp_352_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sctp
+      - 3.5.2
+      - three
+      - actualfact
+      - all
+      
+  - name: Transfering rds actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rds_353_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rds
+      - 3.5.3
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering tipc actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/tipc_354_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tipc
+      - 3.5.4
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering iptables actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/iptables_3611_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - iptables
+      - 3.6.1.1
+      - three
+      - actualfact
+      - all
+ 
+  - name: Transfering firewallpolicy actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/firewallpolicy_3621_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallpolicy
+      - 3.6.2.1
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering loopbacktraffic actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/loopbacktraffic_3622_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loopbacktraffic
+      - 3.6.2.2
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering outbound actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/outbound_3623_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - outbound
+      - 3.6.2.3
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/firewallrules_3624_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallrules
+      - 3.6.2.4
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering ipv6firewallpolicy actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ipv6firewallpolicy_3631_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallpolicy 
+      - 3.6.3.1
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering ipv6loopbacktraffic actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ipv6loopbacktraffic_3632_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6loopbacktraffic
+      - 3.6.3.2
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering ipv6outbound  actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ipv6outbound_3633_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6outbound
+      - 3.6.3.3
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering ipv6firewallrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ipv6firewallrules_3634_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6firewallrules
+      - 3.6.3.4
+      - three
+      - actualfact
+      - all
+
+  - name: Transfering auditd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditd_4111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditd
+      - 4.1.1.1
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering augenrules actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/augenrules_4112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - augenrules 
+      - 4.1.1.2
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering auditdservice actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditdservice_4113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdservice
+      - 4.1.1.3
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering auditdenable actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditdenable_4114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdenable
+      - 4.1.1.4
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering auditlogsize actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditlogsize_4121_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogsize
+      - 4.1.2.1
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering auditlogdelete actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditlogdelete_4122_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogdelete
+      - 4.1.2.2
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering auditlogfull actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sysdisable_4123_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sysdisable
+      - 4.1.2.3
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering auditdbacklog actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditdbacklog_4124_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdbacklog
+      - 4.1.2.4
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering moddatetime actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/moddatetime_413_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - moddatetime
+      - 4.1.3
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering modusergrp actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/modusergrp_414_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modusergrp
+      - 4.1.4
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering modsysnet actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/modsysnet_415_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysnet
+      - 4.1.5
+      - four
+      - actualfact
+      - all 
+      
+  - name: Transfering modsysmac actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/modsysmac_416_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysmac
+      - 4.1.6
+      - four
+      - actualfact
+      - all
+      
+  - name: Transfering loginout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/loginout_417_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loginout
+      - 4.1.7
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering session actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/session_418_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - session
+      - 4.1.8
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering dacperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/dacperm_419_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dacperm
+      - 4.1.9
+      - four
+      - actualfact
+      - all
+      
+  - name: Transfering fileaccess actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/fileaccess_4110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fileaccess
+      - 4.1.10
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering privilegecmd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/privilegecmd_4111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - privilegecmd
+      - 4.1.11
+      - four
+      - actualfact
+      - all
+      
+  - name: Transfering fsmount actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/fsmount_4112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fsmount
+      - 4.1.12
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering filedeletion actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/filedeletion_4113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - filedeletion
+      - 4.1.13
+      - four
+      - actualfact
+      - all
+      
+  - name: Transfering sudoers actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sudoers_4114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudoers
+      - 4.1.14
+      - four
+      - actualfact
+      - all
+ 
+  - name: Transfering sudolog actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sudolog_4115_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudolog
+      - 4.1.15
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering kernelmodule actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/kernelmodule_4116_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - kernelmodule
+      - 4.1.16
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering auditconfig actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditconfig_4117_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditconfig
+      - 4.1.17
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering rsyslog actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rsyslog_4211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslog
+      - 4.2.1.1
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering rsyslogenb actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rsyslogenb_4212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogenb
+      - 4.2.1.2
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering rloggingconf actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rloggingconf_4213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering rsyslogperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rsyslogperm_4214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogperm
+      - 4.2.1.4
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering rsyslogsendlogs actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rsyslogsendlogs_4215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.5
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering remotesyslogmsg actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/remotesyslogmsg_4216_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.6
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering permlogfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permlogfiles_422_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permlogfiles
+      - 4.2.2
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering logrotate actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/logrotate_423_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - logrotate
+      - '4.2.3'
+      - four
+      - actualfact
+      - all
+
+  - name: Transfering cron actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/cron_511_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cron
+      - 5.1.1
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering permcrontab actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permcrontab_512_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrontab
+      - 5.1.2
+      - five
+      - actualfact
+      - all
+   
+  - name: Transfering permcronhourly actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permcronhourly_513_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronhourly
+      - 5.1.3
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering permcrondaily actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permcrondaily_514_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrondaily
+      - 5.1.4
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering permcronweekly actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permcronweekly_515_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronweekly
+      - 5.1.5
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering permcronmonthly actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permcronmonthly_516_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronmonthly
+      - 5.1.6
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering permcrond actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permcrond_517_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrond
+      - 5.1.7
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering cronuser actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/cronuser_518_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cronuser
+      - 5.1.8
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering atcron actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/atcron_519_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - atcron
+      - 5.1.9
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sudo actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sudo_521_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudo
+      - 5.2.1
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sudopty actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sudopty_522_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudopty
+      - 5.2.2
+      - one
+      - actualfact
+      - all
+
+  - name: Transfering sudologfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sudologfiles_523_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudopty
+      - 5.2.3
+      - one
+      - actualfact
+      - all
+   
+  - name: Transfering sshdperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshdperm_531_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshdperm
+      - 5.3.1
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshpermpvtkey actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshpermpvtkey_532_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpvtkey
+      - 5.3.2
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshpermpubkey actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshpermpubkey_533_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpermpubkey
+      - 5.3.3
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshprotocol actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshprotocol_534_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshprotocol
+      - 5.3.4
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshaccess actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshaccess_535_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshaccess
+      - 5.3.5
+      - five
+      - actualfact
+      - all
+  
+  - name: Transfering sshloglevel actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshloglevel_536_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshloglevel
+      - 5.3.6
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshx11forward actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshx11forward_537_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshx11forward
+      - 5.3.7
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshmaxauthtries actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshmaxauthtries_538_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmaxauthtries
+      - 5.3.8
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshignorerhosts actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshignorerhosts_539_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshignorerhosts
+      - 5.3.9
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering sshauthentication actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshauthentication_5310_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshauthentication
+      - 5.3.10
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshrootlogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshrootlogin_5311_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshrootlogin
+      - 5.3.11
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshpep actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshpep_5312_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpep
+      - 5.3.12
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshpue actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshpue_5313_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpue
+      - 5.3.13
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshchipers actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshchipers_5314_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshchipers
+      - 5.3.14
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshmacalgorithm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshmacalgorithm_5315_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.3.15
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshkeyexalgorithm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshkeyexalgorithm_5316_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshkeyexalgorithm
+      - 5.3.16
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering sshidletimeout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshidletimeout_5317_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshidletimeout
+      - 5.3.17
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshlogingracetime actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshlogingracetime_5318_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshlogingracetime
+      - 5.3.18
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshwarningbanner actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshwarningbanner_5319_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshwarningbanner
+      - 5.3.19
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshpam actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshpam_5320_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpam
+      - 5.3.20
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshtcpforward actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshtcpforward_5321_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshtcpforward
+      - 5.3.21
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshmaxstartups actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshmaxstartups_5322_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshtcpforward
+      - 5.3.22
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sshmaxsessions actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sshmaxsessions_5323_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmaxsessions
+      - 5.3.23
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering passwdcreation actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/passwdcreation_541_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdcreation
+      - 5.4.1
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering lockout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/lockout_542_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lockout
+      - 5.4.2
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering passwdreuse actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/passwdreuse_543_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdreuse
+      - 5.4.3
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering passwdhashing actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/passwdhashing_544_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdhashing
+      - 5.4.4
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering passwdexpiration actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/passwdexpiration_5511_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.5.1.1
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering minidays actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/minidays_5512_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - minidays
+      - 5.5.1.2
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering warningdays actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/warningdays_5513_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - warningdays
+      - 5.5.1.3
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering inactivepasswdlock actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/inactivepasswdlock_5514_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.5.1.4
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering lastpasswdchange actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/lastpasswdchange_5515_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lastpasswdchange
+      - 5.5.1.5
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering sysaccnonlogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sysaccnonlogin_552_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sysaccnonlogin
+      - 5.5.2
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering defaultgroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/defaultgroup_553_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultgroup
+      - 5.5.3
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering usershelltimeout actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/usershelltimeout_554_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - usershelltimeout
+      - 5.5.4
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering defaultuser actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/defaultuser_555_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultuser
+      - 5.5.5
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering rootlogin actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rootlogin_56_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootlogin
+      - '5.6'
+      - five
+      - actualfact
+      - all
+
+  - name: Transfering suaccess actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/suaccess_57_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suaccess
+      - '5.7'
+      - five
+      - actualfact
+      - all
+      
+  - name: Transfering auditsysperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/auditsysperm_611_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditsysperm
+      - 6.1.1
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering permpasswd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permpasswd_612_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswd
+      - 6.1.2
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering permpasswdi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permpasswdi_613_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswdi
+      - 6.1.3
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering permgroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permgroup_614_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroup
+      - 6.1.4
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering permgroupi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permgroupi_615_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroupi
+      - 6.1.5
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering permshadow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permshadow_616_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadow
+      - 6.1.6
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering permshadowi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permshadowi_617_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadowi
+      - 6.1.7
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering permgshadow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permgshadow_618_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadow
+      - 6.1.8
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering permgshadowi actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/permgshadowi_619_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadowi
+      - 6.1.9
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering wwfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/wwfiles_6110_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wwfiles
+      - 6.1.10
+      - six
+      - actualfact
+      - all     
+
+  - name: Transfering unownedfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/unownedfiles_6111_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering ungroupedfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/ungroupedfiles_6112_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering suidexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/suidexec_6113_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suidexec
+      - 6.1.13
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering sgidexec actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/sgidexec_6114_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sgidexec
+      - 6.1.14
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering useshadowed actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/useshadowed_621_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - useshadowed
+      - 6.2.1
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering emptypasswd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/emptypasswd_622_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - emptypasswd
+      - 6.2.2
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering nolegacypasswd actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/nolegacypasswd_623_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacypasswd
+      - 6.2.3
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering nolegacyshadow actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/nolegacyshadow_624_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacyshadow
+      - 6.2.4
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering nolegacygroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/nolegacygroup_625_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacygroup
+      - 6.2.5
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering rootuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rootuid_626_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootuid
+      - 6.2.6
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering userhdir actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/userhdir_628_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdir
+      - 6.2.8
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering userownhdir actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/userownhdir_629_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userownhdir
+      - 6.2.9
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering userhdirperm actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/userhdirperm_6210_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdirperm
+      - 6.2.10
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering dotfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/dotfiles_6211_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dotfiles
+      - 6.2.11
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering forwardfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/forwardfiles_6212_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - forwardfiles
+      - 6.2.12
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering netrcfiles actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/netrcfiles_6213_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - netrcfiles
+      - 6.2.13
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering rhosts actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/rhosts_6214_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rhosts
+      - 6.2.14
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering groups actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/groups_6215_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - groups
+      - 6.2.15
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering duplicateuid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/duplicateuid_6216_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuid
+      - 6.2.16
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering duplicategid actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/duplicategid_6217_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicategid
+      - 6.2.17
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering duplicateuser actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/duplicateuser_6218_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuser
+      - 6.2.18
+      - six
+      - actualfact
+      - all
+      
+  - name: Transfering duplicategroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/duplicategroup_6219_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags: 
+      - duplicategroup
+      - 6.2.19
+      - six
+      - actualfact
+      - all
+
+  - name: Transfering shadowgroup actualfact file
+    template:
+      src: ../templates/linux_actualfacts/oracle6/shadowgroup_6220_actual.fact
+      dest: /etc/ansible/actual.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shadowgroup
+      - 6.2.20
+      - six
+      - actualfact
+      - all
+      

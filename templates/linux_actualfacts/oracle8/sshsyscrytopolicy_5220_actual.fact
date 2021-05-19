@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(grep '^/s*CRYPTO_POLICY=' /etc/sysconfig/sshd | wc -l) -eq 1 ]; then
+	echo "{ \"sshsyscrytopolicy_5220_actual\" : \"\" }"
+else
+	echo "{ \"sshsyscrytopolicy_5220_actual\" : \"system-wide crypto policy is not over-ridden\" }"
+fi
+

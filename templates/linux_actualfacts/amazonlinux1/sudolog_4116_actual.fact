@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/audit/audit.rules | grep "/var/log/sudo.log -p wa -k actions")
+if [ $(sudo grep actions /etc/audit/audit.rules | wc -l) -eq 0 ]; then
+   echo "{ \"sudolog_4116_actual\" : \"\" }"
+else
+   echo "{ \"sudolog_4116_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

@@ -1,0 +1,4182 @@
+---
+  - name: Include Database
+    include: tasks/audit_ubuntu20.yml
+    become: yes
+
+  - name: Include Database
+    include: tasks/actualfact_ubuntu20.yml
+    become: yes
+
+  - name: Include Database
+    include: tasks/before_linux.yml
+    become: yes
+
+  - name: registering the values column from db
+    shell: "{{ db_type }} -u {{ db_user }} -p{{ db_passwd }} -h {{ db_host }} {{ db }} -e \"select before_actual from cis_remedy where id = {{ remedy_id }}\""
+    register: database
+    delegate_to: localhost
+    become: yes
+    tags:
+      - always
+
+  - name: Rollback cramfs
+    lineinfile:
+      path: /etc/modprobe.d/cramfs.conf
+      line: "install cramfs /bin/true # Disable cramfs Filesystems"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).cramfs_1111_actual.cramfs_1111_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - cramfs
+      - 1.1.1.1
+      - one
+      - rollback
+      - all
+     
+  - name: Rollback freevxfs
+    lineinfile:
+      path: /etc/modprobe.d/freevxfs.conf
+      line: "install freevxfs /bin/true # Disable freevxfs Filesystems"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).freevxfs_1112_actual.freevxfs_1112_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - freevxfs
+      - 1.1.1.2
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback jffs2
+    lineinfile:
+      path: /etc/modprobe.d/jffs2.conf
+      line: "install jffs2 /bin/true # Disable jffs2 Filesystems"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).jffs2_1113_actual.jffs2_1113_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - jffs2
+      - 1.1.1.3
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback hfs
+    lineinfile:
+      path: /etc/modprobe.d/hfs.conf
+      line: "install hfs /bin/true # Disable hfs Filesystems"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).hfs_1114_actual.hfs_1114_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - hfs
+      - 1.1.1.4
+      - one
+      - rollback
+      - all      
+      
+  - name: Rollback hfsplus
+    lineinfile:
+      path: /etc/modprobe.d/hfsplus.conf
+      line: "install hfsplus /bin/true # Disable hfsplus Filesystems"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).hfsplus_1115_actual.hfsplus_1115_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - hfsplus
+      - 1.1.1.5
+      - one
+      - rollback
+      - all  
+
+  - name: Rollback udf
+    lineinfile:
+      path: /etc/modprobe.d/udf.conf
+      line: "install udf /bin/true # Disable udf Filesystems"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).udf_1116_actual.udf_1116_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - udf
+      - 1.1.1.6
+      - one
+      - rollback
+      - all      
+  
+  - name: Rollback fat
+    lineinfile:
+      path: /etc/modprobe.d/vfat.conf
+      line: "install vfat /bin/true # Disable vfat filesystems"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).fat_1117_actual.fat_1117_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - fat
+      - 1.1.1.7
+      - one
+      - rollback
+      - all   
+        
+  - name: Rollback tmp
+    lineinfile:
+      path: /etc/fstab
+      line: tmpfs  /tmp  tmpfs   defaults,rw,nosuid,nodev,noexec,relatime 0 0
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).tmp_112_actual.tmp_112_actual | regex_search('(/tmp)')) != "/tmp"
+    become: yes
+    tags:
+      - tmp
+      - 1.1.2
+      - one
+      - rollback
+      - all
+
+  - name: Rollback tmpnodev
+    mount:
+      path: /tmp
+      src: /etc
+      opts: nodev
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).tmpnodev_113_actual.tmpnodev_113_actual | regex_search('(nodev)')) != "nodev"
+    become: yes
+    tags:
+      - tmpnodev
+      - 1.1.3
+      - one
+      - rollback
+      - all
+
+  - name: Rollback tmpnosuid
+    mount:
+      path: /tmp
+      src: /etc
+      opts: nosuid
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).tmpnosuid_114_actual.tmpnosuid_114_actual | regex_search('(nosuid)')) != "nosuid"
+    become: yes
+    tags:
+      - tmpnosuid
+      - 1.1.4
+      - one
+      - rollback
+      - all
+      
+  - name: Rollback tmpnoexec
+    mount:
+      path: /tmp
+      src: /etc
+      opts: noexec
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).tmpnoexec_115_actual.tmpnoexec_115_actual | regex_search('(noexec)')) != "noexec"
+    become: yes
+    tags:
+      - tmpnoexec
+      - 1.1.5
+      - one
+      - rollback
+      - all
+
+  - name: Rollback shmconf
+    lineinfile:
+      path: /etc/fstab
+      line: tmpfs  /dev/shm  tmpfs   defaults,noexec,nodev,nosuid,seclabel  0 0
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).shmconf_116_actual.shmconf_116_actual | regex_search('(/dev/shm)')) != "/dev/shm"
+    become: yes
+    tags:
+      - shmconf
+      - 1.1.6
+      - one
+      - rollback
+      - all
+
+  - name: Rollback shmconf
+    mount:
+      path: /dev/shm
+      src: /etc
+      opts: noexec,nodev,nosuid
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).shmconf_116_actual.shmconf_116_actual | regex_search('(/dev/shm)')) != "/dev/shm"
+    become: yes
+    tags:
+      - shmconf
+      - 1.1.6
+      - one
+      - rollback
+      - all    
+
+  - name: Rollback shmnodev
+    mount:
+      path: /dev/shm
+      src: /etc
+      opts: nodev
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).shmnodev_117_actual.shmnodev_117_actual | regex_search('(nodev)')) != "nodev"
+    become: yes
+    tags:
+      - shmnodev
+      - 1.1.7
+      - one
+      - rollback
+      - all
+
+  - name: Rollback shmnosuid
+    mount:
+      path: /dev/shm
+      src: /etc
+      opts: nosuid
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).shmnosuid_118_actual.shmnosuid_118_actual | regex_search('(nosuid)')) != "nosuid"
+    become: yes
+    tags:
+      - shmnosuid
+      - 1.1.8
+      - one
+      - rollback
+      - all        
+      
+  - name: Rollback shmnoexec
+    mount:
+      path: /dev/shm
+      src: /etc
+      opts: noexec
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).shmnoexec_119_actual.shmnoexec_119_actual | regex_search('(noexec)')) != "noexec"
+    become: yes
+    tags:
+      - shmnoexec
+      - 1.1.9
+      - one
+      - rollback
+      - all
+
+  - name: Rollback vtnodev
+    mount:
+      path: /var/tmp
+      src: /etc
+      opts: nodev
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).vtnodev_1112_actual.vtnodev_1112_actual | regex_search('(nodev)')) != "nodev"
+    become: yes
+    tags:
+      - vtnodev
+      - 1.1.12
+      - one
+      - rollback
+      - all
+
+  - name: Rollback vtnosuid
+    mount:
+      path: /var/tmp
+      src: /etc
+      opts: nosuid
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).vtnosuid_1113_actual.vtnosuid_1113_actual | regex_search('(nosuid)')) != "nosuid"
+    become: yes
+    tags:
+      - vtnosuid
+      - 1.1.13
+      - one
+      - rollback
+      - all      
+      
+  - name: Rollback vtnoexec
+    mount:
+      path: /var/tmp
+      src: /etc
+      opts: noexec
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).vtnoexec_1114_actual.vtnoexec_1114_actual | regex_search('(noexec)')) != "noexec"
+    become: yes
+    tags:
+      - vtnoexec
+      - 1.1.14
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback homenodev
+    mount:
+      path: /home
+      opts: nodev
+      fstype: none
+      state: unmounted
+    when: ((database.stdout_lines[1]|from_json).homenodev_1118_actual.homenodev_1118_actual | regex_search('(nodev)')) != "nodev"
+    become: yes
+    tags:
+      - homenodev
+      - 1.1.18
+      - one
+      - rollback
+      - all
+
+  - name: Rollback medianoexec
+    shell: |
+       for a in $(mount -l -t vfat,iso9660,ext | awk '{print $1}'); do
+            b=$(grep -nr $a /etc/fstab | sed 's/^\([0-9]\+\):.*$/\1/')
+            sed -i "$b s/,noexec//g" /etc/fstab
+       done
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).medianoexec_1119_actual.medianoexec_1119_actual | regex_search('(noexec)')) != "noexec" and ((database.stdout_lines[1]|from_json).medianoexec_1119_actual.medianoexec_1119_actual | regex_search('(no removable partition)')) != "no removable partition"
+    become: yes	
+    tags:
+      - medianoexec
+      - 1.1.19
+      - one
+      - rollback
+      - all
+
+  - name: Rollback medianodev
+    shell: |
+       for a in $(mount -l -t vfat,iso9660,ext | awk '{print $1}'); do
+            b=$(grep -nr $a /etc/fstab | sed 's/^\([0-9]\+\):.*$/\1/')
+            sed -i "$b s/,nodev//g" /etc/fstab
+       done
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).medianodev_1120_actual.medianodev_1120_actual | regex_search('(nodev)')) != "nodev" and ((database.stdout_lines[1]|from_json).medianodev_1120_actual.medianodev_1120_actual | regex_search('(no removable partition)')) != "no removable partition"
+    become: yes	
+    tags:
+      - medianodev
+      - 1.1.20
+      - one
+      - rollback
+      - all
+
+  - name: Rollback medianosuid
+    shell: |
+       for a in $(mount -l -t vfat,iso9660,ext | awk '{print $1}'); do
+            b=$(grep -nr $a /etc/fstab | sed 's/^\([0-9]\+\):.*$/\1/')
+            sed -i "$b s/,nosuid//g" /etc/fstab
+       done
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).medianosuid_1121_actual.medianosuid_1121_actual | regex_search('(nosuid)')) != "nosuid" and ((database.stdout_lines[1]|from_json).medianosuid_1121_actual.medianosuid_1121_actual | regex_search('(no removable partition)')) != "no removable partition"
+    become: yes
+    tags:
+      - medianosuid
+      - 1.1.21
+      - one
+      - rollback	  
+      - all
+
+  - name: Rollback stickybit
+    shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a-t
+    when: ((database.stdout_lines[1]|from_json).stickybit_1122_actual.stickybit_1122_actual | regex_search('(Sticky bit)')) != "Sticky bit"
+    become: yes
+    tags:
+      - stickybit
+      - 1.1.22
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback automount
+    systemd:
+      name: autofs
+      enabled: yes
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).automount_1123_actual.automount_1123_actual | regex_search('(not enabled)')) != "not enabled"
+    become: yes
+    tags:
+      - automount
+      - 1.1.23
+      - one
+      - rollback
+      - all
+
+  - name: Rollback usbstorage
+    lineinfile:
+      path: /etc/modprobe.d/usb_storage.conf
+      line: "install usb-storage /bin/true"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).usbstorage_1124_actual.usbstorage_1124_actual | regex_search('(install)')) != "install"
+    become: yes
+    tags:
+      - usbstorage
+      - 1.1.24
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback sudo
+    apt:
+      name: sudo
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).sudo_131_actual.sudo_131_actual | regex_search('(installed)')) != "installed"
+    become: yes
+    tags:
+      - sudo
+      - 1.3.1
+      - one
+      - rollback
+      - all  
+
+  - name: Rollback sudopty
+    lineinfile:
+      path: /etc/sudoers
+      line: Defaults use_pty
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).sudopty_132_actual.sudopty_132_actual | regex_search('(use_pty)')) != "use_pty"
+    become: yes
+    tags:
+      - sudopty
+      - 1.3.2
+      - one
+      - rollback
+      - all     
+      
+  - name: Rollback sudologfiles
+    lineinfile:
+      path: /etc/sudoers
+      regexp: '^Defaults logfile=*'
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).sudologfiles_133_actual.sudologfiles_133_actual | regex_search('(Defaults logfile)')) != "Defaults logfile"
+    become: yes
+    tags:
+      - sudologfiles
+      - 1.3.3
+      - one
+      - rollback
+      - all 
+
+  - name: Rollback aide
+    apt:
+      name: 
+        - aide 
+        - aide-common
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).aide_141_actual.aide_141_actual | regex_search('(Version)')) != "Version" 
+    become: yes
+    tags:
+      - aide
+      - 1.4.1
+      - one
+      - rollback
+      - all      
+      
+  - name: Rollback fsintegrity
+    cron:
+      name: Run Aide integrity check daily
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).fsintegrity_142_actual.fsintegrity_142_actual | regex_search('(aide)')) != "aide"
+    become: yes
+    tags:
+      - fsintegrity
+      - 1.4.2
+      - one
+      - rollback
+      - all
+      
+  - name: Rollback bootloadpass
+    shell: |
+        sed -i '$!N;/\n.*set superusers="root"/!P;D' /etc/grub.d/40_custom
+        sed -i -e '/set superusers="root"/,+3d' /etc/grub.d/40_custom
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).bootloadpass_151_actual.bootloadpass_151_actual | regex_search('(root)')) != "root"
+    become: yes
+    tags:
+      - 1.5.1
+      - bootloadpass
+      - one
+      - rollback
+      - all
+
+  - name: Rollback bootloadpass
+    replace:
+      path: /etc/grub.d/10_linux
+      regexp: '--class os --unrestricted"'
+      replace: '--class os"'
+    when: ((database.stdout_lines[1]|from_json).bootloadpass_151_actual.bootloadpass_151_actual | regex_search('(root)')) != "root"
+    become: yes
+    tags:
+      - 1.5.1
+      - bootloadpass
+      - one
+      - rollback
+      - all
+
+  - name: Rollback bootloadpass
+    command: update-grub
+    when: ((database.stdout_lines[1]|from_json).bootloadpass_151_actual.bootloadpass_151_actual | regex_search('(root)')) != "root"
+    become: yes
+    tags:
+      - 1.5.1
+      - bootloadpass
+      - one
+      - rollback
+      - all
+      
+  - name: Rollback bootloadperm
+    file:
+      path: /boot/grub/grub.cfg
+      owner: root
+      group: root
+      mode: 0444
+    when: ((database.stdout_lines[1]|from_json).bootloadperm_152_actual.bootloadperm_152_actual | regex_search('(grub.cfg)')) != "grub.cfg" 
+    become: yes
+    tags:
+      - bootloadperm
+      - 1.5.2
+      - one
+      - rollback
+      - all    
+
+  - name: Rollback singleusermode
+    shell: passwd -d root
+    when: ((database.stdout_lines[1]|from_json).singleusermode_153_actual.singleusermode_153_actual | regex_search('(authentication for single user mode is set)')) != "authentication for single user mode is set"
+    become: yes
+    tags:
+      - singleusermode
+      - 1.5.3
+      - one
+      - rollback
+      - all
+      
+  - name: Rollback aslr
+    lineinfile:
+      path: /etc/sysctl.conf
+      line: kernel.randomize_va_space=2
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).aslr_162_actual.aslr_162_actual | regex_search('(kernel.randomize_va_space)')) != "kernel.randomize_va_space"
+    become: yes
+    tags:
+      - aslr
+      - 1.6.2
+      - one
+      - rollback
+      - all
+
+  - name: Rollback prelink
+    apt:
+      name: prelink
+      state: present
+    when: ((database.stdout_lines[1]|from_json).prelink_163_actual.prelink_163_actual | regex_search('(prelink)')) != "prelink"
+    become: yes
+    tags:
+      - prelink
+      - 1.6.3
+      - one
+      - rollback
+      - all    
+          
+  - name: Rollback coredumps
+    lineinfile:
+      path: /etc/security/limits.conf
+      line: '* hard core 0'
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).coredumps_164_actual.coredumps_164_actual | regex_search('(hard core)')) != "hard core" and ((database.stdout_lines[1]|from_json).coredumps_164_actual.coredumps_164_actual | regex_search('(,fs.suid_dumpable=)')) != ",fs.suid_dumpable=" and ((database.stdout_lines[1]|from_json).coredumps_164_actual.coredumps_164_actual | regex_search('(,fs.suid_dumpable =)')) != ",fs.suid_dumpable ="
+    become: yes
+    tags:
+      - coredumps
+      - 1.6.4
+      - one
+      - rollback
+      - all
+
+  - name: Rollback coredumps
+    lineinfile:
+      path: /etc/sysctl.conf
+      line: 'fs.suid_dumpable=0'
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).coredumps_164_actual.coredumps_164_actual | regex_search('(hard core)')) != "hard core" and ((database.stdout_lines[1]|from_json).coredumps_164_actual.coredumps_164_actual | regex_search('(,fs.suid_dumpable=)')) != ",fs.suid_dumpable=" and ((database.stdout_lines[1]|from_json).coredumps_164_actual.coredumps_164_actual | regex_search('(,fs.suid_dumpable =)')) != ",fs.suid_dumpable ="
+    become: yes
+    tags:
+      - coredumps
+      - 1.6.4
+      - one
+      - rollback
+      - all       
+      
+  - name: Rollback apparmor
+    apt:
+      name: apparmor
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).apparmor_1711_actual.apparmor_1711_actual | regex_search('(installed)')) != "installed"
+    become: yes
+    tags:
+      - apparmor
+      - 1.7.1.1
+      - one
+      - rollback
+      - all  
+      
+  - name: Rollback apparmor
+    apt:
+      name: apparmor-utils
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).apparmor_1711_actual.apparmor_1711_actual | regex_search('(installed)')) != "installed"
+    become: yes
+    tags:
+      - apparmor
+      - 1.7.1.1
+      - one
+      - rollback
+      - all  
+      
+  - name: Rollback armorenable
+    shell: '{{ item }}'
+    with_items:
+      - sed -i 's/apparmor=1 security=apparmor//g' /etc/default/grub
+      - update-grub
+    when: ((database.stdout_lines[1]|from_json).armorenable_1712_actual.armorenable_1712_actual | regex_search('(apparmor=1)')) != "apparmor=1"
+    become: yes
+    tags:
+      - armorenable
+      - 1.7.1.2
+      - one
+      - rollback
+      - all      
+     
+  - name: Rollback armorenfcomp
+    command: "{{item}}"
+    with_items:
+      - ln -s /etc/apparmor.d/* /etc/apparmor.d/disable/
+      - apparmor_parser -R /etc/apparmor.d/disable/*
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).armorenfcomp_1713_actual.armorenfcomp_1713_actual | regex_search('(0)')) != "0" and ((database.stdout_lines[1]|from_json).armorenfcomp_1713_actual.armorenfcomp_1713_actual | regex_search('(0)')) != "0"
+    become: yes
+    tags:
+      - armorenfcomp
+      - 1.7.1.3
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback armorenforce
+    command: aa-complain /etc/apparmor.d/*
+    when: ((database.stdout_lines[1]|from_json).armorenforce_1714_actual.armorenforce_1714_actual | regex_search('(0)')) != "0" and ((database.stdout_lines[1]|from_json).armorenforce_1714_actual.armorenforce_1714_actual | regex_search('(0)')) != "0"
+    become: yes
+    tags:
+      - armorenforce
+      - 1.7.1.4
+      - one
+      - rollback
+      - all    
+          
+  - name: Rollback msgday
+    lineinfile:
+      path: /etc/motd
+      line: "Welcome to ubuntu20"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).msgday_1811_actual.msgday_1811_actual | regex_search('(Welcome)')) != "Welcome"
+    become: yes
+    tags:
+      - msgday
+      - 1.8.1.1
+      - one
+      - rollback
+      - all    
+          
+  - name: Rollback locallogin
+    lineinfile:
+      path: /etc/issue
+      line: "Authorized uses only. All activity may be monitored and reported"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).locallogin_1812_actual.locallogin_1812_actual | regex_search('(monitored and reported)')) != "monitored and reported"
+    become: yes
+    tags:
+      - locallogin
+      - 1.8.1.2
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback remotelogin
+    lineinfile:
+      path: /etc/issue.net
+      line: "Authorized uses only. All activity may be monitored and reported"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).remotelogin_1813_actual.remotelogin_1813_actual | regex_search('(monitored and reported)')) != "monitored and reported"
+    become: yes
+    tags:
+      - remotelogin
+      - 1.8.1.3
+      - one
+      - rollback
+      - all        
+          
+  - name: Rollback motdperm
+    file:
+      path: /etc/motd
+      owner: root
+      group: root
+      mode: 0640
+    when: ((database.stdout_lines[1]|from_json).motdperm_1814_actual.motdperm_1814_actual | regex_search('(/etc/motd)')) != "/etc/motd"
+    become: yes
+    tags:
+      - motdperm
+      - 1.8.1.4
+      - one
+      - rollback
+      - all
+    
+  - name: Rollback issueperm
+    file:
+      path: /etc/issue
+      owner: root
+      group: root
+      mode: 0640
+    when: ((database.stdout_lines[1]|from_json).issueperm_1815_actual.issueperm_1815_actual | regex_search('(/etc/issue)')) != "/etc/issue"
+    become: yes
+    tags:
+      - issueperm
+      - 1.8.1.5
+      - one
+      - rollback
+      - all    
+      
+  - name: Rollback issuenetperm
+    file:
+      path: /etc/issue.net
+      owner: root
+      group: root
+      mode: 0640
+    when: ((database.stdout_lines[1]|from_json).issuenetperm_1816_actual.issuenetperm_1816_actual | regex_search('(/etc/issue.net)')) != "/etc/issue.net"
+    become: yes
+    tags:
+      - issuenetperm
+      - 1.8.1.6
+      - one
+      - rollback
+      - all    
+
+  - name: Rollback updates
+    shell: dpkg -i /etc/ansible/backup/updates/*.deb
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).updates_19_actual.updates_19_actual | regex_search('(No updates available)')) != "No updates available"
+    ignore_errors: true
+    become: yes
+    tags:
+      - updates
+      - '1.9'
+      - one
+      - rollback
+      - all
+
+  - name: Rollback gdm
+    lineinfile:
+      path: /etc/gdm3/greeter.dconf-defaults
+      line: "{{item}}"
+      state: absent
+    with_items:
+      - '[org/gnome/login-screen]'
+      - 'banner-message-enable=true'
+      - 'banner-message-text="Authorized uses only. All activity may be monitored and reported"'
+      - 'disable-user-list=true'
+    when: ((database.stdout_lines[1]|from_json).gdm_110_actual.gdm_110_actual | regex_search('(/login-screen)')) != "/login-screen" and ((database.stdout_lines[1]|from_json).gdm_110_actual.gdm_110_actual | regex_search('(enable)')) != "enable" and ((database.stdout_lines[1]|from_json).gdm_110_actual.gdm_110_actual | regex_search('(Authorized uses)')) != "Authorized uses" and ((database.stdout_lines[1]|from_json).gdm_110_actual.gdm_110_actual | regex_search('(gdm3 is not installed)')) != "gdm3 is not installed"
+    become: yes
+    tags:
+      - '1.10'
+      - gdm
+      - one
+      - rollback
+      - all  
+
+  - name: Rollback xinetd
+    apt:
+      name: xinetd
+      state: present
+    when: ((database.stdout_lines[1]|from_json).xinetd_211_actual.xinetd_211_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - xinetd
+      - 2.1.1
+      - rollbacktwo
+      - rollback
+      - all     
+      
+  - name: Rollback openxinetd
+    apt:
+      name: openbsd-inetd 
+      state: present
+    when: ((database.stdout_lines[1]|from_json).openxinetd_212_actual.openxinetd_212_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - openxinetd
+      - 2.1.2
+      - rollbacktwo
+      - rollback
+      - all   
+
+  - name: Rollback timesync
+    apt:
+      name: chrony
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).timesync_2211_actual.timesync_2211_actual | regex_search('(chrony)')) != "chrony" and ((database.stdout_lines[1]|from_json).timesync_2211_actual.timesync_2211_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - timesync
+      - 2.2.1.1
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback timesync
+    apt:
+      name: ntp
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).timesync_2211_actual.timesync_2211_actual | regex_search('(ntp)')) != "ntp" and ((database.stdout_lines[1]|from_json).timesync_2211_actual.timesync_2211_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - timesync
+      - 2.2.1.1
+      - rollbacktwo
+      - rollback
+      - all
+        
+  - name: Rollback timesynconf
+    apt:
+      name: "{{item}}"
+      state: present
+    with_items:
+      - ntp
+      - chrony
+    when: ((database.stdout_lines[1]|from_json).timesynconf_2212_actual.timesynconf_2212_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - timesynconf
+      - 2.2.1.2
+      - rollbacktwo
+      - rollback
+      - all 
+
+  - name: Rollback timesynconf
+    service:
+      name: systemd-timesyncd.service
+      enabled: no
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).timesynconf_2212_actual.timesynconf_2212_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - timesynconf
+      - 2.2.1.2
+      - rollbacktwo
+      - rollback
+      - all   
+
+  - name: Rollback timesynconf
+    replace:
+      path: /etc/systemd/timesyncd.conf 
+      regexp: "{{ item.regexp }}" 
+      replace: "{{ item.replace }}"
+    with_items:
+      - { regexp: '^(NTP=*)', replace: '#\1' }
+      - { regexp: '^(FallbackNTP=*)', replace: '#\1' }
+      - { regexp: '^(RootDistanceMaxSec=*)', replace: '#\1' }
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).timesynconf_2212_actual.timesynconf_2212_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - timesynconf
+      - 2.2.1.2
+      - rollbacktwo
+      - rollback
+      - all       
+
+  - name: Rollback timesynconf
+    service:
+      name: systemd-timesyncd.service
+      state: stopped
+    when: ((database.stdout_lines[1]|from_json).timesynconf_2212_actual.timesynconf_2212_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - timesynconf
+      - 2.2.1.2
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback timesynconf
+    command: timedatectl set-ntp false
+    when: ((database.stdout_lines[1]|from_json).timesynconf_2212_actual.timesynconf_2212_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - timesynconf
+      - 2.2.1.2
+      - rollbacktwo
+      - rollback
+      - all      
+      
+  - name: Rollback chrony
+    apt:
+      name: ntp
+      state: present
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(pool)')) != "pool"
+    become: yes
+    tags:
+      - chrony
+      - 2.2.1.3
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback chrony
+    systemd:
+      name: systemd-timesyncd
+      masked: no
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(pool)')) != "pool"
+    become: yes
+    tags:
+      - chrony
+      - 2.2.1.3
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback chrony
+    lineinfile:
+      path: /etc/chrony/chrony.conf
+      state: absent
+      line: "server {{ remote_server_chrony_ubuntu20 }}"
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(pool)')) != "pool"
+    become: yes
+    tags:
+      - chrony
+      - 2.2.1.3
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback chrony
+    lineinfile:
+      path: /etc/chrony/chrony.conf
+      state: absent
+      line: user _chrony
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).chrony_2213_actual.chrony_2213_actual | regex_search('(pool)')) != "pool"
+    become: yes
+    tags:
+      - chrony
+      - 2.2.1.3
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback ntp
+    apt: 
+      name: chrony
+      state: present
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(restrict)')) != "restrict" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(pool)')) != "pool" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(RUNASUSER)')) != "RUNASUSER"    
+    become: yes
+    tags:
+      - ntp
+      - 2.2.1.4
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback ntp
+    systemd:
+      name: systemd-timesyncd
+      masked: no
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(restrict)')) != "restrict" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(pool)')) != "pool" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(RUNASUSER)')) != "RUNASUSER"
+    become: yes
+    tags:
+      - ntp
+      - 2.2.1.4
+      - rollbacktwo
+      - rollback
+      - all
+      
+  - name: Rollback ntp
+    lineinfile:
+      path: /etc/ntp.conf
+      state: absent
+      line: "{{ item }}" 
+    with_items:
+      - "restrict -4 default kod notrap nomodify nopeer noquery limited"
+      - "restrict -6 default kod notrap nomodify nopeer noquery limited"
+      - "server {{ remote_server_ntp_ubuntu20 }}"
+    when: ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(restrict)')) != "restrict" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(pool)')) != "pool" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(RUNASUSER)')) != "RUNASUSER"
+    become: yes
+    tags:
+      - ntp
+      - 2.2.1.4
+      - rollbacktwo
+      - rollback
+      - all    
+  
+  - name: Rollback ntp
+    replace:
+      path: /etc/init.d/ntp
+      regexp: "^(RUNASUSER=.*)"
+      replace: 'RUNASUSER=""' 
+    when: ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(restrict)')) != "restrict" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(pool)')) != "pool" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(server)')) != "server" and ((database.stdout_lines[1]|from_json).ntp_2214_actual.ntp_2214_actual | regex_search('(RUNASUSER)')) != "RUNASUSER"
+    become: yes
+    tags:
+      - ntp
+      - 2.2.1.4
+      - rollbacktwo
+      - rollback
+      - all          
+     
+  - name: Rollback xorg
+    yum:
+      name: "{{item}}"
+      state: present
+    failed_when: no
+    loop: "{{ (database.stdout_lines[1]|from_json).xorg_222_actual.xorg_222_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).xorg_222_actual.xorg_222_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - xorg
+      - 2.2.2
+      - rollbacktwo
+      - rollback
+      - all  
+      
+  - name: Rollback avahi
+    apt:
+      name: avahi-daemon
+      state: present
+    when: ((database.stdout_lines[1]|from_json).avahi_223_actual.avahi_223_actual | regex_search('(not enabled)')) != "not enabled"
+    become: yes
+    tags:
+      - avahi
+      - 2.2.3
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback cups
+    apt:
+      name: cups
+      state: present
+    when: ((database.stdout_lines[1]|from_json).cups_224_actual.cups_224_actual | regex_search('(not enabled)')) != "not enabled"
+    become: yes
+    tags:
+      - cups
+      - 2.2.4
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback dhcp
+    apt:
+      name: isc-dhcp-server
+      state: present
+    when: ((database.stdout_lines[1]|from_json).dhcp_225_actual.dhcp_225_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - dhcp
+      - 2.2.5
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback ldap
+    apt:
+      name: slapd
+      state: present
+    when: ((database.stdout_lines[1]|from_json).ldap_226_actual.ldap_226_actual | regex_search('(disabled)')) != "disabled"
+    become: yes
+    tags:
+      - ldap
+      - 2.2.6
+      - rollbacktwo
+      - rollback
+      - all    
+    
+  - name: Rollback nfs
+    apt:
+      name: rpcbind
+      state: present
+    when: ((database.stdout_lines[1]|from_json).nfs_227_actual.nfs_227_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - nfs
+      - 2.2.7
+      - rollbacktwo
+      - rollback
+      - all   
+      
+  - name: Rollback dns
+    apt:
+      name: bind9
+      state: present
+    when: ((database.stdout_lines[1]|from_json).dns_228_actual.dns_228_actual | regex_search('(not enabled)')) != "not enabled"
+    become: yes
+    tags:
+      - dns
+      - 2.2.8
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback ftp
+    apt:
+      name: vsftpd
+      state: present
+    when: ((database.stdout_lines[1]|from_json).ftp_229_actual.ftp_229_actual | regex_search('(disabled)')) != "disabled"
+    become: yes
+    tags:
+      - ftp
+      - 2.2.9
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback http
+    apt:
+      name: apache2
+      state: present
+    when: ((database.stdout_lines[1]|from_json).http_2210_actual.http_2210_actual | regex_search('(disabled)')) != "disabled"
+    become: yes
+    tags:
+      - http
+      - 2.2.10
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback imap
+    apt:
+      name: dovecot-imapd 
+      state: present
+    when: ((database.stdout_lines[1]|from_json).imap_2211_actual.imap_2211_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - imap
+      - 2.2.11
+      - rollbacktwo
+      - rollback
+      - all 
+
+  - name: Rollback imap
+    apt:
+      name: dovecot-pop3d 
+      state: present
+    when: ((database.stdout_lines[1]|from_json).imap_2211_actual.imap_2211_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - imap
+      - 2.2.11
+      - rollbacktwo
+      - rollback
+      - all       
+      
+  - name: Rollback samba
+    apt:
+      name: samba
+      state: present
+    when: ((database.stdout_lines[1]|from_json).samba_2212_actual.samba_2212_actual | regex_search('(not enabled)')) != "not enabled"
+    become: yes
+    tags:
+      - samba
+      - 2.2.12
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback proxy
+    apt:
+      name: squid
+      state: present
+    when: ((database.stdout_lines[1]|from_json).proxy_2213_actual.proxy_2213_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - proxy
+      - 2.2.13
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback snmp
+    apt:
+      name: snmpd
+      state: present
+    when: ((database.stdout_lines[1]|from_json).snmp_2214_actual.snmp_2214_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - snmp
+      - 2.2.14
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback mail
+    lineinfile:
+      path: /etc/exim4/update-exim4.conf.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "dc_eximconfig_configtype='local'"
+      - "dc_local_interfaces='127.0.0.1 ; ::1'"
+      - "dc_readhost=''"
+      - "dc_relay_domains=''"
+      - "dc_minimaldns='false'"
+      - "dc_relay_nets=''"
+      - "dc_smarthost=''"
+      - "dc_use_split_config='false'"
+      - "dc_hide_mailname=''"
+      - "dc_mailname_in_oh='true'"
+      - "dc_localdelivery='mail_spool'"
+    when: ((database.stdout_lines[1]|from_json).mail_2215_actual.mail_2215_actual | regex_search('(mail transfer agent is configured)')) != "mail transfer agent is configured"
+    failed_when: no
+    become: yes
+    tags:
+      - mail
+      - 2.2.15
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback rsync
+    apt:
+      name: rsync
+      state: present
+    when: ((database.stdout_lines[1]|from_json).rsync_2216_actual.rsync_2216_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - rsync
+      - 2.2.16
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback nis
+    apt:
+      name: nis
+      state: present
+    when: ((database.stdout_lines[1]|from_json).nis_2217_actual.nis_2217_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - nis
+      - 2.2.17
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback nisc
+    apt:
+      name: nis
+      state: present
+    when: ((database.stdout_lines[1]|from_json).nisc_231_actual.nisc_231_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - nisc
+      - 2.3.1
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback rshc
+    apt:
+      name: rsh-client
+      state: present
+    when: ((database.stdout_lines[1]|from_json).rshc_232_actual.rshc_232_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - rshc
+      - 2.3.2
+      - rollbacktwo
+      - rollback
+      - all    
+      
+  - name: Rollback talkc
+    apt:
+      name: talk
+      state: present
+    when: ((database.stdout_lines[1]|from_json).talkc_233_actual.talkc_233_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - talkc
+      - 2.3.3
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback telnetc
+    apt:
+      name: telnet
+      state: present
+    when: ((database.stdout_lines[1]|from_json).telnetc_234_actual.telnetc_234_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - telnetc
+      - 2.3.4
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback ldapc
+    apt:
+      name: ldap-utils
+      state: present
+    when: ((database.stdout_lines[1]|from_json).ldapc_235_actual.ldapc_235_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - ldapc
+      - 2.3.5
+      - rollbacktwo
+      - rollback
+      - all   
+
+  - name: Rollback rpc
+    apt:
+      name: rpcbind
+      state: present
+    when: ((database.stdout_lines[1]|from_json).rpc_236_actual.rpc_236_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - rpc
+      - 2.3.6
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback nonessenserv
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ nonessen_service_ubuntu20.split(',') }}"
+    when: ((database.stdout_lines[1]|from_json).nonessenserv_24_actual.nonessenserv_24_actual | regex_search('(nonessential)')) != "nonessential"
+    become: yes
+    tags:
+      - '2.4'
+      - nonessenserv
+      - rollbacktwo
+      - rollback
+      - all
+
+  - name: Rollback ipv6disable
+    command: sed -i 's/ipv6.disable=1//g' /etc/default/grub
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).ipv6disable_311_actual.ipv6disable_311_actual | regex_search('(disable=1)')) != "disable=1"
+    become: yes
+    tags:
+      - ipv6disable
+      - 3.1.1
+      - three
+      - rollback
+      - all
+      
+  - name: Rollback wireless
+    shell: "sudo ip link set {{item}} up"
+    loop: "{{ (database.stdout_lines[1]|from_json).wireless_312_actual.wireless_312_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).wireless_312_actual.wireless_312_actual | regex_search('(wireless interfaces)')) != "wireless interfaces"
+    failed_when: no
+    become: yes
+    tags:
+      - 3.1.2
+      - wireless
+      - three
+      - rollback
+      - all  
+
+  - name: Rollback packetredirect
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items: 
+      - "net.ipv4.conf.all.send_redirects=0"
+      - "net.ipv4.conf.default.send_redirects=0"
+    when: ((database.stdout_lines[1]|from_json).packetredirect_321_actual.packetredirect_321_actual | regex_search('(all)')) != "all" and ((database.stdout_lines[1]|from_json).packetredirect_321_actual.packetredirect_321_actual | regex_search('(default)')) != "default"
+    become: yes
+    tags:
+      - packetredirect
+      - 3.2.1
+      - three
+      - rollback
+      - all          
+      
+  - name: Rollback ipforward
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "net.ipv4.ip_forward=0"
+      - "net.ipv6.conf.all.forwarding=0"
+    when: ((database.stdout_lines[1]|from_json).ipforward_322_actual.ipforward_322_actual | regex_search('(ip_forward)')) != "ip_forward"
+    become: yes
+    tags:
+      - ipforward
+      - 3.2.2
+      - three
+      - rollback
+      - all    
+
+  - name: Rollback routedpacket
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items: 
+      - "net.ipv4.conf.all.accept_source_route=0"
+      - "net.ipv4.conf.default.accept_source_route=0"
+      - "net.ipv6.conf.all.accept_source_route=0"
+      - "net.ipv6.conf.default.accept_source_route=0"
+    when: ((database.stdout_lines[1]|from_json).routedpacket_331_actual.routedpacket_331_actual | regex_search('(all)')) != "all" and ((database.stdout_lines[1]|from_json).routedpacket_331_actual.routedpacket_331_actual | regex_search('(default)')) != "default"
+    become: yes
+    tags:
+      - routedpacket
+      - 3.3.1
+      - three
+      - rollback
+      - all
+
+  - name: Rollback icmp
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "net.ipv4.conf.all.accept_redirects=0"
+      - "net.ipv4.conf.default.accept_redirects=0"
+      - "net.ipv6.conf.all.accept_redirects=0"
+      - "net.ipv6.conf.default.accept_redirects=0"
+    when: ((database.stdout_lines[1]|from_json).icmp_332_actual.icmp_332_actual | regex_search('(all)')) != "all" and ((database.stdout_lines[1]|from_json).icmp_332_actual.icmp_332_actual | regex_search('(default)')) != "default"
+    become: yes
+    tags:
+      - icmp
+      - 3.3.2
+      - three
+      - rollback
+      - all
+      
+  - name: Rollback secureicmp
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "net.ipv4.conf.all.secure_redirects=0"
+      - "net.ipv4.conf.default.secure_redirects=0"
+    when: ((database.stdout_lines[1]|from_json).secureicmp_333_actual.secureicmp_333_actual | regex_search('(all)')) != "all" and ((database.stdout_lines[1]|from_json).secureicmp_333_actual.secureicmp_333_actual | regex_search('(default)')) != "default"
+    become: yes
+    tags:
+      - secureicmp
+      - 3.3.3
+      - three
+      - rollback
+      - all        
+      
+  - name: Rollback suspicious
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "net.ipv4.conf.all.log_martians=1"
+      - "net.ipv4.conf.default.log_martians=1"
+    when: ((database.stdout_lines[1]|from_json).suspicious_334_actual.suspicious_334_actual | regex_search('(all)')) != "all" and ((database.stdout_lines[1]|from_json).suspicious_334_actual.suspicious_334_actual | regex_search('(default)')) != "default"
+    become: yes
+    tags:
+      - suspicious
+      - 3.3.4
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback broadcasticmp
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "net.ipv4.icmp_echo_ignore_broadcasts=1"
+    when: ((database.stdout_lines[1]|from_json).broadcasticmp_335_actual.broadcasticmp_335_actual | regex_search('(broadcasts)')) != "broadcasts"
+    become: yes
+    tags:
+      - broadcasticmp
+      - 3.3.5
+      - three
+      - rollback
+      - all
+
+  - name: Rollback bogusicmp
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "net.ipv4.icmp_ignore_bogus_error_responses=1"
+    when: ((database.stdout_lines[1]|from_json).bogusicmp_336_actual.bogusicmp_336_actual | regex_search('(bogus)')) != "bogus"
+    become: yes
+    tags:
+      - bogusicmp
+      - 3.3.6
+      - three
+      - rollback
+      - all
+
+  - name: Rollback reversepathfilter
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "net.ipv4.conf.all.rp_filter=1"
+      - "net.ipv4.conf.default.rp_filter=1"
+    when: ((database.stdout_lines[1]|from_json).reversepathfilter_337_actual.reversepathfilter_337_actual | regex_search('(all)')) != "all" and ((database.stdout_lines[1]|from_json).reversepathfilter_337_actual.reversepathfilter_337_actual | regex_search('(default)')) != "default"
+    become: yes
+    tags:
+      - reversepathfilter
+      - 3.3.7
+      - three
+      - rollback
+      - all      
+      
+  - name: Rollback tcpsyncookies
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "net.ipv4.tcp_syncookies=1"
+    when: ((database.stdout_lines[1]|from_json).tcpsyncookies_338_actual.tcpsyncookies_338_actual | regex_search('(syncookies)')) != "syncookies"
+    become: yes
+    tags:
+      - tcpsyncookies
+      - 3.3.8
+      - three
+      - rollback
+      - all    
+
+  - name: Rollback ipv6router
+    lineinfile:
+      path: /etc/sysctl.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "net.ipv6.conf.all.accept_ra=0"
+      - "net.ipv6.conf.default.accept_ra=0"
+    when: ((database.stdout_lines[1]|from_json).ipv6router_339_actual.ipv6router_339_actual | regex_search('(all)')) != "all" and ((database.stdout_lines[1]|from_json).ipv6router_339_actual.ipv6router_339_actual | regex_search('(default)')) != "default"
+    become: yes
+    tags:
+      - ipv6router
+      - 3.3.9
+      - three
+      - rollback
+      - all
+
+  - name: Rollback dccp
+    lineinfile:
+      path: /etc/modprobe.d/dccp.conf
+      state: absent
+      regexp: "install dccp /bin/true"
+    when: ((database.stdout_lines[1]|from_json).dccp_341_actual.dccp_341_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - dccp
+      - 3.4.1
+      - three
+      - rollback
+      - all
+
+  - name: Rollback sctp
+    lineinfile:
+      path: /etc/modprobe.d/sctp.conf
+      state: absent
+      regexp: "install sctp /bin/true"
+    when: ((database.stdout_lines[1]|from_json).sctp_342_actual.sctp_342_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - sctp
+      - 3.4.2
+      - three
+      - rollback
+      - all
+      
+  - name: Rollback rds
+    lineinfile:
+      path: /etc/modprobe.d/rds.conf
+      state: absent
+      regexp: "install rds /bin/true"
+    when: ((database.stdout_lines[1]|from_json).rds_343_actual.rds_343_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - rds
+      - 3.4.3
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback tipc
+    lineinfile:
+      path: /etc/modprobe.d/tipc.conf
+      state: absent
+      regexp: "install tipc /bin/true"
+    when: ((database.stdout_lines[1]|from_json).tipc_344_actual.tipc_344_actual | regex_search('(install /bin/true)')) != "install /bin/true"
+    become: yes
+    tags:
+      - tipc
+      - 3.4.3
+      - three
+      - rollback
+      - all       
+      
+  - name: Rollback firewallpack
+    apt: name=ufw  state=absent
+    when: ((database.stdout_lines[1]|from_json).firewallpack_3511_actual.firewallpack_3511_actual | regex_search('(ok installed)')) != "ok installed" 
+    become: yes
+    tags:
+      - firewallpack
+      - 3.5.1.1
+      - three
+      - rollback
+      - all    
+
+  - name: Rollback iptablespersist
+    apt:
+      name: iptables-persistent
+      state: present
+    when: ((database.stdout_lines[1]|from_json).iptablespersist_3512_actual.iptablespersist_3512_actual | regex_search('(not install)')) != "not install" 
+    become: yes
+    tags:
+      - iptablespersist
+      - 3.5.1.2
+      - three
+      - rollback
+      - all
+      
+  - name: Rollback firewallenb
+    systemd:
+      name: ufw    
+      enabled: no
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).firewallenb_3513_actual.firewallenb_3513_actual | regex_search('(enabled)')) != "enabled" 
+    become: yes
+    tags:
+      - firewallenb
+      - 3.5.1.3
+      - three
+      - rollback
+      - all      
+     
+  - name: Rollback nfwloopbacktraffic
+    shell: "ufw status numbered | egrep 'Anywhere on lo' | cut -d']' -f1 | tr -d [ | sed -e 's/[\t ]//g;/^$/d'"
+    failed_when: no
+    register: loopreglo
+    when: ((database.stdout_lines[1]|from_json).nfwloopbacktraffic_3514_actual.nfwloopbacktraffic_3514_actual | regex_search('(127.0.0.0./8)')) != "127.0.0.0./8" and ((database.stdout_lines[1]|from_json).nfwloopbacktraffic_3514_actual.nfwloopbacktraffic_3514_actual | regex_search('(lo)')) != "lo" and ((database.stdout_lines[1]|from_json).nfwloopbacktraffic_3514_actual.nfwloopbacktraffic_3514_actual | regex_search('(::1)')) != "::1"
+    become: yes
+    tags:
+      - nfwloopbacktraffic
+      - 3.5.1.4
+      - three
+      - rollback
+      - all  
+
+  - name: Rollback nfwloopbacktraffic
+    shell: "sudo echo -e 'y' | sudo ufw delete {{ item }}"
+    failed_when: no
+    loop: "{{loopreglo.stdout_lines}}"
+    when: ((database.stdout_lines[1]|from_json).nfwloopbacktraffic_3514_actual.nfwloopbacktraffic_3514_actual | regex_search('(127.0.0.0./8)')) != "127.0.0.0./8" and ((database.stdout_lines[1]|from_json).nfwloopbacktraffic_3514_actual.nfwloopbacktraffic_3514_actual | regex_search('(lo)')) != "lo" and ((database.stdout_lines[1]|from_json).nfwloopbacktraffic_3514_actual.nfwloopbacktraffic_3514_actual | regex_search('(::1)')) != "::1"
+    become: yes
+    tags:
+      - nfwloopbacktraffic
+      - 3.5.1.4
+      - three
+      - rollback
+      - all
+
+  - name: Rollback nfwfirewallrules
+    copy:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest }}'
+      remote_src: yes
+    with_items:
+      - { src: '/etc/ansible/backup/ufw/user.rules', dest: '/etc/ufw/user.rules' }
+      - { src: '/etc/ansible/backup/ufw/user6.rules', dest: '/etc/ufw/user6.rules' }
+    when: ((database.stdout_lines[1]|from_json).nfwfirewallrules_3516_actual.nfwfirewallrules_3516_actual | regex_search('(Anywhere)')) != "Anywhere"
+    failed_when: no
+    become: yes
+    tags:
+      - nfwfirewallrules
+      - 3.5.1.6
+      - three
+      - rollback
+      - all           
+      
+  - name: Rollback nfwfirewallpolicy
+    copy:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest }}'
+      remote_src: yes
+    with_items:
+      - { src: '/etc/ansible/backup/ufw/user.rules', dest: '/etc/ufw/user.rules' }
+      - { src: '/etc/ansible/backup/ufw/user6.rules', dest: '/etc/ufw/user6.rules' }
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).nfwfirewallpolicy_3517_actual.nfwfirewallpolicy_3517_actual | regex_search('(deny)')) != "deny"
+    become: yes
+    tags:
+      - nfwfirewallpolicy
+      - 3.5.1.7
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback nftablesins
+    apt:
+      name: nftables
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).nftablesins_3521_actual.nftablesins_3521_actual | regex_search('(installed)')) != "installed"
+    become: yes
+    tags: 
+      - nftablesins
+      - 3.5.2.1
+      - three
+      - rollback
+      - all  
+
+  - name: Rollback firewalldisable
+    apt:
+      name: ufw
+      state: present
+    when: ((database.stdout_lines[1]|from_json).firewalldisable_3522_actual.firewalldisable_3522_actual | regex_search('(not installed)')) != "not installed"
+    become: yes
+    tags:
+      - firewalldisable
+      - 3.5.2.2
+      - three
+      - rollback
+      - all 
+
+  - name: Rollback iptablesflush
+    shell: "{{item}}"
+    with_items:
+      - "iptables-restore < /etc/ansible/backup/iptablesflush/iptables_rules_{{ansible_hostname}}"
+      - "ip6tables-restore < /etc/ansible/backup/iptablesflush/ip6tables_rules_{{ansible_hostname}}"
+    when: ((database.stdout_lines[1]|from_json).iptablesflush_3523_actual.iptablesflush_3523_actual | regex_search('(iptables are flushed)')) != "iptables are flushed"
+    become: yes
+    tags:
+      - 3.5.2.3
+      - iptablesflush
+      - three
+      - rollback
+      - all          
+      
+  - name: Rollback tablexists
+   command: 'nft delete table inet "{{ table_name_ubuntu20 }}"'
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).tablexists_3524_actual.tablexists_3524_actual | regex_search('(table)')) != "table"
+    become: yes
+    tags:
+      - tablexists
+      - 3.5.2.4
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback basechains
+    command: '{{ item }}'
+    with_items:
+      - nft delete chain inet {{ table_name_bc_ubuntu20 }} {{ base_chain_name_input_ubuntu20 }} { type filter hook input priority 0 \; }
+      - nft delete chain inet {{ table_name_bc_ubuntu20 }} {{ base_chain_name_output_ubuntu20 }} { type filter hook output priority 0 \; }
+      - nft delete chain inet {{ table_name_bc_ubuntu20 }} {{ base_chain_name_forward_ubuntu20 }} { type filter hook forward priority 0 \; }
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).basechains_3525_actual.basechains_3525_actual | regex_search('(hook)')) != "hook"
+    become: yes
+    tags:
+      - basechains
+      - 3.5.2.5
+      - three
+      - rollback
+      - all    
+
+  - name: Rollback nfloopbacktraffic
+    command: "{{ item }}"
+    with_items:
+      - nft delete rule inet filter input iif lo accept
+      - nft delete rule inet filter input ip saddr 127.0.0.0/8 counter drop
+      - nft delete rule inet filter INPUT ip6 saddr ::1 counter drop
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).nfloopbacktraffic_3526_actual.nfloopbacktraffic_3526_actual | regex_search('(failed_ipv_4_6)'))
+    become: yes
+    tags:
+      - nfloopbacktraffic
+      - 3.5.2.6
+      - three
+      - all
+      - rollback
+      
+  - name: Rollback nffirewallpolicy
+    shell: nft -f /etc/ansible/backup/iptables_nft/nft_rules
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).nffirewallpolicy_3528_actual.nffirewallpolicy_3528_actual | regex_search('(drop)')) != "drop"
+    ignore_errors: yes
+    become: yes
+    tags:
+      - nffirewallpolicy
+      - 3.5.2.8
+      - three
+      - rollback
+      - all   
+      
+  - name: Rollback nftablesenb
+    service:    
+      name: nftables
+      enabled: no
+    when: ((database.stdout_lines[1]|from_json).nftablesenb_3529_actual.nftablesenb_3529_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - nftablesenb
+      - 3.5.2.9
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback nftablesrules
+    lineinfile:
+      path: /etc/sysconfig/nftables.conf
+      state: absent
+      line: 'include "/etc/nftables/nftables.rules"'
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).nftablesrules_35210_actual.nftablesrules_35210_actual | regex_search('(hook)')) != "hook"
+    become: yes
+    tags:
+      - nftablesrules
+      - 3.5.2.10
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback iptablesins
+    apt:
+      name: 
+        - iptables
+        - iptables-persistent
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).iptablesins_35311_actual.iptablesins_35311_actual | regex_search('(installed)')) != "installed"
+    become: yes
+    tags:
+      - iptablesins
+      - 3.5.3.1.1
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback nftables
+    apt:    
+      name: nftables
+      state: present
+    when: ((database.stdout_lines[1]|from_json).nftables_35312_actual.nftables_35312_actual | regex_search('(nftables)')) != "nftables"
+    become: yes
+    tags:
+      - nftables
+      - 3.5.3.1.2
+      - three
+      - rollback
+      - all    
+      
+  - name: Rollback firewalldis
+    service: 
+      name: ufw  
+      enabled: yes
+    when: ((database.stdout_lines[1]|from_json).firewalldis_35313_actual.firewalldis_35313_actual | regex_search('(inactive)')) != "inactive"
+    become: yes
+    tags:
+      - firewalldis
+      - 3.5.3.1.3
+      - three
+      - rollback
+      - all       
+      
+  - name: Rollback firewallpolicy
+    shell: iptables-restore < /etc/ansible/backup/iptables_nft/iptablesv4_rules
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).firewallpolicy_35321_actual.firewallpolicy_35321_actual | regex_search('(DROP)')) != "DROP" and ((database.stdout_lines[1]|from_json).firewallpolicy_35321_actual.firewallpolicy_35321_actual | regex_search('(REJECT)')) != "REJECT"
+    become: yes
+    tags:
+      - firewallpolicy
+      - 3.5.3.2.1
+      - three
+      - rollback
+      - all   
+
+  - name: Rollback loopbacktrafficip
+    command: "{{ item }}"
+    with_items:
+      - sudo iptables -D INPUT -i lo -j ACCEPT
+      - sudo iptables -D OUTPUT -o lo -j ACCEPT
+      - sudo iptables -D INPUT -s 127.0.0.0/8 -j DROP
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).loopbacktrafficip_35322_actual.loopbacktrafficip_35322_actual | regex_search('(ACCEPT)')) != "ACCEPT" and ((database.stdout_lines[1]|from_json).loopbacktrafficip_35322_actual.loopbacktrafficip_35322_actual | regex_search('(DROP)')) != "DROP" 
+    become: yes
+    tags:
+      - loopbacktrafficip
+      - 3.5.3.2.2
+      - three
+      - rollback
+      - all
+
+  - name: Rollback firewallrules
+    shell: iptables-restore < /etc/ansible/backup/iptables_nft/iptablesv4_fir_rules
+    when: ((database.stdout_lines[1]|from_json).firewallrules_35324_actual.firewallrules_35324_actual | regex_search('(tcp)')) != "tcp" and ((database.stdout_lines[1]|from_json).firewallrules_35324_actual.firewallrules_35324_actual | regex_search('(udp)')) != "udp"
+    become: yes
+    tags:
+      - firewallrules
+      - 3.5.3.2.4
+      - three
+      - rollback
+      - all      
+      
+  - name: Rollback ipv6firewallpolicy
+    shell: ip6tables-restore < /etc/ansible/backup/iptables_nft/iptablesv6_rules
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).ipv6firewallpolicy_35331_actual.ipv6firewallpolicy_35331_actual | regex_search('(INPUT)')) != "INPUT" and ((database.stdout_lines[1]|from_json).ipv6firewallpolicy_35331_actual.ipv6firewallpolicy_35331_actual | regex_search('(OUTPUT)')) != "OUTPUT" and ((database.stdout_lines[1]|from_json).ipv6firewallpolicy_35331_actual.ipv6firewallpolicy_35331_actual | regex_search('(FORWARD)')) != "FORWARD" and ((database.stdout_lines[1]|from_json).ipv6firewallpolicy_35331_actual.ipv6firewallpolicy_35331_actual | regex_search('(ipv6 is disabled)')) != "ipv6 is disabled"
+    become: yes
+    tags:
+      - ipv6firewallpolicy
+      - 3.5.3.3.1
+      - rolbackthree
+      - rollback
+      - all    
+      
+  - name: Rollback ipv6loopbacktraffic
+    command: "{{ item }}"
+    with_items:
+      - ip6tables -D INPUT -i lo -j ACCEPT
+      - ip6tables -D OUTPUT -o lo -j ACCEPT
+      - ip6tables -D INPUT -s ::1 -j DROP
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).ipv6loopbacktraffic_35332_actual.ipv6loopbacktraffic_35332_actual | regex_search('(all  --  lo)')) != "all  --  lo" and ((database.stdout_lines[1]|from_json).ipv6loopbacktraffic_35332_actual.ipv6loopbacktraffic_35332_actual | regex_search('(all  --  *)')) != "all  --  *" and ((database.stdout_lines[1]|from_json).ipv6loopbacktraffic_35332_actual.ipv6loopbacktraffic_35332_actual | regex_search('(ipv6 is disabled)')) != "ipv6 is disabled"
+    become: yes
+    tags:
+      - ipv6loopbacktraffic
+      - 3.5.3.3.2
+      - three
+      - rollback
+      - all
+
+  - name: Rollback ipv6firewallrules
+    shell: ip6tables-restore < /etc/ansible/backup/iptables_nft/iptablesv6_fir_rules
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).ipv6firewallrules_35334_actual.ipv6firewallrules_35334_actual | regex_search('(tcp)')) != "tcp" and ((database.stdout_lines[1]|from_json).ipv6firewallrules_35334_actual.ipv6firewallrules_35334_actual | regex_search('(ipv6 is disabled)')) != "ipv6 is disabled"
+    become: yes
+    tags:
+      - ipv6firewallrules
+      - 3.5.3.3.4
+      - three
+      - rollback
+      - all    
+
+  - name: Rollback auditd
+    apt:
+      name:
+        - auditd 
+        - audispd-plugins
+      state: present
+    when: ((database.stdout_lines[1]|from_json).auditd_4111_actual.auditd_4111_actual | regex_search('(ok installed)')) != "ok installed" 
+    become: yes
+    tags:
+      - auditd
+      - 4.1.1.1
+      - four
+      - rollback
+      - all
+      
+  - name: Rollback auditdservice
+    service: name=auditd enabled=no
+    when: ((database.stdout_lines[1]|from_json).auditdservice_4112_actual.auditdservice_4112_actual | regex_search('(enabled)')) != "enabled"
+    failed_when: no
+    become: yes
+    tags:
+      - auditdservice
+      - 4.1.1.2
+      - four
+      - rollback
+      - all
+
+  - name: Rollback auditdenable
+    command: sed -i 's/audit=1//g' /etc/default/grub
+    when: ((database.stdout_lines[1]|from_json).auditdenable_4113_actual.auditdenable_4113_actual | regex_search('(audit=1)')) != "audit=1"
+    become: yes
+    tags:
+      - auditdenable
+      - 4.1.1.3
+      - four
+      - rollback
+      - all 
+        
+  - name: Rollback auditdbacklog
+    command: sed -i 's/audit_backlog_limit=8192//g' /etc/default/grub
+    when: ((database.stdout_lines[1]|from_json).auditdbacklog_4114_actual.auditdbacklog_4114_actual | regex_search('(audit_backlog_limit=8192)')) != "audit_backlog_limit=8192"
+    become: yes
+    tags:
+      - auditdbacklog
+      - 4.1.1.4
+      - four
+      - rollback
+      - all
+
+  - name: Rollback auditlogsize
+    replace:
+      path: /etc/audit/auditd.conf
+      regexp: "^(max_log_file =*)"
+      replace: '#\1'
+    when: ((database.stdout_lines[1]|from_json).auditlogsize_4121_actual.auditlogsize_4121_actual | regex_search('(max_log_file =)')) != "max_log_file ="
+    failed_when: no
+    become: yes
+    tags:
+      - auditlogsize
+      - 4.1.2.1
+      - four
+      - rollback
+      - all    
+      
+  - name: Rollback auditlogdelete
+    replace:
+      path: /etc/audit/auditd.conf
+      regexp: "max_log_file_action = keep_logs"
+      replace: "max_log_file_action = ROTATE"
+    when: ((database.stdout_lines[1]|from_json).auditlogdelete_4122_actual.auditlogdelete_4122_actual | regex_search('(keep_logs)')) != "keep_logs"
+    ignore_errors: true
+    become: yes
+    tags:
+      - auditlogdelete
+      - 4.1.2.2
+      - four
+      - rollback
+      - all    
+
+  - name: Rollback sysdisable
+    replace:
+      path: /etc/audit/auditd.conf
+      regexp: "{{item.regexp}}"
+      replace: "{{item.replace}}"
+    with_items:
+      - { regexp: space_left_action = email, replace: space_left_action = SYSLOG }
+      - { regexp: admin_space_left_action = halt, replace: admin_space_left_action = SUSPEND }
+      - { regexp: '^(action_mail_acct = root)', replace: '#\1' }
+    when: ((database.stdout_lines[1]|from_json).sysdisable_4123_actual.sysdisable_4123_actual | regex_search('(email)')) != "email" and ((database.stdout_lines[1]|from_json).sysdisable_4123_actual.sysdisable_4123_actual | regex_search('(halt)')) != "halt" and ((database.stdout_lines[1]|from_json).sysdisable_4123_actual.sysdisable_4123_actual | regex_search('(root)')) != "root"
+    ignore_errors: true
+    become: yes
+    tags:
+      - sysdisable
+      - 4.1.2.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback moddatetime(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/time_change.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change"
+      - "-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change"
+      - "-a always,exit -F arch=b64 -S clock_settime -k time-change"
+      - "-a always,exit -F arch=b32 -S clock_settime -k time-change"
+      - "-w /etc/localtime -p wa -k time-change"
+    when: ((database.stdout_lines[1]|from_json).moddatetime_413_actual.moddatetime_413_actual | regex_search('(settimeofday)')) != "settimeofday" and ((database.stdout_lines[1]|from_json).moddatetime_413_actual.moddatetime_413_actual | regex_search('(clock_settime)')) != "clock_settime" and ((database.stdout_lines[1]|from_json).moddatetime_413_actual.moddatetime_413_actual | regex_search('(/localtime)')) != "/localtime"
+    become: yes
+    tags:
+      - moddatetime
+      - 4.1.3
+      - four
+      - rollback
+      - all    
+      
+  - name: Rollback modusergrp
+    lineinfile:
+      path: /etc/audit/rules.d/identity.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-w /etc/group -p wa -k identity"
+      - "-w /etc/passwd -p wa -k identity"
+      - "-w /etc/gshadow -p wa -k identity"
+      - "-w /etc/shadow -p wa -k identity"
+      - "-w /etc/security/opasswd -p wa -k identity"
+    when: ((database.stdout_lines[1]|from_json).modusergrp_414_actual.modusergrp_414_actual | regex_search('(/etc/group)')) != "/etc/group" and ((database.stdout_lines[1]|from_json).modusergrp_414_actual.modusergrp_414_actual | regex_search('(/etc/passwd)')) != "/etc/passwd" and ((database.stdout_lines[1]|from_json).modusergrp_414_actual.modusergrp_414_actual | regex_search('(/etc/gshadow)')) != "/etc/gshadow" and ((database.stdout_lines[1]|from_json).modusergrp_414_actual.modusergrp_414_actual | regex_search('(/etc/shadow)')) != "/etc/shadow" and ((database.stdout_lines[1]|from_json).modusergrp_414_actual.modusergrp_414_actual | regex_search('(/etc/security)')) != "/etc/security"
+    become: yes
+    tags:
+      - modusergrp
+      - 4.1.4
+      - four
+      - rollback
+      - all    
+      
+  - name: Rollback modsysnet(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/system_local.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale"
+      - "-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale"
+      - "-w /etc/issue -p wa -k system-locale"
+      - "-w /etc/issue.net -p wa -k system-locale"
+      - "-w /etc/hosts -p wa -k system-locale"
+      - "-w /etc/network -p wa -k system-locale"
+    when: ((database.stdout_lines[1]|from_json).modsysnet_415_actual.modsysnet_415_actual | regex_search('(setdomainname)')) != "setdomainname" and ((database.stdout_lines[1]|from_json).modsysnet_415_actual.modsysnet_415_actual | regex_search('(/etc/issue)')) != "/etc/issue" and ((database.stdout_lines[1]|from_json).modsysnet_415_actual.modsysnet_415_actual | regex_search('(/etc/issue.net)')) != "/etc/issue.net" and ((database.stdout_lines[1]|from_json).modsysnet_415_actual.modsysnet_415_actual | regex_search('(/hosts)')) != "/hosts" and ((database.stdout_lines[1]|from_json).modsysnet_415_actual.modsysnet_415_actual | regex_search('(/network)')) != "/network"
+    become: yes
+    tags:
+      - modsysnet
+      - 4.1.5
+      - four
+      - rollback
+      - all  
+      
+  - name: Rollback modsysmac
+    lineinfile:
+      path: /etc/audit/rules.d/MAC_policy.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-w /etc/apparmor/ -p wa -k MAC-policy"
+      - "-w /etc/apparmor.d/ -p wa -k MAC-policy"
+    when: ((database.stdout_lines[1]|from_json).modsysmac_416_actual.modsysmac_416_actual | regex_search('(apparmor)')) != "apparmor" and ((database.stdout_lines[1]|from_json).modsysmac_416_actual.modsysmac_416_actual | regex_search('(MAC-policy)')) != "MAC-policy"
+    become: yes
+    tags:
+      - modsysmac
+      - 4.1.6
+      - four
+      - rollback
+      - all        
+
+  - name: Rollback loginout
+    lineinfile:
+      path: /etc/audit/rules.d/logins.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-w /var/log/lastlog -p wa -k logins"
+      - "-w /var/run/faillog -p wa -k logins"
+      - "-w /var/log/tallylog -p wa -k logins"
+    when: ((database.stdout_lines[1]|from_json).loginout_417_actual.loginout_417_actual | regex_search('(logins)')) != "logins"
+    become: yes
+    tags:
+      - loginout
+      - 4.1.7
+      - four
+      - rollback
+      - all
+
+  - name: Rollback session
+    lineinfile:
+      path: /etc/audit/rules.d/session.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-w /var/run/utmp -p wa -k session"
+      - "-w /var/log/wtmp -p wa -k logins"
+      - "-w /var/log/btmp -p wa -k logins"
+    when: ((database.stdout_lines[1]|from_json).session_418_actual.session_418_actual | regex_search('(session)')) != "session" and ((database.stdout_lines[1]|from_json).session_418_actual.session_418_actual | regex_search('(logins)')) != "logins"
+    become: yes
+    tags:
+      - session
+      - 4.1.8
+      - four
+      - rollback
+      - all
+      
+  - name: Rollback dacperm(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/perm_mod.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+      - "-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+      - "-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+      - "-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+      - "-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+      - "-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+      - "-k perm_mod"
+    when: ((database.stdout_lines[1]|from_json).dacperm_419_actual.dacperm_419_actual | regex_search('(fchmodat)')) != "fchmodat" and ((database.stdout_lines[1]|from_json).dacperm_419_actual.dacperm_419_actual | regex_search('(fchownat)')) != "fchownat" and ((database.stdout_lines[1]|from_json).dacperm_419_actual.dacperm_419_actual | regex_search('(removexattr)')) != "removexattr"
+    become: yes
+    tags:
+      - dacperm
+      - 4.1.9
+      - four
+      - rollback
+      - all
+      
+  - name: Rollback fileaccess(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/access.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access"
+      - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access"
+      - "-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access"
+      - "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access"
+    when: ((database.stdout_lines[1]|from_json).fileaccess_4110_actual.fileaccess_4110_actual | regex_search('(EACCES)')) != "EACCES" and ((database.stdout_lines[1]|from_json).fileaccess_4110_actual.fileaccess_4110_actual | regex_search('(EPERM)')) != "EPERM"
+    become: yes
+    tags:
+      - fileaccess
+      - 4.1.10
+      - four
+      - rollback
+      - all    
+      
+  - name: Rollback privilegecmd
+    file:
+      path: /etc/audit/rules.d/privileged.rules
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).privilegecmd_4111_actual.privilegecmd_4111_actual | regex_search('(privileged)')) != "privileged"
+    become: yes
+    tags:
+      - privilegecmd
+      - 4.1.11
+      - four
+      - rollback
+      - all
+
+  - name: Rollback fsmount(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/mounts.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts"
+      - "-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts"
+    when: ((database.stdout_lines[1]|from_json).fsmount_4112_actual.fsmount_4112_actual | regex_search('(mounts)')) != "mounts"
+    become: yes
+    tags:
+      - fsmount
+      - 4.1.12
+      - four
+      - rollback
+      - all  
+
+  - name: Rollback fsmount(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/audit.rules
+      state: absent
+      line: "-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts"
+    when: ((database.stdout_lines[1]|from_json).fsmount_4112_actual.fsmount_4112_actual | regex_search('(mounts)')) != "mounts"
+    become: yes
+    tags:
+      - fsmount
+      - 4.1.12
+      - four
+      - rollback
+      - all      
+      
+  - name: Rollback filedeletion(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/delete.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete"
+      - "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete"
+    when: ((database.stdout_lines[1]|from_json).filedeletion_4113_actual.filedeletion_4113_actual | regex_search('(unlinkat)')) != "unlinkat"
+    become: yes
+    tags:
+      - filedeletion
+      - 4.1.13
+      - four
+      - rollback
+      - all 
+      
+  - name: Rollback sudoers
+    lineinfile:
+      path: /etc/audit/rules.d/scope.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-w /etc/sudoers -p wa -k scope"
+      - "-w /etc/sudoers.d/ -p wa -k scope"
+    when: ((database.stdout_lines[1]|from_json).sudoers_4114_actual.sudoers_4114_actual | regex_search('(/sudoers)')) != "/sudoers" and ((database.stdout_lines[1]|from_json).sudoers_4114_actual.sudoers_4114_actual | regex_search('(/sudoers.d)')) != "sudoers.d"
+    become: yes
+    tags:
+      - sudoers
+      - 4.1.14
+      - four
+      - rollback
+      - all
+
+  - name: Rollback sudos(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/actions.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-a always,exit -F arch=b64 -C euid!=uid -F euid=0 -F auid>=1000 -F auid!=4294967295 -S execve -k actions"
+      - "-a always,exit -F arch=b32 -C euid!=uid -F euid=0 -F auid>=1000 -F auid!=4294967295 -S execve -k actions" 
+    when: ((database.stdout_lines[1]|from_json).sudos_4115_actual.sudos_4115_actual | regex_search('(actions)')) != "actions"
+    become: yes
+    tags:
+      - sudos
+      - 4.1.15
+      - four
+      - rollback
+      - all   
+
+  - name: Rollback kernelmodule(arch-64&32)
+    lineinfile:
+      path: /etc/audit/rules.d/modules.rules
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "-w /sbin/insmod -p x -k modules"
+      - "-w /sbin/rmmod -p x -k modules"
+      - "-w /sbin/modprobe -p x -k modules"
+      - "-a always,exit -F arch=b64 -S init_module -S delete_module -k modules"
+      - "-a always,exit -F arch=b32 -S init_module -S delete_module -k modules"
+    when: ((database.stdout_lines[1]|from_json).kernelmodule_4116_actual.kernelmodule_4116_actual | regex_search('(insmod)')) != "insmod" and ((database.stdout_lines[1]|from_json).kernelmodule_4116_actual.kernelmodule_4116_actual | regex_search('(rmmod)')) != "rmmod" and ((database.stdout_lines[1]|from_json).kernelmodule_4116_actual.kernelmodule_4116_actual | regex_search('(modprobe)')) != "modprobe" and ((database.stdout_lines[1]|from_json).kernelmodule_4116_actual.kernelmodule_4116_actual | regex_search('(init_module)')) != "init_module"
+    become: yes
+    tags:
+      - kernelmodule
+      - 4.1.16
+      - four
+      - rollback
+      - all
+      
+  - name: Rollback auditconfig
+    lineinfile:
+      path: /etc/audit/rules.d/99-finalize.rules
+      state: absent
+      line: "-e 2"
+    when: ((database.stdout_lines[1]|from_json).auditconfig_4117_actual.auditconfig_4117_actual | regex_search('(-e 2)')) != "-e 2"
+    become: yes
+    tags:
+      - auditconfig
+      - 4.1.17
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rsyslog
+    apt: name=rsyslog state=absent
+    when: ((database.stdout_lines[1]|from_json).rsyslog_4211_actual.rsyslog_4211_actual | regex_search('(ok installed)')) != "ok installed"
+    become: yes
+    tags:
+      - rsyslog
+      - 4.2.1.1
+      - four
+      - rollback
+      - all      
+      
+  - name: Rollback rsyslogenb
+    service:
+      name: rsyslog
+      enabled: no
+    when: ((database.stdout_lines[1]|from_json).rsyslogenb_4212_actual.rsyslogenb_4212_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - rsyslogenb
+      - 4.2.1.2
+      - four
+      - rollback
+      - all   
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "*.emerg :omusrmsg:*"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(.emerg :)')) != ".emerg :"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "auth,authpriv.* /var/log/secure"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(auth,authpriv.* /var/log/secure)')) != "auth,authpriv.* /var/log/secure"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "mail.* -/var/log/mail"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(mail.*                                                  -/var/log/mail)')) !=  "mail.*                            -/var/log/mail"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "mail.info -/var/log/mail.info"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(mail.info -/var/log/mail.info)')) != "mail.info -/var/log/mail.info"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "mail.warning -/var/log/mail.warn"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(mail.warning -/var/log/mail.warn)')) != "mail.warning -/var/log/mail.warn"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "mail.err /var/log/mail.err"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(mail.err /var/log/mail.err)')) != "mail.err /var/log/mail.err"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "news.crit -/var/log/news/news.crit"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(news.crit -/var/log/news/news.crit)')) != "news.crit -/var/log/news/news.crit"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "news.err -/var/log/news/news.err"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(news.err -/var/log/news/news.err)')) != "news.err -/var/log/news/news.err"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "news.notice -/var/log/news/news.notice"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(news.notice -/var/log/news/news.notice)')) != "news.notice -/var/log/news/news.notice"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "*.=warning;*.=err -/var/log/warn"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(=warning;)')) != "=warning;"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "*.crit /var/log/warn"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(crit /var/log/warn)')) != "crit /var/log/warn"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "*.*;mail.none;news.none -/var/log/messages"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(;mail.none;news.none)')) != ";mail.none;news.none"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "local0,local1.* -/var/log/localmessages"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(local0,local1)')) != "local0,local1"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "local2,local3.* -/var/log/localmessages"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(local2,local3)')) != "local2,local3"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "local4,local5.* -/var/log/localmessages"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(local4,local5)')) != "local4,local5"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rloggingconf
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "local6,local7.* -/var/log/localmessages"
+    when: ((database.stdout_lines[1]|from_json).rloggingconf_4213_actual.rloggingconf_4213_actual | regex_search('(local6,local7)')) != "local6,local7"
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.3
+      - four
+      - rollback
+      - all
+    
+  - name: Rollback rsyslogperm
+    shell: sed -i 's/^\$FileCreateMode 0640//g' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    when: ((database.stdout_lines[1]|from_json).rsyslogperm_4214_actual.rsyslogperm_4214_actual | regex_search('(0640)')) != "0640"
+    become: yes
+    tags:
+      - rsyslogperm
+      - 4.2.1.4
+      - four
+      - rollback
+      - all      
+      
+  - name: Rollback rsyslogsendlogs
+    lineinfile:
+      path: /etc/rsyslog.conf
+      state: absent
+      line: "*.* @@loghost.example.com"
+    when: ((database.stdout_lines[1]|from_json).rsyslogsendlogs_4215_actual.rsyslogsendlogs_4215_actual | regex_search('( @@)')) != " @@"
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.5
+      - four
+      - rollback
+      - all
+
+  - name: Rollback rsyslogsendlogs
+    shell: find /etc/rsyslog.d/ -name "*.conf"
+    register: rsyslogsendlogs_roll
+    when: ((database.stdout_lines[1]|from_json).rsyslogsendlogs_4215_actual.rsyslogsendlogs_4215_actual | regex_search('( @@)')) != " @@"
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.5
+      - four
+      - all
+      - rollback
+
+  - name: Rollback rsyslogsendlogs
+    lineinfile:
+      path: '{{ item }}'
+      state: absent
+      line: "*.* @@loghost.example.com"
+    loop: '{{ rsyslogsendlogs_roll.stdout_lines }}'
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).rsyslogsendlogs_4215_actual.rsyslogsendlogs_4215_actual | regex_search('( @@)')) != " @@"
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.5
+      - four
+      - all
+      - rollback
+
+  - name: Rollback remotesyslogmsg
+    shell: sed -i 's/^\$ModLoad imtcp/#$ModLoad imtcp/g' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    when: ((database.stdout_lines[1]|from_json).remotesyslogmsg_4216_actual.remotesyslogmsg_4216_actual | regex_search('(ModLoad imtcp)')) != "ModLoad imtcp" and ((database.stdout_lines[1]|from_json).remotesyslogmsg_4216_actual.remotesyslogmsg_4216_actual | regex_search('(InputTCPServerRun)')) != "InputTCPServerRun"
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.6
+      - four
+      - rollback
+      - all
+
+  - name: Rollback remotesyslogmsg
+    shell: sed -i 's/^\$InputTCPServerRun 514/#$InputTCPServerRun 514/g' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    when: ((database.stdout_lines[1]|from_json).remotesyslogmsg_4216_actual.remotesyslogmsg_4216_actual | regex_search('(ModLoad imtcp)')) != "ModLoad imtcp" and ((database.stdout_lines[1]|from_json).remotesyslogmsg_4216_actual.remotesyslogmsg_4216_actual | regex_search('(InputTCPServerRun)')) != "InputTCPServerRun"
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.6
+      - four
+      - rollback
+      - all    
+      
+  - name: Rollback remotesyslogmsg
+    systemd:
+      name: rsyslog
+      state: restarted
+    when: ((database.stdout_lines[1]|from_json).remotesyslogmsg_4216_actual.remotesyslogmsg_4216_actual | regex_search('(ModLoad imtcp)')) != "ModLoad imtcp" and ((database.stdout_lines[1]|from_json).remotesyslogmsg_4216_actual.remotesyslogmsg_4216_actual | regex_search('(InputTCPServerRun)')) != "InputTCPServerRun"
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.6
+      - four
+      - rollback
+      - all           
+      
+  - name: Rollback journalsendlogs
+    replace:
+      path: /etc/systemd/journald.conf
+      regexp: "^(ForwardToSyslog=yes)"
+      replace: '#\1'
+    when: ((database.stdout_lines[1]|from_json).journalsendlogs_4221_actual.journalsendlogs_4221_actual | regex_search('(ForwardToSyslog)')) != "ForwardToSyslog"
+    become: yes
+    tags:
+      - journalsendlogs
+      - 4.2.2.1
+      - four
+      - rollback
+      - all
+
+  - name: Rollback journalcompresslog
+    replace:
+      path: /etc/systemd/journald.conf
+      regexp: "^(Compress=yes)"
+      replace: '#\1'
+    when: ((database.stdout_lines[1]|from_json).journalcompresslog_4222_actual.journalcompresslog_4222_actual | regex_search('(Compress)')) != "Compress"
+    become: yes
+    tags:
+      - journalcompresslog
+      - 4.2.2.2
+      - four
+      - rollback
+      - all
+
+  - name: Rollback journalpersisdisk
+    replace:
+      path: /etc/systemd/journald.conf
+      regexp: "^(Storage=persistent)"
+      replace: '#\1'
+    when: ((database.stdout_lines[1]|from_json).journalpersisdisk_4223_actual.journalpersisdisk_4223_actual | regex_search('(Storage)')) != "Storage"
+    become: yes
+    tags:
+      - journalpersisdisk
+      - 4.2.2.3
+      - four
+      - rollback
+      - all    
+      
+  - name: Rollback permlogfiles
+    file:
+      path: "{{ item |  regex_search('/.*') }}"
+      mode: "{{ item |  regex_search('[0-9]+') }}"
+    loop: "{{ (database.stdout_lines[1]|from_json).permlogfiles_423_actual.permlogfiles_423_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).permlogfiles_423_actual.permlogfiles_423_actual | regex_search('(Permissions)')) != "Permissions"
+    failed_when: no
+    become: yes
+    tags:
+      - 4.2.3
+      - permlogfiles
+      - four
+      - rollback
+      - all
+
+  - name: Rollback logrotate
+    lineinfile:
+      path: '{{ item }}'
+      state: absent
+      line: "maxage 90"
+    with_items:
+      - /etc/logrotate.conf
+      - /etc/logrotate.d/rsyslog
+    when: ((database.stdout_lines[1]|from_json).logrotate_43_actual.logrotate_43_actual | regex_search('(maxage)')) != "maxage"
+    become: yes
+    tags:
+      - logrotate
+      - '4.3'
+      - four
+      - rollback
+      - all    
+      
+  - name: Rollback logrotateperm
+    lineinfile:
+      path: /etc/logrotate.conf
+      regexp: "^(create 0640 root utmp)"
+      line: "create"
+    when: ((database.stdout_lines[1]|from_json).logrotateperm_44_actual.logrotateperm_44_actual | regex_search('(0640)')) != "0640"
+    become: yes
+    tags:
+      - logrotateperm
+      - '4.4'
+      - four
+      - rollback
+      - all        
+
+  - name: Rollback cron
+    service:
+      name: crond
+      enabled: no
+    when: ((database.stdout_lines[1]|from_json).cron_511_actual.cron_511_actual | regex_search('(enabled)')) != "enabled"
+    become: yes
+    tags:
+      - cron
+      - 5.1.1
+      - five
+      - rollback
+      - all    
+      
+  - name: Rollback permcrontab
+    file:
+      path: "/etc/crontab"
+      mode: 0644
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permcrontab_512_actual.permcrontab_512_actual | regex_search('(/etc/crontab)')) != "/etc/crontab"
+    become: yes
+    tags:
+      - permcrontab
+      - 5.1.2
+      - five
+      - rollback
+      - all       
+
+  - name: Rollback permcronhourly
+    file:
+      path: "/etc/cron.hourly"
+      mode: 0755
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permcronhourly_513_actual.permcronhourly_513_actual | regex_search('(/etc/cron.hourly)')) != "/etc/cron.hourly"
+    become: yes
+    tags:
+      - permcronhourly
+      - 5.1.3
+      - five
+      - rollback
+      - all    
+      
+  - name: 5.1.4 Ensure permissions on /etc/cron.daily are configured
+    file:
+      path: "/etc/cron.daily"
+      state: touch
+      mode: 0755
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permcrondaily_514_actual.permcrondaily_514_actual | regex_search('(/etc/cron.daily)')) != "/etc/cron.daily"
+    become: yes
+    tags:
+      - permcrondaily
+      - 5.1.4
+      - five
+      - rollback
+      - all
+
+  - name: Rollback permcronweekly
+    file:
+      path: "/etc/cron.weekly"
+      mode: 0755
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permcronweekly_515_actual.permcronweekly_515_actual | regex_search('(/etc/cron.weekly)')) != "/etc/cron.weekly"
+    become: yes
+    tags:
+      - permcronweekly
+      - 5.1.5
+      - five
+      - rollback
+      - all
+
+  - name: Rollback permcronmonthly
+    file:
+      path: "/etc/cron.monthly"
+      mode: 0755
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permcronmonthly_516_actual.permcronmonthly_516_actual | regex_search('(/etc/cron.monthly)')) != "/etc/cron.monthly"
+    become: yes
+    tags:
+      - permcronmonthly
+      - 5.1.6
+      - five
+      - rollback
+      - all
+      
+  - name: Rollback permcrond
+    file:
+      path: "/etc/cron.d"
+      mode: 0755
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permcrond_517_actual.permcrond_517_actual | regex_search('(/etc/cron.d)')) != "/etc/cron.d"
+    become: yes
+    tags:
+      - permcrond
+      - 5.1.7
+      - five
+      - rollback
+      - all
+
+  - name: Rollback cronuser
+    copy:
+      src: '/etc/ansible/backup/cronuser/cron_deny_{{ansible_hostname}}'
+      dest: /etc/cron.deny
+      remote_src: yes
+    when: ((database.stdout_lines[1]|from_json).cronuser_518_actual.cronuser_518_actual | regex_search('(/etc/cron.allow)')) != "/etc/cron.allow"
+    failed_when: no
+    become: yes
+    tags:
+      - cronuser
+      - 5.1.8
+      - five
+      - rollback
+      - all
+
+  - name: Rollback cronuser
+    file:
+      path: "/etc/cron.allow"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).cronuser_518_actual.cronuser_518_actual | regex_search('(/etc/cron.allow)')) != "/etc/cron.allow"
+    become: yes
+    tags:
+      - cronuser
+      - 5.1.8
+      - five
+      - rollback
+      - all
+      
+  - name: Rollback atcron
+    copy:
+      src: '/etc/ansible/backup/atcron/at_deny_{{ansible_hostname}}'
+      dest: /etc/at.deny
+      remote_src: yes
+    when: ((database.stdout_lines[1]|from_json).atcron_519_actual.atcron_519_actual | regex_search('(/etc/at.deny)')) != "/etc/at.deny"
+    failed_when: no
+    become: yes
+    tags:
+      - atcron
+      - 5.1.9
+      - five
+      - rollback
+      - all
+
+  - name: Rollback atcron
+    file:
+      path: "/etc/at.allow"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).atcron_519_actual.atcron_519_actual | regex_search('(/etc/at.deny)')) != "/etc/at.deny"
+    become: yes
+    tags:
+      - atcron
+      - 5.1.9
+      - five
+      - rollback
+      - all
+      
+  - name: Rollback sshdperm
+    file:
+      path: "/etc/ssh/sshd_config"
+      mode: 0640
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).sshdperm_521_actual.sshdperm_521_actual | regex_search('(/etc/ssh/sshd_config)')) != "/etc/ssh/sshd_config"
+    become: yes
+    tags:
+      - sshdperm
+      - 5.2.1
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshpermpvtkey
+    command: "{{item}}"
+    with_items:
+      - find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chown root:ssh_keys {} \;
+      - find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chmod 0640 {} \;
+    when: ((database.stdout_lines[1]|from_json).sshpermpvtkey_522_actual.sshpermpvtkey_522_actual | regex_search('(root)')) != "root"
+    become: yes
+    tags:
+      - sshpermpvtkey
+      - 5.2.2
+      - five
+      - rollback
+      - all
+      
+  - name: Rollback sshpermpubkey
+    command: "{{item}}"
+    with_items:
+      - find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chown root:root {} \;
+      - find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec chmod 0600 {} \;
+    when: ((database.stdout_lines[1]|from_json).sshpermpubkey_523_actual.sshpermpubkey_523_actual | regex_search('(root)')) != "root"
+    become: yes
+    tags:
+      - sshpermpubkey
+      - 5.2.3
+      - five
+      - rollback
+      - all      
+      
+  - name: Rollback sshloglevel
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^LogLevel INFO"
+      line: "#LogLevel INFO"
+    when: ((database.stdout_lines[1]|from_json).sshloglevel_524_actual.sshloglevel_524_actual | regex_search('(INFO)')) != "INFO"
+    become: yes
+    tags:
+      - sshloglevel
+      - 5.2.4
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshx11forward
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^X11Forwarding no"
+      line: "X11Forwarding yes"
+    when: ((database.stdout_lines[1]|from_json).sshx11forward_525_actual.sshx11forward_525_actual | regex_search('(no)')) != "no"
+    become: yes
+    tags:
+      - sshx11forward
+      - 5.2.5
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshmaxauthtries
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(MaxAuthTries*)"
+      line: "#MaxAuthTries 6"
+    when: ((database.stdout_lines[1]|from_json).sshmaxauthtries_526_actual.sshmaxauthtries_526_actual | regex_search('(maxauthtries)')) != "maxauthtries"
+    become: yes
+    tags:
+      - sshmaxauthtries
+      - 5.2.6
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshignorerhosts
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(IgnoreRhosts*)"
+      line: "#IgnoreRhosts yes"
+    when: ((database.stdout_lines[1]|from_json).sshignorerhosts_527_actual.sshignorerhosts_527_actual | regex_search('(IgnoreRhosts)')) != "IgnoreRhosts"
+    become: yes
+    tags:
+      - sshignorerhosts
+      - 5.2.7
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshauthentication
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(HostbasedAuthentication*)"
+      line: "#HostbasedAuthentication no"
+    when: ((database.stdout_lines[1]|from_json).sshauthentication_528_actual.sshauthentication_528_actual | regex_search('(HostbasedAuthentication)')) != "HostbasedAuthentication"
+    become: yes
+    tags:
+      - sshauthentication
+      - 5.2.8
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshrootlogin
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(PermitRootLogin*)"
+      line: "PermitRootLogin yes"
+    when: ((database.stdout_lines[1]|from_json).sshrootlogin_529_actual.sshrootlogin_529_actual | regex_search('(PermitRootLogin)')) != "PermitRootLogin"
+    become: yes
+    tags:
+      - sshrootlogin
+      - 5.2.9
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshpep
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(PermitEmptyPasswords*)"
+      line: "#PermitEmptyPasswords no"
+    when: ((database.stdout_lines[1]|from_json).sshpep_5210_actual.sshpep_5210_actual | regex_search('(PermitEmptyPasswords)')) != "PermitEmptyPasswords"
+    become: yes
+    tags:
+      - sshpep
+      - 5.2.10
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshpue
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(PermitUserEnvironment*)"
+      line: "#PermitUserEnvironment no"
+    when: ((database.stdout_lines[1]|from_json).sshpue_5211_actual.sshpue_5211_actual | regex_search('(PermitUserEnvironment)')) != "PermitUserEnvironment"
+    become: yes
+    tags:
+      - sshpue
+      - 5.2.11
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshpep
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      line: "ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).sshchipers_5212_actual.sshchipers_5212_actual | regex_search('(ciphers)')) != "ciphers"
+    become: yes
+    tags:
+      - sshchipers
+      - 5.2.12
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshmacalgorithm
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      line: "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).sshmacalgorithm_5213_actual.sshmacalgorithm_5213_actual | regex_search('(macs)')) != "macs"
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.2.13
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshkeyexalgorithm
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      line: "kexalgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellmangroup14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffiehellman-group-exchange-sha256"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).sshkeyexalgorithm_5214_actual.sshkeyexalgorithm_5214_actual | regex_search('(kexalgorithms)')) != "kexalgorithms"
+    become: yes
+    tags:
+      - sshkeyexalgorithm
+      - 5.2.14
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshidletimeout
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(ClientAliveInterval*)"
+      line: "#ClientAliveInterval 0"
+    when: ((database.stdout_lines[1]|from_json).sshidletimeout_5215_actual.sshidletimeout_5215_actual | regex_search('(clientaliveinterval)')) != "clientaliveinterval" and ((database.stdout_lines[1]|from_json).sshidletimeout_5215_actual.sshidletimeout_5215_actual | regex_search('(clientalivecountmax)')) != "clientalivecountmax"
+    become: yes
+    tags:
+      - sshidletimeout
+      - 5.2.15
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshidletimeout
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(ClientAliveCountMax*)"
+      line: "#ClientAliveCountMax 3"
+    when: ((database.stdout_lines[1]|from_json).sshidletimeout_5215_actual.sshidletimeout_5215_actual | regex_search('(clientaliveinterval)')) != "clientaliveinterval" and ((database.stdout_lines[1]|from_json).sshidletimeout_5215_actual.sshidletimeout_5215_actual | regex_search('(clientalivecountmax)')) != "clientalivecountmax"
+    become: yes
+    tags:
+      - sshidletimeout
+      - 5.2.15
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshlogingracetime
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(LoginGraceTime*)"
+      line: "#LoginGraceTime 2m"
+    when: ((database.stdout_lines[1]|from_json).sshlogingracetime_5216_actual.sshlogingracetime_5216_actual | regex_search('(logingracetime)')) != "logingracetime"
+    become: yes
+    tags:
+      - sshlogingracetime
+      - 5.2.16
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshaccess
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: absent
+      regexp: '{{ item }}'
+    with_items:
+      - "^(AllowUsers.*)"
+      - "^(AllowGroups.*)"
+      - "^(DenyUsers.*)"
+      - "^(DenyGroups.*)"
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).sshaccess_5217_actual.sshaccess_5217_actual | regex_search('(allowgroups)')) != "allowgroups" and ((database.stdout_lines[1]|from_json).sshaccess_5217_actual.sshaccess_5217_actual | regex_search('(denyusers)')) != "denyusers" and ((database.stdout_lines[1]|from_json).sshaccess_5217_actual.sshaccess_5217_actual | regex_search('(allowusers)')) != "allowusers" and ((database.stdout_lines[1]|from_json).sshaccess_5217_actual.sshaccess_5217_actual | regex_search('(denygroups)')) != "denygroups"
+    become: yes
+    tags:
+      - sshaccess
+      - 5.2.17
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshwarningbanner
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(Banner /etc/issue.net)"
+      line: "#Banner none"
+    when: ((database.stdout_lines[1]|from_json).sshwarningbanner_5218_actual.sshwarningbanner_5218_actual | regex_search('(Banner)')) != "Banner"
+    become: yes
+    tags:
+      - sshwarningbanner
+      - 5.2.18
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshpam
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(UsePAM yes)"
+      line: "UsePAM no"
+    when: ((database.stdout_lines[1]|from_json).sshpam_5219_actual.sshpam_5219_actual | regex_search('(usepam)')) != "usepam"
+    become: yes
+    tags:
+      - sshpam
+      - 5.2.19
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshdistcpforward
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(AllowTcpForwarding*)"
+      line: "#AllowTcpForwarding yes"
+    when: ((database.stdout_lines[1]|from_json).sshdistcpforward_5220_actual.sshdistcpforward_5220_actual | regex_search('(AllowTcpForwarding)')) != "AllowTcpForwarding"
+    become: yes
+    tags:
+      - sshdistcpforward
+      - 5.2.20
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshmaxstartups
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(MaxStartups*)"
+      line: "#MaxStartups 10:30:100"
+    when: ((database.stdout_lines[1]|from_json).sshmaxstartups_5221_actual.sshmaxstartups_5221_actual | regex_search('(MaxStartups)')) != "MaxStartups"
+    become: yes
+    tags:
+      - sshmaxstartups
+      - 5.2.21
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sshmaxsessions
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: "^(MaxSessions*)"
+      line: "#MaxSessions 10"
+    when: ((database.stdout_lines[1]|from_json).sshmaxsessions_5222_actual.sshmaxsessions_5222_actual | regex_search('(MaxSessions)')) != "MaxSessions"
+    become: yes
+    tags:
+      - sshmaxsessions
+      - 5.2.22
+      - five
+      - rollback
+      - all    
+    
+  - name: Rollback passwdcreation
+    lineinfile:
+      path: /etc/security/pwquality.conf
+      state: present
+      regexp: "^(minlen = 14)"
+      line: "# minlen = 9"
+    when: ((database.stdout_lines[1]|from_json).passwdcreation_531_actual.passwdcreation_531_actual | regex_search('(minlen)')) != "minlen" and ((database.stdout_lines[1]|from_json).passwdcreation_531_actual.passwdcreation_531_actual | regex_search('(minclass)')) != "minclass"
+    ignore_errors: true
+    become: yes
+    tags:
+      - passwdcreation
+      - 5.3.1
+      - five
+      - rollback
+      - all
+
+  - name: Rollback passwdcreation
+    lineinfile:
+      path: /etc/security/pwquality.conf
+      state: present
+      regexp: "^(minclass = 4)"
+      line: "# minclass = 0"
+    when: ((database.stdout_lines[1]|from_json).passwdcreation_531_actual.passwdcreation_531_actual | regex_search('(minlen)')) != "minlen" and ((database.stdout_lines[1]|from_json).passwdcreation_531_actual.passwdcreation_531_actual | regex_search('(minclass)')) != "minclass"
+    ignore_errors: true
+    become: yes
+    tags:
+      - passwdcreation
+      - 5.3.1
+      - five
+      - rollback
+      - all   
+      
+  - name: Rollback lockout
+    lineinfile:
+      path: /etc/pam.d/common-auth
+      state: absent
+      line: "auth    required    pam_tally2.so onerr=fail audit silent deny=5 unlock_time=900"
+    when: ((database.stdout_lines[1]|from_json).lockout_532_actual.lockout_532_actual | regex_search('(auth)')) != "auth" 
+    become: yes
+    tags:
+      - lockout
+      - 5.3.2
+      - five
+      - rollback
+      - all
+
+  - name: Rollback lockout
+    lineinfile:
+      path: /etc/pam.d/common-account
+      state: absent
+      line: "{{item}}"
+    with_items:
+      - "account   requisite    pam_deny.so"
+      - "account   required     pam_tally2.so"
+    when: ((database.stdout_lines[1]|from_json).lockout_532_actual.lockout_532_actual | regex_search('(account)')) != "account" 
+    become: yes
+    tags:
+      - lockout
+      - 5.3.2
+      - five
+      - rollback
+      - all    
+      
+  - name: Rollback passwdreuse
+    command: sed -i '/password.*required.*pam_pwhistory.so/s/remember=5//g' /etc/pam.d/common-password
+    when: ((database.stdout_lines[1]|from_json).passwdreuse_533_actual.passwdreuse_533_actual | regex_search('(remember=5)')) != "remember=5"
+    become: yes
+    tags:
+      - passwdreuse
+      - 5.3.3
+      - five
+      - rollback
+      - all
+      
+  - name: Rollback passwdhashing
+    command: sed -i '/password.*required.*pam_pwhistory.so/s/sha512//g' /etc/pam.d/common-password
+    when: ((database.stdout_lines[1]|from_json).passwdhashing_534_actual.passwdhashing_534_actual | regex_search('(sha512)')) != "sha512" 
+    become: yes
+    tags:
+      - passwdhashing
+      - 5.3.4
+      - five
+      - rollback
+      - all      
+      
+  - name: Rollback passwdexpiration
+    debug: msg={{ (database.stdout_lines[1]|from_json).passwdexpiration_5411_actual.passwdexpiration_5411_actual.split(',') | regex_replace('failed ', '') }}
+    register: passreg
+    when: ((database.stdout_lines[1]|from_json).passwdexpiration_5411_actual.passwdexpiration_5411_actual | regex_search('(password expiration)')) != "password expiration"
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.4.1.1
+      - five
+      - rollback
+      - all
+
+  - name: Rollback passwdexpiration
+    lineinfile:
+      path: /etc/login.defs
+      state: present
+      regexp: "^(PASS_MAX_DAYS.*)"
+      line: "{{ passreg.msg[0] }}"
+    when: ((database.stdout_lines[1]|from_json).passwdexpiration_5411_actual.passwdexpiration_5411_actual | regex_search('(password expiration)')) != "password expiration"
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.4.1.1
+      - five
+      - rollback
+      - all
+
+  - name: Rollback passwdexpiration
+    chage: user="{{ item | regex_search('[a-zA-Z].*')}}" sp_max="{{ item | regex_search('^[0-9]*') }}"
+    loop: "{{ passreg.msg }}"
+    when:
+      - ((database.stdout_lines[1]|from_json).passwdexpiration_5411_actual.passwdexpiration_5411_actual | regex_search('(password expiration)')) != "password expiration"
+      - item != "{{ passreg.msg[0] }}"
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.4.1.1
+      - five
+      - rollback
+      - all
+
+  - name: Rollback minidays
+    debug: msg={{ (database.stdout_lines[1]|from_json).minidays_5412_actual.minidays_5412_actual.split(',') | regex_replace('failed ', '') }}
+    register: minireg
+    when: ((database.stdout_lines[1]|from_json).minidays_5412_actual.minidays_5412_actual | regex_search('(minimum days)')) != "minimum days"
+    become: yes
+    tags:
+      - minidays
+      - 5.4.1.2
+      - five
+      - rollback
+      - all
+
+  - name: Rollback minidays
+    lineinfile:
+      path: /etc/login.defs
+      state: present
+      regexp: "^(PASS_MIN_DAYS.*)"
+      line: "{{ minireg.msg[0] }}"
+    when: ((database.stdout_lines[1]|from_json).minidays_5412_actual.minidays_5412_actual | regex_search('(minimum days)')) != "minimum days"
+    become: yes
+    tags:
+      - minidays
+      - 5.4.1.2
+      - five
+      - rollback
+      - all
+
+  - name: Rollback minidays
+    chage: user="{{ item | regex_search('[a-zA-Z].*')}}" sp_min="{{ item | regex_search('^[0-9]*') }}"
+    loop: "{{ minireg.msg }}"
+    when:
+      - ((database.stdout_lines[1]|from_json).minidays_5412_actual.minidays_5412_actual | regex_search('(minimum days)')) != "minimum days"
+      - item != "{{ minireg.msg[0] }}"
+    become: yes
+    tags:
+      - minidays
+      - 5.4.1.2
+      - five
+      - rollback
+      - all    
+
+  - name: Rollback warningdays
+    debug: msg={{ (database.stdout_lines[1]|from_json).warningdays_5413_actual.warningdays_5413_actual.split(',') | regex_replace('failed ', '') }}
+    register: warnreg
+    when: ((database.stdout_lines[1]|from_json).warningdays_5413_actual.warningdays_5413_actual | regex_search('(warning days)')) != "warning days"
+    become: yes
+    tags:
+      - warningdays
+      - 5.4.1.3
+      - five
+      - rollback
+      - all
+
+  - name: Rollback warningdays
+    lineinfile:
+      path: /etc/login.defs
+      state: present
+      regexp: "^(PASS_WARN_AGE.*)"
+      line: "{{ warnreg.msg[0] }}"
+    when: ((database.stdout_lines[1]|from_json).warningdays_5413_actual.warningdays_5413_actual | regex_search('(warning days)')) != "warning days"
+    become: yes
+    tags:
+      - warningdays
+      - 5.4.1.3
+      - five
+      - rollback
+      - all
+
+  - name: Rollback warningdays
+    chage: user="{{ item | regex_search('[a-zA-Z].*')}}" sp_warn="{{ item | regex_search('^[0-9]*') }}"
+    loop: "{{ warnreg.msg }}"
+    when:
+      - ((database.stdout_lines[1]|from_json).warningdays_5413_actual.warningdays_5413_actual | regex_search('(warning days)')) != "warning days"
+      - item != "{{ warnreg.msg[0] }}"
+    become: yes
+    tags:
+      - warningdays
+      - 5.4.1.3
+      - five
+      - rollback
+      - all    
+
+  - name: Rollback inactivepasswdlock
+    debug: msg={{ (database.stdout_lines[1]|from_json).inactivepasswdlock_5414_actual.inactivepasswdlock_5414_actual.split(',') | regex_replace('failed ', '') }}
+    register: inactreg
+    when: ((database.stdout_lines[1]|from_json).inactivepasswdlock_5414_actual.inactivepasswdlock_5414_actual | regex_search('(inactive password)')) != "inactive password"
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.4.1.4
+      - five
+      - rollback
+      - all
+
+  - name: Rollback inactivepasswdlock
+    shell: "useradd -D -f {{ inactreg.msg[0] | regex_replace('INACTIVE ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).inactivepasswdlock_5414_actual.inactivepasswdlock_5414_actual | regex_search('(inactive password)')) != "inactive password"
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.4.1.4
+      - five
+      - rollback
+      - all
+
+  - name: Rollback inactivepasswdlock
+    chage: user="{{ item | regex_search('[a-zA-Z].*')}}" sp_inact="{{ item | regex_search('^[0-9]*') }}"
+    loop: "{{ inactreg.msg }}"
+    when:
+      - ((database.stdout_lines[1]|from_json).inactivepasswdlock_5414_actual.inactivepasswdlock_5414_actual | regex_search('(inactive password)')) != "inactive password"
+      - item != "{{ inactreg.msg[0] }}"
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.4.1.4
+      - five
+      - rollback
+      - all      
+
+  - name: Rollback lastpasswdchange
+    command: "passwd -f -u {{item}}"
+    loop: "{{ ((database.stdout_lines[1]|from_json).lastpasswdchange_5415_actual.lastpasswdchange_5415_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).lastpasswdchange_5415_actual.lastpasswdchange_5415_actual | regex_search('(in the past)')) != "in the past"
+    become: yes
+    tags:
+      - lastpasswdchange
+      - 5.4.1.5
+      - five
+      - rollback
+      - all
+
+  - name: Rollback sysaccnonlogin
+    user:
+      name: "{{ item |  regex_search('^[a-z]*') }}"
+      shell: "{{ item |  regex_search('/.*') }}"
+    loop: "{{ (database.stdout_lines[1]|from_json).sysaccnonlogin_542_actual.sysaccnonlogin_542_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).sysaccnonlogin_542_actual.sysaccnonlogin_542_actual | regex_search('(System accounts)')) != "System accounts"
+    ignore_errors: true
+    become: yes
+    tags:
+      - sysaccnonlogin
+      - 5.4.2
+      - five
+      - rollback
+      - all      
+      
+  - name: Rollback defaultgroup
+    shell: 'usermod -g {{ item }} root'
+    loop: "{{ (database.stdout_lines[1]|from_json).defaultgroup_543_actual.defaultgroup_543_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).defaultgroup_543_actual.defaultgroup_543_actual | regex_search('(default group)')) != "default group"
+    become: yes
+    tags:
+      - defaultgroup
+      - 5.4.3
+      - five
+      - rollback
+      - all
+
+  - name: Rollback defaultuser
+    copy:
+      src: '/etc/ansible/backup/defaultuser/'
+      dest: /etc/
+      remote_src: yes
+    when: ((database.stdout_lines[1]|from_json).defaultuser_544_actual.defaultuser_544_actual | regex_search('(UMASK)')) != "UMASK"
+    become: yes
+    tags:
+      - defaultuser
+      - 5.4.4
+      - five
+      - rollback
+      - all
+
+  - name: Rollback defaultuser
+    lineinfile:
+      path: /etc/pam.d/common-session
+      regexp: "session optional                        pam_umask.so"
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).defaultuser_544_actual.defaultuser_544_actual | regex_search('(UMASK)')) != "UMASK"
+    become: yes
+    tags:
+      - defaultuser
+      - 5.4.4
+      - five
+      - rollback
+      - all
+    
+  - name: Rollback usershelltimeout
+    lineinfile:
+      path: /etc/profile
+      state: absent
+      line: '{{ item }}'
+    with_items:
+      - "TMOUT=900"
+      - "readonly TMOUT"
+      - "export TMOUT"
+    when: ((database.stdout_lines[1]|from_json).usershelltimeout_545_actual.usershelltimeout_545_actual | regex_search('(user shell timeout is configured)')) != "user shell timeout is configured" 
+    become: yes
+    tags:
+      - usershelltimeout
+      - 5.4.5
+      - five
+      - rollback
+      - all  
+
+  - name: Rollback rootlogin
+    debug: msg={{ (database.stdout_lines[1]|from_json).rootlogin_55_actual.rootlogin_55_actual.split(',') | regex_replace('failed ', '') }}
+    register: rootloreg
+    when: ((database.stdout_lines[1]|from_json).rootlogin_55_actual.rootlogin_55_actual | regex_search('(root login)')) != "root login"
+    become: yes
+    tags:
+      - '5.5'
+      - rootlogin
+      - five
+      - rollback
+      - all
+
+  - name: Rollback rootlogin
+    lineinfile:
+      path: /etc/securetty
+      state: present
+      line: "{{item}}"
+    loop: "{{ (database.stdout_lines[1]|from_json).rootlogin_55_actual.rootlogin_55_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).rootlogin_55_actual.rootlogin_55_actual | regex_search('(root login)')) != "root login"
+    become: yes
+    tags:
+      - '5.5'
+      - rootlogin
+      - five
+      - rollback
+      - all
+  
+  - name: Rollback suaccess
+    replace:
+      path: /etc/pam.d/su
+      regexp: '^(auth.*required.*pam_wheel.so.*use_uid.*group=sugroup)
+      replace: '#\1'
+    when: ((database.stdout_lines[1]|from_json).suaccess_56_actual.suaccess_56_actual | regex_search('(pam_wheel.so)')) != "pam_wheel.so"
+    become: yes
+    tags:
+      - suaccess
+      - '5.6'
+      - five
+      - rollback
+      - all
+      
+  - name: Rollback suaccess
+    command: sed -i '/auth.*required.*pam_wheel.so.*/s/use_uid group=sugroup//g' /etc/pam.d/su
+    when: ((database.stdout_lines[1]|from_json).suaccess_56_actual.suaccess_56_actual | regex_search('(pam_wheel.so)')) != "pam_wheel.so"
+    become: yes
+    tags:
+      - suaccess
+      - '5.6'
+      - five
+      - rollback
+      - all
+    
+  - name: Rollback permpasswd
+    file:
+      path: "/etc/passwd"
+      mode: 0640
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permpasswd_612_actual.permpasswd_612_actual | regex_search('(/etc/passwd)')) != "/etc/passwd"
+    become: yes
+    tags:
+      - permpasswd
+      - 6.1.2
+      - six
+      - rollback
+      - all      
+      
+  - name: Rollback permgshadowi
+    file:
+      path: "/etc/gshadow-"
+      mode: 0644
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permgshadowi_613_actual.permgshadowi_613_actual | regex_search('(/etc/gshadow-)')) != "/etc/gshadow-"
+    become: yes
+    tags:
+      - permgshadowi
+      - 6.1.3
+      - six
+      - rollback
+      - all
+
+  - name: Rollback permgshadowi
+    file:
+      path: "/etc/gshadow-"
+      mode: 0644
+      owner: root
+      group: shadow
+    when: ((database.stdout_lines[1]|from_json).permgshadowi_613_actual.permgshadowi_613_actual | regex_search('(/etc/gshadow-)')) != "/etc/gshadow-"
+    become: yes
+    tags:
+      - permgshadowi
+      - 6.1.3
+      - six
+      - rollback
+      - all      
+      
+  - name: Rollback permshadow
+    file:
+      path: "/etc/shadow"
+      mode: 0644
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permshadow_614_actual.permshadow_614_actual | regex_search('(/etc/shadow)')) != "/etc/shadow"
+    become: yes
+    tags:
+      - permshadow
+      - 6.1.4
+      - six
+      - rollback
+      - all   
+
+  - name: Rollback permshadow
+    file:
+      path: "/etc/shadow"
+      mode: 0644
+      owner: root
+      group: shadow
+    when: ((database.stdout_lines[1]|from_json).permshadow_614_actual.permshadow_614_actual | regex_search('(/etc/shadow)')) != "/etc/shadow"
+    become: yes
+    tags:
+      - permshadow
+      - 6.1.4
+      - six
+      - rollback
+      - all         
+      
+  - name: Rollback permgroup
+    file:
+      path: "/etc/group"
+      mode: 0640
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permgroup_615_actual.permgroup_615_actual | regex_search('(/etc/group)')) != "/etc/group"
+    become: yes
+    tags:
+      - permgroup
+      - 6.1.5
+      - six
+      - rollback
+      - all     
+      
+  - name: Rollback permpasswdi
+    file:
+      path: "/etc/passwd-"
+      mode: 0640
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permpasswdi_616_actual.permpasswdi_616_actual | regex_search('(/etc/passwd-)')) != "/etc/passwd-"
+    become: yes
+    tags:
+      - permpasswdi
+      - 6.1.6
+      - six
+      - rollback
+      - all
+
+  - name: Rollback permshadowi
+    file:
+      path: "/etc/shadow-"
+      mode: 0644
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permshadowi_617_actual.permshadowi_617_actual | regex_search('(/etc/shadow-)')) != "/etc/shadow-"
+    become: yes
+    tags:
+      - permshadowi
+      - 6.1.7
+      - six
+      - rollback
+      - all
+
+  - name: Rollback permgroupi
+    file:
+      path: "/etc/group-"
+      mode: 0640
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permgroupi_618_actual.permgroupi_618_actual | regex_search('(/etc/group-)')) != "/etc/group-"
+    become: yes
+    tags:
+      - permgroupi
+      - 6.1.8
+      - six
+      - rollback
+      - all
+
+  - name: Rollback permgshadow
+    file:
+      path: "/etc/gshadow"
+      mode: 0644
+      owner: root
+      group: root
+    when: ((database.stdout_lines[1]|from_json).permgshadow_619_actual.permgshadow_619_actual | regex_search('(/etc/gshadow)')) != "/etc/gshadow"
+    become: yes
+    tags:
+      - permgshadow
+      - 6.1.9
+      - six
+      - rollback
+      - all      
+      
+  - name: Rollback wwfiles
+    file:
+      path: "{{ item |  regex_search('/.*') }}"
+      mode: "{{ item |  regex_search('[0-9]+') }}"
+    failed_when: no
+    loop: "{{ (database.stdout_lines[1]|from_json).wwfiles_6110_actual.wwfiles_6110_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).wwfiles_6110_actual.wwfiles_6110_actual | regex_search('(no world writable)')) != "no world writable"
+    become: yes
+    tags:
+      - wwfiles
+      - 6.1.10
+      - six
+      - rollback
+      - all    
+      
+  - name: Rollback unownedfiles
+    user:
+      name: unowneduser
+      state: present
+    when: ((database.stdout_lines[1]|from_json).unownedfiles_6111_actual.unownedfiles_6111_actual | regex_search('(no unowned files)')) != "no unowned files"
+    ignore_errors: true
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback unownedfiles
+    shell: chown -R unowneduser /{{ item }}
+    loop: "{{ ((database.stdout_lines[1]|from_json).unownedfiles_6111_actual.unownedfiles_6111_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).unownedfiles_6111_actual.unownedfiles_6111_actual | regex_search('(no unowned files)')) != "no unowned files"
+    failed_when: no
+    ignore_errors: true
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - rollback
+      - all
+    
+  - name: Rollback unownedfiles
+    user:
+      name: unowneduser
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).unownedfiles_6111_actual.unownedfiles_6111_actual | regex_search('(no unowned files)')) != "no unowned files"
+    failed_when: no
+    ignore_errors: true
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback unownedfiles
+    file:
+      path: '{{ item }}'
+      state: absent
+    with_items:
+      - /var/spool/mail/unowneduser
+      - /home/unowneduser
+    when: ((database.stdout_lines[1]|from_json).unownedfiles_6111_actual.unownedfiles_6111_actual | regex_search('(no unowned files)')) != "no unowned files"
+    ignore_errors: true
+    failed_when: no
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - rollback
+      - all
+
+  - name: grpadd
+    group:
+      name: ungroup
+      state: present
+    when: ((database.stdout_lines[1]|from_json).ungroupedfiles_6112_actual.ungroupedfiles_6112_actual | regex_search('(no ungrouped files)')) != "no ungrouped files"
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - rollback
+      - all
+    
+  - name: backup
+    shell: chgrp -R ungroup /{{ item }}
+    loop: "{{ ((database.stdout_lines[1]|from_json).ungroupedfiles_6112_actual.ungroupedfiles_6112_actual.stdout.split(',') | regex_replace('failed ', '')) }}"    
+    when: ((database.stdout_lines[1]|from_json).ungroupedfiles_6112_actual.ungroupedfiles_6112_actual | regex_search('(no ungrouped files)')) != "no ungrouped files"
+    failed_when: no
+    ignore_errors: true
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - rollback
+      - all
+
+  - name: grpremove
+    group:
+      name: ungroup
+      state: absent
+    when: ((database.stdout_lines[1]|from_json).ungroupedfiles_6112_actual.ungroupedfiles_6112_actual | regex_search('(no ungrouped files)')) != "no ungrouped files"
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback emptypasswd
+    command: "passwd -f -u {{item}}"
+    loop: "{{ ((database.stdout_lines[1]|from_json).emptypasswd_621_actual.emptypasswd_621_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).emptypasswd_621_actual.emptypasswd_621_actual | regex_search('(Password fields)')) != "Password fields"
+    become: yes
+    tags:
+      - emptypasswd
+      - 6.2.1
+      - six
+      - rollback
+      - all
+    
+  - name: Rollback rootuid
+    shell: |
+      a=$(grep '{{item}}' /etc/passwd | awk -F: '{print $3}')
+      sed -i '/{{item}}/s/\x:'$a'\:/x:0:/g' /etc/passwd
+    loop: "{{ ((database.stdout_lines[1]|from_json).rootuid_622_actual.rootuid_622_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).rootuid_622_actual.rootuid_622_actual | regex_search('(Root is the only UID)')) != "Root is the only UID"
+    become: yes
+    tags:
+      - rootuid
+      - 6.2.2
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback usershdir
+    file:
+      path: "/home/{{ item }}"
+      state: absent
+    failed_when: no
+    loop: "{{ ((database.stdout_lines[1]|from_json).userhdir_624_actual.userhdir_624_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).userhdir_624_actual.userhdir_624_actual | regex_search('(users home)')) != "users home"
+    become: yes
+    tags:
+      - usershdir
+      - 6.2.4
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback userhdirperm
+    file:
+      path: "{{ item | regex_search('/.*') }}"
+      state: directory
+      mode: "{{ item | regex_search('[0-9]+') }}"
+    loop: "{{ (database.stdout_lines[1]|from_json).userhdirperm_625_actual.userhdirperm_625_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).userhdirperm_625_actual.userhdirperm_625_actual | regex_search('(home directories)')) != "home directories"
+    become: yes
+    tags:
+      - userhdirperm
+      - 6.2.5
+      - six
+      - rollback
+      - all 
+
+  - name: Rollback userownhdir
+    file:
+      path: "{{ item.split(' ')[0] }}"
+      owner: "{{ item.split(' ')[1] }}"
+      group: "{{ item.split(' ')[1] }}"
+    loop: "{{ (database.stdout_lines[1]|from_json).userownhdir_626_actual.userownhdir_626_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).userownhdir_626_actual.userownhdir_626_actual | regex_search('users own')) != "users own"
+    become: yes
+    tags:
+      - userownhdir
+      - 6.2.6
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback dotfiles
+    file:
+      path: "{{ item |  regex_search('/.*') }}"
+      mode: "{{ item |  regex_search('[0-9]+') }}"
+    failed_when: no
+    loop: "{{ (database.stdout_lines[1]|from_json).dotfiles_627_actual.dotfiles_627_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).dotfiles_627_actual.dotfiles_627_actual | regex_search('(dot files)')) != "dot files"
+    become: yes
+    tags:
+      - dotfiles
+      - 6.2.7
+      - six
+      - rollback
+      - all
+
+  - name: Rollback forwardfiles
+    copy:
+      src: /etc/ansible/backup/forwardfiles{{item}}
+      dest: '{{item}}'
+      remote_src: yes
+    loop: "{{ ((database.stdout_lines[1]|from_json).forwardfiles_628_actual.forwardfiles_628_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).forwardfiles_628_actual.forwardfiles_628_actual | regex_search('(Users have)')) != "Users have"
+    become: yes
+    tags:
+      - forwardfiles
+      - 6.2.8
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback netrcfiles
+    copy:
+      src: /etc/ansible/backup/netrcfiles{{item}}
+      dest: '{{item}}'
+      remote_src: yes
+    loop: "{{ ((database.stdout_lines[1]|from_json).netrcfiles_629_actual.netrcfiles_629_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).netrcfiles_629_actual.netrcfiles_629_actual | regex_search('(no users have)')) != "no users have"      
+    become: yes
+    tags:
+      - netrcfiles
+      - 6.2.9
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback grpnetrcfiles
+    file:
+      path: "{{ item |  regex_search('/.*') }}"
+      mode: "{{ item |  regex_search('[0-9]+') }}"
+    failed_when: no
+    loop: "{{ (database.stdout_lines[1]|from_json).grpnetrcfiles_6210_actual.grpnetrcfiles_6210_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).grpnetrcfiles_6210_actual.grpnetrcfiles_6210_actual | regex_search('(Users .netrc files)')) != "Users .netrc files"
+    become: yes
+    tags:
+      - grpnetrcfiles
+      - 6.2.10
+      - six
+      - rollback
+      - all    
+
+  - name: Rollback rhosts
+    copy:
+      src: /etc/ansible/backup/rhosts{{item}}
+      dest: '{{item}}'
+      remote_src: yes
+    loop: "{{ ((database.stdout_lines[1]|from_json).rhosts_6211_actual.rhosts_6211_actual.split(',') | regex_replace('failed ', '')) }}"
+    when: ((database.stdout_lines[1]|from_json).rhosts_6211_actual.rhosts_6211_actual | regex_search('(no users have)')) != "no users have"
+    become: yes
+    tags:
+      - rhosts
+      - 6.2.11
+      - six
+      - rollback
+      - all
+   
+  - name: Rollback groups
+    lineinfile:
+      path: /etc/group
+      regexp: "^({{ item | regex_search('[a-z]*') }})"
+      state: absent
+    failed_when: no
+    loop: "{{ (database.stdout_lines[1]|from_json).groups_6212_actual.groups_6212_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).groups_6212_actual.groups_6212_actual | regex_search('(exist in)')) != "exist in"
+    become: yes
+    tags:
+      - groups
+      - 6.2.12
+      - six
+      - rollback
+      - all
+      
+  - name: Rollback duplicateuid
+    user:
+      name: "{{ item | regex_search('[a-z]*') }}"
+      uid: "{{ item | regex_search('[0-9]+') }}"
+      non_unique: yes
+    failed_when: no      
+    loop: "{{ (database.stdout_lines[1]|from_json).duplicateuid_6213_actual.duplicateuid_6213_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).duplicateuid_6213_actual.duplicateuid_6213_actual | regex_search('(no duplicate UIDs)')) != "no duplicate UIDs"
+    become: yes
+    tags:
+      - duplicateuid
+      - 6.2.13
+      - six
+      - rollback
+      - all    
+      
+  - name: Rollback duplicategid
+    group:
+      name: "{{ item | regex_search('[a-z]*') }}"
+      gid: "{{ item | regex_search('[0-9]+') }}"
+      non_unique: yes
+    failed_when: no
+    loop: "{{ (database.stdout_lines[1]|from_json).duplicategid_6214_actual.duplicategid_6214_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).duplicategid_6214_actual.duplicategid_6214_actual | regex_search('(no duplicate GIDs)')) != "no duplicate GIDs"
+    become: yes
+    tags:
+      - duplicategid
+      - 6.2.14
+      - six
+      - rollback
+      - all    
+      
+  - name: Rollback shadowgroup
+    user:
+       name: "{{item}}"
+       group: shadow
+    failed_when: no
+    loop: "{{ (database.stdout_lines[1]|from_json).shadowgroup_6217_actual.shadowgroup_6217_actual.split(',') | regex_replace('failed ', '') }}"
+    when: ((database.stdout_lines[1]|from_json).shadowgroup_6217_actual.shadowgroup_6217_actual | regex_search('(is empty)')) != "is empty"
+    become: yes
+    tags:
+      - shadowgroup
+      - 6.2.17
+      - six
+      - rollback
+      - all
+
+  - name: Rollback shadowgroup
+    lineinfile:
+      path: /etc/group
+      state: present
+      regexp: '^(shadow:x:.*)$'
+      line: \1{{ (database.stdout_lines[1]|from_json).shadowgroup_6217_actual.shadowgroup_6217_actual | regex_replace('failed ', '') }}
+      backrefs: yes
+    failed_when: no
+    when: ((database.stdout_lines[1]|from_json).shadowgroup_6217_actual.shadowgroup_6217_actual | regex_search('(is empty)')) != "is empty"
+    become: yes
+    tags:
+      - shadowgroup
+      - 6.2.17
+      - six
+      - rollback
+      - all    
+
+  - name: Include Database
+    include: tasks/after_linux.yml

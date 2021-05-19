@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.11 - Ensure system-wide crypto policy is FUTURE or FIPS (Scored)
+
+if [ "$( grep -E -i '^\s*(FUTURE|FIPS)\s*(\s+#.*)?$' /etc/crypto-policies/config 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{\"crypolicyfuture_111_audit\"  :  \"FAILED\"}"
+else
+   echo "{\"crypolicyfuture_111_audit\" : \"PASSED\"}"
+fi

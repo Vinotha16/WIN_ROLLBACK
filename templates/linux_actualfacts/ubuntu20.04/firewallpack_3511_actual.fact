@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(dpkg -s ufw | grep -i status | grep "ok installed")
+if [ $(dpkg -s ufw | grep -i status | grep "ok installed" | wc -l) -eq 0 ]; then
+  echo "{ \"firewallpack_3511_actual\" : \"\" }"
+else
+  echo "{ \"firewallpack_3511_actual\" : \"${cmd}\" }"
+  exit 1
+fi

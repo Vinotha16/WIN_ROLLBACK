@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.1.2 - Ensure mounting of squashfs filesystems is disabled (Scored)
+
+if [ $(sudo  modprobe --showconfig 2> /dev/null | grep squashfs 2> /dev/null | grep "install squashfs /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod 2> /dev/null | grep squashfs | wc -l) -ne 0 ]; then
+   echo "{ \"squashfs_1112_audit\" : \"FAILED\" }"
+else
+   echo "{ \"squashfs_1112_audit\" : \"PASSED\" }"
+
+fi

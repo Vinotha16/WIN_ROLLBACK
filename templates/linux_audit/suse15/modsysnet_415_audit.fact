@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.5 - Ensure events that modify the system's network environment are collected (Scored)
+
+if [ $(sudo grep system-locale /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep system-locale | wc -l) -eq 0 ]; then
+   echo "{ \"modsysnet_415_audit\" : \"FAILED\" }"
+else
+   echo "{ \"modsysnet_415_audit\" : \"PASSED\" }"
+   
+fi

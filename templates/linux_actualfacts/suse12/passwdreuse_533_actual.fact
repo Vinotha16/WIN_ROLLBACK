@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(cat /etc/pam.d/common-password | grep "^password.*required.*pam_pwhistory.so.*remember=5")
+if [ $(sudo grep "^password.*required.*pam_pwhistory.so.*remember=5" /etc/pam.d/common-password | wc -l) -eq 0 ] ; then
+   echo "{ \"passwdreuse_533_actual\" : \"\" }"
+else
+   echo "{ \"passwdreuse_533_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

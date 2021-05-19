@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.15 - Ensure all groups in /etc/passwd exist in /etc/group (Scored)
+
+for i in `sudo awk -F: '$3>=1000 && $7!="/usr/sbin/nologin" && $7!="/bin/false" { print $4 }' /etc/passwd`; do
+    if [ `sudo egrep "^.*?:[^:]*:$i:" /etc/group | wc -l` -eq 0 ]; then
+       echo "{ \"6.2.15 - All groups in /etc/passwd not exist in /etc/group\" : \"FAILED\" }"
+     else
+       echo "{ \"groups_6215_audit\" : \"PASSED\" }"
+    fi
+exit 0
+done

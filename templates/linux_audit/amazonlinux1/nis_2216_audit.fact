@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.16 - Ensure NIS Server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list ypserv 2>/dev/null | grep ":on" | wc -l) -eq 1 ]; then
+    echo "{ \"nis_2216_audit\" : \"FAILED\" }"
+else
+    echo "{ \"nis_2216_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cmd=$(rpm -qa nftables)
+if [ $(rpm -qa nftables | wc -l) -eq 0 ]; then
+      echo "{ \"nftablesins_3521_actual\" : \"\"}"
+else
+      echo "{ \"nftablesins_3521_actual\" : \"$cmd\"}"
+fi

@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.16 - Ensure noexec option set on /run/shm partition (Scored)
+
+if [ "$(mount | grep /run/shm.*noexec | wc -l)" -eq 0 ]; then
+   echo "{\"1.1.16 - noexec option not set on /run/shm partition\"  :   \"FAILED\"}"
+else
+   echo "{\" shmnoexec_1116_audit\"    :    \"PASSED\"}"
+
+   
+fi
+

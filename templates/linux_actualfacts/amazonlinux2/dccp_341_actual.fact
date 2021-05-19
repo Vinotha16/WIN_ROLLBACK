@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo modprobe -n -v dccp | grep "install /bin/true" | paste -sd ",")
+if [ $(sudo modprobe -n -v dccp | grep "install /bin/true" | wc -l) -eq 0 ] || [ $(lsmod | grep dccp | wc -l) -ne 0 ]; then
+   echo "{ \"dccp_341_actual\" : \"\" }"
+else
+   echo "{ \"dccp_341_actual\" : \"${cmd}\" }"
+   exit 1
+fi

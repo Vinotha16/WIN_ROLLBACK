@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(sudo rpm -qa tcp_wrappers | grep "tcp_wrappers-[0-9]")
+b=$(sudo rpm -qa tcp_wrappers-libs | grep "tcp_wrappers-libs")
+cmd="${a}","${b}"
+if [ $(sudo rpm -qa | grep ^tcp_wrappers-[0-9] | wc -l) -eq 0 ] || [ $(sudo rpm -qa | grep ^tcp_wrappers-libs | wc -l) -eq 0 ]; then
+   echo "{ \"tcpwrappers_341_actual\" : \"\" }"
+else
+   echo "{ \"tcpwrappers_341_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

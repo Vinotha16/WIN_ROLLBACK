@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(sudo find / -xdev \( -perm -4000 -o -perm -2000 \) -type f | awk '{print "-a always,exit -F path=" $1 " -F perm=x -F auid>=1000 -F auid!=4294967295 -k privileged" }' | grep "privileged" /etc/audit/rules.d/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"privilegecmd_4112_actual\" : \"\" }"
+else
+   echo "{ \"privilegecmd_4112_actual\" : \"Use of privileged commands is collected\" }"
+   exit 1
+fi
+

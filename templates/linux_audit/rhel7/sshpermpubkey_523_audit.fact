@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+#5.2.3 Ensure permissions on SSH public host key files are configured (Automated)
+
+if [ $(sudo stat /etc/ssh/ssh_host_*_key.pub | grep 0644 | wc -l) -eq 0 ] || [ $(sudo stat /etc/ssh/ssh_host_*_key.pub | grep ".*Uid:.*0/.*root" | wc -l) -eq 0 ] || [ $(sudo stat /etc/ssh/ssh_host_*_key.pub | grep ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+        echo "{ \"sshpermpubkey_523_audit\" : \"FAILED\" }"
+else
+                echo "{ \"sshpermpubkey_523_audit\" : \"PASSED\" }"
+                exit 1
+fi

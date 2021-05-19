@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+DisableIPSourceRouting
+DWORD:2
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

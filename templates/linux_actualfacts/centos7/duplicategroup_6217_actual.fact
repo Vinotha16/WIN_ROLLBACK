@@ -1,0 +1,12 @@
+#!/bin/bash
+count=0
+if [ $(cat /etc/group | cut -f1 -d":" | sort -n | uniq -c | awk '$1 > 1' | wc -l) -ne 0 ]; then
+        count=$((count+1))
+fi
+
+if [ "$count" -ne "0" ]; then
+   echo "{ \"duplicategroup_6217_actual\" : \"\" }"
+else
+   echo "{ \"duplicategroup_6217_actual\" : \"no duplicate group names exist\" }"
+   exit 0
+fi

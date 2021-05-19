@@ -1,0 +1,10 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 2.1.3 - Ensure discard services are not enabled (Scored)
+
+if [ $(chkconfig --list 2>/dev/null | egrep "discard.*off|discard-udp.*off" | wc -l) -eq 0 ]; then
+    echo "{ \"discard_213_audit\" : \"FAILED\" }"
+else
+   echo "{ \"discard_213_audit\" : \"PASSED\" }"
+fi

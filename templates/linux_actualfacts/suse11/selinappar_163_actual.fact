@@ -1,0 +1,10 @@
+#!/bin/bash
+cmd=$(rpm -qa libselinux1)
+cmd1=$(rpm -qa libapparmor1 apparmor-utils | paste -sd ",")
+if [ "$(sudo rpm -qa libselinux1 | wc -l)" -eq 1 ]; then
+    echo "{\"selinappar_163_actual\" : \"$cmd\"}"
+elif [ $(sudo rpm -qa libapparmor1 apparmor-utils | wc -l) -ge 1 ]; then
+    echo "{ \"selinappar_163_actual\" : \"$cmd1\" }"
+else
+    echo "{ \"selinappar_163_actual\" : \"\" }"
+fi

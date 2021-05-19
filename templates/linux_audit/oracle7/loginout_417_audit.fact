@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.7 - Ensure login and logout events are collected (Scored)
+
+if [ $(sudo grep "logins" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep logins | wc -l) -eq 0 ] ; then
+   echo "{ \"loginout_417_audit\" : \"FAILED\" }"
+else
+   echo "{ \"loginout_417_audit\" : \"PASSED\" }"
+fi

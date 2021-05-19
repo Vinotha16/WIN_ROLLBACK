@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.3 - Ensure sudo log file exists (Scored)
+
+if [ "$(sudo grep -Ei '^\s*Defaults\s+([^#;]+,\s*)?logfile\s*=\s*(")?[^#;]+(")?' /etc/sudoers /etc/sudoers.d/* 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"sudologfiles_523_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sudologfiles_523_audit\" : \"PASSED\" }"
+fi

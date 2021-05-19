@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.4.2 - Ensure lockout for failed password attempts is configured (Scored)
+
+if [ $( sudo grep "unlock_time=900" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $( sudo grep "default=bad" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "unlock_time=900" /etc/pam.d/system-auth | wc -l) -eq 0 ] || [ $( sudo grep "default=bad" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{\"lockout_542_audit\" : \"FAILED\"}"
+else
+   echo "{\"lockout_542_audit\" : \"PASSED\"}"
+   
+fi
+

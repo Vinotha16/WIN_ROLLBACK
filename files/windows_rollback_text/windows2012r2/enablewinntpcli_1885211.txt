@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+SOFTWARE\Policies\Microsoft\W32Time\TimeProviders\NtpClient
+Enabled
+DWORD:
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

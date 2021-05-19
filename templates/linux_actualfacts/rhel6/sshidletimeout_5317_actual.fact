@@ -1,0 +1,13 @@
+#!/bin/bash
+a=$(sshd -T 2> /dev/null | grep -i 'clientaliveinterval')
+b=$(sshd -T 2> /dev/null | grep -i 'clientalivecountmax')
+cmd="${a}","${b}"
+if [ $(sshd -T 2> /dev/null | grep -i 'clientaliveinterval' | awk -F ' ' '{print $2}') -eq 0 ]; then
+   echo "{ \"sshidletimeout_5317_actual\" : \"\" }"
+else
+      if [ $(sudo sshd -T 2> /dev/null | grep -i 'clientaliveinterval' | awk -F ' ' '{print $2}') -gt 300 ] || [ $(sudo sshd -T 2> /dev/null | grep -i 'clientalivecountmax' | awk -F ' ' '{print $2}') -gt 4 ]; then
+          echo "{ \"sshidletimeout_5317_actual\" : \"\" }"
+      else
+          echo "{ \"sshidletimeout_5317_actual\" : \"$cmd\" }"
+      fi
+fi

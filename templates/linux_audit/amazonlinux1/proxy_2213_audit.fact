@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.13 - Ensure HTTP Proxy Server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list squid 2>/dev/null | grep ":on" | wc -l) -eq 1 ]; then
+    echo "{ \"proxy_2213_audit\" : \"FAILED\" }"
+else
+    echo "{ \"proxy_2213_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+failfact=$(grep "^root:" /etc/passwd | cut -d: -f4 | paste -sd ",")
+if [ $(grep "^root:" /etc/passwd | cut -d: -f4) -ne 0 ]; then
+   echo "{ \"defaultgroup_553_actual\" : \"failed $failfact\" }"
+else
+   echo "{ \"defaultgroup_553_actual\" : \"default group for the root account is GID 0\" }"
+   exit 1
+fi

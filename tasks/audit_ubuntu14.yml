@@ -1,0 +1,2859 @@
+---
+######AUDIT######
+  - name: "Ensure custom fact directory exists"
+    shell: "find /etc/ -name 'ansible'"
+    become: yes
+    register: find
+    tags:
+      - audit
+
+  - name: Removing the existing audit directory
+    file:
+      path: /etc/ansible/audit.d
+      state: absent
+    become: yes
+    tags:
+      - always
+
+  - name: Creating the audit directory
+    file:
+      path: /etc/ansible/audit.d
+      state: directory
+      recurse: yes
+    become: yes
+    tags:
+      - always
+      
+  - name: Transfering cramfs audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/cramfs_1111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cramfs
+      - 1.1.1.1
+      - one
+      - audit
+      - all
+
+  - name: Transfering freevxfs audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/freevxfs_1112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - freevxfs
+      - 1.1.1.2
+      - one
+      - audit
+      - all
+
+  - name: Transfering jffs2 audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/jffs2_1113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - jffs2
+      - 1.1.1.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering hfs audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/hfs_1114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfs
+      - 1.1.1.4
+      - one
+      - audit
+      - all
+      
+  - name: Transfering hfsplus audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/hfsplus_1115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hfsplus
+      - 1.1.1.5
+      - one
+      - audit
+      - all
+      
+  - name: Transfering udf audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/udf_1116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - udf
+      - 1.1.1.6
+      - one
+      - audit
+      - all
+
+  - name: Transfering tmp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/tmp_112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmp
+      - 1.1.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering tmpnodev audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/tmpnodev_113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnodev
+      - 1.1.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering tmpnosuid audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/tmpnosuid_114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tmpnosuid
+      - 1.1.4
+      - one
+      - audit
+      - all
+      
+  - name: Transfering var audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/var_115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - var
+      - 1.1.5
+      - one
+      - audit
+      - all
+ 
+  - name: Transfering vartmp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/vartmp_116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vartmp
+      - 1.1.6
+      - one
+      - audit
+      - all
+      
+  - name: Transfering vtnodev audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/vtnodev_117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnodev
+      - 1.1.7
+      - one
+      - audit
+      - all
+
+  - name: Transfering vtnosuid audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/vtnosuid_118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnosuid
+      - 1.1.8
+      - one
+      - audit
+      - all
+      
+  - name: Transfering vtnoexec audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/vtnoexec_119_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - vtnoexec
+      - 1.1.9
+      - one
+      - audit
+      - all
+
+  - name: Transfering varlog audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/varlog_1110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlog
+      - 1.1.10
+      - one
+      - audit
+      - all
+      
+  - name: Transfering varlogaudit audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/varlogaudit_1111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - varlogaudit
+      - 1.1.11
+      - one
+      - audit
+      - all
+      
+  - name: Transfering home audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/home_1112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - home
+      - 1.1.12
+      - one
+      - audit
+      - all
+      
+  - name: Transfering homenodev audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/homenodev_1113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - homenodev
+      - 1.1.13
+      - one
+      - audit
+      - all
+      
+  - name: Transfering shmnodev audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/shmnodev_1114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnodev
+      - 1.1.14
+      - one
+      - audit
+      - all
+      
+  - name: Transfering shmnosuid audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/shmnosuid_1115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnosuid
+      - 1.1.15
+      - one
+      - audit
+      - all
+      
+  - name: Transfering shmnoexec audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/shmnoexec_1116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shmnoexec
+      - 1.1.16
+      - one
+      - audit
+      - all
+
+  - name: Transfering medianodev audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/medianodev_1117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianodev
+      - 1.1.17
+      - one
+      - audit
+      - all
+
+  - name: Transfering medianosuid audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/medianosuid_1118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianosuid
+      - 1.1.18
+      - one
+      - audit
+      - all
+
+  - name: Transfering medianoexec audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/medianoexec_1119_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - medianoexec
+      - 1.1.19
+      - one
+      - audit
+      - all
+      
+  - name: Transfering stickybit audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/stickybit_1120_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - stickybit
+      - 1.1.20
+      - one
+      - audit
+      - all
+      
+  - name: Transfering automount audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/automount_1121_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - automount
+      - 1.1.2.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering repoconfig audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/repoconfig_121_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - repoconfig
+      - 1.2.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering gpgkey audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/gpgkey_122_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - gpgkey
+      - 1.2.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering aide audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/aide_131_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - aide
+      - 1.3.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering fsintegrity audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/fsintegrity_132_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fsintegrity
+      - 1.3.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering bootloadperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/bootloadperm_141_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - 1.4.1
+      - bootloadperm
+      - one
+      - audit
+      - all
+      
+  - name: Transfering bootloadpass audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/bootloadpass_142_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - bootloadpass
+      - 1.4.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering singleusermode audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/singleusermode_143_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - singleusermode
+      - 1.4.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering coredumps audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/coredumps_151_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - coredumps
+      - 1.5.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering xdnx audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/xdnx_152_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - xdnx
+      - 1.5.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering aslr audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/aslr_153_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - aslr
+      - 1.5.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering prelink audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/prelink_154_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - prelink
+      - 1.5.4
+      - one
+      - audit
+      - all
+      
+  - name: Transfering seldisable audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/seldisable_1611_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - seldisable
+      - 1.6.1.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering selstate audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/selstate_1612_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - selstate
+      - 1.6.1.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering selpolicy audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/selpolicy_1613_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - selpolicy
+      - 1.6.1.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering armordisable audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/armordisable_1621_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - armorenforce
+      - 1.6.2.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering armorenforce audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/armorenforce_1622_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - armorenforce
+      - 1.6.2.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering selinappar audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/selinappar_163_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - selinappar
+      - 1.6.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering msgday audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/msgday_1711_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - msgday
+      - 1.7.1.1
+      - one
+      - audit
+      - all
+      
+  - name: Transfering locallogin audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/locallogin_1712_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - locallogin
+      - 1.7.1.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering remotelogin audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/remotelogin_1713_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotelogin
+      - 1.7.1.3
+      - one
+      - audit
+      - all
+      
+  - name: Transfering motdperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/motdperm_1714_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - motdperm
+      - 1.7.1.4
+      - one
+      - audit
+      - all
+      
+  - name: Transfering issueperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/issueperm_1715_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - issueperm
+      - 1.7.1.5
+      - one
+      - audit
+      - all
+      
+  - name: Transfering issuenetperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/issuenetperm_1716_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - issuenetperm
+      - 1.7.1.6
+      - one
+      - audit
+      - all
+      
+  - name: Transfering gdm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/gdm_172_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - gdm
+      - 1.7.2
+      - one
+      - audit
+      - all
+      
+  - name: Transfering updates audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/updates_18_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - updates
+      - '1.8'
+      - one
+      - audit
+      - all
+      
+  - name: Transfering chargen audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/chargen_211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - chargen
+      - 2.1.1
+      - two
+      - audit
+      - all
+      
+  - name: Transfering daytime audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/daytime_212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - daytime
+      - 2.1.2
+      - two
+      - audit
+      - all
+      
+  - name: Transfering discard audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/discard_213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - discard
+      - 2.1.3
+      - audit
+      - all
+      
+  - name: Transfering echo audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/echo_214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - echo
+      - 2.1.4
+      - audit
+      - all
+      
+  - name: Transfering time audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/time_215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - time
+      - 2.1.5
+      - audit
+      - all 
+      
+  - name: Transfering rsh  audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rsh_216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - rsh 
+      - 2.1.6
+      - audit
+      - all
+      
+  - name: Transfering talk audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/talk_217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - talk
+      - 2.1.7
+      - audit
+      - all
+      
+  - name: Transfering telnet audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/telnet_218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - telnet
+      - 2.1.8
+      - audit
+      - all
+      
+  - name: Transfering tftp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/tftp_219_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - tftp
+      - 2.1.9
+      - audit
+      - all
+  
+  - name: Transfering xinetd audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/xinetd_2110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - xinetd
+      - 2.1.10
+      - audit
+      - all
+      
+  - name: Transfering openxinetd audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/openxinetd_2111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - openxinetd
+      - 2.1.11
+      - audit
+      - all
+      
+  - name: Transfering timesync audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/timesync_2211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - timesync
+      - 2.2.1.1
+      - audit
+      - all
+      
+  - name: Transfering ntp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ntp_2212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - ntp
+      - 2.2.1.2
+      - audit
+      - all
+      
+  - name: Transfering chrony audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/chrony_2213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - chrony
+      - 2.2.1.3
+      - audit
+      - all
+      
+  - name: Transfering xorg audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/xorg_222_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - xorg
+      - 2.2.2
+      - audit
+      - all
+      
+  - name: Transfering avahi audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/avahi_223_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - avahi
+      - 2.2.3
+      - audit
+      - all
+      
+  - name: Transfering cups audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/cups_224_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - cups
+      - 2.2.4
+      - audit
+      - all
+      
+  - name: Transfering dhcp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/dhcp_225_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - dhcp
+      - 2.2.5
+      - audit
+      - all
+      
+  - name: Transfering ldap audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ldap_226_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - ldap
+      - 2.2.6
+      - audit
+      - all
+      
+  - name: Transfering nfsrpc audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/nfsrpc_227_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - nfsrpc
+      - 2.2.7
+      - audit
+      - all
+      
+  - name: Transfering dns audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/dns_228_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - dns
+      - 2.2.8
+      - audit
+      - all
+      
+  - name: Transfering ftp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ftp_229_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - ftp
+      - 2.2.9
+      - audit
+      - all
+  
+  - name: Transfering http audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/http_2210_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - http
+      - 2.2.10
+      - audit
+      - all
+      
+  - name: Transfering imap audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/imap_2211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - imap
+      - 2.2.11
+      - audit
+      - all
+      
+  - name: Transfering samba audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/samba_2212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - samba
+      - 2.2.12
+      - audit
+      - all
+      
+  - name: Transfering proxy audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/proxy_2213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - proxy
+      - 2.2.13
+      - audit
+      - all
+      
+  - name: Transfering snmp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/snmp_2214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - snmp
+      - 2.2.14
+      - audit
+      - all
+      
+  - name: Transfering mail audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/mail_2215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - mail
+      - 2.2.15
+      - audit
+      - all
+      
+  - name: Transfering rsync audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rsync_2216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - rsync
+      - 2.2.16
+      - audit
+      - all
+      
+  - name: Transfering nis audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/nis_2217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - nis
+      - 2.2.17
+      - audit
+      - all
+      
+  - name: Transfering nisc audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/nisc_231_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - nisc
+      - 2.3.1
+      - audit
+      - all
+      
+  - name: Transfering rshc audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rshc_232_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - rshc
+      - 2.3.2
+      - audit
+      - all
+      
+  - name: Transfering talkc audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/talkc_233_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - talkc
+      - 2.3.3
+      - audit
+      - all
+      
+  - name: Transfering telnetc audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/telnetc_234_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - telnetc
+      - 2.3.4
+      - audit
+      - all
+      
+  - name: Transfering ldapc audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ldapc_235_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - two
+      - ldapc
+      - 2.3.5
+      - audit
+      - all
+     
+  - name: Transfering ipforward audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ipforward_311_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipforward
+      - 3.1.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering packetredirect audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/packetredirect_312_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - packetredirect
+      - 3.1.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering routedpacket audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/routedpacket_321_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - routedpacket
+      - 3.2.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering icmp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/icmp_322_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - icmp
+      - 3.2.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering secureicmp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/secureicmp_323_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - secureicmp
+      - 3.2.3
+      - three
+      - audit
+      - all
+      
+  - name: Transfering suspicious audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/suspicious_324_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suspicious
+      - 3.2.4
+      - three
+      - audit
+      - all
+      
+  - name: Transfering broadcasticmp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/broadcasticmp_325_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - broadcasticmp
+      - 3.2.5
+      - three
+      - audit
+      - all
+      
+  - name: Transfering bogusicmp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/bogusicmp_326_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - bogusicmp
+      - 3.2.6
+      - three
+      - audit
+      - all
+      
+  - name: Transfering reversepathfilter audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/reversepathfilter_327_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - reversepathfilter
+      - 3.2.7
+      - three
+      - audit
+      - all
+      
+  - name: Transfering tcpsyncookies audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/tcpsyncookies_328_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpsyncookies
+      - 3.2.8
+      - three
+      - audit
+      - all
+      
+  - name: Transfering ipv6router audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ipv6router_331_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6router
+      - 3.3.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering ipv6redirects audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ipv6redirects_332_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6redirects
+      - 3.3.2
+      - three
+      - audit
+      - all 
+      
+  - name: Transfering ipv6disable audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ipv6disable_333_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ipv6disable
+      - 3.3.3
+      - three
+      - audit
+      - all
+
+  - name: Transfering tcpwrappers audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/tcpwrappers_341_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tcpwrappers
+      - 3.4.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering hostsallow audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/hostsallow_342_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsallow
+      - 3.4.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering hostsdeny audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/hostsdeny_343_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - hostsdeny
+      - 3.4.3
+      - three
+      - audit
+      - all
+      
+  - name: Transfering permhostsallow audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permhostsallow_344_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsallow
+      - 3.4.4
+      - three
+      - audit
+      - all
+      
+  - name: Transfering permhostsdeny audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permhostsdeny_345_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permhostsdeny
+      - 3.4.5
+      - three
+      - audit
+      - all
+      
+  - name: Transfering dccp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/dccp_351_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dccp
+      - 3.5.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering sctp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sctp_352_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sctp
+      - 3.5.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering rds audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rds_353_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rds
+      - 3.5.3
+      - three
+      - audit
+      - all
+      
+  - name: Transfering tipc audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/tipc_354_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - tipc
+      - 3.5.4
+      - three
+      - audit
+      - all
+      
+  - name: Transfering iptables audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/iptables_361_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - iptables
+      - 3.6.1
+      - three
+      - audit
+      - all
+      
+  - name: Transfering firewallpolicy audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/firewallpolicy_362_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallpolicy
+      - 3.6.2
+      - three
+      - audit
+      - all
+      
+  - name: Transfering loopbacktraffic audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/loopbacktraffic_363_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loopbacktraffic
+      - 3.6.3
+      - three
+      - audit
+      - all
+      
+  - name: Transfering outbound audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/outbound_364_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - outbound
+      - 3.6.4
+      - three
+      - audit
+      - all
+      
+  - name: Transfering firewallrules audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/firewallrules_365_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - firewallrules
+      - 3.6.5
+      - three
+      - audit
+      - all
+      
+  - name: Transfering wireless audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/wireless_37_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wireless
+      - '3.7'
+      - three
+      - audit
+      - all
+      
+  - name: Transfering auditlogsize audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/auditlogsize_4111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogsize
+      - 4.1.1.1
+      - four
+      - audit
+      - all
+      
+  - name: Transfering auditlogfull audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/auditlogfull_4112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogfull
+      - 4.1.1.2
+      - four
+      - audit
+      - all
+      
+  - name: Transfering auditlogdelete audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/auditlogdelete_4113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditlogdelete
+      - 4.1.1.3
+      - four
+      - audit
+      - all
+      
+  - name: Transfering auditdservice audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/auditdservice_412_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdservice
+      - 4.1.2
+      - four
+      - audit
+      - all
+      
+  - name: Transfering auditdenable audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/auditdenable_413_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditdenable
+      - 4.1.3
+      - four
+      - audit
+      - all
+      
+  - name: Transfering moddatetime audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/moddatetime_414_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - moddatetime
+      - 4.1.4
+      - four
+      - audit
+      - all
+      
+  - name: Transfering modusergrp audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/modusergrp_415_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modusergrp
+      - 4.1.5
+      - four
+      - audit
+      - all
+      
+  - name: Transfering modsysnet audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/modsysnet_416_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysnet
+      - 4.1.6
+      - four
+      - audit
+      - all
+      
+  - name: Transfering modsysmac audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/modsysmac_417_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - modsysmac
+      - 4.1.7
+      - four
+      - audit
+      - all
+      
+  - name: Transfering loginout audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/loginout_418_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - loginout
+      - 4.1.8
+      - four
+      - audit
+      - all
+      
+  - name: Transfering session audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/session_419_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - session
+      - 4.1.9
+      - four
+      - audit
+      - all
+      
+  - name: Transfering dacperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/dacperm_4110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dacperm
+      - 4.1.10
+      - four
+      - audit
+      - all
+      
+  - name: Transfering fileaccess audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/fileaccess_4111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fileaccess
+      - 4.1.11
+      - four
+      - audit
+      - all
+      
+  - name: Transfering privilegecmd audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/privilegecmd_4112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - privilegecmd
+      - 4.1.12
+      - four
+      - audit
+      - all
+      
+  - name: Transfering fsmount audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/fsmount_4113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - fsmount
+      - 4.1.13
+      - four
+      - audit
+      - all
+      
+  - name: Transfering filedeletion audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/filedeletion_4114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - filedeletion
+      - 4.1.14
+      - four
+      - audit
+      - all
+      
+  - name: Transfering sudoers audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sudoers_4115_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudoers
+      - 4.1.15
+      - four
+      - audit
+      - all
+      
+  - name: Transfering sudolog audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sudolog_4116_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sudolog
+      - 4.1.16
+      - four
+      - audit
+      - all
+      
+  - name: Transfering kernelmodule audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/kernelmodule_4117_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - kernelmodule
+      - 4.1.17
+      - four
+      - audit
+      - all
+      
+  - name: Transfering auditconfig audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/auditconfig_4118_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditconfig
+      - 4.1.18
+      - four
+      - audit
+      - all
+      
+  - name: Transfering rsyslogenb audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rsyslogenb_4211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogenb
+      - 4.2.1.1
+      - four
+      - audit
+      - all
+      
+  - name: Transfering rloggingconf audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rloggingconf_4212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rloggingconf
+      - 4.2.1.2
+      - four
+      - audit
+      - all 
+      
+  - name: Transfering rsyslogperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rsyslogperm_4213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogperm
+      - 4.2.1.3
+      - four
+      - audit
+      - all 
+      
+  - name: Transfering rsyslogsendlogs audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rsyslogsendlogs_4214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogsendlogs
+      - 4.2.1.4
+      - four
+      - audit
+      - all
+      
+  - name: Transfering remotesyslogmsg audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/remotesyslogmsg_4215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogmsg
+      - 4.2.1.5
+      - four
+      - audit
+      - all 
+      
+  - name: Transfering syslogngenb audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/syslogngenb_4221_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngenb
+      - 4.2.2.1
+      - four
+      - audit
+      - all
+      
+  - name: Transfering sloggingconf audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sloggingconf_4222_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sloggingconf
+      - 4.2.2.2
+      - four
+      - audit
+      - all
+      
+  - name: Transfering syslogngperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/syslogngperm_4223_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngperm
+      - 4.2.2.3
+      - four
+      - audit
+      - all
+      
+  - name: Transfering syslogngsendlogs audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/syslogngsendlogs_4224_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - syslogngsendlogs
+      - 4.2.2.4
+      - four
+      - audit
+      - all
+      
+  - name: Transfering remotesyslogng audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/remotesyslogng_4225_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - remotesyslogng
+      - 4.2.2.5
+      - four
+      - audit
+      - all
+      
+  - name: Transfering rsyslogng audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rsyslogng_423_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rsyslogng
+      - 4.2.3
+      - four
+      - audit
+      - all
+      
+  - name: Transfering permlogfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permlogfiles_424_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permlogfiles
+      - 4.2.4
+      - four
+      - audit
+      - all
+      
+  - name: Transfering logrotate audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/logrotate_43_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - logrotate
+      - '4.3'
+      - four
+      - audit
+      - all
+      
+  - name: Transfering cron audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/cron_511_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - cron
+      - 5.1.1
+      - five
+      - audit
+      - all
+      
+  - name: Transfering permcrontab audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permcrontab_512_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrontab
+      - 5.1.2
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering permcronhourly audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permcronhourly_513_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronhourly
+      - 5.1.3
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering permcrondaily audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permcrondaily_514_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrondaily
+      - 5.1.4
+      - five
+      - audit
+      - all
+      
+  - name: Transfering permcronweekly audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permcronweekly_515_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronweekly
+      - 5.1.5
+      - five
+      - audit
+      - all
+      
+  - name: Transfering permcronmonthly audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permcronmonthly_516_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcronmonthly
+      - 5.1.6
+      - five
+      - audit
+      - all
+      
+  - name: Transfering permcrond audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permcrond_517_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permcrond
+      - 5.1.7
+      - five
+      - audit
+      - all
+      
+  - name: Transfering atcron audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/atcron_518_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - atcron
+      - 5.1.8
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshdperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshdperm_521_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshdperm
+      - 5.2.1
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering sshprotocol audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshprotocol_522_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshprotocol
+      - 5.2.2
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshloglevel audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshloglevel_523_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshloglevel
+      - 5.2.3
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering sshx11forward audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshx11forward_524_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshx11forward
+      - 5.2.4
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshmaxauthtries audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshmaxauthtries_525_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmaxauthtries
+      - 5.2.5
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshignorerhosts audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshignorerhosts_526_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshignorerhosts
+      - 5.2.6
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshauthentication audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshauthentication_527_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshauthentication
+      - 5.2.7
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshrootlogin audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshrootlogin_528_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshrootlogin
+      - 5.2.8
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshpep audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshpep_529_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpep
+      - 5.2.9
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshpue audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshpue_5210_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshpue
+      - 5.2.10
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering sshmacalgorithm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshmacalgorithm_5211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshmacalgorithm
+      - 5.2.11
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshidletimeout audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshidletimeout_5212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshidletimeout
+      - 5.2.12
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshlogingracetime audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshlogingracetime_5213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshlogingracetime
+      - 5.2.13
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshaccess audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshaccess_5214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshaccess
+      - 5.2.14
+      - five
+      - audit
+      - all
+      
+  - name: Transfering sshwarningbanner audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sshwarningbanner_5215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sshwarningbanner
+      - 5.2.15
+      - five
+      - audit
+      - all
+      
+  - name: Transfering passwdcreation audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/passwdcreation_531_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdcreation
+      - 5.3.1
+      - five
+      - audit
+      - all
+      
+  - name: Transfering lockout audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/lockout_532_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lockout
+      - 5.3.2
+      - five
+      - audit
+      - all
+      
+  - name: Transfering passwdreuse audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/passwdreuse_533_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdreuse
+      - 5.3.3
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering passwdhashing audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/passwdhashing_534_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdhashing
+      - 5.3.4
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering passwdexpiration audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/passwdexpiration_5411_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - passwdexpiration
+      - 5.4.1.1
+      - five
+      - audit
+      - all
+      
+  - name: Transfering minidays audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/minidays_5412_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - minidays
+      - 5.4.1.2
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering warningdays audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/warningdays_5413_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - warningdays
+      - 5.4.1.3
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering inactivepasswdlock audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/inactivepasswdlock_5414_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - inactivepasswdlock
+      - 5.4.1.4
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering lastpasswdchange audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/lastpasswdchange_5415_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - lastpasswdchange
+      - 5.4.1.5
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering sysaccnonlogin audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sysaccnonlogin_542_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sysaccnonlogin
+      - 5.4.2
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering defaultgroup audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/defaultgroup_543_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultgroup
+      - 5.4.3
+      - five
+      - audit
+      - all 
+      
+  - name: Transfering defaultuser audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/defaultuser_544_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - defaultuser
+      - 5.4.4
+      - five
+      - audit
+      - all
+      
+  - name: Transfering usershelltimeout audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/usershelltimeout_545_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - usershelltimeout
+      - 5.4.5
+      - five
+      - audit
+      - all
+      
+  - name: Transfering rootlogin audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rootlogin_55_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootlogin
+      - '5.5'
+      - five
+      - audit
+      - all
+      
+  - name: Transfering suaccess audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/suaccess_56_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suaccess
+      - '5.6'
+      - five
+      - audit
+      - all
+      
+  - name: Transfering auditsysperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/auditsysperm_611_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - auditsysperm
+      - 6.1.1
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permpasswd audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permpasswd_612_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswd
+      - 6.1.2
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permshadow audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permshadow_613_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadow
+      - 6.1.3
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permgroup audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permgroup_614_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroup
+      - 6.1.4
+      - six
+      - audit
+      - all 
+      
+  - name: Transfering permgshadow audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permgshadow_615_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadow
+      - 6.1.5
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permpasswdi audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permpasswdi_616_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permpasswdi
+      - 6.1.6
+      - six
+      - audit
+      - all
+      
+  - name: Transfering permshadowi audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permshadowi_617_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permshadowi
+      - 6.1.7
+      - six
+      - audit
+      - all 
+      
+  - name: Transfering permgroupi audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permgroupi_618_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgroupi
+      - 6.1.8
+      - six
+      - audit
+      - all  
+      
+  - name: Transfering permgshadowi audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/permgshadowi_619_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - permgshadowi
+      - 6.1.9
+      - six
+      - audit
+      - all
+      
+  - name: Transfering wwfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/wwfiles_6110_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - wwfiles
+      - 6.1.10
+      - six
+      - audit
+      - all 
+      
+  - name: Transfering unownedfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/unownedfiles_6111_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - unownedfiles
+      - 6.1.11
+      - six
+      - audit
+      - all
+      
+  - name: Transfering ungroupedfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/ungroupedfiles_6112_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - ungroupedfiles
+      - 6.1.12
+      - six
+      - audit
+      - all
+
+  - name: Transfering suidexec audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/suidexec_6113_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - suidexec
+      - 6.1.13
+      - six
+      - audit
+      - all
+
+  - name: Transfering sgidexec audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/sgidexec_6114_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - sgidexec
+      - 6.1.14
+      - six
+      - audit
+      - all
+      
+  - name: Transfering emptypasswd audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/emptypasswd_621_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - emptypasswd
+      - 6.2.1
+      - six
+      - audit
+      - all
+      
+  - name: Transfering nolegacypasswd audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/nolegacypasswd_622_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacypasswd
+      - 6.2.2
+      - six
+      - audit
+      - all
+      
+  - name: Transfering nolegacyshadow audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/nolegacyshadow_623_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacyshadow
+      - 6.2.3
+      - six
+      - audit
+      - all
+      
+  - name: Transfering nolegacygroup audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/nolegacygroup_624_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - nolegacygroup
+      - 6.2.4
+      - six
+      - audit
+      - all  
+      
+  - name: Transfering rootuid audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rootuid_625_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rootuid
+      - 6.2.5
+      - six
+      - audit
+      - all
+            
+  - name: Transfering userhdir audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/userhdir_627_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdir
+      - 6.2.7
+      - six
+      - audit
+      - all
+      
+  - name: Transfering userhdirperm audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/userhdirperm_628_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userhdirperm
+      - 6.2.8
+      - six
+      - audit
+      - all
+      
+  - name: Transfering userownhdir audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/userownhdir_629_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - userownhdir
+      - 6.2.9
+      - six
+      - audit
+      - all
+      
+  - name: Transfering dotfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/dotfiles_6210_audit.fact 
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - dotfiles
+      - 6.2.10
+      - six
+      - audit
+      - all
+      
+  - name: Transfering forwardfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/forwardfiles_6211_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - forwardfiles
+      - 6.2.11
+      - six
+      - audit
+      - all
+      
+  - name: Transfering netrcfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/netrcfiles_6212_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - netrcfiles
+      - 6.2.12
+      - six
+      - audit
+      - all
+      
+  - name: Transfering grpnetrcfiles audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/grpnetrcfiles_6213_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - grpnetrcfiles
+      - 6.2.13
+      - six
+      - audit
+      - all 
+      
+  - name: Transfering rhosts audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/rhosts_6214_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - rhosts
+      - 6.2.14
+      - six
+      - audit
+      - all
+      
+  - name: Transfering groups audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/groups_6215_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - groups
+      - 6.2.15
+      - six
+      - audit
+      - all
+      
+  - name: Transfering duplicateuid audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/duplicateuid_6216_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuid
+      - 6.2.16
+      - six
+      - audit
+      - all  
+      
+  - name: Transfering duplicategid audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/duplicategid_6217_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicategid
+      - 6.2.17
+      - six
+      - audit
+      - all
+      
+  - name: Transfering duplicateuser audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/duplicateuser_6218_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicateuser
+      - 6.2.18
+      - six
+      - audit
+      - all
+      
+  - name: Transfering duplicategroup audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/duplicategroup_6219_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - duplicategroup
+      - 6.2.19
+      - six
+      - audit
+      - all
+      
+  - name: Transfering shadowgroup audit file
+    template:
+      src: ../templates/linux_audit/ubuntu14.04/shadowgroup_6220_audit.fact
+      dest: /etc/ansible/audit.d/
+      mode: 0755
+    become: yes
+    tags:
+      - shadowgroup
+      - 6.2.20
+      - six
+      - audit
+      - all

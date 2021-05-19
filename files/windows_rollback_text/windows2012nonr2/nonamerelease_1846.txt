@@ -1,0 +1,9 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+System\CurrentControlSet\Services\NetBT\Parameters
+NoNameReleaseOnDemand
+DWORD:1
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

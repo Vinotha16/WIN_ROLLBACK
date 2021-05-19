@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.5.1 - Ensure permissions on bootloader config are configured (Scored)
+
+if [ $(sudo stat /boot/grub2/grub.cfg | grep 0600 | grep ".*Uid:.*0/.*root" | grep  ".*Gid:.*0/.*root" | wc -l) -eq 0 ] || [ $(sudo stat /boot/grub2/grubenv | grep 0600 | grep ".*Uid:.*0/.*root" | grep  ".*Gid:.*0/.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"1.5.1 - Permissions on bootloader config are not configured\" : \"FAILED\" }"
+else
+   echo "{ \"bootloadperm_151_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

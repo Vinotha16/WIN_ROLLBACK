@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.2.3 - Ensure journald is configured to write logfiles to persistent disk (Automated)
+
+if [ $( grep -E ^\s*Storage /etc/systemd/journald.conf | wc -l) -eq 0 ]; then
+   echo "{ \"journalpersisdisk_4223_audit\" : \"FAILED\" }"
+else
+   echo "{ \"journalpersisdisk_4223_audit\" : \"PASSED\" }"
+fi

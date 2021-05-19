@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo rpm -qa libselinux )
+if [ $(sudo rpm -qa libselinux | wc -l) -eq 0 ]; then
+    echo "{ \"selinux_1611_actual\" : \"\" }"
+else
+    echo "{ \"selinux_1611_actual\" : \"${cmd}\" }"	
+fi
+

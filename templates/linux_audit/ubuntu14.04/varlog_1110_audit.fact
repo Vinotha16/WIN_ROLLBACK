@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.10 - Ensure separate partition exists for /var/log (Scored)
+
+if [ "$(mount | grep "/var/log " | wc -l)" -eq 0 ]; then
+   echo "{\"1.1.10 - Separate partition not exists for /var/log\"  :    \"FAILED\"}"
+else
+   echo "{\" varlog_1110_audit\"  :  \"PASSED\"}"
+  
+fi

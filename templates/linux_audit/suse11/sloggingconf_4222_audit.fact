@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.2.2 - Ensure logging is configured (Not Scored)
+
+if [ $(sudo grep chroots /etc/syslog-ng/syslog-ng.conf 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"sloggingconf_4222_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sloggingconf_4222_audit\" : \"PASSED\" }"
+fi

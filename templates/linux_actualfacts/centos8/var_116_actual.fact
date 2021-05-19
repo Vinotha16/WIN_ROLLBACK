@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$( mount | grep -E '\s/var\s' | paste -sd "," )
+if [ $(mount | grep -E '\s/var\s' | wc -l) -eq 0 ]; then
+   echo "{ \"var_116_actual\" : \"\" }"
+else
+   echo "{ \"var_116_actual\" : \"$cmd\" }"
+fi
+

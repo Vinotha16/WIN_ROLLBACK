@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.13 - Audit SUID executables (Not Scored)
+
+if [ $(sudo df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000 2>/dev/null | wc -l) -eq 0 ] || [ $(find / -xdev -type f -perm -4000 | wc -l) -eq 0 ]; then
+   echo "{ \"suidexec_6113_audit\" : \"FAILED\"}"
+else
+   echo "{ \"suidexec_6113_audit\" : \"PASSED\"}"
+  
+fi
+

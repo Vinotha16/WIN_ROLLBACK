@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(stat -c "%a %U %G %n" /etc/ssh/ssh_host_*_key.pub | paste -sd "," -)
+if [ $(sudo find /etc/ssh -xdev -type f -name 'ssh_host_*_key.pub' -exec stat -c '%a %U %G' {} \; | egrep -v '644 root root|604 root root|640 root root' | wc -l) -ne 0 ]; then
+        echo "{ \"sshpermpubkey_524_actual\" : \"\" }"
+else
+        echo "{ \"sshpermpubkey_524_actual\" : \"${cmd}\" }"
+        exit 1
+fi

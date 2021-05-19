@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.4 - Ensure SSH Protocol is set to 2 (Scored)
+
+if [ $( sshd -T -C user=root -C host="$(hostname)" -C addr="$(grep $(hostname) /etc/hosts | awk '{print $1}')" | grep '^\s*protocol' | wc -l) -eq 0 ] || [ $(sudo grep -Ei '^\s*Protocol\s+[^2].*$' /etc/ssh/sshd_config | wc -l) -ne 0 ]; then
+   echo "{\"sshprotocol_534_audit\" : \"FAILED\"}"
+else
+   echo "{\"sshprotocol_534_audit\" : \"PASSED\"}"
+   
+fi

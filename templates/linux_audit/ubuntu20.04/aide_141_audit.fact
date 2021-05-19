@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.4.1 - Ensure AIDE is installed (Scored)
+
+if [ $(dpkg -s aide | grep 'Status: install ok installed' | wc -l) -eq 0 ]||[ $(dpkg -s aide-common | grep 'Status: install ok installed' | wc -l) -eq 0 ]; then
+   echo "{ \"aide_141_audit\" : \"FAILED\" }"
+else
+   echo "{ \"aide_141_audit\" : \"PASSED\" }"
+
+fi

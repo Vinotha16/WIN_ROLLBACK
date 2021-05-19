@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list squid | egrep 'squid.*:on ' | wc -l) -ne 0 ]; then
+  echo "{ \"proxy_2213_actual\" : \"\" }"
+else
+  echo "{ \"proxy_2213_actual\" : \"not enabled\" }"
+exit 1
+fi

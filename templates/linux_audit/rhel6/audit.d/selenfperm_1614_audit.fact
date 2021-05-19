@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1.4 - Ensure the SELinux mode is enforcing or permissive (Scored)
+
+if [ $(sudo sudo grep -Ei '^\s*SELINUX=(enforcing|permissive)' /etc/selinux/config | wc -l) -eq 0 ] || [ $(sudo getenforce | egrep "Enforcing|Permissive" | wc -l) -eq 0 ]; then
+   echo "{\"selenfperm_1614_audit\" : \"FAILED\"}"
+else
+   echo "{\"selenfperm_1614_audit\" : \"PASSED\"}"
+fi

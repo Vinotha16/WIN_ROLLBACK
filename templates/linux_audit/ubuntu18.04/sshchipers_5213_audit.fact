@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.13 - Ensure only strong Ciphers are used (Scored)
+
+if [ $(sshd -T 2> /dev/null | grep ciphers.*chacha20.*aes256.* | wc -l) -eq 0 ]; then
+   echo "{ \"sshchipers_5213_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshchipers_5213_audit\" : \"PASSED\" }"
+fi
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.8 - Ensure SSH HostbasedAuthentication is disabled (Scored)
+
+if [ $(sudo egrep "^\s\s\sHostbasedAuthentication no|^HostbasedAuthentication no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshauthentication_528_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshauthentication_528_audit\" : \"PASSED\" }"
+   
+fi

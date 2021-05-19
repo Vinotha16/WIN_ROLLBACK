@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo rpm -qa talk | wc -l) -ne 0 ]; then
+   echo "{ \"talkc_233_actual\" : \"\" }"
+else
+   echo "{ \"talkc_233_actual\" : \"talk client not installed\" }"
+fi
+

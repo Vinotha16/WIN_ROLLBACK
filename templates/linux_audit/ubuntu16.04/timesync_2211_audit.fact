@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.1.1 - Ensure time synchronization is in use (Not Scored)
+
+if [ $(sudo dpkg -l | egrep "ntp|chrony" 2>/dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"timesync_2211_audit\" : \"FAILED\" }"
+else
+   echo "{ \"timesync_2211_audit\" : \"PASSED\" }"
+  
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.1.20 - Ensure nodev option set on removable media partitions (Not Scored)
+
+MEDIA=$(mount -l -t vfat,iso9660,ext)
+
+if [[ -z $MEDIA ]]; then
+   echo "{ \"medianodev_1117_audit\" : \"PASSED\" }"
+else
+        if [ $(  mount -l -t vfat,iso9660,ext | grep "nodev" | wc -l) -eq 0 ]; then
+                  echo "{ \"medianodev_1117_audit\" : \"FAILED\" }"
+        else
+                  echo "{ \"medianodev_1117_audit\" : \"PASSED\" }"
+        fi
+fi

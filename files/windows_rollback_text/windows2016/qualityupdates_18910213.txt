@@ -1,0 +1,15 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+
+Computer
+Software\Policies\Microsoft\Windows\WindowsUpdate
+DeferQualityUpdates 
+
+Computer
+Software\Policies\Microsoft\Windows\WindowsUpdate
+DeferQualityUpdatesPeriodInDays 
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------
+

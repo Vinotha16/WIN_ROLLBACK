@@ -1,0 +1,10 @@
+#!/bin/bash
+
+a=$(stat -c "%a %U %G %n" /etc/motd)
+b=$(cat /etc/motd | grep "THIS IS A PRIVATE COMPUTER SYSTEM FROM ZIPPYOPS")
+cmd="${a}","${b}"
+if [ "$(cat /etc/motd 2> /dev/null | wc -l)" -eq 0 ] || [ "$(sudo egrep '(\\v|\\r|\\m|\\s)' /etc/motd | wc -l)" -ne 0 ]; then
+   echo "{ \"msgday_1811_actual\" : \"\" }"
+else
+   echo "{ \"msgday_1811_actual\" : \"$cmd\" }"
+fi

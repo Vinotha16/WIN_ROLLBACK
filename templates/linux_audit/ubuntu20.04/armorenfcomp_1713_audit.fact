@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.1.3 Ensure all AppArmor Profiles are enforcing 
+
+if [ "$(sudo apparmor_status | grep "profiles.*complain mode" | awk {'print $1'})" != '0' ] || [ "$(sudo apparmor_status | grep "processes are unconfined" | awk {'print $1'})" != '0' ]; then
+   echo "{ \"armorenfcomp_1713_audit\" : \"FAILED\" }"
+else
+   echo "{ \"armorenfcomp_1713_audit\" : \"PASSED\" }"
+  
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.5.2 - Ensure permissions on bootloader config are configured 
+
+if [ $(sudo stat /boot/grub/grub.cfg | grep "0400.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+   echo "{ \"bootloadperm_152_audit\" : \"FAILED\" }"
+else
+   echo "{ \"bootloadperm_152_audit\" : \"PASSED\" }"
+   
+fi

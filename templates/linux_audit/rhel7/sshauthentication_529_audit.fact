@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.9 - Ensure SSH HostbasedAuthentication is disabled (Automated)
+
+if [ $(sudo grep "^HostbasedAuthentication.*no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshauthentication_529_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshauthentication_529_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

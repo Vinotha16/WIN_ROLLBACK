@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(sudo cat /etc/audit/auditd.conf | grep "^max_log_file =.*10")
+if [ $(sudo grep "^max_log_file =.*10" /etc/audit/auditd.conf | cut -d' ' -f3 | wc -l) -eq 0 ]; then
+   echo "{ \"auditlogsize_4111_actual\" : \"\" }"
+else
+   echo "{ \"auditlogsize_4111_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

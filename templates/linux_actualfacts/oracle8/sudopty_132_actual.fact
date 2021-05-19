@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(cat /etc/sudoers | grep "Defaults use_pty")
+
+if [ $(sudo grep -Ei '^\s*Defaults\s+(\[^#]+,\s*)?use_pty' /etc/sudoers /etc/sudoers.d/* 2> /dev/null | wc -l ) -eq 0 ]; then
+        echo "{ \"sudopty_132_actual\" : \"\" }"
+else
+        echo "{ \"sudopty_132_actual\" : \"${cmd}\" }"
+fi

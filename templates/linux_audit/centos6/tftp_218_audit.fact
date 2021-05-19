@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.8 - Ensure tftp server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list | grep 'tftp:.*on' | wc -l) -ne 0 ]; then
+       echo "{ \"tftp_218_audit\" : \"FAILED\"}"
+else
+      echo "{ \"tftp_218_audit\" : \"PASSED\"}"       
+fi
+
+

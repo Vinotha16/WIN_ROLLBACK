@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(rpm -qa libselinux | grep "libselinux-[0-9]\+")
+if [ "$(rpm -qa libselinux | grep "libselinux-[0-9]\+" | wc -l)" -eq 0 ]; then
+   echo "{ \"selinux_1711_actual\" : \"\" }"
+else
+   echo "{ \"selinux_1711_actual\" : \"${cmd}\" }"
+#exit 1
+fi
+

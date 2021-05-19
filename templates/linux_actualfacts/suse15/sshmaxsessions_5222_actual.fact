@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(sudo sshd -T  | grep -i maxsessions)
+if [ $(sudo sshd -T  | grep -i maxsessions | awk -F ' ' '{print $2}') -gt 10 ]; then
+   echo "{ \"sshmaxsessions_5222_actual\" : \"\" }"
+else
+   echo "{ \"sshmaxsessions_5222_actual\" : \"${cmd}\" }"
+fi

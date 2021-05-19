@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.12 - Ensure NFS are not enabled (Scored)
+
+if [ $(systemctl is-enabled nfs 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"nfs_2212_audit\" : \"FAILED\" }"
+else
+   echo "{ \"nfs_2212_audit\" : \"PASSED\" }"
+fi

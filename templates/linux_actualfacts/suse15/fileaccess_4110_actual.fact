@@ -1,0 +1,20 @@
+#!/bin/bash
+a=$(sudo cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access")
+b=$(sudo cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access")
+c=$(sudo cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access")
+d=$(sudo cat /etc/audit/rules.d/*.rules | grep "exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access")
+e="${a}","${b}","${c}","${d}"
+cmd=${e}
+f="${b}","${d}"
+cmd1=${f}
+if [ $(sudo grep access /etc/audit/rules.d/*.rules 2> /dev/null  | wc -l) -eq 0 ]; then
+   echo "{ \"fileaccess_4110_actual\" : \"\" }"
+else
+   if [ "$(uname -m)" == 'x86_64' ]; then
+         echo "{ \"fileaccess_4110_actual\" : \"${cmd}\" }"
+      else
+         echo "{ \"fileaccess_4110_actual\" : \"${cmd1}\" }"
+   fi
+exit 1
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(sudo dpkg -s smbd 2> /dev/null | grep enabled | wc -l) -ne 0 ]; then
+   echo "{ \"samba_2212_actual\" : \"\" }"
+else
+   echo "{ \"samba_2212_actual\" : \"smbd not enabled\" }"
+   
+fi

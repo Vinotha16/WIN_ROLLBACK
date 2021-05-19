@@ -1,0 +1,11 @@
+#!/bin/bash
+cmd=$(firewall-cmd --get-default-zone | grep 'public')
+if [ "$(firewall-cmd --get-default-zone | grep 'public' | wc -l)" -eq 0 ]; then
+   echo "{ \"defaultzone_3424_actual\" : \"\" }"
+else
+   echo "{ \"defaultzone_3424_actual\" : \"$cmd\" }"
+   exit 1
+fi
+
+
+

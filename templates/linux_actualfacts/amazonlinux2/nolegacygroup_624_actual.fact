@@ -1,0 +1,9 @@
+#!/bin/bash
+failed=$(grep '^\+:' /etc/group | sed 's/+://g' | cut -d: -f1 | paste -sd ",")
+if [ "$(grep '\+:' /etc/group | wc -l)" -ne "0" ]; then
+   echo "{ \"nolegacygroup_624_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"nolegacygroup_624_actual\" : \"legacy "+" entries not exist in /etc/group\" }"
+    exit 1
+fi
+

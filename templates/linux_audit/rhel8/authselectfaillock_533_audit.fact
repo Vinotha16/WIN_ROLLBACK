@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.3 Ensure authselect includes with-faillock (Scored)
+
+if [ $( sudo authselect current | grep with-faillock /etc/authselect/authselect.conf 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"authselectfaillock_533_audit\" : \"FAILED\"}"
+else
+   echo "{\"authselectfaillock_533_audit\" : \"PASSED\"}"
+fi
+

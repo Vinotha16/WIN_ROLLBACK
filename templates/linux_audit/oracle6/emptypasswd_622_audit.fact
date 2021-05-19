@@ -1,0 +1,18 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.2.2 - Ensure password fields are not empty (Scored)
+
+count=0
+for i in $(cat /etc/shadow | awk -F: '($2 == "" ) { print $1}'); do
+
+    if [ $(passwd -S $i | egrep "(LK|Password locked)" | wc -l) -eq 0 ]; then
+	count=$((count+1))
+    fi
+done
+if [ "$count" -gt "0" ]; then
+   	echo "{ \"emptypasswd_622_audit\" : \"FAILED\" }"
+    else
+  	 echo "{ \"emptypasswd_622_audit\" : \"PASSED\" }"
+   		
+    fi

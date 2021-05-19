@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(sudo cat /etc/pam.d/password-auth | grep "^password.*required.*pam_pwhistory.so.*remember=5")
+b=$(sudo cat /etc/pam.d/system-auth   | grep "^password.*required.*pam_pwhistory.so.*remember=5")
+cmd="${a}","${b}"
+if [ $(sudo grep "^password.*required.*pam_pwhistory.so.*remember=5" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(sudo grep "^password.*required.*pam_pwhistory.so.*remember=5" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdreuse_533_actual\" : \"\" }"
+else
+   echo "{ \"passwdreuse_533_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

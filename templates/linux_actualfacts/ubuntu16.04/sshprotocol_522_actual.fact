@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/ssh/sshd_config | grep "^Protocol 2")
+if [ $(sudo egrep "^\s\s\sProtocol 2|^Protocol 2" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshprotocol_522_actual\" : \"\" }"
+else
+   echo "{ \"sshprotocol_522_actual\" : \"$cmd\" }"
+  
+fi

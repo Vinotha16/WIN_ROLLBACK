@@ -1,0 +1,19 @@
+#!/bin/bash
+a=$(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'iif "lo" accept' | expand -t 1 | tr '"' " ")
+b=$(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip saddr' | expand -t 1)
+cmd="${a}","${b}"
+c=$(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip6 saddr' | expand -t 1)
+cmd1="${a}","${b}","${c}"
+if [ $(cat /proc/cmdline | grep ipv6.disable=1 | wc -l) -eq 0 ] && [ $(sysctl net.ipv6.conf.all.disable_ipv6 | grep 1 | wc -l) -eq 0 ]; then
+    if [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'iif "lo" accept' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip saddr' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip6 saddr' | wc -l) -eq 0 ]; then
+       echo "{ \"nfloopbacktraffic_3526_actual\" : \"failed_ipv_4_6\" }"
+    else
+       echo "{ \"nfloopbacktraffic_3526_actual\" : \"$cmd1\" }"
+    fi
+else
+    if [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'iif "lo" accept' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip saddr' | wc -l) -eq 0 ]; then
+       echo "{ \"nfloopbacktraffic_3526_actual\" : \"failed_ipv4\" }"
+    else
+       echo "{ \"nfloopbacktraffic_3526_actual\" : \"$cmd\" }"
+    fi
+fi

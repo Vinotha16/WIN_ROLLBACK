@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.2.3 - Ensure rsyslog or syslog-ng is installed (Scored)
+
+val=$(sudo rpm -qa | grep -Ew "rsyslog|syslog-ng" | awk -F'-[0-9]' {'print $1'})
+
+if [ "$val" != "rsyslog" ] && [ "$val" != "syslog-ng" ]; then
+   echo "{ \"rsyslogng_423_audit\" : \"FAILED\" }"
+else
+   echo "{ \"rsyslogng_423_audit\" : \"PASSED\" }"
+fi

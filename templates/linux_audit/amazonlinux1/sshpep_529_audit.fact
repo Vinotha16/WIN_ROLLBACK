@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled (Scored)
+
+if [ $(sudo grep "^PermitEmptyPasswords.*no"  /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+    echo "{ \"sshpep_529_audit\" : \"FAILED\" }"
+else
+    echo "{ \"sshpep_529_audit\" : \"PASSED\" }"
+fi

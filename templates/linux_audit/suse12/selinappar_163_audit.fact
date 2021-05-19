@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.3 - Ensure SELinux or AppArmor are installed (Scored)
+
+
+if [ $(sudo rpm -qa ^libselinux1 ^selinux-policy | wc -l) -eq 2 ]; then
+    echo "{\"selinappar_163_audit\" : \"PASSED\"}"
+elif [ $(sudo rpm -qa ^libapparmor1 ^apparmor-utils | wc -l) -eq 2 ]; then
+    echo "{\"selinappar_163_audit\" : \"PASSED\"}"
+else
+    echo "{\"selinappar_163_audit\" : \"FAILED\"}"
+fi

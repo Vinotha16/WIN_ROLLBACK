@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.3 - Ensure changes to system administration scope (sudoers) is collected (Scored)
+
+if [ $(sudo grep scope /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"sudoers_413_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sudoers_413_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

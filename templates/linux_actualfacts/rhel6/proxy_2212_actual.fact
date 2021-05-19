@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo rpm -q squid)
+if [ $(sudo rpm -qa squid | wc -l) -ne 0 ]; then
+  echo "{ \"proxy_2212_actual\" : \"\" }"
+else
+  echo "{ \"proxy_2212_actual\" : \"$cmd\" }"
+exit 1
+fi

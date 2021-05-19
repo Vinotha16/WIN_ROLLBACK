@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#  3.5.2.9 Ensure default deny firewall policy (Automated)
+
+if [ $(sudo nft list ruleset | grep "hook input.*policy drop" | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep "hook forward.*policy drop" | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | grep "hook output.*policy drop" | wc -l) -eq 0 ]; then
+	echo "{ \"nffirewallpolicy_3529_audit\" : \"FAILED\" }"
+else
+	echo "{ \"nffirewallpolicy_3529_audit\" : \"PASSED\" }"
+fi
+

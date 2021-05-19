@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo sshd -T | grep 'protocol 2')
+if [ $(sudo sshd -T | grep 'protocol 2' | wc -l) -eq 0 ]; then
+   echo "{ \"sshprotocol_524_actual\" : \"\" }"
+else
+   echo "{ \"sshprotocol_524_actual\" : \"${cmd}\" }"
+   
+fi

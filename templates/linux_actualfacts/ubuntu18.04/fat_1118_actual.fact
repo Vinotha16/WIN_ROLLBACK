@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /etc/modprobe.d/vfat.conf | grep "install vfat /bin/true" | paste -sd "," -)
+if [ $(sudo  modprobe --showconfig 2>/dev/null | grep vfat | grep "install vfat /bin/true" | wc -l) -eq 0 ] || [ $(sudo lsmod | grep vfat | wc -l) -ne 0 ]; then
+  echo "{ \"fat_1118_actual\" : \"\" }"
+else
+   echo "{ \"fat_1118_actual\" : \"${cmd}\" }"
+   exit 1
+fi

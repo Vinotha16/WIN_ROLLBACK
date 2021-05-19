@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.2 - Ensure GDM login banner is configured (Scored)
+
+if [ $(sudo rpm -qa | grep gdm | wc -l) -ne 0 ]; then
+   if [ $(egrep "user:db|system-db|file-db" /etc/dconf/profile/gdm | wc -l) -eq 0 ] || [ $(egrep "[org/gnome/login-screen]|banner-message-enable|banner-message-text=\'[a-z]+\'" /etc/dconf/db/gdm.d/01-banner-message | wc -l) -eq 0 ]; then
+      echo "{\"gdm_172_audit\" : \"FAILED\"}"
+   else
+   echo "{\"gdm_172_audit\" : \"PASSED\"}"
+   fi
+else
+   echo "{\"gdm_172_audit\" : \"FAILED\"}"
+fi
+

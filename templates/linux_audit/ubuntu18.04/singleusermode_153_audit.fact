@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.5.3 - Ensure authentication required for single user mode (Scored)
+
+if [ $(sudo  egrep ^root+:[^\!*] /etc/shadow | wc -l) -eq 0 ] ; then
+   echo "{ \"singleusermode_153_audit\" : \"FAILED\" }"
+else
+   echo "{ \"singleusermode_153_audit\" : \"PASSED\" }"
+  
+fi

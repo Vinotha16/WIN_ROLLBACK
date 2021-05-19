@@ -1,0 +1,16 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 6.1.9 - Ensure permissions on /etc/gshadow- are configured (Scored)
+
+if [ -f /etc/gshadow- ]; then
+        if [ $(sudo stat /etc/gshadow- | egrep "0640.*Uid.*root.*Gid.*root|0640.*Uid.*root.*Gid.*root" | wc -l) -eq 0 ]; then
+                echo "{ \"6.1.9 - Permission on /etc/gshadow- are not configured\" : \"FAILED\" }"
+        else
+                echo "{ \"permgshadowi_619_audit\" : \"PASSED\" }"
+				 
+
+        fi
+else
+        echo "{ \"6.1.9 - Permission on /etc/gshadow- are not configured\" : \"FAILED\" }"
+fi

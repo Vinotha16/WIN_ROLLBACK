@@ -1,0 +1,12 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 6.2.14 - Ensure no duplicate UIDs exist (Scored)
+
+if [ $(sudo awk -F: '$3>=1000 {print $3}' /etc/passwd | sort | uniq -c | awk '$1 > 1' | wc -l) -ne 0 ]; then
+   echo "{ \"duplicateuid_6214_audit\" : \"FAILED\"}"
+else
+   echo "{ \"duplicateuid_6214_audit\" : \"PASSED\"}"
+   
+fi
+

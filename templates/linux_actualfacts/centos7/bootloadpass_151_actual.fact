@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(grep "^\s*GRUB2_PASSWORD" /boot/grub2/user.cfg)
+
+if [ $(sudo grep "^\s*GRUB2_PASSWORD" /boot/grub2/user.cfg | wc -l) -eq 0 ]; then
+   echo "{ \"bootloadpass_151_actual\" : \"\" }"
+else
+   echo "{ \"bootloadpass_151_actual\" : \"$cmd\" }"
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(rpm -qa audit)
+if [ $(rpm -qa audit | wc -l) -eq 0 ]; then
+   echo "{ \"auditd_4111_actual\" : \"\" }"
+else
+   echo "{ \"auditd_4111_actual\" : \"${cmd}\" }"
+fi
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list cyrus | egrep 'cyrus.*:on ' | wc -l) -ne 0 ]; then
+  echo "{ \"imap_2211_actual\" : \"\" }"
+else
+  echo "{ \"imap_2211_actual\" : \"not enabled\" }"
+exit 1
+fi

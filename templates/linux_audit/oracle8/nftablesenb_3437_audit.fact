@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.4.3.7 - Ensure nftables service is enabled (Scored) 
+
+if [ "$(systemctl is-enabled nftables | grep 'enabled' | wc -l)" -eq 0 ]; then
+   echo "{ \"3.4.3.7 - Ensure nftables service is not enabled\" : \"FAILED\" }"
+else
+   echo "{ \"nftablesenb_3437_audit\" : \"PASSED\" }"
+   exit 1
+fi
+

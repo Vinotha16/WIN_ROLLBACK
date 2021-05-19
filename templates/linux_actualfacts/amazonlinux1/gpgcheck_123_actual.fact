@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/yum.conf | grep '^gpgcheck=1')
+b=$(cat /etc/yum.repos.d/* | grep -m1 '^gpgcheck=1' | paste -sd ",")
+failed=$(grep -iRl ^gpgcheck=0 /etc/yum.repos.d/* | paste -sd ",")
+cmd="${a}","${b}"
+if [ $(grep '^gpgcheck=1' /etc/yum.conf | wc -l) -eq 0 ] || [ $(grep '^gpgcheck=0' /etc/yum.repos.d/* | wc -l) -ne 0 ]; then
+   echo "{ \"gpgcheck_123_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"gpgcheck_123_actual\" : \"${cmd}\" }"
+   exit 1
+fi

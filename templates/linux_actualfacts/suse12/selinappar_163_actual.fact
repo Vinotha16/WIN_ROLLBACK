@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $(sudo rpm -qa ^libselinux1 ^selinux-policy | wc -l) -eq 2 ]; then
+    echo "{ \"selinappar_163_actual\" : \"SELinux is installed\" }"
+elif [ $(sudo rpm -qa ^libapparmor1 ^apparmor-utils | wc -l) -eq 2 ]; then
+    echo "{ \"selinappar_163_actual\" : \"AppArmor is installed\" }"
+else
+    echo "{ \"selinappar_163_actual\" : \"\" }"
+fi

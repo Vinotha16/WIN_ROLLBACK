@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep "password sufficient pam_unix.so remember=5")
+b=$(cat /etc/pam.d/system-auth   | grep "password sufficient pam_unix.so remember=5")
+c="${a}","${b}"
+cmd=${c}
+if [ $(grep "remember=5" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "remember=5" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdreuse_543_actual\" : \"\" }"
+else
+   echo "{ \"passwdreuse_543_actual\" : \"${cmd}\" }"
+   exit 1
+fi
+

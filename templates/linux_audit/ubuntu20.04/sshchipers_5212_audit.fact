@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.2.12 - Ensure only strong Ciphers are used (Scored)
+
+if [ $(sudo sshd -T 2> /dev/null | grep ciphers | egrep '3des-cbc|aes128-cbc|aes192-cbc|aes256-cbc' | wc -l) -ne 0 ]; then
+   echo "{ \"sshchipers_5212_audit\" : \"FAILED\" }"
+else
+   echo "{ \"sshchipers_5212_audit\" : \"PASSED\" }"
+fi
+

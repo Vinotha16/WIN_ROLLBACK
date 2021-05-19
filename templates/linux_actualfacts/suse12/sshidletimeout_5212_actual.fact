@@ -1,0 +1,11 @@
+#!/bin/bash
+a=$(cat /etc/ssh/sshd_config | grep "ClientAliveInterval 300")
+b=$(cat /etc/ssh/sshd_config | grep "ClientAliveCountMax 0")
+cmd="${a}","${b}"
+if [ $(grep "^ClientAliveInterval.*300" /etc/ssh/sshd_config | wc -l) -eq 0 ] || [ $(grep "^ClientAliveCountMax 0" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshidletimeout_5212_actual\" : \"\" }"
+else
+   echo "{ \"sshidletimeout_5212_actual\" : \"${cmd}\"}"
+   exit 1
+fi
+

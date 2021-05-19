@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ "$(rpm -qa setroubleshoot | grep "setroubleshoot-[0-9]\+" | wc -l)" -gt 0 ]; then
+   echo "{ \"setroubleshoot_1716_actual\" : \"\" }"
+else
+   echo "{ \"setroubleshoot_1716_actual\" : \"No Match for argument: setroubleshoot\" }"
+   exit 0
+fi
+

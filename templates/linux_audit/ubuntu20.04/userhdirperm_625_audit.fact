@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+# 6.2.5 - Ensure users' home directories permissions are 750 or more restrictive (Scored)
+for a in `grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7!="/usr/sbin/nologin" && $7!=/bin/false {print $6}'| wc -l`; do
+      if [ $( grep "/home/" /etc/passwd | awk -F: '$3>=1000 && $7 != "/usr/sbin/nologin" && $7 != "/bin/false" {print $6}'| xargs -l stat 2> /dev/null | egrep "755/|750/" | wc -l) -ne "$a" ]; then
+               echo "{ \"userhdirperm_625_audit\" : \"FAILED\"}"
+       else
+               echo "{ \"userhdirperm_625_audit\" : \"PASSED\"}"
+               exit 1
+       fi
+done

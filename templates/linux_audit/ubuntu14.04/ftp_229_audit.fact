@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.9 - Ensure FTP Server is not enabled (Scored)
+
+if [ $(sudo service vsftpd status 2> /dev/null | grep "running" | wc -l) -ne 0 ]; then
+   echo "{\"2.2.9 - Ensure FTP Server is enabled\" : \"FAILED\"}"
+else
+   echo "{ \"ftp_229_audit\" : \"PASSED\" }"
+   
+fi
+

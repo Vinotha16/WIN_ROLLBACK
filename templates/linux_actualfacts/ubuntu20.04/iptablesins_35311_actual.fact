@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo apt list iptables iptables-persistent | grep -o "installed" | sed '1q' | paste -sd ",")
+if [ $(sudo apt list iptables iptables-persistent 2> /dev/null | grep "installed,automatic" | wc -l) -eq 0 ]; then
+    echo "{ \"iptablesins_35311_actual\" : \"\" }"
+else
+    echo "{ \"iptablesins_35311_actual\" : \"${cmd}\" }"
+
+fi

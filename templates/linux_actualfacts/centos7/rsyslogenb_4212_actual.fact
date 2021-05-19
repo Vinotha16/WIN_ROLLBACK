@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled rsyslog | grep enabled)
+if [ $(systemctl is-enabled rsyslog 2> /dev/null | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"rsyslogenb_4212_actual\" : \"\" }"
+else
+   echo "{ \"rsyslogenb_4212_actual\" : \"enabled\" }"
+   exit 1
+fi
+

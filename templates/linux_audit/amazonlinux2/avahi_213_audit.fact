@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.1.3 - Ensure Avahi Server is not enabled (Scored)
+
+if [ $(sudo systemctl is-enabled avahi-daemon 2>/dev/null | grep enabled | wc -l) -ne 0 ] ; then
+    echo "{ \"avahi_213_audit\" : \"FAILED\"}"
+else
+    echo "{ \"avahi_213_audit\" : \"PASSED\"}"
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep -m1 -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*)
+if [ "$( grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/* 2>/dev/null | wc -l)" -eq 0 ];then
+   echo "{ \"sudologfiles_133_actual\" : \"\" }"
+else
+   echo "{ \"sudologfiles_133_actual\" : \"$cmd\" }"
+fi
+

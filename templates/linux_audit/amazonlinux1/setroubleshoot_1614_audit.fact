@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.6.1.4 - Ensure SETroubleshoot is not installed (Scored)
+
+if [ $(sudo rpm -qa setroubleshoot | wc -l) -ne 0 ]; then
+   echo "{ \"setroubleshoot_1614_audit\" : \"FAILED\" }"
+else
+   echo "{ \"setroubleshoot_1614_audit\" : \"PASSED\" }"
+fi

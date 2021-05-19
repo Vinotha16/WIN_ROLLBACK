@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cmd=$(cat /etc/ssh/sshd_config |  grep "^PermitUserEnvironment no")
+if [ $(sudo grep "^PermitUserEnvironment no" /etc/ssh/sshd_config | wc -l) -eq 0 ]; then
+   echo "{ \"sshpue_5210_actual\" : \"\" }"
+else
+   echo "{ \"sshpue_5210_actual\" : \"$cmd\" }"
+   
+fi

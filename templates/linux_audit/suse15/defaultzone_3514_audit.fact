@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#  3.5.1.4 - Ensure default zone is set  (Scored)
+
+if [ "$(firewall-cmd --get-default-zone  2>/dev/null | grep 'public' | wc -l)" -eq 0 ]; then
+        echo "{ \"defaultzone_3514_audit\" : \"FAILED\" }"
+else
+        echo "{ \"defaultzone_3514_audit\" : \"PASSED\" }"
+fi

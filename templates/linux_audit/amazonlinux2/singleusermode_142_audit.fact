@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.4.2 - Ensure authentication required for single user mode (Scored)
+
+if [  $(sudo egrep "/usr/sbin/sulogin|/sbin/sulogin" /usr/lib/systemd/system/rescue.service | wc -l) -eq 0 ] || [ $(sudo egrep "/usr/sbin/sulogin|/sbin/sulogin" /usr/lib/systemd/system/emergency.service | wc -l) -eq 0 ] ; then
+   echo "{ \"singleusermode_142_audit\" : \"FAILED\"}"
+else
+   echo "{ \"singleusermode_142_audit\" : \"PASSED\"}"
+fi
+

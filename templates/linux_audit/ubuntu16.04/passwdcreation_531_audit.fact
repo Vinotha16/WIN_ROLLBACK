@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.3.1 - Ensure password creation requirements are configured (Scored)
+
+if [ $(sudo grep pam_pwquality.so /etc/pam.d/common-password | wc -l) -eq 0 ] || [ $(sudo grep ^minlen /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^dcredit /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^ucredit /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^ocredit /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(sudo grep ^lcredit /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+   echo "{\"passwdcreation_531_audit\" : \"FAILED\"}"
+else
+   echo "{\"passwdcreation_531_audit\" : \"PASSED\"}"
+ 
+fi

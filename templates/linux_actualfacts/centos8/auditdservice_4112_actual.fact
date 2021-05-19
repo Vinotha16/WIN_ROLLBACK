@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(systemctl is-enabled auditd | grep enabled)
+if [ $(systemctl is-enabled auditd 2> /dev/null | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"auditdservice_4112_actual\" : \"\" }"
+else
+   echo "{ \"auditdservice_4112_actual\" : \"$cmd\" }"
+   exit 1
+fi

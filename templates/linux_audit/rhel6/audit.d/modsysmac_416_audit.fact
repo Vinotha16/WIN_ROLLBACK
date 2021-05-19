@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.6 - Ensure events that modify the system's Mandatory Access Controls are collected (Scored)
+
+if [ $(sudo grep "MAC-policy" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"modsysmac_416_audit\" : \"FAILED\"}"
+else
+   echo "{\"modsysmac_416_audit\" : \"PASSED\"}"
+   
+fi
+
+

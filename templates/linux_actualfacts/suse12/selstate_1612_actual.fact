@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $(grep SELINUX=enforcing /etc/selinux/config | wc -l) -eq 0 ] ; then
+   echo "{ \"selstate_1612_actual\" : \"\" }"
+else
+   echo "{ \"selstate_1612_actual\" : \"SELINUX=enforcing\" }"
+#exit 1
+
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(ls /etc/rc*.d/S*bind9 2> /dev/null | wc -l) -ne 0 ]; then
+  echo "{ \"dns_228_actual\" : \"\" }"
+else
+  echo "{ \"dns_228_actual\" : \"not enabled\" }"
+exit 1
+fi

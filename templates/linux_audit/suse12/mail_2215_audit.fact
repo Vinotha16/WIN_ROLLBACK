@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ** AUTO GENERATED **
+
+
+# 2.2.15 - Ensure mail transfer agent is configured for local-only mode (Scored)
+
+if [ $(netstat -an | grep LIST | grep ":25[[:space:]]" | wc -l) -eq 0 ] || [ $(sudo grep "^inet_interfaces = loopback-only" /etc/postfix/main.cf | wc -l) -eq 0 ]; then
+
+   echo "{\"mail_2215_audit\" : \"FAILED\"}"
+
+else
+ 
+  echo "{\"mail_2215_audit\" : \"PASSED\"}"
+
+fi

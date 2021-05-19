@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.17 - Ensure kernel module loading and unloading is collected (Scored)
+
+if [ $(sudo grep modules /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{\"4.1.17 - Kernel module loading and unloading is not collected\" : \"FAILED\"}"
+else
+   echo "{ \"kernelmodule_4117_audit\" : \"PASSED\"}"
+  
+fi

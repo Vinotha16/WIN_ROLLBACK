@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/security/pwquality.conf | grep "minlen = 14")
+b=$(cat /etc/security/pwquality.conf | grep "minclass = 4")
+c="${a}","${b}"
+cmd=${c}
+if [ $(grep pam_pwquality.so /etc/pam.d/system-auth /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep ^minlen.*14 /etc/security/pwquality.conf | wc -l) -eq 0 ] || [ $(grep ^minclass.*4 /etc/security/pwquality.conf | wc -l) -eq 0 ]; then
+        echo "{ \"passwdcreation_541_actual\" : \"\" }"
+else
+        echo "{ \"passwdcreation_541_actual\" : \"$cmd\" }"
+fi

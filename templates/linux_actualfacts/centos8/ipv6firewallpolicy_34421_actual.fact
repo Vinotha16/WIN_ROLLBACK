@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(ip6tables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT')
+b=$(ip6tables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT')
+c=$(ip6tables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT')
+cmd="${a}","${b}","${c}"
+if [ $(ip6tables -L | egrep 'INPUT.*policy DROP|INPUT.*policy REJECT' | wc -l) -eq 0 ] ||[ $(ip6tables -L | egrep 'FORWARD.*policy DROP|FORWARD.*policy REJECT' | wc -l) -eq 0 ] || [ $(ip6tables -L | egrep 'OUTPUT.*policy DROP|OUTPUT.*policy REJECT' | wc -l) -eq 0 ]; then
+        echo "{ \"ipv6firewallpolicy_34421_actual\" : \"\" }"
+else
+        echo "{ \"ipv6firewallpolicy_34421_actual\" : \"$cmd\" }"
+fi
+
+

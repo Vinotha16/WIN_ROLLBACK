@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(cat /boot/grub2/user.cfg | grep "^GRUB2_PASSWORD")
+if [ "$(grep "GRUB2_PASSWORD=" /boot/grub2/user.cfg 2> /dev/null | wc -l)" -eq 0 ]; then
+   echo "{ \"bootloadpass_152_actual\" : \"\" }"
+else
+   echo "{ \"bootloadpass_152_actual\" : \"$cmd\" }"
+   exit 1
+fi

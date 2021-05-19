@@ -1,0 +1,14 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.4.1 - Ensure permissions on bootloader config are configured (Scored)
+
+if [ $(sudo [ -f /boot/efi/EFI/*/grub.conf ] && stat /boot/efi/EFI/*/grub.conf || stat /boot/grub/grub.conf | grep '0600.*root.*root' | wc -l) -eq 0 ]; then
+   echo "{\"bootloadperm_141_audit\" : \"FAILED\"}"
+else
+   echo "{\"bootloadperm_141_audit\" : \"PASSED\"}"
+  
+fi
+
+
+

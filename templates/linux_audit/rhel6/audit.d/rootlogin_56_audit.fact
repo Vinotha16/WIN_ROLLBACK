@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.6 - Ensure root login is restricted to system console (Not Scored)
+
+if [ $(grep -v -e "^tty" -e "^#" /etc/securetty | wc -l) -ne 0 ]; then
+   echo "{\"rootlogin_56_audit\" : \"FAILED\"}"
+else
+   echo "{\"rootlogin_56_audit\" : \"PASSED\"}"
+   
+fi

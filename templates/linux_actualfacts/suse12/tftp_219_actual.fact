@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$(chkconfig --list 2>/dev/null | grep "tftp:" | awk {'print $2'})" == "on" ]; then
+
+    echo "{ \"tftp_219_actual\" : \"\" }"
+
+else
+  
+    echo "{ \"tftp_219_actual\" : \"not enabled\" }"
+
+fi

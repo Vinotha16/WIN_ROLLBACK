@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list | grep 'autofs.*on' | wc -l) -ne 0 ]; then
+   echo "{ \"automount_1122_actual\" : \"\" }"
+else
+   echo "{ \"automount_1122_actual\" : \"automount is disabled or no service autofs\" }"
+   exit 1
+fi

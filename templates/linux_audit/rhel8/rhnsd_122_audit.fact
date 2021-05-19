@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.2.2 Disable the rhnsd Daemon (Not Scored)
+
+if [ $(systemctl is-enabled rhnsd 2> /dev/null | grep "disabled" | wc -l) -eq 0 ]; then
+   echo "{\"rhnsd_122_audit\" : \"FAILED\"}"
+else
+   echo "{\"rhnsd_122_audit\" : \"PASSED\"}"
+fi
+

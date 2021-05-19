@@ -1,0 +1,10 @@
+#!/bin/sh
+# ** AUTO GENERATED **
+
+# 2.1.2 - Ensure daytime services are not enabled (Scored)
+
+if [ $(chkconfig --list 2>/dev/null | egrep "daytime.*off|daytime-udp.*off" | wc -l) -eq 0 ]; then
+    echo "{ \"daytime_212_audit\" : \"FAILED\" }"
+else
+   echo "{ \"daytime_212_audit\" : \"PASSED\" }"
+fi

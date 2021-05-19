@@ -1,0 +1,12 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 5.5.5 - Ensure default user umask is 027 or more restrictive (Scored)
+
+if [ $(grep "umask.*027" /etc/bashrc | wc -l) -eq 0 ] || [ $(grep "umask.*027" /etc/profile | wc -l) -eq 0 ]; then
+   echo "{\"defaultuser_555_audit\" : \"FAILED\"}"
+else
+   echo "{\"defaultuser_555_audit\" : \"PASSED\"}"
+   exit 1
+fi
+

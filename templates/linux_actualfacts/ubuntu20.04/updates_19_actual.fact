@@ -1,0 +1,7 @@
+#!/bin/bash
+failed=$(sudo apt-get -s upgrade | grep "^Inst" | awk '{print $2}' | sort | paste -sd ",")
+if [ "$(sudo apt-get -s upgrade | grep 'not upgraded' | awk {'print $10'})" != "0" ]; then
+   echo "{ \"updates_19_actual\" : \"failed $failed\" }"
+else
+   echo "{ \"updates_19_actual\" : \"No updates available\" }"
+fi

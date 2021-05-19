@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.6.1 - Ensure iptables is installed (Scored)
+
+if [ "$(sudo rpm -q iptables | grep "not installed" | wc -l)" -ne 0 ]; then
+   echo "{\"iptables_361_audit\" : \"FAILED\"}"
+else
+   echo "{\"iptables_361_audit\" : \"PASSED\"}"
+fi
+

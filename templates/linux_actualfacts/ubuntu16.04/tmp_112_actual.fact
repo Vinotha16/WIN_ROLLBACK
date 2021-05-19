@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(mount | grep "\s/tmp.*tmpfs")
+if [ "$(mount | grep "\s/tmp.*tmpfs" | wc -l)" -eq 0 ]; then
+   echo "{ \"tmp_112_actual\" : \"\" }"
+else
+   echo "{ \"tmp_112_actual\" : \"$cmd\" }"
+   
+fi
+

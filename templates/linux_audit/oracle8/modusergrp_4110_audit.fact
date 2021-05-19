@@ -1,0 +1,13 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.10 - Ensure events that modify user/group information are collected (Scored)
+
+if [ $( sudo grep "identity" /etc/audit/rules.d/*.rules 2> /dev/null | wc -l) -eq 0 ]; then
+   echo "{ \"4.1.10 - Events modify user/group information are not collected\" : \"FAILED\" }"
+else
+   echo "{ \"modusergrp_4110_audit\" : \"PASSED\" }"
+   exit 1
+fi
+
+

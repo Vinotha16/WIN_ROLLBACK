@@ -1,0 +1,25 @@
+---
+# tasks file for linux_windows_cis_rollback
+####################
+######ROLLBACK######
+####################
+
+#####LINUX####
+- include: '{{ item }}'
+  vars:
+    params:
+      files:
+        - "var_{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}.yml"
+        - "rollback_{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}.yml"
+  loop: "{{ query('first_found', params, errors='ignore') }}"
+  when: ansible_system == "Linux"
+
+####WINDOWS####
+- include: '{{ item }}'
+  vars:
+    params:
+      files:
+        - 'var_rollback_windows.yml'
+        - "rollback_windows{{ ansible_distribution | regex_search('20[0-9]*') }}{{ ansible_distribution | regex_search('R2') }}.yml"
+  loop: "{{ query('first_found', params, errors='ignore') }}"
+  when: ansible_os_family == "Windows"

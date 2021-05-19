@@ -1,0 +1,13 @@
+#!/bin/bash
+cmd=$( crontab -u root -l | egrep "aide" )
+if [ $(sudo crontab -u root -l | grep aide | wc -l) -eq 0 ]; then
+	if [ $(sudo systemctl is-enabled aidecheck.service 2>/dev/null | grep 'enabled' | wc -l) -eq 0 ] || [ $(sudo systemctl is-enabled aidecheck.timer 2>/dev/null | | grep 'enabled' | wc -l) -eq 0 ]; then
+		echo "{ \"fsintegrity_142_actual\" : \"\" }"
+	else
+		echo "{ \"fsintegrity_142_actual\" : \"enabled\" }"
+	fi
+else
+   echo "{ \"fsintegrity_142_actual\" : \"$cmd\" }"
+
+fi
+

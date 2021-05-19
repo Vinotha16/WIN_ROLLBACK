@@ -1,0 +1,21 @@
+; ----------------------------------------------------------------------
+; PARSING Computer POLICY
+; Source file:  C:\Backup\backupgpo\DomainSysvol\GPO\Machine\registry.pol
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+AllowRspndrOnDomain 
+
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+AllowRspndrOnPublicNet 
+
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+EnableRspndr 
+
+Computer
+Software\Policies\Microsoft\Windows\LLTD
+ProhibitRspndrOnPrivateNet 
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

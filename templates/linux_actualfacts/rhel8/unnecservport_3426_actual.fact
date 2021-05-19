@@ -1,0 +1,10 @@
+#!/bin/bash
+service=$(firewall-cmd --get-active-zones | awk '!/:/ {print $1}' | while read ZN; do firewall-cmd --list-all --zone=$ZN; done | egrep "  services: " | cut -d:   -f2 | sed 's/^ //g')
+ports=$(firewall-cmd --get-active-zones | awk '!/:/ {print $1}' | while read ZN; do firewall-cmd --list-all --zone=$ZN; done | egrep "  ports: " | cut -d:   -f2 | sed 's/^ //g')
+if [ $( firewall-cmd --get-active-zones | awk '!/:/ {print $1}' | while read ZN; do firewall-cmd --list-all --zone=$ZN; done| grep "  services: " | wc -l) -ne 0 ] || [ $( firewall-cmd --get-active-zones | awk '!/:/ {print $1}' | while read ZN; do firewall-cmd --list-all --zone=$ZN; done| grep "  ports: " | wc -l) -ne 0 ]; then
+	echo "{ \"unnecservport_3426_actual\" : \"Services -- $service; Ports -- $ports\" }"
+else
+	echo "{ \"unnecservport_3426_actual\" : \"unnecessary services and ports are not accepted\" }"
+fi
+	
+

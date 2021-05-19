@@ -1,0 +1,15 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.7.2 - Ensure GDM login banner is configured (Scored)
+
+if [ "$(sudo dpkg -s gdm3 2>/dev/null | wc -l)" -ne 0 ]; then
+   if [ "$(sudo egrep "user-db|system-db|file-db" /etc/dconf/profile/gdm 2> /dev/null | wc -l)" -eq 0  ] || [ "$(sudo egrep "[org/gnome/login-screen]|banner-message-enable|banner-message-text" /etc/dconf/db/gdm.d/01-banner-message| wc -l)" -eq 0 ]; then
+      echo "{\"1.7.2 - GDM Login Banner is not configured \"  :  \"FAILED\"}"
+   else
+      echo "{ \"gdm_172_audit\" : \"PASSED\" }"
+         
+   fi
+else
+   echo "{\"1.7.2 - GDM is not installed\"  :   \"FAILED\"}"
+fi

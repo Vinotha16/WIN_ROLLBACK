@@ -1,0 +1,12 @@
+#!/bin/bash
+a=$(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'iif "lo" accept' | expand -t 1 | tr '"' " ")
+b=$(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip saddr' | expand -t 1 )
+cmd="${a}","${b}"
+    if [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'iif "lo" accept' | wc -l) -eq 0 ] || [ $(sudo nft list ruleset | awk '/hook input/,/}/' | grep 'ip saddr' | wc -l) -eq 0 ]; then
+   echo "{ \"nfloopbacktraffic_3434_actual\" : \"\" }"
+else
+   echo "{ \"nfloopbacktraffic_3434_actual\" : \"${cmd}\" }"
+   exit 0
+fi
+
+

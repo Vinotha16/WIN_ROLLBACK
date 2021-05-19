@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(apt-key list | paste -sd "," -)
+if [ $(sudo apt-key list 2>/dev/null | grep "/etc/apt/trusted" | wc -l) -eq 0 ]; then
+   echo "{ \"gpgkey_122_actual\" : \"\" }"
+else
+   echo "{ \"gpgkey_122_actual\" : \"${cmd}\" }"
+fi

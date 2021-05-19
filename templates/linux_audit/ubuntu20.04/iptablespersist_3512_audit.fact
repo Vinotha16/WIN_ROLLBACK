@@ -1,0 +1,11 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 3.5.1.2 Ensure iptables-persistent is not installed
+
+if [ $(dpkg-query -s iptables-persistent | grep 'Status: install' | wc -l) -nq 0 ] ; then
+   echo "{ \"iptablespersist_3512_audit\" : \"FAILED\" }"
+else
+   echo "{ \"iptablespersist_3512_audit\" : \"PASSED\" }"
+
+fi

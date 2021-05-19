@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $(sudo systemctl is-enabled syslog-ng 2>/dev/null | grep enabled | wc -l) -eq 0 ]; then
+   echo "{ \"syslogng_4221_actual\" : \"\" }"
+else
+   echo "{ \"syslogng_4221_actual\" : \"enabled\" }"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+a=$(cat /etc/pam.d/password-auth | grep -m1 -o "sha512")
+b=$(cat /etc/pam.d/system-auth | grep -m1 -o "sha512")
+cmd="${a}","${b}"
+if [ $(grep "^password.*sufficient.*sha512" /etc/pam.d/password-auth | wc -l) -eq 0 ] || [ $(grep "^password.*sufficient.*sha512" /etc/pam.d/system-auth | wc -l) -eq 0 ]; then
+   echo "{ \"passwdhashing_533_actual\" : \"\" }"
+else
+   echo "{ \"passwdhashing_533_actual\" : \"${cmd}\" }"
+
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+cmd=$(cat /etc/motd | grep "Welcome to ubuntu20")
+if [ "$(cat /etc/motd 2> /dev/null | grep "Welcome to ubuntu20" | wc -l)" -eq 0 ] || [ "$(sudo egrep '(\\v|\\r|\\m|\\s)' /etc/motd | wc -l)" -ne 0 ]; then
+   echo "{ \"msgday_1811_actual\" : \"\" }"
+else
+   echo "{ \"msgday_1811_actual\" : \"$cmd\" }"
+fi

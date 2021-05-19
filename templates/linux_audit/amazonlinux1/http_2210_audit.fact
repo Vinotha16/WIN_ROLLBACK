@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 2.2.10 - Ensure HTTP server is not enabled (Scored)
+
+if [ $(sudo chkconfig --list httpd 2>/dev/null | grep ":on" | wc -l) -eq 1 ]; then
+    echo "{ \"http_2210_audit\" : \"FAILED\" }"
+else
+    echo "{ \"http_2210_audit\" : \"PASSED\" }"
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $(sudo chkconfig --list nfs 2>/dev/null | grep ":on" | wc -l) -eq 1 ] || [ $(sudo sudo chkconfig --list rpcbind 2>/dev/null | grep ":on" | wc -l) -eq 1 ]; then
+    echo "{ \"nfsrpc_227_actual\" : \"\"}"
+else
+    echo "{ \"nfsrpc_227_actual\" : \"nfs and rpc are disabled\"}"
+    
+fi

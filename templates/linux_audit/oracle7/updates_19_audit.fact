@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 1.9 - Ensure updates, patches, and additional security software are installed (Scored)
+
+if [ "$(yum check-update --security | grep 'No packages' | cut -d';' -f1)" != "No packages needed for security" ]; then
+   echo "{ \"updates_19_audit\" : \"FAILED\" }"
+else
+   echo "{ \"updates_19_audit\" : \"PASSED\" }"
+fi

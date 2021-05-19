@@ -1,0 +1,20 @@
+#!/bin/bash
+a=$(sudo cat /etc/audit/audit.rules | grep "/sbin/insmod -p x -k modules")
+b=$(sudo cat /etc/audit/audit.rules | grep "/sbin/rmmod -p x -k modules")
+c=$(sudo cat /etc/audit/audit.rules | grep "/sbin/modprobe -p x -k modules")
+d=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b64 -S init_module -S delete_module -k modules")
+e=$(sudo cat /etc/audit/audit.rules | grep "exit -F arch=b32 -S init_module -S delete_module -k modules")
+f="${a}","${b}","${c}","${d}"
+cmd=${f}
+g="${a}","${b}","${c}","${e}"
+cmd1=${g}
+if [ $(sudo grep modules /etc/audit/audit.rules | wc -l) -eq 0 ]; then
+   echo "{ \"kernelmodule_4117_actual\" : \"\" }"
+else
+  if [ "$(uname -m)" == 'x86_64' ]; then
+        echo "{\"kernelmodule_4117_actual\":\"${cmd}\"}"
+     else
+        echo "{\"kernelmodule_4117_actual\":\"${cmd1}\"}"
+  fi
+exit 1
+fi

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(grep -E '\s/dev/shm\s' /etc/fstab)
+if [ $(mount | grep -E '\s/dev/shm\s'| wc -l) -eq 0 ] || [ $(grep -E '\s/dev/shm\s' /etc/fstab | wc -l) -eq 0 ]; then
+   echo "{ \"shmnconfig_116_actual\" : \"\" }"
+else
+   echo "{ \"shmnconfig_116_actual\" : \"${cmd}\" }"
+
+fi

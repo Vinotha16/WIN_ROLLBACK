@@ -1,0 +1,9 @@
+#!/bin/bash
+cmd=$(rpm -qa | egrep "chrony")
+if [ $(rpm -qa | egrep "chrony" | wc -l) -eq 0 ]; then
+   echo "{ \"timesync_2211_actual\" : \"\" }"
+else
+   echo "{ \"timesync_2211_actual\" : \"$cmd\" }"
+   exit 1
+fi
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+cmd=$(sudo stat -c "%a %U %G %n" /etc/hosts.allow)
+if [ "$(sudo stat /etc/hosts.allow | grep '0644.*Uid.*0.*root.*Gid.*0.*root' | wc -l)" -eq 0 ]; then
+   echo "{ \"permhostsallow_344_actual\" : \"\"}"
+else
+   echo "{ \"permhostsallow_344_actual\" : \"${cmd}\"}"
+  
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#  3.4.2.3 - Ensure iptables is not enabled (Scored)
+
+if [ $(systemctl status iptables 2> /dev/null | grep 'enabled' | wc -l) -eq  1 ] || [ $(systemctl is-enabled iptables 2> /dev/null | grep 'enabled' | wc -l) -eq 1 ]; then
+	echo "{ \"iptables_3423_audit\" : \"FAILED\" }"
+else
+	echo "{ \"iptables_3423_audit\" : \"PASSED\" }"
+fi
+	

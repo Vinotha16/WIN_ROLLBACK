@@ -1,0 +1,10 @@
+#!/bin/bash
+# ** AUTO GENERATED **
+
+# 4.1.5 - Ensure events that modify user/group information are collected (Scored)
+
+if [ $(sudo grep identity /etc/audit/audit.rules 2> /dev/null | wc -l) -eq 0 ] || [ $(sudo auditctl -l | grep identity | wc -l) -eq 0 ]; then
+   echo "{\"4.1.5 - Events modify user/group information are not collected\" : \"FAILED\"}"
+else
+   echo "{ \"modusergrp_415_audit\" : \"PASSED\"}"
+fi
